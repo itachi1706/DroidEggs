@@ -11,6 +11,7 @@ import com.itachi1706.droideggs.GingerbreadEgg.PlatLogoActivityGINGERBREAD;
 import com.itachi1706.droideggs.HoneycombEgg.PlatLogoActivityHONEYCOMB;
 import com.itachi1706.droideggs.IceCreamSandwichEgg.PlatLogoActivityICS;
 import com.itachi1706.droideggs.JellyBeanEgg.PlatLogoActivityJELLYBEAN;
+import com.itachi1706.droideggs.KitKatEgg.PlatLogoActivityKITKAT;
 import com.itachi1706.droideggs.LollipopEgg.PlatLogoActivityLOLLIPOP;
 
 /**
@@ -51,7 +52,12 @@ public class SelectorOnClick implements AdapterView.OnItemClickListener {
                 else
                     MainScreen.unableToAccessEasterEgg("JELLYBEAN");
                 break;
-            case "KK": MainScreen.eggComingSoon(); break;
+            case "KK":
+                if (Build.VERSION.SDK_INT >= 19)
+                    context.startActivity(new Intent(context, PlatLogoActivityKITKAT.class));
+                else
+                    MainScreen.unableToAccessEasterEgg("KITKAT");
+                break;
             case "L":
                 if (Build.VERSION.SDK_INT >= 21)
                     context.startActivity(new Intent(context, PlatLogoActivityLOLLIPOP.class));

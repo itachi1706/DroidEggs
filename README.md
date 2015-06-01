@@ -15,8 +15,8 @@ This application is licensed under the *Apache License 2.0* as it contains files
 | :-----------------: | :-----------------: | :--------: |
 | Android 2.3 GINGERBREAD | Zombie Art | TODO |
 | Android 3.0 HONEYCOMB | Honeybee | TODO |
-| Android 4.0 ICE CREAM SANDWICH | NyanDroid | TODO |
+| Android 4.0 ICE CREAM SANDWICH | NyanDroid | TESTING |
 | Android 4.1 JELLY BEAN | Flick Jelly? | TODO |
 | Android 4.4 KITKAT | Dessert Case | TODO |
-| Android 5.0 LOLLIPOP | (LLand) Flappy Droid | INTEGRATING |
+| Android 5.0 LOLLIPOP | (LLand) Flappy Droid | DONE |
 | Android MNC MACADAMIA NUT COOKIE | ¯\\\_\(ツ\)\_/¯ | TODO |

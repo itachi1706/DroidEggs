@@ -79,6 +79,9 @@ public class MainScreen extends AppCompatActivity {
             selectionList.setOnItemClickListener(new SelectorOnClick(this));
         } else {
             //TODO Use New Selector
+            SelectorAdapter adapter = new SelectorAdapter(this, R.layout.listview_selector, populatedList);
+            selectionList.setAdapter(adapter);
+            selectionList.setOnItemClickListener(new SelectorOnClick(this));
         }
 
     }

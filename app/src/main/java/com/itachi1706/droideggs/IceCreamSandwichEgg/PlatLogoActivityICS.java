@@ -16,8 +16,12 @@
 
 package com.itachi1706.droideggs.IceCreamSandwichEgg;
 
+import android.annotation.TargetApi;
+import android.app.WallpaperManager;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
@@ -30,6 +34,7 @@ import android.widget.Toast;
 
 import com.itachi1706.droideggs.R;
 
+@TargetApi(16)
 public class PlatLogoActivityICS extends AppCompatActivity {
 
     Toast mToast;
@@ -69,6 +74,9 @@ public class PlatLogoActivityICS extends AppCompatActivity {
         });
 
         setContentView(mContent);
+        updateBackground();
+
+        mZzz = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
     }
 
     Runnable mSuperLongPress = new Runnable() {
@@ -95,4 +103,13 @@ public class PlatLogoActivityICS extends AppCompatActivity {
             }
         }
     };
+
+    /**
+     * Methods that deviates from the Android Open Source Project
+     */
+    private void updateBackground(){
+        final WallpaperManager wallpaperManager = WallpaperManager.getInstance(this);
+        final Drawable wallpaperDrawable = wallpaperManager.getDrawable();
+        mContent.setBackground(wallpaperDrawable);
+    }
 }

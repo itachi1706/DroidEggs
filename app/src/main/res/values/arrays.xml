@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="version_with_egg">
+        <item>Gingerbread (2.3)</item>
+        <item>Honeycomb (3.0)</item>
+        <item>Ice Cream Sandwich (4.0)</item>
+        <item>Jelly Bean (4.1)</item>
+        <item>KitKat (4.4)</item>
+        <item>Lollipop (5.0)</item>
+        <item>Macadamia Nut Cookie (MNC)</item>
+    </string-array>
+
+    <string-array name="version_with_egg_code">
+        <item>GB</item>
+        <item>HC</item>
+        <item>ICS</item>
+        <item>JB</item>
+        <item>KK</item>
+        <item>L</item>
+        <item>MNC</item>
+    </string-array>
+</resources>

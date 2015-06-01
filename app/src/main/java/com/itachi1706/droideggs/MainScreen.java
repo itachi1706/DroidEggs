@@ -1,32 +1,76 @@
 package com.itachi1706.droideggs;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 
 import com.itachi1706.droideggs.LollipopEgg.PlatLogoActivityLOLLIPOP;
 
 public class MainScreen extends AppCompatActivity {
 
-    Button test;
+    Button currentVer;
+    ListView selectionList;
+    static Activity staticAct;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
 
-        test = (Button) findViewById(R.id.btnTest);
+        currentVer = (Button) findViewById(R.id.btnCurrent);
+        selectionList = (ListView) findViewById(R.id.lvEasterEggSelection);
 
-        test.setOnClickListener(new View.OnClickListener() {
+        staticAct = this;
+
+        //TODO Upgrade selector to custom adapter later
+        ArrayAdapter<String> tmpAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.version_with_egg));
+        selectionList.setAdapter(tmpAdapter);
+        selectionList.setOnItemClickListener(new SelectorOnClick(this));
+
+
+        currentVer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainScreen.this, PlatLogoActivityLOLLIPOP.class));
+                if (Build.VERSION.SDK_INT >= 21)
+                    startActivity(new Intent(MainScreen.this, PlatLogoActivityLOLLIPOP.class));
+                else {
+                    unableToAccessEasterEgg("LOLLIPOP (SDK 21)");
+                }
             }
         });
+    }
+
+    public static void unableToAccessEasterEgg(final String SDK_VERSION){
+        Snackbar.make(staticAct.findViewById(android.R.id.content), "Unable to launch (INVALID VERSION)", Snackbar.LENGTH_LONG)
+                .setAction("WHY?", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        new AlertDialog.Builder(staticAct).setMessage("We are unable to give you access to " +
+                                "this activity due to incompatible Android Version. You require at least Android " +
+                                SDK_VERSION + " to access this activity")
+                                .setPositiveButton("AWWW :(", null).show();
+                    }
+                }).show();
+    }
+
+    public static void eggComingSoon(){
+        Snackbar.make(staticAct.findViewById(android.R.id.content), "Easter Egg Coming Soon", Snackbar.LENGTH_SHORT)
+                .setAction("DISMISS", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                }).show();
     }
 
     @Override

@@ -14,4 +14,5 @@
     <string name="title_activity_plat_logo_activity_kitkat">PlatLogoActivityKITKAT</string>
     <string name="title_activity_dessert_case">DessertCase</string>
     <string name="dessert_case">DessertCaseDream</string>
+    <string name="title_activity_plat_logo_activity_lmp">PlatLogoActivityLMP</string>
 </resources>

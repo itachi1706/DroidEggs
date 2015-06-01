@@ -29,9 +29,9 @@
             android:hardwareAccelerated="true"
             android:label="@string/title_activity_lland"
             android:launchMode="singleInstance"
+            android:process=":flappydroid"
             android:screenOrientation="locked"
             android:theme="@style/AppTheme.NoActionBar"
-            android:process=":flappydroid"
             tools:ignore="InnerclassSeparator" >
         </activity>
         <activity
@@ -56,8 +56,8 @@
             android:icon="@drawable/ics_nyandroid04"
             android:label="@string/title_activity_nyandroid"
             android:launchMode="singleInstance"
-            android:theme="@style/AppTheme.NoActionBar.FullScreen"
             android:process=":nyandroid"
+            android:theme="@style/AppTheme.NoActionBar.FullScreen"
             tools:ignore="InnerclassSeparator" >
         </activity>
 
@@ -84,8 +84,8 @@
             android:icon="@drawable/jb_redbeandroid"
             android:label="@string/title_activity_bean_bag"
             android:launchMode="singleInstance"
-            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
             android:process=":beanbag"
+            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
             tools:ignore="InnerclassSeparator" >
         </activity>
 
@@ -106,31 +106,30 @@
         </activity>
         <activity
             android:name=".KitKatEgg.DessertCase"
-            android:label="@string/title_activity_dessert_case"
             android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar.FullScreen"
             android:hardwareAccelerated="true"
+            android:label="@string/title_activity_dessert_case"
             android:launchMode="singleInstance"
-            android:screenOrientation="locked"
             android:process=":sweetsweetdesserts"
-            tools:ignore="InnerclassSeparator">
+            android:screenOrientation="locked"
+            android:theme="@style/AppTheme.NoActionBar.FullScreen"
+            tools:ignore="InnerclassSeparator" >
         </activity>
         <!-- a gallery of delicious treats -->
         <service
             android:name=".KitKatEgg.DessertCaseDream"
+            android:enabled="false"
+            android:excludeFromRecents="true"
             android:exported="true"
             android:label="@string/dessert_case"
-            android:enabled="false"
             android:process=":sweetsweetdesserts"
-            android:excludeFromRecents="true"
-            tools:ignore="ExportedService,InnerclassSeparator">
+            tools:ignore="ExportedService,InnerclassSeparator" >
             <intent-filter>
                 <action android:name="android.service.dreams.DreamService" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </service>
-
-
     </application>
 
 </manifest>

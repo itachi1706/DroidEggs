@@ -6,7 +6,6 @@
         <item>Ice Cream Sandwich (4.0)</item>
         <item>Jelly Bean (4.1)</item>
         <item>KitKat (4.4)</item>
-        <item>Lemon Meringue Pie (LMP) \n[L Preview]</item>
         <item>Lollipop (5.0)</item>
         <item>Macadamia Nut Cookie (MNC) \n[M Preview]</item>
     </string-array>
@@ -17,7 +16,6 @@
         <item>ICS</item>
         <item>JB</item>
         <item>KK</item>
-        <item>LMP</item>
         <item>L</item>
         <item>MNC</item>
     </string-array>

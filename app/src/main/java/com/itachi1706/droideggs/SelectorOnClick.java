@@ -28,7 +28,7 @@ public class SelectorOnClick implements AdapterView.OnItemClickListener {
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        String[] version_code = context.getResources().getStringArray(R.array.version_with_egg_code);
+        String[] version_code = context.getResources().getStringArray(R.array.legacy_version_with_egg_code);
 
         Log.d("Selected Version", position + "");
 
@@ -58,6 +58,7 @@ public class SelectorOnClick implements AdapterView.OnItemClickListener {
                 else
                     MainScreen.unableToAccessEasterEgg("KITKAT");
                 break;
+            case "LMP": MainScreen.eggComingSoon(); break;
             case "L":
                 if (Build.VERSION.SDK_INT >= 21)
                     context.startActivity(new Intent(context, PlatLogoActivityLOLLIPOP.class));

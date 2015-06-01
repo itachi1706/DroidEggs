@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="version_with_egg">
+    <string-array name="legacy_version_with_egg">
         <item>Gingerbread (2.3)</item>
         <item>Honeycomb (3.0)</item>
         <item>Ice Cream Sandwich (4.0)</item>
         <item>Jelly Bean (4.1)</item>
         <item>KitKat (4.4)</item>
+        <item>Lemon Meringue Pie (LMP) \n[L Preview]</item>
         <item>Lollipop (5.0)</item>
-        <item>Macadamia Nut Cookie (MNC)</item>
+        <item>Macadamia Nut Cookie (MNC) \n[M Preview]</item>
     </string-array>
 
-    <string-array name="version_with_egg_code">
+    <string-array name="legacy_version_with_egg_code">
         <item>GB</item>
         <item>HC</item>
         <item>ICS</item>
         <item>JB</item>
         <item>KK</item>
+        <item>LMP</item>
         <item>L</item>
         <item>MNC</item>
     </string-array>

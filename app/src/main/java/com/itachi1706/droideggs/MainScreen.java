@@ -37,7 +37,7 @@ public class MainScreen extends AppCompatActivity {
         staticAct = this;
 
         //TODO Upgrade selector to custom adapter later
-        ArrayAdapter<String> tmpAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.version_with_egg));
+        ArrayAdapter<String> tmpAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.legacy_version_with_egg));
         selectionList.setAdapter(tmpAdapter);
         selectionList.setOnItemClickListener(new SelectorOnClick(this));
 

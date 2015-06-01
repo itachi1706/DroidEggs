@@ -83,8 +83,6 @@ public class PlatLogoActivityLOLLIPOP extends AppCompatActivity {
 
         mLayout = new FrameLayout(this);
         setContentView(mLayout);
-
-        updateBackground();
     }
 
     @Override
@@ -238,15 +236,5 @@ public class PlatLogoActivityLOLLIPOP extends AppCompatActivity {
                 .setDuration(500)
                 .setStartDelay(800)
                 .start();
-    }
-
-
-    /**
-     * Methods that deviates from the Android Open Source Project
-     */
-    private void updateBackground(){
-        final WallpaperManager wallpaperManager = WallpaperManager.getInstance(this);
-        final Drawable wallpaperDrawable = wallpaperManager.getDrawable();
-        mLayout.setBackground(wallpaperDrawable);
     }
 }

@@ -74,7 +74,6 @@ public class PlatLogoActivityICS extends AppCompatActivity {
         });
 
         setContentView(mContent);
-        updateBackground();
 
         mZzz = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
     }
@@ -103,13 +102,4 @@ public class PlatLogoActivityICS extends AppCompatActivity {
             }
         }
     };
-
-    /**
-     * Methods that deviates from the Android Open Source Project
-     */
-    private void updateBackground(){
-        final WallpaperManager wallpaperManager = WallpaperManager.getInstance(this);
-        final Drawable wallpaperDrawable = wallpaperManager.getDrawable();
-        mContent.setBackground(wallpaperDrawable);
-    }
 }

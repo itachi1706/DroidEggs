@@ -37,7 +37,7 @@
             android:name=".LollipopEgg.PlatLogoActivityLOLLIPOP"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_activity_plat_logo_activity_lollipop"
-            android:theme="@style/AppTheme.NoActionBar.FullScreen"
+            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
             tools:ignore="InnerclassSeparator" >
         </activity>
 
@@ -45,7 +45,7 @@
         <activity
             android:name=".IceCreamSandwichEgg.PlatLogoActivityICS"
             android:label="@string/title_activity_plat_logo_activity_ics"
-            android:theme="@style/AppTheme.NoActionBar.FullScreen"
+            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
             tools:ignore="InnerclassSeparator">
         </activity>
         <activity

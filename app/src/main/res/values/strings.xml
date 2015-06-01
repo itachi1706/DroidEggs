@@ -11,4 +11,7 @@
     <string name="title_activity_plat_logo_activity_jellybean">PlatLogoActivityJELLYBEAN</string>
     <string name="title_activity_bean_bag">BeanBag</string>
     <string name="title_activity_plat_logo_activity_honeycomb">PlatLogoActivityHONEYCOMB</string>
+    <string name="title_activity_plat_logo_activity_kitkat">PlatLogoActivityKITKAT</string>
+    <string name="title_activity_dessert_case">DessertCase</string>
+    <string name="dessert_case">DessertCaseDream</string>
 </resources>

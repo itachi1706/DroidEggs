@@ -71,14 +71,13 @@ public class MainScreen extends AppCompatActivity {
         populatedList = PopulateSelector.populateSelectors(this);
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean newSel = sp.getBoolean("check_version", false);
+        boolean newSel = sp.getBoolean("check_version", true);
 
-        if (!newSel) {
+        if (newSel) {
             ArrayAdapter<String> tmpAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.legacy_version_with_egg));
             selectionList.setAdapter(tmpAdapter);
             selectionList.setOnItemClickListener(new SelectorOnClick(this));
         } else {
-            //TODO Use New Selector
             SelectorAdapter adapter = new SelectorAdapter(this, R.layout.listview_selector, populatedList);
             selectionList.setAdapter(adapter);
             selectionList.setOnItemClickListener(new SelectorOnClick(this));

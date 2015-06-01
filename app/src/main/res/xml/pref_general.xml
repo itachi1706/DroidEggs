@@ -2,9 +2,9 @@
 
     <CheckBoxPreference
         android:key="check_version"
-        android:title="Use New Selection Populator"
-        android:summary="Whether you want to use either the old or new selection populator \n(Psst, the new selector has more sweg :D)"
-        android:defaultValue="true" />
+        android:title="Compact Easter Egg Selector"
+        android:summary="Whether you want a selector that is compact, or has more info"
+        android:defaultValue="false" />
 
     <Preference android:title="App Version" android:key="view_app_version" android:summary="NULL" />
     <Preference android:title="Package Name" android:key="view_app_name"/>

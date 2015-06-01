@@ -64,6 +64,25 @@
             android:name=".GingerbreadEgg.PlatLogoActivityGINGERBREAD"
             android:label="@string/title_activity_plat_logo_activity_gingerbread"
             android:theme="@style/AppTheme.NoActionBar.FullScreen"
+            tools:ignore="InnerclassSeparator" >
+        </activity>
+
+        <!-- Jelly Bean Egg Activities -->
+        <activity
+            android:name=".JellyBeanEgg.PlatLogoActivityJELLYBEAN"
+            android:label="@string/title_activity_plat_logo_activity_jellybean"
+            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
+            tools:ignore="InnerclassSeparator">
+        </activity>
+        <activity
+            android:name=".JellyBeanEgg.BeanBag"
+            android:label="@string/title_activity_bean_bag"
+            android:exported="true"
+            android:theme="@android:style/Theme.Wallpaper.NoTitleBar.Fullscreen"
+            android:hardwareAccelerated="true"
+            android:launchMode="singleInstance"
+            android:excludeFromRecents="true"
+            android:icon="@drawable/jb_redbeandroid"
             tools:ignore="InnerclassSeparator">
         </activity>
     </application>

@@ -28,6 +28,8 @@ import android.view.ViewConfiguration;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.itachi1706.droideggs.R;
+
 public class PlatLogoActivityICS extends AppCompatActivity {
 
     Toast mToast;
@@ -43,7 +45,7 @@ public class PlatLogoActivityICS extends AppCompatActivity {
         mToast = Toast.makeText(this, "Android 4.0: Ice Cream Sandwich", Toast.LENGTH_SHORT);
 
         mContent = new ImageView(this);
-        mContent.setImageResource(com.android.internal.R.drawable.platlogo);
+        mContent.setImageResource(R.drawable.ics_platlogo);
         mContent.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
 
         mContent.setOnTouchListener(new View.OnTouchListener() {

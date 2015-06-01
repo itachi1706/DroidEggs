@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 
+import com.itachi1706.droideggs.IceCreamSandwichEgg.PlatLogoActivityICS;
 import com.itachi1706.droideggs.LollipopEgg.PlatLogoActivityLOLLIPOP;
 
 /**
@@ -38,7 +39,12 @@ public class SelectorOnClick implements AdapterView.OnItemClickListener {
         switch (version){
             case "GB": MainScreen.eggComingSoon(); break;
             case "HC": MainScreen.eggComingSoon(); break;
-            case "ICS": MainScreen.eggComingSoon(); break;
+            case "ICS":
+                if (Build.VERSION.SDK_INT >= 16)
+                    context.startActivity(new Intent(context, PlatLogoActivityICS.class));
+                else
+                    MainScreen.unableToAccessEasterEgg("JELLYBEAN");
+                break;
             case "JB": MainScreen.eggComingSoon(); break;
             case "KK": MainScreen.eggComingSoon(); break;
             case "L":

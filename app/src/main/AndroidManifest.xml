@@ -19,23 +19,40 @@
             </intent-filter>
         </activity>
 
-
         <!-- Lollipop Easter Egg Activities -->
         <activity
             android:name=".LollipopEgg.LLandActivity"
-            android:label="@string/title_activity_lland"
+            android:excludeFromRecents="true"
             android:hardwareAccelerated="true"
+            android:label="@string/title_activity_lland"
             android:launchMode="singleInstance"
             android:screenOrientation="locked"
-            android:excludeFromRecents="true"
             android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="InnerclassSeparator">
+            tools:ignore="InnerclassSeparator" >
         </activity>
         <activity
             android:name=".LollipopEgg.PlatLogoActivityLOLLIPOP"
-            android:label="@string/title_activity_plat_logo_activity_lollipop"
             android:configChanges="orientation|keyboardHidden"
+            android:label="@string/title_activity_plat_logo_activity_lollipop"
             android:theme="@style/AppTheme.NoActionBar.FullScreen"
+            tools:ignore="InnerclassSeparator" >
+        </activity>
+
+        <!-- Ice Cream Sandwich Egg Activities -->
+        <activity
+            android:name=".IceCreamSandwichEgg.PlatLogoActivityICS"
+            android:label="@string/title_activity_plat_logo_activity_ics"
+            android:theme="@style/AppTheme.NoActionBar.FullScreen"
+            tools:ignore="InnerclassSeparator">
+        </activity>
+        <activity
+            android:name=".IceCreamSandwichEgg.Nyandroid"
+            android:label="@string/title_activity_nyandroid"
+            android:icon="@drawable/nyandroid04"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
+            android:hardwareAccelerated="true"
+            android:launchMode="singleInstance"
+            android:excludeFromRecents="true"
             tools:ignore="InnerclassSeparator">
         </activity>
     </application>

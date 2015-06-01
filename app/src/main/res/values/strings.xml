@@ -5,4 +5,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_lland">LLandActivity</string>
     <string name="title_activity_plat_logo_activity_lollipop">PlatLogoActivityLOLLIPOP</string>
+    <string name="title_activity_plat_logo_activity_ics">PlatLogoActivityICS</string>
+    <string name="title_activity_nyandroid">Nyandroid</string>
 </resources>

@@ -71,13 +71,13 @@ public class LLand extends FrameLayout {
 
     final static int[] POPS = {
             // resid                // spinny!
-            R.drawable.pop_belt, 0,
-            R.drawable.pop_droid, 0,
-            R.drawable.pop_pizza, 1,
-            R.drawable.pop_stripes, 0,
-            R.drawable.pop_swirl, 1,
-            R.drawable.pop_vortex, 1,
-            R.drawable.pop_vortex2, 1,
+            R.drawable.lollipop_pop_belt, 0,
+            R.drawable.lollipop_pop_droid, 0,
+            R.drawable.lollipop_pop_pizza, 1,
+            R.drawable.lollipop_pop_stripes, 0,
+            R.drawable.lollipop_pop_swirl, 1,
+            R.drawable.lollipop_pop_vortex, 1,
+            R.drawable.lollipop_pop_vortex2, 1,
     };
 
     private static class Params {
@@ -247,7 +247,7 @@ public class LLand extends FrameLayout {
         boolean showingSun = (mTimeOfDay == DAY || mTimeOfDay == SUNSET) && frand() > 0.25;
         if (showingSun) {
             final Star sun = new Star(getContext());
-            sun.setBackgroundResource(R.drawable.sun);
+            sun.setBackgroundResource(R.drawable.lollipop_sun);
             final int w = getResources().getDimensionPixelSize(R.dimen.sun_size);
             sun.setTranslationX(frand(w, mWidth - w));
             if (mTimeOfDay == DAY) {
@@ -266,7 +266,7 @@ public class LLand extends FrameLayout {
             final float ff = frand();
             if ((dark && ff < 0.75f) || ff < 0.5f) {
                 final Star moon = new Star(getContext());
-                moon.setBackgroundResource(R.drawable.moon);
+                moon.setBackgroundResource(R.drawable.lollipop_moon);
                 moon.getBackground().setAlpha(dark ? 255 : 128);
                 moon.setScaleX(frand() > 0.5 ? -1 : 1);
                 moon.setRotation(moon.getScaleX() * frand(5, 30));
@@ -358,7 +358,7 @@ public class LLand extends FrameLayout {
             }
 
             mScoreField.setTextColor(0xFFAAAAAA);
-            mScoreField.setBackgroundResource(R.drawable.scorecard);
+            mScoreField.setBackgroundResource(R.drawable.lollipop_scorecard);
             mDroid.setVisibility(View.VISIBLE);
             mDroid.setX(mWidth / 2);
             mDroid.setY(mHeight / 2);
@@ -377,7 +377,7 @@ public class LLand extends FrameLayout {
             mAnim = null;
             mAnimating = false;
             mScoreField.setTextColor(0xFFFFFFFF);
-            mScoreField.setBackgroundResource(R.drawable.scorecard_gameover);
+            mScoreField.setBackgroundResource(R.drawable.lollipop_scorecard_gameover);
             mTimeOfDay = irand(0, SKIES.length); // for next reset
             mFrozen = true;
             postDelayed(new Runnable() {
@@ -718,7 +718,7 @@ public class LLand extends FrameLayout {
         public Player(Context context) {
             super(context);
 
-            setBackgroundResource(R.drawable.android);
+            setBackgroundResource(R.drawable.lollipop_android);
             getBackground().setTintMode(PorterDuff.Mode.SRC_ATOP);
             getBackground().setTint(0xFF00FF00);
             setOutlineProvider(new ViewOutlineProvider() {
@@ -952,7 +952,7 @@ public class LLand extends FrameLayout {
     private class Cloud extends Scenery {
         public Cloud(Context context) {
             super(context);
-            setBackgroundResource(frand() < 0.01f ? R.drawable.cloud_off : R.drawable.cloud);
+            setBackgroundResource(frand() < 0.01f ? R.drawable.lollipop_cloud_off : R.drawable.lollipop_cloud);
             getBackground().setAlpha(0x40);
             w = h = irand(PARAMS.CLOUD_SIZE_MIN, PARAMS.CLOUD_SIZE_MAX);
             z = 0;
@@ -963,7 +963,7 @@ public class LLand extends FrameLayout {
     private class Star extends Scenery {
         public Star(Context context) {
             super(context);
-            setBackgroundResource(R.drawable.star);
+            setBackgroundResource(R.drawable.lollipop_star);
             w = h = irand(PARAMS.STAR_SIZE_MIN, PARAMS.STAR_SIZE_MAX);
             v = z = 0;
         }

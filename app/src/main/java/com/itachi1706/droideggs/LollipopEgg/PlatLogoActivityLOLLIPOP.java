@@ -138,7 +138,7 @@ public class PlatLogoActivityLOLLIPOP extends AppCompatActivity {
         im.setTranslationZ(20);
         im.setScaleX(0);
         im.setScaleY(0);
-        final Drawable platlogo = getDrawable(R.drawable.l_platlogo);
+        final Drawable platlogo = getDrawable(R.drawable.lollipop_l_platlogo);
         platlogo.setAlpha(0);
         im.setImageDrawable(platlogo);
         im.setBackground(makeRipple());

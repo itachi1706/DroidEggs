@@ -9,16 +9,10 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="58c25f4f-3054-4237-b72b-fe014454d6bf" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/itachi1706/droideggs/SelectorOnClick.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/values/arrays.xml" />
+    <list default="true" id="58c25f4f-3054-4237-b72b-fe014454d6bf" name="Default" comment="Added Selection Screen for the app">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/itachi1706/droideggs/LollipopEgg/LLand.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/itachi1706/droideggs/LollipopEgg/LLand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/itachi1706/droideggs/MainScreen.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/itachi1706/droideggs/MainScreen.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/itachi1706/droideggs/LollipopEgg/PlatLogoActivityLOLLIPOP.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/itachi1706/droideggs/LollipopEgg/PlatLogoActivityLOLLIPOP.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main_screen.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main_screen.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/lland.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/lland.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/proguard-rules.pro" afterPath="$PROJECT_DIR$/app/proguard-rules.pro" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MOVED" beforePath="D:\Development\Projects\DroidEggs\app\src\main\res\drawable\android.xml" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/lollipop_android.xml" />
       <change type="MOVED" beforePath="D:\Development\Projects\DroidEggs\app\src\main\res\drawable\cloud.xml" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/lollipop_cloud.xml" />
@@ -79,10 +73,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SelectorOnClick.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SelectorOnClick.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/itachi1706/droideggs/SelectorOnClick.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9229323">
+            <state vertical-scroll-proportion="-18.185184">
               <caret line="48" column="22" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -93,11 +87,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="arrays.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/arrays.xml">
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="19" column="17" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
+              <caret line="0" column="19" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -116,74 +110,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LLand.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/itachi1706/droideggs/LollipopEgg/LLand.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="14" selection-end-column="3" />
-              <folding>
-                <element signature="e#0#32751#0" expanded="true" />
-                <element signature="imports" expanded="true" />
-                <element signature="e#3479#3524#0" expanded="true" />
-                <element signature="e#3557#3608#0" expanded="true" />
-                <element signature="e#3711#3754#0" expanded="true" />
-                <element signature="e#3786#3836#0" expanded="true" />
-                <element signature="e#3864#3910#0" expanded="true" />
-                <element signature="e#3941#3990#0" expanded="true" />
-                <element signature="e#4026#4080#0" expanded="true" />
-                <element signature="e#4109#4156#0" expanded="true" />
-                <element signature="e#4185#4239#0" expanded="true" />
-                <element signature="e#4275#4329#0" expanded="true" />
-                <element signature="e#4364#4417#0" expanded="true" />
-                <element signature="e#4452#4505#0" expanded="true" />
-                <element signature="e#4536#4585#0" expanded="true" />
-                <element signature="e#4616#4665#0" expanded="true" />
-                <element signature="e#4695#4743#0" expanded="true" />
-                <element signature="e#4773#4821#0" expanded="true" />
-                <element signature="e#4840#4876#0" expanded="true" />
-                <element signature="e#4898#4938#0" expanded="true" />
-                <element signature="e#4965#5009#0" expanded="true" />
-                <element signature="e#5036#5081#0" expanded="true" />
-                <element signature="e#5106#5149#0" expanded="true" />
-                <element signature="e#5180#5229#0" expanded="true" />
-                <element signature="e#5251#5291#0" expanded="true" />
-                <element signature="e#5495#5505#0" expanded="true" />
-                <element signature="e#7428#7461#0" expanded="true" />
-                <element signature="e#8373#8427#0" expanded="true" />
-                <element signature="e#9493#9547#0" expanded="true" />
-                <element signature="e#11562#11753#0" expanded="true" />
-                <element signature="e#11752#11753#0" expanded="true" />
-                <element signature="e#11946#11947#0" expanded="true" />
-                <element signature="e#11985#11986#0" expanded="true" />
-                <element signature="e#13508#13655#0" expanded="true" />
-                <element signature="e#13654#13655#0" expanded="true" />
-                <element signature="e#13742#13743#0" expanded="true" />
-                <element signature="e#13780#13781#0" expanded="true" />
-                <element signature="e#13846#13847#0" expanded="true" />
-                <element signature="e#13886#13887#0" expanded="true" />
-                <element signature="e#13934#13935#0" expanded="true" />
-                <element signature="e#13986#13987#0" expanded="true" />
-                <element signature="e#14027#14028#0" expanded="true" />
-                <element signature="e#14071#14072#0" expanded="true" />
-                <element signature="e#14128#14129#0" expanded="true" />
-                <element signature="e#14170#14171#0" expanded="true" />
-                <element signature="e#24558#24982#0" expanded="true" />
-                <element signature="e#24981#24982#0" expanded="true" />
-                <element signature="e#28697#28999#0" expanded="true" />
-                <element signature="e#28998#28999#0" expanded="true" />
-                <element signature="e#30307#30529#0" expanded="true" />
-                <element signature="e#30528#30529#0" expanded="true" />
-                <element signature="e#31513#31514#0" expanded="true" />
-                <element signature="e#31551#31552#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="0.2">
               <caret line="30" column="54" selection-start-line="30" selection-start-column="54" selection-end-line="30" selection-end-column="54" />
               <folding>
                 <element signature="e#890#920#0" expanded="true" />
@@ -193,47 +123,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LLandActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/itachi1706/droideggs/LollipopEgg/LLandActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#1342#0" expanded="true" />
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="lland.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/lland.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.827586">
-              <caret line="21" column="48" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="colors.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="7" column="47" selection-start-line="7" selection-start-column="47" selection-end-line="7" selection-end-column="47" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="styles.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="7" column="53" selection-start-line="7" selection-start-column="53" selection-end-line="7" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -1385,7 +1279,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="D:\Development\Projects\DroidEggs" value="4299437915379" />
+        <entry key="D:\Development\Projects\DroidEggs" value="4299441922935" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -1639,7 +1533,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/itachi1706/droideggs/LollipopEgg/LLand.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/llandxml.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/itachi1706/droideggs/LollipopEgg/LLandActivity.java" />
@@ -1654,6 +1547,8 @@
         <option value="$PROJECT_DIR$/app/src/main/res/values/arrays.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/itachi1706/droideggs/MainScreen.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/itachi1706/droideggs/SelectorOnClick.java" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/proguard-rules.pro" />
       </list>
     </option>
   </component>
@@ -2215,12 +2110,18 @@
       <option name="project" value="LOCAL" />
       <updated>1433147951277</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Added Selection Screen for the app">
+      <created>1433150411578</created>
+      <option name="number" value="00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1433150411578</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2233,10 +2134,10 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.58603066" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.58603066" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24962178" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24962178" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -2262,7 +2163,8 @@
     <MESSAGE value="Added Lollipop Plat Logo Activity&#10;" />
     <MESSAGE value="Updated Manifest for Lollipop&#10;- Added test button to test the stuff" />
     <MESSAGE value="Fixed derp caused by copy pasting" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed derp caused by copy pasting" />
+    <MESSAGE value="Added Selection Screen for the app" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Selection Screen for the app" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -2289,22 +2191,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5474061">
-          <caret line="18" column="39" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -2415,58 +2301,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/itachi1706/droideggs/LollipopEgg/LLandActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#1342#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/lland.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.827586">
-          <caret line="21" column="48" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main_screen.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="54" selection-start-line="30" selection-start-column="54" selection-end-line="30" selection-end-column="54" />
-          <folding>
-            <element signature="e#890#920#0" expanded="true" />
-            <element signature="e#1342#1394#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/arrays.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="17" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/itachi1706/droideggs/MainScreen.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2482,12 +2316,88 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/itachi1706/droideggs/SelectorOnClick.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9229323">
+        <state vertical-scroll-proportion="-18.185184">
           <caret line="48" column="22" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#603#604#0" expanded="true" />
             <element signature="e#641#642#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/proguard-rules.pro">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.060822897">
+          <caret line="2" column="58" selection-start-line="2" selection-start-column="58" selection-end-line="2" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/arrays.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.57781756">
+          <caret line="19" column="17" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0">
+          <caret line="0" column="19" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main_screen.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/itachi1706/droideggs/LollipopEgg/LLandActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.39617488">
+          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#1342#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/lland.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9086022">
+          <caret line="21" column="48" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2">
+          <caret line="30" column="54" selection-start-line="30" selection-start-column="54" selection-end-line="30" selection-end-column="54" />
+          <folding>
+            <element signature="e#890#920#0" expanded="true" />
+            <element signature="e#1342#1394#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -18,4 +18,4 @@ This application is licensed under the *Apache License 2.0* as it contains files
 | Android 4.1 JELLY BEAN | Flick Jelly? | TODO |
 | Android 4.4 KITKAT | Dessert Case | TODO |
 | Android 5.0 LOLLIPOP | (LLand) Flappy Droid | INTEGRATING |
-| Android MNC MACADAMIA NUT COOKIE | ¯\\_(ツ)_/¯ | TODO |
+| Android MNC MACADAMIA NUT COOKIE | ¯\\\_\(ツ\)\_/¯ | TODO |

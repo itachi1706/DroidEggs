@@ -2,8 +2,10 @@ package com.itachi1706.droideggs;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -20,11 +22,15 @@ import com.itachi1706.droideggs.JellyBeanEgg.PlatLogoActivityJELLYBEAN;
 import com.itachi1706.droideggs.KitKatEgg.PlatLogoActivityKITKAT;
 import com.itachi1706.droideggs.LollipopEgg.PlatLogoActivityLOLLIPOP;
 
+import java.util.ArrayList;
+
 public class MainScreen extends AppCompatActivity {
 
     Button currentVer;
     ListView selectionList;
     static Activity staticAct;
+
+    private ArrayList<SelectorObject> populatedList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +41,6 @@ public class MainScreen extends AppCompatActivity {
         selectionList = (ListView) findViewById(R.id.lvEasterEggSelection);
 
         staticAct = this;
-
-        //TODO Upgrade selector to custom adapter later
-        ArrayAdapter<String> tmpAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.legacy_version_with_egg));
-        selectionList.setAdapter(tmpAdapter);
-        selectionList.setOnItemClickListener(new SelectorOnClick(this));
-
 
         currentVer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +61,26 @@ public class MainScreen extends AppCompatActivity {
                     noEgg();
             }
         });
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+
+        populatedList = new ArrayList<>();
+        populatedList = PopulateSelector.populateSelectors(this);
+
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean newSel = sp.getBoolean("check_version", false);
+
+        if (!newSel) {
+            ArrayAdapter<String> tmpAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.legacy_version_with_egg));
+            selectionList.setAdapter(tmpAdapter);
+            selectionList.setOnItemClickListener(new SelectorOnClick(this));
+        } else {
+            //TODO Use New Selector
+        }
+
     }
 
     public static void unableToAccessEasterEgg(final String SDK_VERSION){
@@ -130,6 +150,7 @@ public class MainScreen extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            startActivity(new Intent(this, MainSettings.class));
             return true;
         }
 

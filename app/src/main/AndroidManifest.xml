@@ -130,6 +130,11 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </service>
+
+        <activity
+            android:name=".MainSettings"
+            android:label="@string/title_activity_main_settings" >
+        </activity>
     </application>
 
 </manifest>

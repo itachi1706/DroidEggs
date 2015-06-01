@@ -17,11 +17,9 @@
 package com.itachi1706.droideggs.IceCreamSandwichEgg;
 
 import android.annotation.TargetApi;
-import android.app.WallpaperManager;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;

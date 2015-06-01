@@ -18,7 +18,6 @@ package com.itachi1706.droideggs.LollipopEgg;
 
 import android.animation.ObjectAnimator;
 import android.annotation.TargetApi;
-import android.app.WallpaperManager;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;

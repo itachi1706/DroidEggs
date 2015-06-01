@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="statusBarColor">@color/blue_700</color>
-    <color name="primaryDark">@color/blue_700</color>
-    <color name="primary">@color/blue_500</color>
-    <color name="accent">@color/red_a200</color>
+    <color name="statusBarColor">@color/green_700</color>
+    <color name="primaryDark">@color/green_700</color>
+    <color name="primary">@color/green_500</color>
+    <color name="accent">@color/light_green_200</color>
     <color name="transparent">#00000000</color>
     <color name="white">#ffffff</color>
 

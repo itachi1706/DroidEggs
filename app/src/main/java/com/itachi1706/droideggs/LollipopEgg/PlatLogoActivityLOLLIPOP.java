@@ -185,11 +185,11 @@ public class PlatLogoActivityLOLLIPOP extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     try {
-                                        Intent intent = new Intent(PlatLogoActivityLOLLIPOP.this, LLandActivity.class);
-                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                                        Intent lland = new Intent(PlatLogoActivityLOLLIPOP.this, LLandActivity.class);
+                                        lland.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
                                                 | Intent.FLAG_ACTIVITY_CLEAR_TASK
                                                 | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-                                        startActivity(intent);
+                                        startActivity(lland);
                                     } catch (ActivityNotFoundException ex) {
                                         Log.e("PlatLogoActivity", "No more eggs.");
                                     }

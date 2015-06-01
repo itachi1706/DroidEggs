@@ -9,9 +9,9 @@ https://github.com/itachi1706/DroidEggs/releases
 
 This application is licensed under the *Apache License 2.0* as it contains files from the [Android Open Source Project](source.android.com). The license file can be found [here](https://github.com/itachi1706/DroidEggs/blob/master/LICENSE).
 
-**TODO List**
+**TODO List**   
 | Android Version | Easter Egg Name | Status |
-|-----------------|-----------------|--------|
+| :-----------------: | :-----------------: | :--------: |
 | Android 2.3 GINGERBREAD | Zombie Art | TODO |
 | Android 3.0 HONEYCOMB | Honeybee | TODO |
 | Android 4.0 ICE CREAM SANDWICH | NyanDroid | TODO |

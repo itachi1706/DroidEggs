@@ -72,17 +72,25 @@
             android:name=".JellyBeanEgg.PlatLogoActivityJELLYBEAN"
             android:label="@string/title_activity_plat_logo_activity_jellybean"
             android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
-            tools:ignore="InnerclassSeparator">
+            tools:ignore="InnerclassSeparator" >
         </activity>
         <activity
             android:name=".JellyBeanEgg.BeanBag"
-            android:label="@string/title_activity_bean_bag"
-            android:exported="true"
-            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
-            android:hardwareAccelerated="true"
-            android:launchMode="singleInstance"
             android:excludeFromRecents="true"
+            android:exported="true"
+            android:hardwareAccelerated="true"
             android:icon="@drawable/jb_redbeandroid"
+            android:label="@string/title_activity_bean_bag"
+            android:launchMode="singleInstance"
+            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
+            tools:ignore="InnerclassSeparator" >
+        </activity>
+
+        <!-- Honeycomb Egg Activity -->
+        <activity
+            android:name=".HoneycombEgg.PlatLogoActivityHONEYCOMB"
+            android:label="@string/title_activity_plat_logo_activity_honeycomb"
+            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
             tools:ignore="InnerclassSeparator">
         </activity>
     </application>

@@ -10,4 +10,5 @@
     <string name="title_activity_plat_logo_activity_gingerbread">PlatLogoActivityGINGERBREAD</string>
     <string name="title_activity_plat_logo_activity_jellybean">PlatLogoActivityJELLYBEAN</string>
     <string name="title_activity_bean_bag">BeanBag</string>
+    <string name="title_activity_plat_logo_activity_honeycomb">PlatLogoActivityHONEYCOMB</string>
 </resources>

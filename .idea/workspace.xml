@@ -6,8 +6,8 @@
     </shared>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="58c25f4f-3054-4237-b72b-fe014454d6bf" name="Default" comment="Added LLand Class">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/itachi1706/droideggs/LollipopEgg/LLandActivity.java" />
+    <list default="true" id="58c25f4f-3054-4237-b72b-fe014454d6bf" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/itachi1706/droideggs/LollipopEgg/PlatLogoActivityLOLLIPOP.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -61,11 +61,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LLand.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LLand.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/itachi1706/droideggs/LollipopEgg/LLand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.1556351">
-              <caret line="46" column="27" selection-start-line="46" selection-start-column="27" selection-end-line="46" selection-end-column="27" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="14" selection-end-column="3" />
               <folding>
                 <element signature="e#0#32616#0" expanded="true" />
                 <element signature="imports" expanded="true" />
@@ -120,6 +120,28 @@
                 <element signature="e#30420#30421#0" expanded="true" />
                 <element signature="e#31405#31406#0" expanded="true" />
                 <element signature="e#31443#31444#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PlatLogoActivityLOLLIPOP.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/itachi1706/droideggs/LollipopEgg/PlatLogoActivityLOLLIPOP.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.608229">
+              <caret line="50" column="14" selection-start-line="50" selection-start-column="14" selection-end-line="50" selection-end-column="14" />
+              <folding>
+                <element signature="e#0#9923#0" expanded="true" />
+                <element signature="e#3636#3892#0" expanded="true" />
+                <element signature="e#3891#3892#0" expanded="true" />
+                <element signature="e#5623#8487#0" expanded="true" />
+                <element signature="e#6686#8337#0" expanded="true" />
+                <element signature="e#7340#8246#0" expanded="true" />
+                <element signature="e#8245#8246#0" expanded="true" />
+                <element signature="e#8336#8337#0" expanded="true" />
+                <element signature="e#8486#8487#0" expanded="true" />
+                <element signature="e#8641#9294#0" expanded="true" />
+                <element signature="e#9293#9294#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1528,6 +1550,8 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/itachi1706/droideggs/LollipopEgg/LLand.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/llandxml.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/itachi1706/droideggs/LollipopEgg/LLandActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_plat_logo_activity_lollipop.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/itachi1706/droideggs/LollipopEgg/PlatLogoActivityLOLLIPOP.java" />
       </list>
     </option>
   </component>
@@ -2001,12 +2025,18 @@
       <option name="project" value="LOCAL" />
       <updated>1433146801932</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added LLand Launch Activity">
+      <created>1433146931342</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1433146931342</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2021,7 +2051,7 @@
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24962178" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24962178" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -2044,7 +2074,8 @@
     <MESSAGE value="Added Android Support Design Library&#10;- Dropped version number to dev version" />
     <MESSAGE value="Added some resource files for LLand" />
     <MESSAGE value="Added LLand Class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added LLand Class" />
+    <MESSAGE value="Added LLand Launch Activity" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added LLand Launch Activity" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -2128,8 +2159,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/itachi1706/droideggs/LollipopEgg/LLand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1556351">
-          <caret line="46" column="27" selection-start-line="46" selection-start-column="27" selection-end-line="46" selection-end-column="27" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="14" selection-end-column="3" />
           <folding>
             <element signature="e#0#32616#0" expanded="true" />
             <element signature="imports" expanded="true" />
@@ -2184,6 +2215,26 @@
             <element signature="e#30420#30421#0" expanded="true" />
             <element signature="e#31405#31406#0" expanded="true" />
             <element signature="e#31443#31444#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/itachi1706/droideggs/LollipopEgg/PlatLogoActivityLOLLIPOP.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.608229">
+          <caret line="50" column="14" selection-start-line="50" selection-start-column="14" selection-end-line="50" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#9923#0" expanded="true" />
+            <element signature="e#3636#3892#0" expanded="true" />
+            <element signature="e#3891#3892#0" expanded="true" />
+            <element signature="e#5623#8487#0" expanded="true" />
+            <element signature="e#6686#8337#0" expanded="true" />
+            <element signature="e#7340#8246#0" expanded="true" />
+            <element signature="e#8245#8246#0" expanded="true" />
+            <element signature="e#8336#8337#0" expanded="true" />
+            <element signature="e#8486#8487#0" expanded="true" />
+            <element signature="e#8641#9294#0" expanded="true" />
+            <element signature="e#9293#9294#0" expanded="true" />
           </folding>
         </state>
       </provider>

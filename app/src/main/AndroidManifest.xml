@@ -20,6 +20,10 @@
             android:name=".LollipopEgg.LLandActivity"
             android:label="@string/title_activity_lland" >
         </activity>
+        <activity
+            android:name=".LollipopEgg.PlatLogoActivityLOLLIPOP"
+            android:label="@string/title_activity_plat_logo_activity_lollipop" >
+        </activity>
     </application>
 
 </manifest>

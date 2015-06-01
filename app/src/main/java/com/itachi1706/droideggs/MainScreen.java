@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.itachi1706.droideggs.IceCreamSandwichEgg.PlatLogoActivityICS;
 import com.itachi1706.droideggs.LollipopEgg.PlatLogoActivityLOLLIPOP;
 
 public class MainScreen extends AppCompatActivity {
@@ -41,11 +42,18 @@ public class MainScreen extends AppCompatActivity {
         currentVer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Build.VERSION.SDK_INT >= 21)
+                if (Build.VERSION.SDK_INT >= 21) //Lollipop
                     startActivity(new Intent(MainScreen.this, PlatLogoActivityLOLLIPOP.class));
-                else {
-                    unableToAccessEasterEgg("LOLLIPOP (SDK 21)");
-                }
+                else if (Build.VERSION.SDK_INT == 19) //KitKat
+                    eggComingSoon();
+                else if (Build.VERSION.SDK_INT >= 16) //Jelly Bean
+                    eggComingSoon();
+                else if (Build.VERSION.SDK_INT >= 14) //ICS
+                    weird("ICE CREAM SANDWICH", "JELLY BEAN");
+                else if (Build.VERSION.SDK_INT >= 11) //Honeycomb
+                    eggComingSoon();
+                else if (Build.VERSION.SDK_INT >= 9)  //Gingerbread
+                    eggComingSoon();
             }
         });
     }
@@ -56,8 +64,22 @@ public class MainScreen extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         new AlertDialog.Builder(staticAct).setMessage("We are unable to give you access to " +
-                                "this activity due to incompatible Android Version. You require at least Android " +
+                                "this easter egg due to incompatible Android Version. You require at least Android " +
                                 SDK_VERSION + " to access this activity")
+                                .setPositiveButton("AWWW :(", null).show();
+                    }
+                }).show();
+    }
+
+    private static void weird(final String expected, final String actual){
+        Snackbar.make(staticAct.findViewById(android.R.id.content), "Unable to launch (INVALID VERSION)", Snackbar.LENGTH_LONG)
+                .setAction("WAIT WHAT?", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        new AlertDialog.Builder(staticAct).setMessage("We are unable to give you access to " +
+                                "this easter egg due to incompatible Android Version. You require at least Android " +
+                                actual + " to access this activity\n\nDev Note: Interestingly... this easter egg is for " +
+                                expected + ", so I'm confused. LOL")
                                 .setPositiveButton("AWWW :(", null).show();
                     }
                 }).show();

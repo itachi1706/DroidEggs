@@ -17,6 +17,7 @@ import android.widget.ListView;
 import com.itachi1706.droideggs.GingerbreadEgg.PlatLogoActivityGINGERBREAD;
 import com.itachi1706.droideggs.HoneycombEgg.PlatLogoActivityHONEYCOMB;
 import com.itachi1706.droideggs.JellyBeanEgg.PlatLogoActivityJELLYBEAN;
+import com.itachi1706.droideggs.KitKatEgg.PlatLogoActivityKITKAT;
 import com.itachi1706.droideggs.LollipopEgg.PlatLogoActivityLOLLIPOP;
 
 public class MainScreen extends AppCompatActivity {
@@ -47,7 +48,7 @@ public class MainScreen extends AppCompatActivity {
                 if (Build.VERSION.SDK_INT >= 21) //Lollipop
                     startActivity(new Intent(MainScreen.this, PlatLogoActivityLOLLIPOP.class));
                 else if (Build.VERSION.SDK_INT == 19) //KitKat
-                    eggComingSoon();
+                    startActivity(new Intent(MainScreen.this, PlatLogoActivityKITKAT.class));
                 else if (Build.VERSION.SDK_INT >= 16) //Jelly Bean
                     startActivity(new Intent(MainScreen.this, PlatLogoActivityJELLYBEAN.class));
                 else if (Build.VERSION.SDK_INT >= 14) //ICS

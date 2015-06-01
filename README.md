@@ -17,7 +17,7 @@ This application is licensed under the *Apache License 2.0* as it contains files
 | Android 3.0 HONEYCOMB | Honeybee | DONE |
 | Android 4.0 ICE CREAM SANDWICH | NyanDroid | DONE |
 | Android 4.1 JELLY BEAN | Bean Bag | DONE |
-| Android 4.4 KITKAT | Dessert Case | IMPLEMENTING |
+| Android 4.4 KITKAT | Dessert Case | DONE |
 | Android L Preview LMP | Webdriver Torso | TODO |
 | Android 5.0 LOLLIPOP | (LLand) Flappy Droid | DONE |
 | Android MNC Preview MACADAMIA NUT COOKIE | ¯\\\_\(ツ\)\_/¯ | TODO |

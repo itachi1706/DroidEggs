@@ -107,7 +107,7 @@ public class PlatLogoActivityJELLYBEAN extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mToast.show();
-                mContent.setImageResource(com.android.internal.R.drawable.platlogo);
+                mContent.setImageResource(R.drawable.jb_platlogo);
             }
         });
 

@@ -13,16 +13,16 @@
 <animation-list
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:oneshot="false">
-    <item android:drawable="@drawable/nyandroid00" android:duration="80" />
-    <item android:drawable="@drawable/nyandroid01" android:duration="80" />
-    <item android:drawable="@drawable/nyandroid02" android:duration="80" />
-    <item android:drawable="@drawable/nyandroid03" android:duration="80" />
-    <item android:drawable="@drawable/nyandroid04" android:duration="80" />
-    <item android:drawable="@drawable/nyandroid05" android:duration="80" />
-    <item android:drawable="@drawable/nyandroid06" android:duration="80" />
-    <item android:drawable="@drawable/nyandroid07" android:duration="80" />
-    <item android:drawable="@drawable/nyandroid08" android:duration="80" />
-    <item android:drawable="@drawable/nyandroid09" android:duration="80" />
-    <item android:drawable="@drawable/nyandroid10" android:duration="80" />
-    <item android:drawable="@drawable/nyandroid11" android:duration="80" />
+    <item android:drawable="@drawable/ics_nyandroid00" android:duration="80" />
+    <item android:drawable="@drawable/ics_nyandroid01" android:duration="80" />
+    <item android:drawable="@drawable/ics_nyandroid02" android:duration="80" />
+    <item android:drawable="@drawable/ics_nyandroid03" android:duration="80" />
+    <item android:drawable="@drawable/ics_nyandroid04" android:duration="80" />
+    <item android:drawable="@drawable/ics_nyandroid05" android:duration="80" />
+    <item android:drawable="@drawable/ics_nyandroid06" android:duration="80" />
+    <item android:drawable="@drawable/ics_nyandroid07" android:duration="80" />
+    <item android:drawable="@drawable/ics_nyandroid08" android:duration="80" />
+    <item android:drawable="@drawable/ics_nyandroid09" android:duration="80" />
+    <item android:drawable="@drawable/ics_nyandroid10" android:duration="80" />
+    <item android:drawable="@drawable/ics_nyandroid11" android:duration="80" />
 </animation-list>

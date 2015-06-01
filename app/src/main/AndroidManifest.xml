@@ -48,7 +48,7 @@
         <activity
             android:name=".IceCreamSandwichEgg.Nyandroid"
             android:label="@string/title_activity_nyandroid"
-            android:icon="@drawable/nyandroid04"
+            android:icon="@drawable/ics_nyandroid04"
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
             android:hardwareAccelerated="true"
             android:launchMode="singleInstance"

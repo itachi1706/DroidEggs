@@ -5,7 +5,7 @@
     android:installLocation="auto" >
 
     <!-- Permission required by Nyandroid -->
-    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -46,16 +46,24 @@
             android:name=".IceCreamSandwichEgg.PlatLogoActivityICS"
             android:label="@string/title_activity_plat_logo_activity_ics"
             android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
-            tools:ignore="InnerclassSeparator">
+            tools:ignore="InnerclassSeparator" >
         </activity>
         <activity
             android:name=".IceCreamSandwichEgg.Nyandroid"
-            android:label="@string/title_activity_nyandroid"
-            android:icon="@drawable/ics_nyandroid04"
-            android:theme="@style/AppTheme.NoActionBar.FullScreen"
-            android:hardwareAccelerated="true"
-            android:launchMode="singleInstance"
             android:excludeFromRecents="true"
+            android:hardwareAccelerated="true"
+            android:icon="@drawable/ics_nyandroid04"
+            android:label="@string/title_activity_nyandroid"
+            android:launchMode="singleInstance"
+            android:theme="@style/AppTheme.NoActionBar.FullScreen"
+            tools:ignore="InnerclassSeparator" >
+        </activity>
+
+        <!-- Gingerbread Egg Activity -->
+        <activity
+            android:name=".GingerbreadEgg.PlatLogoActivityGINGERBREAD"
+            android:label="@string/title_activity_plat_logo_activity_gingerbread"
+            android:theme="@style/AppTheme.NoActionBar.FullScreen"
             tools:ignore="InnerclassSeparator">
         </activity>
     </application>

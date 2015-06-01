@@ -1,14 +1,13 @@
 package com.itachi1706.droideggs;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
-import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 
+import com.itachi1706.droideggs.GingerbreadEgg.PlatLogoActivityGINGERBREAD;
 import com.itachi1706.droideggs.IceCreamSandwichEgg.PlatLogoActivityICS;
 import com.itachi1706.droideggs.LollipopEgg.PlatLogoActivityLOLLIPOP;
 
@@ -26,7 +25,6 @@ public class SelectorOnClick implements AdapterView.OnItemClickListener {
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        String[] version_name = context.getResources().getStringArray(R.array.version_with_egg);
         String[] version_code = context.getResources().getStringArray(R.array.version_with_egg_code);
 
         Log.d("Selected Version", position + "");
@@ -37,7 +35,7 @@ public class SelectorOnClick implements AdapterView.OnItemClickListener {
         }
         String version = version_code[position];
         switch (version){
-            case "GB": MainScreen.eggComingSoon(); break;
+            case "GB": context.startActivity(new Intent(context, PlatLogoActivityGINGERBREAD.class)); break;
             case "HC": MainScreen.eggComingSoon(); break;
             case "ICS":
                 if (Build.VERSION.SDK_INT >= 16)

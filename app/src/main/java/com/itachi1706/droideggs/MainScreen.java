@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.itachi1706.droideggs.GingerbreadEgg.PlatLogoActivityGINGERBREAD;
 import com.itachi1706.droideggs.IceCreamSandwichEgg.PlatLogoActivityICS;
 import com.itachi1706.droideggs.LollipopEgg.PlatLogoActivityLOLLIPOP;
 
@@ -53,7 +54,7 @@ public class MainScreen extends AppCompatActivity {
                 else if (Build.VERSION.SDK_INT >= 11) //Honeycomb
                     eggComingSoon();
                 else if (Build.VERSION.SDK_INT >= 9)  //Gingerbread
-                    eggComingSoon();
+                    startActivity(new Intent(MainScreen.this, PlatLogoActivityGINGERBREAD.class));
                 else
                     noEgg();
             }

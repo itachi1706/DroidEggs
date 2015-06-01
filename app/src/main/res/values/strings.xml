@@ -7,4 +7,5 @@
     <string name="title_activity_plat_logo_activity_lollipop">PlatLogoActivityLOLLIPOP</string>
     <string name="title_activity_plat_logo_activity_ics">PlatLogoActivityICS</string>
     <string name="title_activity_nyandroid">Nyandroid</string>
+    <string name="title_activity_plat_logo_activity_gingerbread">PlatLogoActivityGINGERBREAD</string>
 </resources>

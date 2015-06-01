@@ -54,6 +54,8 @@ public class MainScreen extends AppCompatActivity {
                     eggComingSoon();
                 else if (Build.VERSION.SDK_INT >= 9)  //Gingerbread
                     eggComingSoon();
+                else
+                    noEgg();
             }
         });
     }
@@ -80,6 +82,20 @@ public class MainScreen extends AppCompatActivity {
                                 "this easter egg due to incompatible Android Version. You require at least Android " +
                                 actual + " to access this activity\n\nDev Note: Interestingly... this easter egg is for " +
                                 expected + ", so I'm confused. LOL")
+                                .setPositiveButton("WAIT WTF? O.o", null)
+                                .setNegativeButton("AWWW :(", null).show();
+                    }
+                }).show();
+    }
+
+    private static void noEgg(){
+        Snackbar.make(staticAct.findViewById(android.R.id.content), "No Eggs for you", Snackbar.LENGTH_LONG)
+                .setAction("WAIT WHAT?", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        new AlertDialog.Builder(staticAct).setMessage("Easter Eggs are only present in Android" +
+                                " from Android 2.3 Gingerbread. Your Android Version is do not have an easter egg" +
+                                " unfortunately :(")
                                 .setPositiveButton("AWWW :(", null).show();
                     }
                 }).show();

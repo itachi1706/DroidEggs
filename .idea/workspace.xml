@@ -10,7 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="58c25f4f-3054-4237-b72b-fe014454d6bf" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="DroidEggs.iws" />
@@ -125,11 +125,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5432331">
+            <state vertical-scroll-proportion="-10.703704">
               <caret line="17" column="54" selection-start-line="17" selection-start-column="54" selection-end-line="17" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.93609023">
+              <caret line="37" column="9" selection-start-line="37" selection-start-column="9" selection-end-line="37" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -1579,6 +1589,7 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/itachi1706/droideggs/IceCreamSandwichEgg/PlatLogoActivityICS.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/itachi1706/droideggs/IceCreamSandwichEgg/Nyandroid.java" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -2159,7 +2170,13 @@
       <option name="project" value="LOCAL" />
       <updated>1433151731717</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Updated README to the relevant stuff">
+      <created>1433151757464</created>
+      <option name="number" value="00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1433151757464</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2209,7 +2226,8 @@
     <MESSAGE value="Added Selection Screen for the app" />
     <MESSAGE value="Added Lollipop to the drawables for lollipop only stuff :D" />
     <MESSAGE value="Added NyanDroid, The ICS Easter Egg" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added NyanDroid, The ICS Easter Egg" />
+    <MESSAGE value="Updated README to the relevant stuff" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated README to the relevant stuff" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -2509,8 +2527,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5432331">
+        <state vertical-scroll-proportion="-10.703704">
           <caret line="17" column="54" selection-start-line="17" selection-start-column="54" selection-end-line="17" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.93609023">
+          <caret line="37" column="9" selection-start-line="37" selection-start-column="9" selection-end-line="37" selection-end-column="9" />
           <folding />
         </state>
       </provider>

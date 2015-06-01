@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.itachi1706.droideggs.GingerbreadEgg.PlatLogoActivityGINGERBREAD;
+import com.itachi1706.droideggs.HoneycombEgg.PlatLogoActivityHONEYCOMB;
 import com.itachi1706.droideggs.JellyBeanEgg.PlatLogoActivityJELLYBEAN;
 import com.itachi1706.droideggs.LollipopEgg.PlatLogoActivityLOLLIPOP;
 
@@ -52,7 +53,7 @@ public class MainScreen extends AppCompatActivity {
                 else if (Build.VERSION.SDK_INT >= 14) //ICS
                     weird("ICE CREAM SANDWICH", "JELLY BEAN");
                 else if (Build.VERSION.SDK_INT >= 11) //Honeycomb
-                    eggComingSoon();
+                    startActivity(new Intent(MainScreen.this, PlatLogoActivityHONEYCOMB.class));
                 else if (Build.VERSION.SDK_INT >= 9)  //Gingerbread
                     startActivity(new Intent(MainScreen.this, PlatLogoActivityGINGERBREAD.class));
                 else

@@ -52,7 +52,7 @@
             android:name=".IceCreamSandwichEgg.Nyandroid"
             android:label="@string/title_activity_nyandroid"
             android:icon="@drawable/ics_nyandroid04"
-            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
+            android:theme="@style/AppTheme.NoActionBar.FullScreen"
             android:hardwareAccelerated="true"
             android:launchMode="singleInstance"
             android:excludeFromRecents="true"

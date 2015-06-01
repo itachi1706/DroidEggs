@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Old Method -->
     <string-array name="legacy_version_with_egg">
         <item>Gingerbread (2.3)</item>
         <item>Honeycomb (3.0)</item>
@@ -19,4 +20,45 @@
         <item>L</item>
         <item>MNC</item>
     </string-array>
+
+    <!-- New Method -->
+    <string-array name="android_ver">
+        <item>Gingerbread</item>
+        <item>Honeycomb</item>
+        <item>Ice Cream Sandwich</item>
+        <item>Jelly Bean</item>
+        <item>KitKat</item>
+        <item>Lollipop</item>
+        <item>Macadamia Nut Cookie (M Preview)</item>
+    </string-array>
+
+    <string-array name="android_ver_range">
+        <item>2.3 – 2.3.7</item>
+        <item>3.0 – 3.2.6</item>
+        <item>4.0 – 4.0.4</item>
+        <item>4.1 – 4.3.1</item>
+        <item>4.4 – 4.4.4</item>
+        <item>5.0 – 5.1.1</item>
+        <item>MNC</item>
+    </string-array>
+
+    <string-array name="android_egg_require">
+        <item>None</item>
+        <item>None</item>
+        <item>Jellybean</item>
+        <item>Jellybean</item>
+        <item>KitKat</item>
+        <item>Lollipop</item>
+        <item>None</item>
+    </string-array>
+
+    <integer-array name="android_egg_require_min_sdk">
+        <item>1</item>
+        <item>1</item>
+        <item>16</item>
+        <item>16</item>
+        <item>19</item>
+        <item>21</item>
+        <item>1</item>
+    </integer-array>
 </resources>

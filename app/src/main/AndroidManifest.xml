@@ -78,7 +78,7 @@
             android:name=".JellyBeanEgg.BeanBag"
             android:label="@string/title_activity_bean_bag"
             android:exported="true"
-            android:theme="@android:style/Theme.Wallpaper.NoTitleBar.Fullscreen"
+            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
             android:hardwareAccelerated="true"
             android:launchMode="singleInstance"
             android:excludeFromRecents="true"

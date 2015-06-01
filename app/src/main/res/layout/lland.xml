@@ -15,11 +15,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-    <com.itachi1706.bypasspasswordapi17pentest.LollipopEasterEgg.LLand
+    <com.itachi1706.droideggs.LollipopEgg.LLand
         android:id="@+id/world"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </com.itachi1706.bypasspasswordapi17pentest.LollipopEasterEgg.LLand>
+    </com.itachi1706.droideggs.LollipopEgg.LLand>
     <TextView
         android:id="@+id/score"
         android:layout_width="wrap_content"

@@ -17,6 +17,7 @@
 package com.itachi1706.droideggs.JellyBeanEgg;
 
 import android.animation.TimeAnimator;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -25,10 +26,7 @@ import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.AttributeSet;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +38,7 @@ import com.itachi1706.droideggs.R;
 
 import java.util.Random;
 
+@TargetApi(16)
 public class BeanBag extends AppCompatActivity {
 
     final static boolean DEBUG = false;

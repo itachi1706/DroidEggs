@@ -16,17 +16,16 @@
 
 package com.itachi1706.droideggs.JellyBeanEgg;
 
+import android.annotation.TargetApi;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -36,6 +35,7 @@ import android.widget.Toast;
 
 import com.itachi1706.droideggs.R;
 
+@TargetApi(16)
 public class PlatLogoActivityJELLYBEAN extends AppCompatActivity {
 
     Toast mToast;

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.itachi1706.droideggs" >
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.itachi1706.droideggs"
+    android:installLocation="auto" >
 
     <application
         android:allowBackup="true"
@@ -16,13 +18,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+        <!-- Lollipop Easter Egg Activities -->
         <activity
             android:name=".LollipopEgg.LLandActivity"
-            android:label="@string/title_activity_lland" >
+            android:label="@string/title_activity_lland"
+            android:hardwareAccelerated="true"
+            android:launchMode="singleInstance"
+            android:screenOrientation="locked"
+            android:excludeFromRecents="true"
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="InnerclassSeparator">
         </activity>
         <activity
             android:name=".LollipopEgg.PlatLogoActivityLOLLIPOP"
-            android:label="@string/title_activity_plat_logo_activity_lollipop" >
+            android:label="@string/title_activity_plat_logo_activity_lollipop"
+            android:configChanges="orientation|keyboardHidden"
+            android:theme="@style/AppTheme.NoActionBar.FullScreen"
+            tools:ignore="InnerclassSeparator">
         </activity>
     </application>
 

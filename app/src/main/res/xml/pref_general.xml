@@ -6,6 +6,12 @@
         android:summary="Whether you want a selector that is compact, or has more info"
         android:defaultValue="false" />
 
+    <CheckBoxPreference
+        android:key="nyannyan"
+        android:title="~Nyan Nyan Nyan~"
+        android:summary="Enables the Nyan Cat Song (You know you want to hear it ;D)"
+        android:defaultValue="true" />
+
     <Preference android:title="App Version" android:key="view_app_version" android:summary="NULL" />
     <Preference android:title="Package Name" android:key="view_app_name"/>
     <Preference android:summary="None" android:title="Android Version" android:key="view_sdk_version"/>

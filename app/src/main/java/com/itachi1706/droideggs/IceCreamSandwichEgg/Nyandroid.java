@@ -20,7 +20,9 @@ import android.animation.TimeAnimator;
 import android.annotation.TargetApi;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.util.AttributeSet;
 import android.view.View;
@@ -233,13 +235,47 @@ public class Nyandroid extends AppCompatActivity {
                 }
             }
         });
+
+        startNyan();
     }
 
     @Override
     public void onUserInteraction() {
 //        android.util.Log.d("Nyandroid", "finishing on user interaction");
+        stopNyan();
         finish();
     }
 
+    MediaPlayer mp;
+    boolean shouldNyan = true;
 
+    @Override
+    public void onPause(){
+        super.onPause();
+        stopNyan();
+    }
+
+    private void startNyan(){
+        SharedPreferences sp = this.getSharedPreferences("com.itachi1706.droideggs_preferences", MODE_MULTI_PROCESS);
+        shouldNyan = sp.getBoolean("nyannyan", true);
+        if (shouldNyan) {
+            mp = MediaPlayer.create(this, R.raw.nyancat);
+            mp.setLooping(true);
+            mp.start();
+        }
+    }
+
+    private void stopNyan(){
+        if (mp != null && shouldNyan) {
+            if (mp.isLooping()) {
+                mp.setLooping(false);
+            }
+            if (mp.isPlaying()) {
+                mp.stop();
+                mp.reset();
+            }
+            mp.release();
+            mp = null;
+        }
+    }
 }

@@ -51,6 +51,10 @@ public class PlatLogoActivityKITKAT extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //Get the shard prefs
+        SharedPreferences sp = this.getSharedPreferences("com.itachi1706.droideggs_preferences", MODE_MULTI_PROCESS);
+        boolean currentBuild = sp.getBoolean("current_num", true);
+
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
@@ -80,7 +84,11 @@ public class PlatLogoActivityKITKAT extends AppCompatActivity {
         letter.setTextSize(200);
         letter.setTextColor(0xFFFFFFFF);
         letter.setGravity(Gravity.CENTER);
-        letter.setText(String.valueOf(Build.ID).substring(0, 1));
+
+        if (currentBuild)
+            letter.setText(String.valueOf(Build.ID).substring(0, 1));
+        else
+            letter.setText("K");
 
         final int p = (int)(4 * metrics.density);
 
@@ -91,7 +99,12 @@ public class PlatLogoActivityKITKAT extends AppCompatActivity {
         tv.setTextColor(0xFFFFFFFF);
         tv.setGravity(Gravity.CENTER);
         tv.setTransformationMethod(new AllCapsTransformationMethod(this));
-        tv.setText("Android " + Build.VERSION.RELEASE);
+
+        if (currentBuild)
+            tv.setText("Android " + Build.VERSION.RELEASE);
+        else
+            tv.setText("Android 4.4.4");
+
         tv.setVisibility(View.INVISIBLE);
 
         mContent.addView(bg);

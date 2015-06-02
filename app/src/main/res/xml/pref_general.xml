@@ -12,6 +12,12 @@
         android:summary="Enables the Nyan Cat Song (You know you want to hear it ;D)"
         android:defaultValue="true" />
 
+    <CheckBoxPreference
+        android:key="current_num"
+        android:title="Use Current Device's Build Number"
+        android:summary="Enabled if the easter eggs should use your phone's Build object or hardcoded values that fits the easter egg"
+        android:defaultValue="true" />
+
     <Preference android:title="App Version" android:key="view_app_version" android:summary="NULL" />
     <Preference android:title="Package Name" android:key="view_app_name"/>
     <Preference android:summary="None" android:title="Android Version" android:key="view_sdk_version"/>

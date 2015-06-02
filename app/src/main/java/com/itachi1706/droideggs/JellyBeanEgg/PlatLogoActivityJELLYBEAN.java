@@ -19,6 +19,7 @@ package com.itachi1706.droideggs.JellyBeanEgg;
 import android.annotation.TargetApi;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
@@ -42,6 +43,8 @@ public class PlatLogoActivityJELLYBEAN extends AppCompatActivity {
     ImageView mContent;
     int mCount;
     final Handler mHandler = new Handler();
+
+    boolean currentBuild;
 
     private View makeView() {
         DisplayMetrics metrics = new DisplayMetrics();
@@ -72,7 +75,12 @@ public class PlatLogoActivityJELLYBEAN extends AppCompatActivity {
         tv.setTextSize(1.25f*size);
         tv.setTextColor(0xFFFFFFFF);
         tv.setShadowLayer(4*metrics.density, 0, 2*metrics.density, 0x66000000);
-        tv.setText("Android " + Build.VERSION.RELEASE);
+
+        if (currentBuild)
+            tv.setText("Android " + Build.VERSION.RELEASE);
+        else
+            tv.setText("Android 4.3.1");
+
         view.addView(tv, lp);
 
         tv = new TextView(this);
@@ -89,6 +97,10 @@ public class PlatLogoActivityJELLYBEAN extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Get the shard prefs
+        SharedPreferences sp = this.getSharedPreferences("com.itachi1706.droideggs_preferences", MODE_MULTI_PROCESS);
+        currentBuild = sp.getBoolean("current_num", true);
 
         mToast = Toast.makeText(this, "", Toast.LENGTH_LONG);
         mToast.setView(makeView());

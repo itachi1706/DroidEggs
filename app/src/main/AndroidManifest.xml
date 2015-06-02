@@ -135,6 +135,10 @@
             android:name=".MainSettings"
             android:label="@string/title_activity_main_settings" >
         </activity>
+        <activity
+            android:name=".MNCEgg.PlatLogoActivityMNC"
+            android:label="@string/title_activity_plat_logo_activity_mnc" >
+        </activity>
     </application>
 
 </manifest>

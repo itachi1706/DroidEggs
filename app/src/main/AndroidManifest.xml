@@ -22,6 +22,20 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".MainSettings"
+            android:label="@string/title_activity_main_settings" >
+        </activity>
+
+        <!-- MNC Egg Activity -->
+        <activity
+            android:name=".MNCEgg.PlatLogoActivityMNC"
+            android:label="@string/title_activity_plat_logo_activity_mnc"
+            android:configChanges="orientation|keyboardHidden"
+            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
+            tools:ignore="InnerclassSeparator">
+        </activity>
+
         <!-- Lollipop Easter Egg Activities -->
         <activity
             android:name=".LollipopEgg.LLandActivity"
@@ -38,61 +52,6 @@
             android:name=".LollipopEgg.PlatLogoActivityLOLLIPOP"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_activity_plat_logo_activity_lollipop"
-            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
-            tools:ignore="InnerclassSeparator" >
-        </activity>
-
-        <!-- Ice Cream Sandwich Egg Activities -->
-        <activity
-            android:name=".IceCreamSandwichEgg.PlatLogoActivityICS"
-            android:label="@string/title_activity_plat_logo_activity_ics"
-            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
-            tools:ignore="InnerclassSeparator" >
-        </activity>
-        <activity
-            android:name=".IceCreamSandwichEgg.Nyandroid"
-            android:excludeFromRecents="true"
-            android:hardwareAccelerated="true"
-            android:icon="@drawable/ics_nyandroid04"
-            android:label="@string/title_activity_nyandroid"
-            android:launchMode="singleInstance"
-            android:process=":nyandroid"
-            android:theme="@style/AppTheme.NoActionBar.FullScreen"
-            tools:ignore="InnerclassSeparator" >
-        </activity>
-
-        <!-- Gingerbread Egg Activity -->
-        <activity
-            android:name=".GingerbreadEgg.PlatLogoActivityGINGERBREAD"
-            android:label="@string/title_activity_plat_logo_activity_gingerbread"
-            android:theme="@style/AppTheme.NoActionBar.FullScreen"
-            tools:ignore="InnerclassSeparator" >
-        </activity>
-
-        <!-- Jelly Bean Egg Activities -->
-        <activity
-            android:name=".JellyBeanEgg.PlatLogoActivityJELLYBEAN"
-            android:label="@string/title_activity_plat_logo_activity_jellybean"
-            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
-            tools:ignore="InnerclassSeparator" >
-        </activity>
-        <activity
-            android:name=".JellyBeanEgg.BeanBag"
-            android:excludeFromRecents="true"
-            android:exported="true"
-            android:hardwareAccelerated="true"
-            android:icon="@drawable/jb_redbeandroid"
-            android:label="@string/title_activity_bean_bag"
-            android:launchMode="singleInstance"
-            android:process=":beanbag"
-            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
-            tools:ignore="InnerclassSeparator" >
-        </activity>
-
-        <!-- Honeycomb Egg Activity -->
-        <activity
-            android:name=".HoneycombEgg.PlatLogoActivityHONEYCOMB"
-            android:label="@string/title_activity_plat_logo_activity_honeycomb"
             android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
             tools:ignore="InnerclassSeparator" >
         </activity>
@@ -131,13 +90,59 @@
             </intent-filter>
         </service>
 
+        <!-- Jelly Bean Egg Activities -->
         <activity
-            android:name=".MainSettings"
-            android:label="@string/title_activity_main_settings" >
+            android:name=".JellyBeanEgg.PlatLogoActivityJELLYBEAN"
+            android:label="@string/title_activity_plat_logo_activity_jellybean"
+            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
+            tools:ignore="InnerclassSeparator" >
         </activity>
         <activity
-            android:name=".MNCEgg.PlatLogoActivityMNC"
-            android:label="@string/title_activity_plat_logo_activity_mnc" >
+            android:name=".JellyBeanEgg.BeanBag"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:hardwareAccelerated="true"
+            android:icon="@drawable/jb_redbeandroid"
+            android:label="@string/title_activity_bean_bag"
+            android:launchMode="singleInstance"
+            android:process=":beanbag"
+            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
+            tools:ignore="InnerclassSeparator" >
+        </activity>
+
+        <!-- Ice Cream Sandwich Egg Activities -->
+        <activity
+            android:name=".IceCreamSandwichEgg.PlatLogoActivityICS"
+            android:label="@string/title_activity_plat_logo_activity_ics"
+            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
+            tools:ignore="InnerclassSeparator" >
+        </activity>
+        <activity
+            android:name=".IceCreamSandwichEgg.Nyandroid"
+            android:excludeFromRecents="true"
+            android:hardwareAccelerated="true"
+            android:icon="@drawable/ics_nyandroid04"
+            android:label="@string/title_activity_nyandroid"
+            android:launchMode="singleInstance"
+            android:process=":nyandroid"
+            android:theme="@style/AppTheme.NoActionBar.FullScreen"
+            tools:ignore="InnerclassSeparator" >
+        </activity>
+
+        <!-- Honeycomb Egg Activity -->
+        <activity
+            android:name=".HoneycombEgg.PlatLogoActivityHONEYCOMB"
+            android:label="@string/title_activity_plat_logo_activity_honeycomb"
+            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
+            tools:ignore="InnerclassSeparator" >
+        </activity>
+
+        <!-- Gingerbread Egg Activity -->
+        <activity
+            android:name=".GingerbreadEgg.PlatLogoActivityGINGERBREAD"
+            android:label="@string/title_activity_plat_logo_activity_gingerbread"
+            android:theme="@style/AppTheme.NoActionBar.FullScreen"
+            tools:ignore="InnerclassSeparator" >
         </activity>
     </application>
 

@@ -2,7 +2,9 @@ package com.itachi1706.droideggs;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,6 +15,7 @@ import com.itachi1706.droideggs.IceCreamSandwichEgg.PlatLogoActivityICS;
 import com.itachi1706.droideggs.JellyBeanEgg.PlatLogoActivityJELLYBEAN;
 import com.itachi1706.droideggs.KitKatEgg.PlatLogoActivityKITKAT;
 import com.itachi1706.droideggs.LollipopEgg.PlatLogoActivityLOLLIPOP;
+import com.itachi1706.droideggs.MNCEgg.PlatLogoActivityMNC;
 
 /**
  * Created by Kenneth on 1/6/2015
@@ -29,6 +32,9 @@ public class SelectorOnClick implements AdapterView.OnItemClickListener {
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         String[] version_code = context.getResources().getStringArray(R.array.legacy_version_with_egg_code);
+
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        boolean debugMode = sp.getBoolean("debug", false);
 
         Log.d("Selected Version", position + "");
 
@@ -64,7 +70,15 @@ public class SelectorOnClick implements AdapterView.OnItemClickListener {
                 else
                     MainScreen.unableToAccessEasterEgg("LOLLIPOP");
                 break;
-            case "MNC": MainScreen.eggComingSoon(); break;
+            case "MNC":
+                if (debugMode) {
+                    if (Build.VERSION.SDK_INT >= 21)
+                        context.startActivity(new Intent(context, PlatLogoActivityMNC.class));
+                    else
+                        MainScreen.unableToAccessEasterEgg("LOLLIPOP");
+                } else
+                    MainScreen.eggComingSoon();
+                break;
         }
     }
 }

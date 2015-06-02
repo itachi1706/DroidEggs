@@ -49,7 +49,7 @@
         <item>Jellybean</item>
         <item>KitKat</item>
         <item>Lollipop</item>
-        <item>None</item>
+        <item>Lollipop</item>
     </string-array>
 
     <integer-array name="android_egg_require_min_sdk">
@@ -59,6 +59,6 @@
         <item>16</item>
         <item>19</item>
         <item>21</item>
-        <item>1</item>
+        <item>21</item>
     </integer-array>
 </resources>

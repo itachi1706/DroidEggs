@@ -30,6 +30,7 @@ import android.view.ViewOutlineProvider;
 import android.view.animation.PathInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.itachi1706.droideggs.LollipopEgg.LLandActivity;
 import com.itachi1706.droideggs.R;
@@ -112,13 +113,15 @@ public class PlatLogoActivityMNC extends AppCompatActivity {
                             if (mTapCount < 5) return false;
 
                             SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(PlatLogoActivityMNC.this);
-                            if (pref.getLong("L_EGG_MODE", 0) == 0){
+                            if (pref.getLong("MNC_EGG_MODE", 0) == 0){
                                 // For posterity: the moment this user unlocked the easter egg
-                                pref.edit().putLong("L_EGG_MODE", System.currentTimeMillis()).apply();
+                                pref.edit().putLong("MNC_EGG_MODE", System.currentTimeMillis()).apply();
                             }
                             im.post(new Runnable() {
                                 @Override
                                 public void run() {
+                                    Toast.makeText(PlatLogoActivityMNC.this, "\u00af\\_(\u30c4)_/\u00af", Toast.LENGTH_SHORT).show();
+                                    /* Maybe when theres an activity
                                     try {
                                         Intent lland = new Intent(PlatLogoActivityMNC.this, LLandActivity.class);
                                         lland.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
@@ -127,7 +130,7 @@ public class PlatLogoActivityMNC extends AppCompatActivity {
                                         startActivity(lland);
                                     } catch (ActivityNotFoundException ex) {
                                         Log.e("PlatLogoActivity", "No more eggs.");
-                                    }
+                                    }*/
                                     finish();
                                 }
                             });
@@ -164,7 +167,6 @@ public class PlatLogoActivityMNC extends AppCompatActivity {
         });
 
         mLayout.addView(im, new FrameLayout.LayoutParams(size, size, Gravity.CENTER));
-        //mLayout.addView(imRip, new FrameLayout.LayoutParams(size, size, Gravity.CENTER));
 
         //Make it appear
 

@@ -19,13 +19,13 @@
         <CheckBoxPreference
             android:key="current_num"
             android:title="Use Current Device's Build Number"
-            android:summary="Enabled if the easter eggs should use your phone's Build object or hardcoded values that fits the easter egg"
+            android:summary="Whether the easter eggs should use your phone's Build object or hardcoded values that fits the easter egg selected"
             android:defaultValue="true" />
 
         <CheckBoxPreference
             android:key="debug"
             android:title="Test Upcoming Eggs"
-            android:summary="Enabled some upcoming eggs to test (Note: These eggs are still in development"
+            android:summary="Enables some upcoming eggs for testing purposes (Note: These eggs are still in development)"
             android:defaultValue="false" />
 
     </PreferenceCategory>

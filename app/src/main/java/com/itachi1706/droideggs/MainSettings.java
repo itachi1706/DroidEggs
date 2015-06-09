@@ -69,27 +69,39 @@ public class MainSettings extends AppCompatActivity {
             verPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    if (count == 10){
-                        count = 0;
-                        startEgg();
-                        Snackbar.make(getActivity().findViewById(android.R.id.content), "Hope you like Vocaloid! xD", Snackbar.LENGTH_LONG)
-                                .setAction("MAKE IT STAUPH! D:", new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        Toast.makeText(getActivity(), "Aww okay... :(", Toast.LENGTH_SHORT).show();
-                                        endEgg();
-                                    }
-                                }).show();
-                    } else {
-                        switch (count) {
-                            case 5: prompt(5); break;
-                            case 6: prompt(4); break;
-                            case 7: prompt(3); break;
-                            case 8: prompt(2); break;
-                            case 9: prompt(1); break;
+                    if (!isActive) {
+                        if (count == 10) {
+                            count = 0;
+                            startEgg();
+                            Snackbar.make(getActivity().findViewById(android.R.id.content), "Hope you like Vocaloid! xD", Snackbar.LENGTH_LONG)
+                                    .setAction("NO I DON'T! D:", new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Toast.makeText(getActivity(), "Aww okay... :(", Toast.LENGTH_SHORT).show();
+                                            endEgg();
+                                        }
+                                    }).show();
+                        } else {
+                            switch (count) {
+                                case 5:
+                                    prompt(5);
+                                    break;
+                                case 6:
+                                    prompt(4);
+                                    break;
+                                case 7:
+                                    prompt(3);
+                                    break;
+                                case 8:
+                                    prompt(2);
+                                    break;
+                                case 9:
+                                    prompt(1);
+                                    break;
+                            }
                         }
+                        count++;
                     }
-                    count++;
                     return false;
                 }
             });
@@ -98,6 +110,7 @@ public class MainSettings extends AppCompatActivity {
         MediaPlayer mp;
         int count = 0;
         Toast toasty;
+        boolean isActive = false;
 
         private void prompt(int left){
             if (toasty != null){
@@ -123,11 +136,16 @@ public class MainSettings extends AppCompatActivity {
         }
 
         private void startEgg(){
-            mp = MediaPlayer.create(getActivity(), R.raw.hatsune_miku_romeo_and_cinderella);
-            mp.start();
+            if (!isActive) {
+                mp = MediaPlayer.create(getActivity(), R.raw.hatsune_miku_romeo_and_cinderella);
+                mp.start();
+                isActive = true;
+            }
         }
 
         private void endEgg(){
+            count = 0;
+            isActive = false;
             if (mp != null){
                 if (mp.isPlaying()){
                     mp.stop();

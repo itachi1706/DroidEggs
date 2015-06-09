@@ -34,9 +34,9 @@
         android:key="pref_cat_info"
         android:title="App Info" >
 
-        <Preference android:title="App Version" android:key="view_app_version" android:summary="NULL" />
-        <Preference android:title="Package Name" android:key="view_app_name"/>
-        <Preference android:summary="None" android:title="Android Version" android:key="view_sdk_version"/>
+        <Preference android:title="App Version" android:key="view_app_version" />
+        <Preference android:title="Package Name" android:key="view_app_name" android:selectable="false" />
+        <Preference android:selectable="false" android:title="Android Version" android:key="view_sdk_version"/>
 
     </PreferenceCategory>
 

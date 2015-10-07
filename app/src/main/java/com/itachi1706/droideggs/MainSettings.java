@@ -1,9 +1,12 @@
 package com.itachi1706.droideggs;
 
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
@@ -11,8 +14,12 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.view.View;
 import android.widget.Toast;
+
+import com.itachi1706.droideggs.UpdatingApp.AppUpdateChecker;
+import com.itachi1706.droideggs.UpdatingApp.UpdaterCommonMethods;
 
 
 /**
@@ -52,19 +59,59 @@ public class MainSettings extends AppCompatActivity {
 
             //Debug Info Get
             String version = "NULL", packName = "NULL";
+            int versionCode = 0;
             try {
                 PackageInfo pInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
                 version = pInfo.versionName;
                 packName = pInfo.packageName;
+                versionCode = pInfo.versionCode;
             } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();
             }
             Preference verPref = findPreference("view_app_version");
-            verPref.setSummary(version);
+            verPref.setSummary(version + "-b" + versionCode);
             Preference pNamePref = findPreference("view_app_name");
             pNamePref.setSummary(packName);
             Preference prefs = findPreference("view_sdk_version");
             prefs.setSummary(android.os.Build.VERSION.RELEASE);
+
+            //Update Information and Settings
+            findPreference("launch_updater").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    new AppUpdateChecker(getActivity(), sp).execute();
+                    return true;
+                }
+            });
+
+            findPreference("android_changelog").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    String changelog = sp.getString("version-changelog", "l");
+                    if (changelog.equals("l")) {
+                        //Not available
+                        new AlertDialog.Builder(getActivity()).setTitle("No Changelog")
+                                .setMessage("No changelog was found. Please check if you can connect to the server")
+                                .setPositiveButton(android.R.string.ok, null).show();
+                    } else {
+                        String[] changelogArr = changelog.split("\n");
+                        String body = UpdaterCommonMethods.getChangelogFromArray(changelogArr);
+                        new AlertDialog.Builder(getActivity()).setTitle("Changelog")
+                                .setMessage(Html.fromHtml(body)).setPositiveButton("Close", null).show();
+                    }
+                    return true;
+                }
+            });
+
+            findPreference("get_releases").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(getResources().getString(R.string.update_link)));
+                    startActivity(i);
+                    return true;
+                }
+            });
 
             verPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override

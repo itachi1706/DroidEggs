@@ -23,6 +23,7 @@ import com.itachi1706.droideggs.KitKatEgg.PlatLogoActivityKITKAT;
 import com.itachi1706.droideggs.LollipopEgg.PlatLogoActivityLOLLIPOP;
 import com.itachi1706.droideggs.MNCEgg.PlatLogoActivityMNC;
 import com.itachi1706.droideggs.MarshmallowEgg.PlatLogoActivityMARSHMALLOW;
+import com.itachi1706.droideggs.UpdatingApp.AppUpdateChecker;
 
 import java.util.ArrayList;
 
@@ -65,6 +66,9 @@ public class MainScreen extends AppCompatActivity {
                     noEgg();
             }
         });
+
+        //Check for updates
+        new AppUpdateChecker(this, PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()), true).execute();
     }
 
     @Override

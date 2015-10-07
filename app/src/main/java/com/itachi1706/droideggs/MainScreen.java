@@ -22,6 +22,7 @@ import com.itachi1706.droideggs.JellyBeanEgg.PlatLogoActivityJELLYBEAN;
 import com.itachi1706.droideggs.KitKatEgg.PlatLogoActivityKITKAT;
 import com.itachi1706.droideggs.LollipopEgg.PlatLogoActivityLOLLIPOP;
 import com.itachi1706.droideggs.MNCEgg.PlatLogoActivityMNC;
+import com.itachi1706.droideggs.MarshmallowEgg.PlatLogoActivityMARSHMALLOW;
 
 import java.util.ArrayList;
 
@@ -46,9 +47,9 @@ public class MainScreen extends AppCompatActivity {
         currentVer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Build.VERSION.SDK_INT > 21) //MNC
-                    startActivity(new Intent(MainScreen.this, PlatLogoActivityMNC.class));
-                else if (Build.VERSION.SDK_INT >= 21) //Lollipop
+                if (Build.VERSION.SDK_INT > 22) //Marshmallow
+                    startActivity(new Intent(MainScreen.this, PlatLogoActivityMARSHMALLOW.class));
+                else if (Build.VERSION.SDK_INT >= 21) //Lollipop (21-22)
                     startActivity(new Intent(MainScreen.this, PlatLogoActivityLOLLIPOP.class));
                 else if (Build.VERSION.SDK_INT == 19) //KitKat
                     startActivity(new Intent(MainScreen.this, PlatLogoActivityKITKAT.class));

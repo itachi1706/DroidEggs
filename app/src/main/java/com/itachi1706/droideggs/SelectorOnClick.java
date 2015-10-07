@@ -16,6 +16,7 @@ import com.itachi1706.droideggs.JellyBeanEgg.PlatLogoActivityJELLYBEAN;
 import com.itachi1706.droideggs.KitKatEgg.PlatLogoActivityKITKAT;
 import com.itachi1706.droideggs.LollipopEgg.PlatLogoActivityLOLLIPOP;
 import com.itachi1706.droideggs.MNCEgg.PlatLogoActivityMNC;
+import com.itachi1706.droideggs.MarshmallowEgg.PlatLogoActivityMARSHMALLOW;
 
 /**
  * Created by Kenneth on 1/6/2015
@@ -79,6 +80,11 @@ public class SelectorOnClick implements AdapterView.OnItemClickListener {
                 } else
                     MainScreen.eggComingSoon();
                 break;
+            case "MM":
+                if (Build.VERSION.SDK_INT >= 21)
+                    context.startActivity(new Intent(context, PlatLogoActivityMARSHMALLOW.class));
+                else
+                    MainScreen.unableToAccessEasterEgg("LOLLIPOP");
         }
     }
 }

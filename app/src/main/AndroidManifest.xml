@@ -27,6 +27,29 @@
             android:label="@string/title_activity_main_settings" >
         </activity>
 
+        <!-- Marshmallow Egg Activities -->
+        <activity android:name=".MarshmallowEgg.PlatLogoActivityMARSHMALLOW"
+            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
+            android:configChanges="orientation|keyboardHidden"
+            android:process=":ui">
+        </activity>
+        <activity android:name=".MarshmallowEgg.MLandActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:exported="true"
+            android:icon="@drawable/marshmallow_icon"
+            android:label="@string/title_activity_plat_logo_activity_marshmallow_mland"
+            android:hardwareAccelerated="true"
+            android:launchMode="singleInstance"
+            android:screenOrientation="locked"
+            android:process=":sweetsweetdesserts"
+            android:excludeFromRecents="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="com.android.internal.category.PLATLOGO" />
+            </intent-filter>
+        </activity>
+
         <!-- MNC Egg Activity -->
         <activity
             android:name=".MNCEgg.PlatLogoActivityMNC"

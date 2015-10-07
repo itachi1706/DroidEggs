@@ -85,6 +85,7 @@ public class SelectorOnClick implements AdapterView.OnItemClickListener {
                     context.startActivity(new Intent(context, PlatLogoActivityMARSHMALLOW.class));
                 else
                     MainScreen.unableToAccessEasterEgg("LOLLIPOP");
+                break;
         }
     }
 }

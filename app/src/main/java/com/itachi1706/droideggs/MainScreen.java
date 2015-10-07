@@ -79,7 +79,7 @@ public class MainScreen extends AppCompatActivity {
         populatedList = PopulateSelector.populateSelectors(this);
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean newSel = sp.getBoolean("check_version", true);
+        boolean newSel = sp.getBoolean("check_version", false);
 
         if (newSel) {
             ArrayAdapter<String> tmpAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.legacy_version_with_egg));

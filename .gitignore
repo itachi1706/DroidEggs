@@ -36,3 +36,5 @@ proguard/
 
 # Mac Files
 .DS_Store
+
+*.iml

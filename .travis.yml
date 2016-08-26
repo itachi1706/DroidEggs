@@ -2,76 +2,56 @@ language: android
 jdk: oraclejdk7
 env:
   global:
-    - ANDROID_TARGET=android-22
-    - ANDROID_ABI=google_apis/armeabi-v7a
-    - ANDROID_BUILD_TOOLS_VERSION=23.0.1
-    - API_LEVEL=23
-    - ANDROID_EMULATOR_API_LEVEL=22
+  - ANDROID_TARGET=android-22
+  - ANDROID_ABI=google_apis/armeabi-v7a
+  - ANDROID_BUILD_TOOLS_VERSION=23.0.1
+  - API_LEVEL=23
+  - ANDROID_EMULATOR_API_LEVEL=22
 android:
-    components:
-            # Uncomment the lines below if you want to
-            # use the latest revision of Android SDK Tools
-            # - platform-tools
-            # - tools
-
-            # The BuildTools version used by your project
-            - build-tools-$ANDROID_BUILD_TOOLS_VERSION
-
-            # The SDK version used to compile your project
-            - android-$API_LEVEL
-            - android-$ANDROID_EMULATOR_API_LEVEL
-
-            # Additional components
-            # - extra-google-google_play_services
-            - extra-android-support
-            - extra-google-m2repository
-            - extra-android-m2repository
-            - addon-google_apis-google-$API_LEVEL
-            - addon-google_apis-google-$ANDROID_EMULATOR_API_LEVEL
-
-            # Specify at least one system image,
-            # if you need to run emulator(s) during your tests
-            # - sys-img-armeabi-v7a-android-19
-            # - sys-img-x86-android-17
-            # - sys-img-armeabi-v7a-android-$ANDROID_BUILD_TOOLS_VERSION
-            - sys-img-armeabi-v7a-addon-google_apis-google-$ANDROID_EMULATOR_API_LEVEL
-        
+  components:
+  - build-tools-$ANDROID_BUILD_TOOLS_VERSION
+  - android-$API_LEVEL
+  - android-$ANDROID_EMULATOR_API_LEVEL
+  - extra-android-support
+  - extra-google-m2repository
+  - extra-android-m2repository
+  - addon-google_apis-google-$API_LEVEL
+  - addon-google_apis-google-$ANDROID_EMULATOR_API_LEVEL
+  - sys-img-armeabi-v7a-addon-google_apis-google-$ANDROID_EMULATOR_API_LEVEL
 before_install:
-    - chmod +x gradlew
-    # Create and start emulator
-    - echo no | android create avd --force -n test -t "Google Inc.:Google APIs:"$ANDROID_EMULATOR_API_LEVEL --abi $ANDROID_ABI
-    - emulator -avd test -no-skin -no-audio -no-window &
-    - adb wait-for-device
-    - adb shell input keyevent 82 &
-    
-script: ./gradlew connectedAndroidTest
-
+- chmod +x gradlew
+- echo no | android create avd --force -n test -t "Google Inc.:Google APIs:"$ANDROID_EMULATOR_API_LEVEL
+  --abi $ANDROID_ABI
+- emulator -avd test -no-skin -no-audio -no-window &
+- adb wait-for-device
+- adb shell input keyevent 82 &
+script: "./gradlew connectedAndroidTest"
 after_success:
-    - mv ./app/build/outputs/apk/app-debug.apk ./app/build/outputs/apk/DroidEggs-debug.apk
-    - ls ./app/build/outputs/apk/
-
+- mv ./app/build/outputs/apk/app-debug.apk ./app/build/outputs/apk/DroidEggs-debug.apk
+- ls ./app/build/outputs/apk/
 deploy:
-    provider: releases
-    api_key: $OAUTH_KEY
-    file: ./app/build/outputs/apk/DroidEggs-debug.apk
-    skip_cleanup: true
-    on:
-        tags: true
-
+  provider: releases
+  api_key: "$OAUTH_KEY"
+  file: "./app/build/outputs/apk/DroidEggs-debug.apk"
+  skip_cleanup: true
+  on:
+    tags: true
 notifications:
   irc:
     channels:
-      - "chat.freenode.net#itachi1706mc"
-      - "irc.esper.net#itachi1706"
+    - chat.freenode.net#itachi1706mc
+    - irc.esper.net#itachi1706
     on_success: always
     on_failure: always
     template:
-      - "%{repository}#%{build_number} (%{branch} - %{commit} : %{author}): %{commit_subject}"
-      - "Build Status : %{message}"
-      - "Change view : %{compare_url}"
-      - "Build details : %{build_url}"
+    - "%{repository}#%{build_number} (%{branch} - %{commit} : %{author}): %{commit_subject}"
+    - 'Build Status : %{message}'
+    - 'Change view : %{compare_url}'
+    - 'Build details : %{build_url}'
   email:
     recipients:
-      - $PRIVATE_EMAIL
-    on_success: change # default: change
-    on_failure: always # default: always
+    - "$PRIVATE_EMAIL"
+    on_success: change
+    on_failure: always
+  slack:
+    secure: ZBsTCx+I4dV8o+oEdJqE2c42IwulqxToRBJCOp8kAmDJQKCz8eO5LEeJabsi83iKcDD5DNQkAE/w7bQSVNdTQV0jwkZfYJ04GnwvgB8zzYLxVDy51m249hR9E3S+ji8QfgSeVkOPS5bKZRTneOptai8WQbhn0EJ05Dx7cdGqwr1tCih2XtD0UW+fYnxGJekXT+ZWk3w6jmrjeNIxKiQzv2ZhYrAkqQPZ37S5KxkEGBt8gDIrCyHJh0COeOHVZPcd+0g8gq5ALGrIv70ni4z8hMltTCLkyXgcftrxfV40yEydRURtV3xgUl11QyUQVXC+vK2RLgVN2Z+FojxUumuDV7aqcEL7ur5sf3MILXueTD1ikBZd6cBhGBOmnmY92N1c5b3k9WE0ndQwnzBU4NgJdUb5Y4ABJQFVvclDUDPJBaJhL6PYrwEpALwPBlEtvFEiA8h1bhyjw9msU0hdr5N10WNr5qRg+ube93X1cR9jZb4o8mP8B95U2+evmevMKm7w45ABQ0B5/YFTMafJN4U4ObX6CGYtAqJU6f6Oi1SAbthDIVd387TrJ9eBSwZcB2BRQJunTsZhXuSSc+gcdQgR2ggKxwR/YpP7fThbhRJvL41bSl3xZF7rOyVnt5DgrERn8PGvB+PwfP2ni/QwqzfOgxKNh+9vG7UZk4qBuDigWqQ=

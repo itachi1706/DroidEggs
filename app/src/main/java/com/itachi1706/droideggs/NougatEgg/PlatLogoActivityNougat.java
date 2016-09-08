@@ -118,9 +118,6 @@ public class PlatLogoActivityNougat extends AppCompatActivity {
                             public void run() {
                                 try {
                                     Intent neko = new Intent(PlatLogoActivityNougat.this, NekoActivationActivity.class);
-                                    neko.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                                            | Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                            | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
                                     startActivity(neko);
                                 } catch (ActivityNotFoundException ex) {
                                     Log.e("PlatLogoActivity", "No more eggs.");

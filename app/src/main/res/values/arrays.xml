@@ -64,7 +64,7 @@
         <item>Lollipop</item>
         <item>Lollipop</item>
         <item>Lollipop</item>
-        <item>Marshmallow</item>
+        <item>Nougat</item>
     </string-array>
 
     <integer-array name="android_egg_require_min_sdk">
@@ -77,6 +77,6 @@
         <item>21</item>
         <item>21</item>
         <item>21</item>
-        <item>23</item>
+        <item>24</item>
     </integer-array>
 </resources>

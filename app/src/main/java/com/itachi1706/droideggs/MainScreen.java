@@ -23,6 +23,7 @@ import com.itachi1706.droideggs.JellyBeanEgg.PlatLogoActivityJELLYBEAN;
 import com.itachi1706.droideggs.KitKatEgg.PlatLogoActivityKITKAT;
 import com.itachi1706.droideggs.LollipopEgg.PlatLogoActivityLOLLIPOP;
 import com.itachi1706.droideggs.MarshmallowEgg.PlatLogoActivityMARSHMALLOW;
+import com.itachi1706.droideggs.NougatEgg.PlatLogoActivityNougat;
 
 import java.util.ArrayList;
 
@@ -47,7 +48,9 @@ public class MainScreen extends AppCompatActivity {
         currentVer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Build.VERSION.SDK_INT > 22) //Marshmallow
+                if (Build.VERSION.SDK_INT > 23) // Nougat
+                    startActivity(new Intent(MainScreen.this, PlatLogoActivityNougat.class));
+                else if (Build.VERSION.SDK_INT >= 22) //Marshmallow
                     startActivity(new Intent(MainScreen.this, PlatLogoActivityMARSHMALLOW.class));
                 else if (Build.VERSION.SDK_INT >= 21) //Lollipop (21-22)
                     startActivity(new Intent(MainScreen.this, PlatLogoActivityLOLLIPOP.class));

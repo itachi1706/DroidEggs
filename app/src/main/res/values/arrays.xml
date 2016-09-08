@@ -10,6 +10,7 @@
         <item>Lollipop (5.0)</item>
         <item>Macadamia Nut Cookie (MNC) \n[M Preview]</item>
         <item>Marshmallow (6.0)</item>
+        <item>N Preview (NDP) \n[N Preview]</item>
     </string-array>
 
     <string-array name="legacy_version_with_egg_code">
@@ -21,6 +22,7 @@
         <item>L</item>
         <item>MNC</item>
         <item>MM</item>
+        <item>NDP</item>
     </string-array>
 
     <!-- New Method -->
@@ -33,6 +35,7 @@
         <item>Lollipop</item>
         <item>Macadamia Nut Cookie (M Preview)</item>
         <item>Marshmallow</item>
+        <item>N Preview</item>
     </string-array>
 
     <string-array name="android_ver_range">
@@ -44,6 +47,7 @@
         <item>5.0 – 5.1.1</item>
         <item>MNC</item>
         <item>6.0</item>
+        <item>NDP1 - NDP5</item>
     </string-array>
 
     <string-array name="android_egg_require">
@@ -55,6 +59,7 @@
         <item>Lollipop</item>
         <item>Lollipop</item>
         <item>Lollipop</item>
+        <item>Lollipop</item>
     </string-array>
 
     <integer-array name="android_egg_require_min_sdk">
@@ -63,6 +68,7 @@
         <item>16</item>
         <item>16</item>
         <item>19</item>
+        <item>21</item>
         <item>21</item>
         <item>21</item>
         <item>21</item>

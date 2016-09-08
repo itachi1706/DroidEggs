@@ -30,6 +30,13 @@
             android:label="@string/title_activity_main_settings" >
         </activity>
 
+        <!-- NDP Egg Activities -->
+        <activity android:name=".NDPEgg.PlatLogoActivityNDP"
+            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
+            android:configChanges="orientation|keyboardHidden"
+            android:process=":ui">
+        </activity>
+
         <!-- Marshmallow Egg Activities -->
         <activity android:name=".MarshmallowEgg.PlatLogoActivityMARSHMALLOW"
             android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"

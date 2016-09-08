@@ -26,7 +26,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.internal.text.AllCapsTransformationMethod;
+import android.support.v7.text.AllCapsTransformationMethod;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;

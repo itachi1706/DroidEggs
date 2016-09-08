@@ -1,5 +1,25 @@
 package com.itachi1706.droideggs.NougatEgg.EasterEgg.neko;
 
+import android.app.Notification;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.PixelFormat;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.Icon;
+import android.os.Bundle;
+
+import com.itachi1706.droideggs.R;
+
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
+
 /**
  * Created by Kenneth on 8/9/2016.
  * for com.itachi1706.droideggs.NougatEgg.EasterEgg.neko in DroidEggs

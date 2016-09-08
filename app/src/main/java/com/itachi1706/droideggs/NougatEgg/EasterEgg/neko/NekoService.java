@@ -1,5 +1,21 @@
 package com.itachi1706.droideggs.NougatEgg.EasterEgg.neko;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.job.JobInfo;
+import android.app.job.JobParameters;
+import android.app.job.JobScheduler;
+import android.app.job.JobService;
+import android.content.ComponentName;
+import android.content.Context;
+import android.os.Bundle;
+import android.util.Log;
+
+import com.itachi1706.droideggs.R;
+
+import java.util.List;
+import java.util.Random;
+
 /**
  * Created by Kenneth on 8/9/2016.
  * for com.itachi1706.droideggs.NougatEgg.EasterEgg.neko in DroidEggs

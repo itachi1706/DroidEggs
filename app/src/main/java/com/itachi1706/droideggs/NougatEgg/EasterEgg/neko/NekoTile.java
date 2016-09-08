@@ -1,10 +1,18 @@
 package com.itachi1706.droideggs.NougatEgg.EasterEgg.neko;
 
+import android.annotation.TargetApi;
+import android.content.Intent;
+import android.os.Build;
+import android.service.quicksettings.Tile;
+import android.service.quicksettings.TileService;
+import android.util.Log;
+
 /**
  * Created by Kenneth on 8/9/2016.
  * for com.itachi1706.droideggs.NougatEgg.EasterEgg.neko in DroidEggs
  */
-public class NekoTile extends TileService implements PrefsListener {
+@TargetApi(Build.VERSION_CODES.N)
+public class NekoTile extends TileService implements PrefState.PrefsListener {
     private static final String TAG = "NekoTile";
     private PrefState mPrefs;
     @Override

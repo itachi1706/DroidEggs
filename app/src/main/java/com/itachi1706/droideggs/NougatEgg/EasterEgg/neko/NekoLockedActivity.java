@@ -1,10 +1,17 @@
 package com.itachi1706.droideggs.NougatEgg.EasterEgg.neko;
 
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnDismissListener;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
+import android.view.WindowManager;
+
 /**
  * Created by Kenneth on 8/9/2016.
  * for com.itachi1706.droideggs.NougatEgg.EasterEgg.neko in DroidEggs
  */
-public class NekoLockedActivity extends Activity implements OnDismissListener {
+public class NekoLockedActivity extends AppCompatActivity implements OnDismissListener {
     private NekoDialog mDialog;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

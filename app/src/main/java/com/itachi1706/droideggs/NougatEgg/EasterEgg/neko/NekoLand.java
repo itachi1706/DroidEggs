@@ -1,10 +1,42 @@
 package com.itachi1706.droideggs.NougatEgg.EasterEgg.neko;
 
+import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.media.MediaScannerConnection;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Environment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.ContextThemeWrapper;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.itachi1706.droideggs.R;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+
 /**
  * Created by Kenneth on 8/9/2016.
  * for com.itachi1706.droideggs.NougatEgg.EasterEgg.neko in DroidEggs
  */
-public class NekoLand extends Activity implements PrefsListener {
+public class NekoLand extends Activity implements PrefState.PrefsListener {
     public static boolean DEBUG = false;
     public static boolean DEBUG_NOTIFICATIONS = false;
     private static final int STORAGE_PERM_REQUEST = 123;
@@ -63,8 +95,7 @@ public class NekoLand extends Activity implements PrefsListener {
         mPrefs.removeCat(cat);
     }
     private void showNameDialog(final Cat cat) {
-        Context context = new ContextThemeWrapper(this,
-                android.R.style.Theme_Material_Light_Dialog_NoActionBar);
+        Context context = new ContextThemeWrapper(this, R.style.AppTheme_Dialog_NoActionBar);
         // TODO: Move to XML, add correct margins.
         View view = LayoutInflater.from(context).inflate(R.layout.edit_text, null);
         final EditText text = (EditText) view.findViewById(android.R.id.edit);
@@ -75,7 +106,7 @@ public class NekoLand extends Activity implements PrefsListener {
                 .setTitle(" ")
                 .setIcon(catIcon)
                 .setView(view)
-                .setPositiveButton(android.R.string.ok, new OnClickListener() {
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         cat.setName(text.getText().toString().trim());
@@ -109,7 +140,7 @@ public class NekoLand extends Activity implements PrefsListener {
                     onCatClick(mCats[holder.getAdapterPosition()]);
                 }
             });
-            holder.itemView.setOnLongClickListener(new OnLongClickListener() {
+            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
                     holder.contextGroup.removeCallbacks((Runnable) holder.contextGroup.getTag());

@@ -1,5 +1,11 @@
 package com.itachi1706.droideggs.NougatEgg.EasterEgg.neko;
 
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Icon;
+
+import com.itachi1706.droideggs.R;
+
 /**
  * Created by Kenneth on 8/9/2016.
  * for com.itachi1706.droideggs.NougatEgg.EasterEgg.neko in DroidEggs

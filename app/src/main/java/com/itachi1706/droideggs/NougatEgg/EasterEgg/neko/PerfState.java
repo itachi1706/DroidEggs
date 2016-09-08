@@ -1,11 +1,18 @@
 package com.itachi1706.droideggs.NougatEgg.EasterEgg.neko;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Created by Kenneth on 8/9/2016.
  * for com.itachi1706.droideggs.NougatEgg.EasterEgg.neko in DroidEggs
  */
-public class PrefState implements OnSharedPreferenceChangeListener {
-    private static final String FILE_NAME = "mPrefs";
+public class PrefState implements SharedPreferences.OnSharedPreferenceChangeListener {
+    private static final String FILE_NAME = "mPrefsNeko";
     private static final String FOOD_STATE = "food";
     private static final String CAT_KEY_PREFIX = "cat:";
     private final Context mContext;

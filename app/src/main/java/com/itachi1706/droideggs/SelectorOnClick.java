@@ -92,7 +92,7 @@ public class SelectorOnClick implements AdapterView.OnItemClickListener {
                     MainScreen.unableToAccessEasterEgg("LOLLIPOP");
                 break;
             case "N":
-                if (Build.VERSION.SDK_INT >= 21)
+                if (Build.VERSION.SDK_INT >= 23)
                     context.startActivity(new Intent(context, PlatLogoActivityNougat.class));
                 else
                     MainScreen.unableToAccessEasterEgg("LOLLIPOP");

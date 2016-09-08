@@ -133,11 +133,6 @@ public class PlatLogoActivityMARSHMALLOW extends AppCompatActivity {
                             @Override
                             public void run() {
                                 try {
-                                    //startActivity(new Intent(Intent.ACTION_MAIN)
-                                    //        .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                                    //                | Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                    //                | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS)
-                                    //        .addCategory("com.android.internal.category.PLATLOGO"));
                                     Intent mland = new Intent(PlatLogoActivityMARSHMALLOW.this, MLandActivity.class);
                                     mland.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
                                             | Intent.FLAG_ACTIVITY_CLEAR_TASK

@@ -34,10 +34,6 @@
         android:key="pref_cat_info"
         android:title="App Info" >
 
-        <Preference android:title="Check for Update" android:key="launch_updater" android:summary="Checks for new version of the application"/>
-        <Preference android:title="Get Released App Version" android:key="get_releases" android:summary="Launch a webpage containing all released app versions"/>
-        <Preference android:title="View Changelog" android:key="android_changelog" android:summary="View Changelog Information" />
-
         <Preference android:title="App Version" android:key="view_app_version" />
         <Preference android:title="Package Name" android:key="view_app_name" android:selectable="false" />
         <Preference android:selectable="false" android:title="Android Version" android:key="view_sdk_version"/>

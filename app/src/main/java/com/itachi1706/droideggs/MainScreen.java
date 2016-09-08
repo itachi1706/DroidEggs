@@ -16,14 +16,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.itachi1706.appupdater.AppUpdateInitializer;
 import com.itachi1706.droideggs.GingerbreadEgg.PlatLogoActivityGINGERBREAD;
 import com.itachi1706.droideggs.HoneycombEgg.PlatLogoActivityHONEYCOMB;
 import com.itachi1706.droideggs.JellyBeanEgg.PlatLogoActivityJELLYBEAN;
 import com.itachi1706.droideggs.KitKatEgg.PlatLogoActivityKITKAT;
 import com.itachi1706.droideggs.LollipopEgg.PlatLogoActivityLOLLIPOP;
-import com.itachi1706.droideggs.MNCEgg.PlatLogoActivityMNC;
 import com.itachi1706.droideggs.MarshmallowEgg.PlatLogoActivityMARSHMALLOW;
-import com.itachi1706.droideggs.UpdatingApp.AppUpdateChecker;
 
 import java.util.ArrayList;
 
@@ -68,7 +67,8 @@ public class MainScreen extends AppCompatActivity {
         });
 
         //Check for updates
-        new AppUpdateChecker(this, PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()), true).execute();
+        new AppUpdateInitializer(this, PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()),
+                R.mipmap.ic_launcher, CommonVariables.BASE_SERVER_URL).checkForUpdate(true);
     }
 
     @Override

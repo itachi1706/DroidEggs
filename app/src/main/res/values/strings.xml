@@ -19,4 +19,5 @@
     <string name="title_activity_plat_logo_activity_marshmallow_mland">Marshmallow Land</string>
 
     <string name="update_link">https://github.com/itachi1706/DroidEggs/releases</string>
+    <string name="link_updates">https://github.com/itachi1706/DroidEggs/releases/latest</string>
 </resources>

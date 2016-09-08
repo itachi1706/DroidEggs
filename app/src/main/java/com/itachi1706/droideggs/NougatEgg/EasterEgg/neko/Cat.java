@@ -1,5 +1,6 @@
 package com.itachi1706.droideggs.NougatEgg.EasterEgg.neko;
 
+import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -13,6 +14,7 @@ import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.itachi1706.droideggs.R;
@@ -24,6 +26,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * Created by Kenneth on 8/9/2016.
  * for com.itachi1706.droideggs.NougatEgg.EasterEgg.neko in DroidEggs
  */
+@TargetApi(Build.VERSION_CODES.M)
 public class Cat extends Drawable {
     private Random mNotSoRandom;
     private Bitmap mBitmap;
@@ -108,7 +111,7 @@ public class Cat extends Drawable {
     public Cat(Context context, long seed) {
         D = new CatParts(context);
         mSeed = seed;
-        setName(context.getString(R.string.default_cat_name,
+        setName(context.getString(R.string.nougat_default_cat_name,
                 String.valueOf(mSeed).substring(0, 3)));
         final Random nsr = notSoRandom(seed);
         // body color
@@ -153,16 +156,16 @@ public class Cat extends Drawable {
     }
     public Notification.Builder buildNotification(Context context) {
         final Bundle extras = new Bundle();
-        extras.putString("android.substName", context.getString(R.string.notification_name));
+        extras.putString("android.substName", context.getString(R.string.nougat_notification_name));
         final Intent intent = new Intent(Intent.ACTION_MAIN)
                 .setClass(context, NekoLand.class)
                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         return new Notification.Builder(context)
-                .setSmallIcon(Icon.createWithResource(context, R.drawable.stat_icon))
+                .setSmallIcon(Icon.createWithResource(context, R.drawable.nougat_stat_icon))
                 .setLargeIcon(createLargeIcon(context))
                 .setColor(getBodyColor())
                 .setPriority(Notification.PRIORITY_LOW)
-                .setContentTitle(context.getString(R.string.notification_title))
+                .setContentTitle(context.getString(R.string.nougat_notification_title))
                 .setShowWhen(true)
                 .setCategory(Notification.CATEGORY_STATUS)
                 .setContentText(getName())
@@ -270,34 +273,34 @@ public class Cat extends Drawable {
         public Drawable collar;
         public Drawable[] drawingOrder;
         public CatParts(Context context) {
-            body = context.getDrawable(R.drawable.body);
-            head = context.getDrawable(R.drawable.head);
-            leg1 = context.getDrawable(R.drawable.leg1);
-            leg2 = context.getDrawable(R.drawable.leg2);
-            leg3 = context.getDrawable(R.drawable.leg3);
-            leg4 = context.getDrawable(R.drawable.leg4);
-            tail = context.getDrawable(R.drawable.tail);
-            leftEar = context.getDrawable(R.drawable.left_ear);
-            rightEar = context.getDrawable(R.drawable.right_ear);
-            rightEarInside = context.getDrawable(R.drawable.right_ear_inside);
-            leftEarInside = context.getDrawable(R.drawable.left_ear_inside);
-            faceSpot = context.getDrawable(R.drawable.face_spot);
-            cap = context.getDrawable(R.drawable.cap);
-            mouth = context.getDrawable(R.drawable.mouth);
-            foot4 = context.getDrawable(R.drawable.foot4);
-            foot3 = context.getDrawable(R.drawable.foot3);
-            foot1 = context.getDrawable(R.drawable.foot1);
-            foot2 = context.getDrawable(R.drawable.foot2);
-            leg2Shadow = context.getDrawable(R.drawable.leg2_shadow);
-            tailShadow = context.getDrawable(R.drawable.tail_shadow);
-            tailCap = context.getDrawable(R.drawable.tail_cap);
-            belly = context.getDrawable(R.drawable.belly);
-            back = context.getDrawable(R.drawable.back);
-            rightEye = context.getDrawable(R.drawable.right_eye);
-            leftEye = context.getDrawable(R.drawable.left_eye);
-            nose = context.getDrawable(R.drawable.nose);
-            collar = context.getDrawable(R.drawable.collar);
-            bowtie = context.getDrawable(R.drawable.bowtie);
+            body = context.getDrawable(R.drawable.nougat_body);
+            head = context.getDrawable(R.drawable.nougat_head);
+            leg1 = context.getDrawable(R.drawable.nougat_leg1);
+            leg2 = context.getDrawable(R.drawable.nougat_leg2);
+            leg3 = context.getDrawable(R.drawable.nougat_leg3);
+            leg4 = context.getDrawable(R.drawable.nougat_leg4);
+            tail = context.getDrawable(R.drawable.nougat_tail);
+            leftEar = context.getDrawable(R.drawable.nougat_left_ear);
+            rightEar = context.getDrawable(R.drawable.nougat_right_ear);
+            rightEarInside = context.getDrawable(R.drawable.nougat_right_ear_inside);
+            leftEarInside = context.getDrawable(R.drawable.nougat_left_ear_inside);
+            faceSpot = context.getDrawable(R.drawable.nougat_face_spot);
+            cap = context.getDrawable(R.drawable.nougat_cap);
+            mouth = context.getDrawable(R.drawable.nougat_mouth);
+            foot4 = context.getDrawable(R.drawable.nougat_foot4);
+            foot3 = context.getDrawable(R.drawable.nougat_foot3);
+            foot1 = context.getDrawable(R.drawable.nougat_foot1);
+            foot2 = context.getDrawable(R.drawable.nougat_foot2);
+            leg2Shadow = context.getDrawable(R.drawable.nougat_leg2_shadow);
+            tailShadow = context.getDrawable(R.drawable.nougat_tail_shadow);
+            tailCap = context.getDrawable(R.drawable.nougat_tail_cap);
+            belly = context.getDrawable(R.drawable.nougat_belly);
+            back = context.getDrawable(R.drawable.nougat_back);
+            rightEye = context.getDrawable(R.drawable.nougat_right_eye);
+            leftEye = context.getDrawable(R.drawable.nougat_left_eye);
+            nose = context.getDrawable(R.drawable.nougat_nose);
+            collar = context.getDrawable(R.drawable.nougat_collar);
+            bowtie = context.getDrawable(R.drawable.nougat_bowtie);
             drawingOrder = getDrawingOrder();
         }
         private Drawable[] getDrawingOrder() {

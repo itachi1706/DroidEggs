@@ -47,7 +47,7 @@ public class NekoLand extends Activity implements PrefState.PrefsListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.neko_activity);
+        setContentView(R.layout.nougat_neko_activity);
         final ActionBar actionBar = getActionBar();
         if (actionBar != null) {
             actionBar.setLogo(Cat.create(this));
@@ -97,7 +97,7 @@ public class NekoLand extends Activity implements PrefState.PrefsListener {
     private void showNameDialog(final Cat cat) {
         Context context = new ContextThemeWrapper(this, R.style.AppTheme_Dialog_NoActionBar);
         // TODO: Move to XML, add correct margins.
-        View view = LayoutInflater.from(context).inflate(R.layout.edit_text, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.nougat_edit_text, null);
         final EditText text = (EditText) view.findViewById(android.R.id.edit);
         text.setText(cat.getName());
         text.setSelection(cat.getName().length());
@@ -127,7 +127,7 @@ public class NekoLand extends Activity implements PrefState.PrefsListener {
         @Override
         public CatHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             return new CatHolder(LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.cat_view, parent, false));
+                    .inflate(R.layout.nougat_cat_view, parent, false));
         }
         @Override
         public void onBindViewHolder(final CatHolder holder, int position) {
@@ -188,7 +188,7 @@ public class NekoLand extends Activity implements PrefState.PrefsListener {
     private void shareCat(Cat cat) {
         final File dir = new File(
                 Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
-                getString(R.string.directory_name));
+                getString(R.string.nougat_directory_name));
         if (!dir.exists() && !dir.mkdirs()) {
             Log.e("NekoLand", "save: error: can't create Pictures directory");
             return;

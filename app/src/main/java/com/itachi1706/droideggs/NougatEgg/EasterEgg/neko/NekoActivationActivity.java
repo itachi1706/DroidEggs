@@ -51,6 +51,7 @@ public class NekoActivationActivity extends AppCompatActivity {
                     PackageManager.DONT_KILL_APP);
             toastUp("\uD83D\uDC31");
         }
+        // TODO: Add a warning that you are not able to use the app without API 24 (Android N)
         finish();
     }
 

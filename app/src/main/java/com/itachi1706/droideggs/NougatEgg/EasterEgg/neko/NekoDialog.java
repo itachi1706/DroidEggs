@@ -1,7 +1,9 @@
 package com.itachi1706.droideggs.NougatEgg.EasterEgg.neko;
 
+import android.annotation.TargetApi;
 import android.app.Dialog;
 import android.content.Context;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,6 +21,7 @@ import java.util.ArrayList;
  * Created by Kenneth on 8/9/2016.
  * for com.itachi1706.droideggs.NougatEgg.EasterEgg.neko in DroidEggs
  */
+@TargetApi(Build.VERSION_CODES.M)
 public class NekoDialog extends Dialog {
     private final Adapter mAdapter;
     public NekoDialog(@NonNull Context context) {

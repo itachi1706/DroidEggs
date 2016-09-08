@@ -1,6 +1,8 @@
 package com.itachi1706.droideggs.NougatEgg.EasterEgg.neko;
 
 import android.Manifest;
+import android.annotation.TargetApi;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -10,9 +12,9 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -36,6 +38,7 @@ import java.io.OutputStream;
  * Created by Kenneth on 8/9/2016.
  * for com.itachi1706.droideggs.NougatEgg.EasterEgg.neko in DroidEggs
  */
+@TargetApi(Build.VERSION_CODES.M)
 public class NekoLand extends Activity implements PrefState.PrefsListener {
     public static boolean DEBUG = false;
     public static boolean DEBUG_NOTIFICATIONS = false;

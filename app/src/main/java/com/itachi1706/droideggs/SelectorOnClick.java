@@ -18,6 +18,7 @@ import com.itachi1706.droideggs.LollipopEgg.PlatLogoActivityLOLLIPOP;
 import com.itachi1706.droideggs.MNCEgg.PlatLogoActivityMNC;
 import com.itachi1706.droideggs.MarshmallowEgg.PlatLogoActivityMARSHMALLOW;
 import com.itachi1706.droideggs.NDPEgg.PlatLogoActivityNDP;
+import com.itachi1706.droideggs.NougatEgg.PlatLogoActivityNougat;
 
 /**
  * Created by Kenneth on 1/6/2015
@@ -89,6 +90,12 @@ public class SelectorOnClick implements AdapterView.OnItemClickListener {
                     context.startActivity(new Intent(context, PlatLogoActivityNDP.class));
                 else
                     MainScreen.unableToAccessEasterEgg("LOLLIPOP");
+                break;
+            case "N":
+                if (Build.VERSION.SDK_INT >= 24)
+                    context.startActivity(new Intent(context, PlatLogoActivityNougat.class));
+                else
+                    MainScreen.unableToAccessEasterEgg("NOUGAT");
                 break;
         }
     }

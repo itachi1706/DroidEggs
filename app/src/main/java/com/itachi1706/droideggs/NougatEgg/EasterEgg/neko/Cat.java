@@ -1,0 +1,326 @@
+package com.itachi1706.droideggs.NougatEgg.EasterEgg.neko;
+
+import android.annotation.TargetApi;
+import android.app.Notification;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.PixelFormat;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.Icon;
+import android.os.Build;
+import android.os.Bundle;
+
+import com.itachi1706.droideggs.R;
+
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
+
+/**
+ * Created by Kenneth on 8/9/2016.
+ * for com.itachi1706.droideggs.NougatEgg.EasterEgg.neko in DroidEggs
+ */
+@TargetApi(Build.VERSION_CODES.M)
+public class Cat extends Drawable {
+    private Random mNotSoRandom;
+    private Bitmap mBitmap;
+    private long mSeed;
+    private String mName;
+    private int mBodyColor;
+    private synchronized Random notSoRandom(long seed) {
+        if (mNotSoRandom == null) {
+            mNotSoRandom = new Random();
+            mNotSoRandom.setSeed(seed);
+        }
+        return mNotSoRandom;
+    }
+    public static final float frandrange(Random r, float a, float b) {
+        return (b-a)*r.nextFloat() + a;
+    }
+    public static final Object choose(Random r, Object...l) {
+        return l[r.nextInt(l.length)];
+    }
+    public static final int chooseP(Random r, int[] a) {
+        int pct = r.nextInt(1000);
+        final int stop = a.length-2;
+        int i=0;
+        while (i<stop) {
+            pct -= a[i];
+            if (pct < 0) break;
+            i+=2;
+        }
+        return a[i+1];
+    }
+    public static final int[] P_BODY_COLORS = {
+            180, 0xFF212121, // black
+            180, 0xFFFFFFFF, // white
+            140, 0xFF616161, // gray
+            140, 0xFF795548, // brown
+            100, 0xFF90A4AE, // steel
+            100, 0xFFFFF9C4, // buff
+            100, 0xFFFF8F00, // orange
+            5, 0xFF29B6F6, // blue..?
+            5, 0xFFFFCDD2, // pink!?
+            5, 0xFFCE93D8, // purple?!?!?
+            4, 0xFF43A047, // yeah, why not green
+            1, 0,          // ?!?!?!
+    };
+    public static final int[] P_COLLAR_COLORS = {
+            250, 0xFFFFFFFF,
+            250, 0xFF000000,
+            250, 0xFFF44336,
+            50, 0xFF1976D2,
+            50, 0xFFFDD835,
+            50, 0xFFFB8C00,
+            50, 0xFFF48FB1,
+            50, 0xFF4CAF50,
+    };
+    public static final int[] P_BELLY_COLORS = {
+            750, 0,
+            250, 0xFFFFFFFF,
+    };
+    public static final int[] P_DARK_SPOT_COLORS = {
+            700, 0,
+            250, 0xFF212121,
+            50, 0xFF6D4C41,
+    };
+    public static final int[] P_LIGHT_SPOT_COLORS = {
+            700, 0,
+            300, 0xFFFFFFFF,
+    };
+    private CatParts D;
+    public static void tint(int color, Drawable ... ds) {
+        for (Drawable d : ds) {
+            if (d != null) {
+                d.mutate().setTint(color);
+            }
+        }
+    }
+    public static boolean isDark(int color) {
+        final int r = (color & 0xFF0000) >> 16;
+        final int g = (color & 0x00FF00) >> 8;
+        final int b = color & 0x0000FF;
+        return (r + g + b) < 0x80;
+    }
+    public Cat(Context context, long seed) {
+        D = new CatParts(context);
+        mSeed = seed;
+        setName(context.getString(R.string.nougat_default_cat_name,
+                String.valueOf(mSeed).substring(0, 3)));
+        final Random nsr = notSoRandom(seed);
+        // body color
+        mBodyColor = chooseP(nsr, P_BODY_COLORS);
+        if (mBodyColor == 0) mBodyColor = Color.HSVToColor(new float[] {
+                nsr.nextFloat()*360f, frandrange(nsr,0.5f,1f), frandrange(nsr,0.5f, 1f)});
+        tint(mBodyColor, D.body, D.head, D.leg1, D.leg2, D.leg3, D.leg4, D.tail,
+                D.leftEar, D.rightEar, D.foot1, D.foot2, D.foot3, D.foot4, D.tailCap);
+        tint(0x20000000, D.leg2Shadow, D.tailShadow);
+        if (isDark(mBodyColor)) {
+            tint(0xFFFFFFFF, D.leftEye, D.rightEye, D.mouth, D.nose);
+        }
+        tint(isDark(mBodyColor) ? 0xFFEF9A9A : 0x20D50000, D.leftEarInside, D.rightEarInside);
+        tint(chooseP(nsr, P_BELLY_COLORS), D.belly);
+        tint(chooseP(nsr, P_BELLY_COLORS), D.back);
+        final int faceColor = chooseP(nsr, P_BELLY_COLORS);
+        tint(faceColor, D.faceSpot);
+        if (!isDark(faceColor)) {
+            tint(0xFF000000, D.mouth, D.nose);
+        }
+        if (nsr.nextFloat() < 0.25f) {
+            tint(0xFFFFFFFF, D.foot1, D.foot2, D.foot3, D.foot4);
+        } else {
+            if (nsr.nextFloat() < 0.25f) {
+                tint(0xFFFFFFFF, D.foot1, D.foot2);
+            } else if (nsr.nextFloat() < 0.25f) {
+                tint(0xFFFFFFFF, D.foot3, D.foot4);
+            } else if (nsr.nextFloat() < 0.1f) {
+                tint(0xFFFFFFFF, (Drawable) choose(nsr, D.foot1, D.foot2, D.foot3, D.foot4));
+            }
+        }
+        tint(nsr.nextFloat() < 0.333f ? 0xFFFFFFFF : mBodyColor, D.tailCap);
+        final int capColor = chooseP(nsr, isDark(mBodyColor) ? P_LIGHT_SPOT_COLORS : P_DARK_SPOT_COLORS);
+        tint(capColor, D.cap);
+        //tint(chooseP(nsr, isDark(bodyColor) ? P_LIGHT_SPOT_COLORS : P_DARK_SPOT_COLORS), D.nose);
+        final int collarColor = chooseP(nsr, P_COLLAR_COLORS);
+        tint(collarColor, D.collar);
+        tint((nsr.nextFloat() < 0.1f) ? collarColor : 0, D.bowtie);
+    }
+    public static Cat create(Context context) {
+        return new Cat(context, Math.abs(ThreadLocalRandom.current().nextInt()));
+    }
+    public Notification.Builder buildNotification(Context context) {
+        final Bundle extras = new Bundle();
+        extras.putString("android.substName", context.getString(R.string.nougat_notification_name));
+        final Intent intent = new Intent(Intent.ACTION_MAIN)
+                .setClass(context, NekoLand.class)
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        return new Notification.Builder(context)
+                .setSmallIcon(Icon.createWithResource(context, R.drawable.nougat_stat_icon))
+                .setLargeIcon(createLargeIcon(context))
+                .setColor(getBodyColor())
+                .setPriority(Notification.PRIORITY_LOW)
+                .setContentTitle(context.getString(R.string.nougat_notification_title))
+                .setShowWhen(true)
+                .setCategory(Notification.CATEGORY_STATUS)
+                .setContentText(getName())
+                .setContentIntent(PendingIntent.getActivity(context, 0, intent, 0))
+                .setAutoCancel(true)
+                .addExtras(extras);
+    }
+    public long getSeed() {
+        return mSeed;
+    }
+    @Override
+    public void draw(Canvas canvas) {
+        final int w = Math.min(canvas.getWidth(), canvas.getHeight());
+        final int h = w;
+        if (mBitmap == null || mBitmap.getWidth() != w || mBitmap.getHeight() != h) {
+            mBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+            final Canvas bitCanvas = new Canvas(mBitmap);
+            slowDraw(bitCanvas, 0, 0, w, h);
+        }
+        canvas.drawBitmap(mBitmap, 0, 0, null);
+    }
+    private void slowDraw(Canvas canvas, int x, int y, int w, int h) {
+        for (int i = 0; i < D.drawingOrder.length; i++) {
+            final Drawable d = D.drawingOrder[i];
+            if (d != null) {
+                d.setBounds(x, y, x+w, y+h);
+                d.draw(canvas);
+            }
+        }
+    }
+    public Bitmap createBitmap(int w, int h) {
+        if (mBitmap != null && mBitmap.getWidth() == w && mBitmap.getHeight() == h) {
+            return mBitmap.copy(mBitmap.getConfig(), true);
+        }
+        Bitmap result = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+        slowDraw(new Canvas(result), 0, 0, w, h);
+        return result;
+    }
+    public Icon createLargeIcon(Context context) {
+        final Resources res = context.getResources();
+        final int w = res.getDimensionPixelSize(android.R.dimen.notification_large_icon_width);
+        final int h = res.getDimensionPixelSize(android.R.dimen.notification_large_icon_height);
+        Bitmap result = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+        final Canvas canvas = new Canvas(result);
+        final Paint pt = new Paint();
+        float[] hsv = new float[3];
+        Color.colorToHSV(mBodyColor, hsv);
+        hsv[2] = (hsv[2]>0.5f)
+                ? (hsv[2] - 0.25f)
+                : (hsv[2] + 0.25f);
+        pt.setColor(Color.HSVToColor(hsv));
+        float r = w/2;
+        canvas.drawCircle(r, r, r, pt);
+        int m = w/10;
+        slowDraw(canvas, m, m, w-m-m, h-m-m);
+        return Icon.createWithBitmap(result);
+    }
+    @Override
+    public void setAlpha(int i) {
+    }
+    @Override
+    public void setColorFilter(ColorFilter colorFilter) {
+    }
+    @Override
+    public int getOpacity() {
+        return PixelFormat.TRANSLUCENT;
+    }
+    public String getName() {
+        return mName;
+    }
+    public void setName(String name) {
+        this.mName = name;
+    }
+    public int getBodyColor() {
+        return mBodyColor;
+    }
+    public static class CatParts {
+        public Drawable leftEar;
+        public Drawable rightEar;
+        public Drawable rightEarInside;
+        public Drawable leftEarInside;
+        public Drawable head;
+        public Drawable faceSpot;
+        public Drawable cap;
+        public Drawable mouth;
+        public Drawable body;
+        public Drawable foot1;
+        public Drawable leg1;
+        public Drawable foot2;
+        public Drawable leg2;
+        public Drawable foot3;
+        public Drawable leg3;
+        public Drawable foot4;
+        public Drawable leg4;
+        public Drawable tail;
+        public Drawable leg2Shadow;
+        public Drawable tailShadow;
+        public Drawable tailCap;
+        public Drawable belly;
+        public Drawable back;
+        public Drawable rightEye;
+        public Drawable leftEye;
+        public Drawable nose;
+        public Drawable bowtie;
+        public Drawable collar;
+        public Drawable[] drawingOrder;
+        public CatParts(Context context) {
+            body = context.getDrawable(R.drawable.nougat_body);
+            head = context.getDrawable(R.drawable.nougat_head);
+            leg1 = context.getDrawable(R.drawable.nougat_leg1);
+            leg2 = context.getDrawable(R.drawable.nougat_leg2);
+            leg3 = context.getDrawable(R.drawable.nougat_leg3);
+            leg4 = context.getDrawable(R.drawable.nougat_leg4);
+            tail = context.getDrawable(R.drawable.nougat_tail);
+            leftEar = context.getDrawable(R.drawable.nougat_left_ear);
+            rightEar = context.getDrawable(R.drawable.nougat_right_ear);
+            rightEarInside = context.getDrawable(R.drawable.nougat_right_ear_inside);
+            leftEarInside = context.getDrawable(R.drawable.nougat_left_ear_inside);
+            faceSpot = context.getDrawable(R.drawable.nougat_face_spot);
+            cap = context.getDrawable(R.drawable.nougat_cap);
+            mouth = context.getDrawable(R.drawable.nougat_mouth);
+            foot4 = context.getDrawable(R.drawable.nougat_foot4);
+            foot3 = context.getDrawable(R.drawable.nougat_foot3);
+            foot1 = context.getDrawable(R.drawable.nougat_foot1);
+            foot2 = context.getDrawable(R.drawable.nougat_foot2);
+            leg2Shadow = context.getDrawable(R.drawable.nougat_leg2_shadow);
+            tailShadow = context.getDrawable(R.drawable.nougat_tail_shadow);
+            tailCap = context.getDrawable(R.drawable.nougat_tail_cap);
+            belly = context.getDrawable(R.drawable.nougat_belly);
+            back = context.getDrawable(R.drawable.nougat_back);
+            rightEye = context.getDrawable(R.drawable.nougat_right_eye);
+            leftEye = context.getDrawable(R.drawable.nougat_left_eye);
+            nose = context.getDrawable(R.drawable.nougat_nose);
+            collar = context.getDrawable(R.drawable.nougat_collar);
+            bowtie = context.getDrawable(R.drawable.nougat_bowtie);
+            drawingOrder = getDrawingOrder();
+        }
+        private Drawable[] getDrawingOrder() {
+            return new Drawable[] {
+                    collar,
+                    leftEar, leftEarInside, rightEar, rightEarInside,
+                    head,
+                    faceSpot,
+                    cap,
+                    leftEye, rightEye,
+                    nose, mouth,
+                    tail, tailCap, tailShadow,
+                    foot1, leg1,
+                    foot2, leg2,
+                    foot3, leg3,
+                    foot4, leg4,
+                    leg2Shadow,
+                    body, belly,
+                    bowtie
+            };
+        }
+    }
+}

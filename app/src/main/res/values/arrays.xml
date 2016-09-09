@@ -11,6 +11,7 @@
         <item>Macadamia Nut Cookie (MNC) \n[M Preview]</item>
         <item>Marshmallow (6.0)</item>
         <item>N Preview (NDP) \n[N Preview]</item>
+        <item>Nougat (7.0)</item>
     </string-array>
 
     <string-array name="legacy_version_with_egg_code">
@@ -23,6 +24,7 @@
         <item>MNC</item>
         <item>MM</item>
         <item>NDP</item>
+        <item>N</item>
     </string-array>
 
     <!-- New Method -->
@@ -36,6 +38,7 @@
         <item>Macadamia Nut Cookie (M Preview)</item>
         <item>Marshmallow</item>
         <item>N Preview</item>
+        <item>Nougat</item>
     </string-array>
 
     <string-array name="android_ver_range">
@@ -48,6 +51,7 @@
         <item>MNC</item>
         <item>6.0</item>
         <item>NDP1 - NDP5</item>
+        <item>7.0</item>
     </string-array>
 
     <string-array name="android_egg_require">
@@ -60,6 +64,7 @@
         <item>Lollipop</item>
         <item>Lollipop</item>
         <item>Lollipop</item>
+        <item>Nougat</item>
     </string-array>
 
     <integer-array name="android_egg_require_min_sdk">
@@ -72,5 +77,6 @@
         <item>21</item>
         <item>21</item>
         <item>21</item>
+        <item>24</item>
     </integer-array>
 </resources>

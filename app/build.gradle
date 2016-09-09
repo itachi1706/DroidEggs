@@ -8,8 +8,9 @@ android {
         applicationId "com.itachi1706.droideggs"
         minSdkVersion 15
         targetSdkVersion 24
-        versionCode 80
-        versionName "2.0.0"
+        versionCode 96
+        versionName "2.1.0"
+        vectorDrawables.useSupportLibrary = true
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7

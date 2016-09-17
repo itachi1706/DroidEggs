@@ -8,8 +8,8 @@ android {
         applicationId "com.itachi1706.droideggs"
         minSdkVersion 15
         targetSdkVersion 24
-        versionCode 96
-        versionName "2.1.0"
+        versionCode 98
+        versionName "2.1.1"
         vectorDrawables.useSupportLibrary = true
     }
     compileOptions {
@@ -31,7 +31,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:design:24.2.0'
-    compile 'com.android.support:support-v4:24.2.0'
+    compile 'com.android.support:design:24.2.1'
+    compile 'com.android.support:support-v4:24.2.1'
     compile project(':appupdater')
 }

@@ -48,21 +48,21 @@ public class MainScreen extends AppCompatActivity {
         currentVer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Build.VERSION.SDK_INT > 23) // Nougat
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) // Nougat
                     startActivity(new Intent(MainScreen.this, PlatLogoActivityNougat.class));
-                else if (Build.VERSION.SDK_INT >= 22) //Marshmallow
+                else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) //Marshmallow
                     startActivity(new Intent(MainScreen.this, PlatLogoActivityMARSHMALLOW.class));
-                else if (Build.VERSION.SDK_INT >= 21) //Lollipop (21-22)
+                else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) //Lollipop (21-22)
                     startActivity(new Intent(MainScreen.this, PlatLogoActivityLOLLIPOP.class));
-                else if (Build.VERSION.SDK_INT == 19) //KitKat
+                else if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) //KitKat
                     startActivity(new Intent(MainScreen.this, PlatLogoActivityKITKAT.class));
-                else if (Build.VERSION.SDK_INT >= 16) //Jelly Bean
+                else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) //Jelly Bean
                     startActivity(new Intent(MainScreen.this, PlatLogoActivityJELLYBEAN.class));
-                else if (Build.VERSION.SDK_INT >= 14) //ICS
+                else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) //ICS
                     weird("ICE CREAM SANDWICH", "JELLY BEAN");
-                else if (Build.VERSION.SDK_INT >= 11) //Honeycomb
+                else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) //Honeycomb
                     startActivity(new Intent(MainScreen.this, PlatLogoActivityHONEYCOMB.class));
-                else if (Build.VERSION.SDK_INT >= 9)  //Gingerbread
+                else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD)  //Gingerbread
                     startActivity(new Intent(MainScreen.this, PlatLogoActivityGINGERBREAD.class));
                 else
                     noEgg();

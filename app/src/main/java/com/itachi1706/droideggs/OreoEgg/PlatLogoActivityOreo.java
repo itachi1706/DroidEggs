@@ -19,7 +19,6 @@ package com.itachi1706.droideggs.OreoEgg;
 import android.animation.ObjectAnimator;
 import android.annotation.TargetApi;
 import android.content.ActivityNotFoundException;
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
@@ -37,6 +36,7 @@ import android.view.animation.PathInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import com.itachi1706.droideggs.OreoEgg.EasterEgg.octo.Ocquarium;
 import com.itachi1706.droideggs.R;
 
 /**
@@ -116,11 +116,8 @@ public class PlatLogoActivityOreo extends AppCompatActivity {
                             @Override
                             public void run() {
                                 try {
-                                    startActivity(new Intent(Intent.ACTION_MAIN)
-                                            .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                                                    | Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                                    | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS)
-                                            .addCategory("com.android.internal.category.PLATLOGO"));
+                                    Intent octo = new Intent(PlatLogoActivityOreo.this, Ocquarium.class);
+                                    startActivity(octo);
                                 } catch (ActivityNotFoundException ex) {
                                     Log.e("PlatLogoActivity", "No more eggs.");
                                 }

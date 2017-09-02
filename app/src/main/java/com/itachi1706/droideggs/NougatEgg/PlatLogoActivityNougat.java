@@ -37,7 +37,6 @@ import android.view.animation.PathInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-import com.itachi1706.droideggs.NDPEgg.PlatLogoActivityNDP;
 import com.itachi1706.droideggs.NougatEgg.EasterEgg.neko.NekoActivationActivity;
 import com.itachi1706.droideggs.R;
 
@@ -107,7 +106,6 @@ public class PlatLogoActivityNougat extends AppCompatActivity {
                                         .start();
                         }
 
-                        final ContentResolver cr = getContentResolver();
                         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(PlatLogoActivityNougat.this);
                         if (pref.getLong("N_EGG_MODE", 0) == 0){
                             // For posterity: the moment this user unlocked the easter egg

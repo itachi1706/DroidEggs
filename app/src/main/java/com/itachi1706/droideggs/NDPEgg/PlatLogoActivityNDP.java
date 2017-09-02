@@ -18,7 +18,6 @@ package com.itachi1706.droideggs.NDPEgg;
 
 import android.animation.ObjectAnimator;
 import android.annotation.TargetApi;
-import android.content.ContentResolver;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
@@ -101,7 +100,6 @@ public class PlatLogoActivityNDP extends AppCompatActivity {
                             return true;
                         }
 
-                        final ContentResolver cr = getContentResolver();
                         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(PlatLogoActivityNDP.this);
                         if (pref.getLong("NDP_EGG_MODE", 0) == 0){
                             // For posterity: the moment this user unlocked the easter egg
@@ -110,15 +108,6 @@ public class PlatLogoActivityNDP extends AppCompatActivity {
                         im.post(new Runnable() {
                             @Override
                             public void run() {
-                                /*try {
-                                    Intent mland = new Intent(PlatLogoActivityNDP.this, MLandActivity.class);
-                                    mland.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                                            | Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                            | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-                                    startActivity(mland);
-                                } catch (ActivityNotFoundException ex) {
-                                    Log.e("PlatLogoActivity", "No more eggs.");
-                                }*/
                                 finish();
                             }
                         });

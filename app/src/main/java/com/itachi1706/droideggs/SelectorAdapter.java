@@ -33,9 +33,9 @@ public class SelectorAdapter extends ArrayAdapter<SelectorObject> {
 
         SelectorObject i = items.get(position);
 
-        TextView title = (TextView) v.findViewById(R.id.tvTitle);
-        TextView range = (TextView) v.findViewById(R.id.tvRange);
-        TextView required = (TextView) v.findViewById(R.id.tvRequired);
+        TextView title = v.findViewById(R.id.tvTitle);
+        TextView range = v.findViewById(R.id.tvRange);
+        TextView required = v.findViewById(R.id.tvRequired);
 
         if (title != null){
             title.setText(i.getName());

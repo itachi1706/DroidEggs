@@ -14,12 +14,11 @@
  * limitations under the License.
  */
 
-package com.itachi1706.droideggs.NougatEgg;
+package com.itachi1706.droideggs.OreoEgg;
 
 import android.animation.ObjectAnimator;
 import android.annotation.TargetApi;
 import android.content.ActivityNotFoundException;
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
@@ -37,15 +36,15 @@ import android.view.animation.PathInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-import com.itachi1706.droideggs.NougatEgg.EasterEgg.neko.NekoActivationActivity;
+import com.itachi1706.droideggs.OreoEgg.EasterEgg.octo.Ocquarium;
 import com.itachi1706.droideggs.R;
 
 /**
- * Created by Kenneth on 7/10/2015.
- * for DroidEggs in package com.itachi1706.droideggs.MarshmallowEgg
+ * Created by Kenneth on 2/9/2017.
+ * for com.itachi1706.droideggs.OreoEgg in DroidEggs
  */
 @TargetApi(21)
-public class PlatLogoActivityNougat extends AppCompatActivity {
+public class PlatLogoActivityOreo extends AppCompatActivity {
     public static final boolean REVEAL_THE_NAME = false;
     public static final boolean FINISH = false;
 
@@ -61,12 +60,14 @@ public class PlatLogoActivityNougat extends AppCompatActivity {
         mLayout = new FrameLayout(this);
         setContentView(mLayout);
     }
+
     @Override
     public void onAttachedToWindow() {
         final DisplayMetrics dm = getResources().getDisplayMetrics();
         final float dp = dm.density;
         final int size = (int)
                 (Math.min(Math.min(dm.widthPixels, dm.heightPixels), 600*dp) - 100*dp);
+
         final ImageView im = new ImageView(this);
         final int pad = (int)(40*dp);
         im.setPadding(pad, pad, pad, pad);
@@ -77,7 +78,7 @@ public class PlatLogoActivityNougat extends AppCompatActivity {
 
         im.setBackground(new RippleDrawable(
                 ColorStateList.valueOf(0xFFFFFFFF),
-                getDrawable(R.drawable.nougat_platlogo),
+                getDrawable(R.drawable.oreo_platlogo),
                 null));
 //        im.setOutlineProvider(new ViewOutlineProvider() {
 //            @Override
@@ -96,27 +97,27 @@ public class PlatLogoActivityNougat extends AppCompatActivity {
 
                         if (REVEAL_THE_NAME) {
                             final Drawable overlay = getDrawable(
-                                        R.drawable.ndp_platlogo_n);
+                                    R.drawable.ndp_platlogo_n);
                             overlay.setBounds(0, 0, v.getMeasuredWidth(), v.getMeasuredHeight());
                             im.getOverlay().clear();
                             im.getOverlay().add(overlay);
                             overlay.setAlpha(0);
                             ObjectAnimator.ofInt(overlay, "alpha", 0, 255)
-                                        .setDuration(500)
-                                        .start();
+                                    .setDuration(500)
+                                    .start();
                         }
 
-                        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(PlatLogoActivityNougat.this);
-                        if (pref.getLong("N_EGG_MODE", 0) == 0){
+                        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                        if (pref.getLong("O_EGG_MODE", 0) == 0){
                             // For posterity: the moment this user unlocked the easter egg
-                            pref.edit().putLong("N_EGG_MODE", System.currentTimeMillis()).apply();
+                            pref.edit().putLong("O_EGG_MODE", System.currentTimeMillis()).apply();
                         }
                         im.post(new Runnable() {
                             @Override
                             public void run() {
                                 try {
-                                    Intent neko = new Intent(PlatLogoActivityNougat.this, NekoActivationActivity.class);
-                                    startActivity(neko);
+                                    Intent octo = new Intent(PlatLogoActivityOreo.this, Ocquarium.class);
+                                    startActivity(octo);
                                 } catch (ActivityNotFoundException ex) {
                                     Log.e("PlatLogoActivity", "No more eggs.");
                                 }
@@ -129,6 +130,7 @@ public class PlatLogoActivityNougat extends AppCompatActivity {
                 mTapCount++;
             }
         });
+
         // Enable hardware keyboard input for TV compatibility.
         im.setFocusable(true);
         im.requestFocus();
@@ -150,7 +152,9 @@ public class PlatLogoActivityNougat extends AppCompatActivity {
                 }
             }
         });
+
         mLayout.addView(im, new FrameLayout.LayoutParams(size, size, Gravity.CENTER));
+
         im.animate().scaleX(1f).scaleY(1f).alpha(1f)
                 .setInterpolator(mInterpolator)
                 .setDuration(500)

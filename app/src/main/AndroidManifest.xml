@@ -11,6 +11,9 @@
     <uses-permission android:name="android.permission.SUBSTITUTE_NOTIFICATION_APP_NAME" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <!-- SDK Use required by Octo -->
+    <uses-sdk tools:overrideLibrary="android.support.dynamicanimation" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -29,6 +32,23 @@
         <activity
             android:name=".MainSettings"
             android:label="@string/title_activity_main_settings" >
+        </activity>
+
+        <!-- Oreo Egg Activities -->
+        <activity android:name=".OreoEgg.PlatLogoActivityOreo"
+            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
+            android:configChanges="orientation|keyboardHidden"
+            android:process=":ui">
+        </activity>
+
+        <activity android:name=".OreoEgg.EasterEgg.octo.Ocquarium"
+            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="com.android.internal.category.PLATLOGO" />
+            </intent-filter>
         </activity>
 
         <!-- Nougat Egg Activities -->

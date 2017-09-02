@@ -31,6 +31,13 @@
             android:label="@string/title_activity_main_settings" >
         </activity>
 
+        <!-- Oreo Egg Activities -->
+        <activity android:name=".OreoEgg.PlatLogoActivityOreo"
+            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
+            android:configChanges="orientation|keyboardHidden"
+            android:process=":ui">
+        </activity>
+
         <!-- Nougat Egg Activities -->
         <activity android:name=".NougatEgg.PlatLogoActivityNougat"
             android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"

@@ -12,6 +12,7 @@
         <item>Marshmallow (6.0)</item>
         <item>N Preview (NDP) \n[N Preview]</item>
         <item>Nougat (7.0)</item>
+        <item>Oreo (8.0)</item>
     </string-array>
 
     <string-array name="legacy_version_with_egg_code">
@@ -25,6 +26,7 @@
         <item>MM</item>
         <item>NDP</item>
         <item>N</item>
+        <item>O</item>
     </string-array>
 
     <!-- New Method -->
@@ -39,6 +41,7 @@
         <item>Marshmallow</item>
         <item>N Preview</item>
         <item>Nougat</item>
+        <item>Oreo</item>
     </string-array>
 
     <string-array name="android_ver_range">
@@ -49,9 +52,10 @@
         <item>4.4 – 4.4.4</item>
         <item>5.0 – 5.1.1</item>
         <item>MNC</item>
-        <item>6.0</item>
+        <item>6.0 – 6.0.1</item>
         <item>NDP1 - NDP5</item>
-        <item>7.0</item>
+        <item>7.0 – 7.1.2</item>
+        <item>8.0</item>
     </string-array>
 
     <string-array name="android_egg_require">
@@ -65,6 +69,7 @@
         <item>Lollipop</item>
         <item>Lollipop</item>
         <item>Nougat</item>
+        <item>Oreo</item>
     </string-array>
 
     <integer-array name="android_egg_require_min_sdk">
@@ -78,5 +83,6 @@
         <item>21</item>
         <item>21</item>
         <item>24</item>
+        <item>21</item>
     </integer-array>
 </resources>

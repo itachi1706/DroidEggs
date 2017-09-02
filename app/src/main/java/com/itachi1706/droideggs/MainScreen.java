@@ -24,6 +24,7 @@ import com.itachi1706.droideggs.KitKatEgg.PlatLogoActivityKITKAT;
 import com.itachi1706.droideggs.LollipopEgg.PlatLogoActivityLOLLIPOP;
 import com.itachi1706.droideggs.MarshmallowEgg.PlatLogoActivityMARSHMALLOW;
 import com.itachi1706.droideggs.NougatEgg.PlatLogoActivityNougat;
+import com.itachi1706.droideggs.OreoEgg.PlatLogoActivityOreo;
 
 import java.util.ArrayList;
 
@@ -40,15 +41,17 @@ public class MainScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
 
-        currentVer = (Button) findViewById(R.id.btnCurrent);
-        selectionList = (ListView) findViewById(R.id.lvEasterEggSelection);
+        currentVer = findViewById(R.id.btnCurrent);
+        selectionList = findViewById(R.id.lvEasterEggSelection);
 
         staticAct = this;
 
         currentVer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) // Nougat
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) // Nougat
+                    startActivity(new Intent(MainScreen.this, PlatLogoActivityOreo.class));
+                else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) // Nougat
                     startActivity(new Intent(MainScreen.this, PlatLogoActivityNougat.class));
                 else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) //Marshmallow
                     startActivity(new Intent(MainScreen.this, PlatLogoActivityMARSHMALLOW.class));

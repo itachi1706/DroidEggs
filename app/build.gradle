@@ -10,8 +10,8 @@ android {
         applicationId "com.itachi1706.droideggs"
         minSdkVersion 15
         targetSdkVersion 24
-        versionCode 98
-        versionName "2.1.1"
+        versionCode 112
+        versionName "2.2.0"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         resValue "string", "tray__authority", "${applicationId}.tray"

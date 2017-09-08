@@ -74,7 +74,7 @@ public class MainScreen extends AppCompatActivity {
 
         //Check for updates
         new AppUpdateInitializer(this, PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()),
-                R.mipmap.ic_launcher, CommonVariables.BASE_SERVER_URL).checkForUpdate(true);
+                R.mipmap.ic_launcher, CommonVariables.BASE_SERVER_URL, true).checkForUpdate(true);
     }
 
     @Override

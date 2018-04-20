@@ -19,6 +19,7 @@
     <EditText
         android:id="@android:id/edit"
         android:maxLines="1"
+        android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 </FrameLayout>

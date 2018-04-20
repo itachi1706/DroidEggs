@@ -14,10 +14,12 @@ Copyright (C) 2016 The Android Open Source Project
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
     <string name="nougat_app_name" translatable="false">Android Easter Egg</string>
     <string name="nougat_notification_name" translatable="false">Android Neko</string>
+    <string name="notification_channel_name" translatable="false">New cats</string>
     <string name="nougat_default_tile_name" translatable="false">\????</string>
     <string name="nougat_notification_title" translatable="false">A cat is here.</string>
     <string name="nougat_default_cat_name" translatable="false">Cat #%s</string>
     <string name="nougat_directory_name" translatable="false">Cats</string>
+    <string name="confirm_delete" translatable="false">Forget %s?</string>
     <string-array name="nougat_food_names" translatable="false">
         <item>Empty dish</item>
         <item>Bits</item>
@@ -31,6 +33,13 @@ Copyright (C) 2016 The Android Open Source Project
         <item>@drawable/nougat_food_sysuituna</item>
         <item>@drawable/nougat_food_chicken</item>
         <item>@drawable/nougat_food_donut</item>
+    </array>
+    <array name="nougat_food_icons_new">
+        <item>@drawable/nougat_food_dish</item>
+        <item>@drawable/nougat_food_bits</item>
+        <item>@drawable/nougat_food_sysuituna</item>
+        <item>@drawable/nougat_food_chicken</item>
+        <item>@drawable/nougat_food_cookie</item>
     </array>
     <integer-array name="nougat_food_intervals">
         <item>0</item>

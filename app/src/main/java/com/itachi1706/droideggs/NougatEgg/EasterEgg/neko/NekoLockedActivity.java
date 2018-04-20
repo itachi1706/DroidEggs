@@ -13,6 +13,7 @@ import android.view.WindowManager;
  */
 public class NekoLockedActivity extends AppCompatActivity implements OnDismissListener {
     private NekoDialog mDialog;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,10 +21,12 @@ public class NekoLockedActivity extends AppCompatActivity implements OnDismissLi
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+
         mDialog = new NekoDialog(this);
         mDialog.setOnDismissListener(this);
         mDialog.show();
     }
+
     @Override
     public void onDismiss(DialogInterface dialog) {
         finish();

@@ -17,6 +17,12 @@
             android:defaultValue="true" />
 
         <CheckBoxPreference
+            android:key="neko_food"
+            android:title="New Treats for Neko"
+            android:summary="Switches the treats from donuts for cookies for the nekos :D (Requires Restart)"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference
             android:key="current_num"
             android:title="Use Current Device's Build Number"
             android:summary="Whether the easter eggs should use your phone's Build object or hardcoded values that fits the easter egg selected"

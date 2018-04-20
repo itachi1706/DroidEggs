@@ -44,7 +44,7 @@
             android:visibility="invisible"
             android:layout_gravity="bottom">
 
-            <ImageView
+            <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/shareText"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
@@ -58,7 +58,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1" />
 
-            <ImageView
+            <android.support.v7.widget.AppCompatImageView
                 android:id="@android:id/closeButton"
                 android:layout_width="40dp"
                 android:layout_height="40dp"

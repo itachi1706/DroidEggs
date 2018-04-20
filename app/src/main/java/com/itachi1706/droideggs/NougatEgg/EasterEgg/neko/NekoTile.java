@@ -7,6 +7,8 @@ import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
 import android.util.Log;
 
+import com.itachi1706.droideggs.FirebaseLogger;
+
 /**
  * Created by Kenneth on 8/9/2016.
  * for com.itachi1706.droideggs.NougatEgg.EasterEgg.neko in DroidEggs
@@ -39,13 +41,13 @@ public class NekoTile extends TileService implements PrefState.PrefsListener {
     @Override
     public void onTileAdded() {
         super.onTileAdded();
-        MetricsLogger.count(this, "egg_neko_tile_added", 1);
+        FirebaseLogger.count(this, "egg_neko_tile_added", 1);
     }
 
     @Override
     public void onTileRemoved() {
         super.onTileRemoved();
-        MetricsLogger.count(this, "egg_neko_tile_removed", 1);
+        FirebaseLogger.count(this, "egg_neko_tile_removed", 1);
     }
 
     @Override
@@ -70,7 +72,7 @@ public class NekoTile extends TileService implements PrefState.PrefsListener {
     public void onClick() {
         if (mPrefs.getFoodState() != 0) {
             // there's already food loaded, let's empty it
-            MetricsLogger.count(this, "egg_neko_empty_food", 1);
+            FirebaseLogger.count(this, "egg_neko_empty_food", 1);
             mPrefs.setFoodState(0);
             NekoService.cancelJob(this);
         } else {
@@ -97,7 +99,7 @@ public class NekoTile extends TileService implements PrefState.PrefsListener {
 
     private void showNekoDialog() {
         Log.d(TAG, "showNekoDialog");
-        MetricsLogger.count(this, "egg_neko_select_food", 1);
+        FirebaseLogger.count(this, "egg_neko_select_food", 1);
         showDialog(new NekoDialog(this));
     }
 }

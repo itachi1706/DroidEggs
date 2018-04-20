@@ -17,6 +17,7 @@ import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.os.Bundle;
 
+import com.itachi1706.droideggs.FirebaseLogger;
 import com.itachi1706.droideggs.R;
 
 import java.io.ByteArrayOutputStream;
@@ -339,11 +340,11 @@ public class Cat extends Drawable {
     }
 
     private void logCatAction(Context context, String prefix) {
-        MetricsLogger.count(context, prefix, 1);
-        MetricsLogger.histogram(context, prefix +"_color",
+        FirebaseLogger.count(context, prefix, 1);
+        FirebaseLogger.histogram(context, prefix +"_color",
                 getColorIndex(mBodyColor, P_BODY_COLORS));
-        MetricsLogger.histogram(context, prefix + "_bowtie", mBowTie ? 1 : 0);
-        MetricsLogger.histogram(context, prefix + "_feet", mFootType);
+        FirebaseLogger.histogram(context, prefix + "_bowtie", mBowTie ? 1 : 0);
+        FirebaseLogger.histogram(context, prefix + "_feet", mFootType);
     }
 
     public static class CatParts {

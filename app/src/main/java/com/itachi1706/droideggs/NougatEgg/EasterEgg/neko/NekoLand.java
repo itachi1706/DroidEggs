@@ -29,6 +29,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.itachi1706.droideggs.FirebaseLogger;
 import com.itachi1706.droideggs.R;
 
 import java.io.File;
@@ -78,7 +79,7 @@ public class NekoLand extends Activity implements PrefState.PrefsListener {
         recyclerView.setAdapter(mAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         int numCats = updateCats();
-        MetricsLogger.histogram(this, "egg_neko_visit_gallery", numCats);
+        FirebaseLogger.histogram(this, "egg_neko_visit_gallery", numCats);
     }
 
     @Override

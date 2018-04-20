@@ -20,6 +20,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.itachi1706.droideggs.FirebaseLogger;
+
 /**
  * Created by Kenneth on 8/9/2016.
  * for com.itachi1706.droideggs.NougatEgg.EasterEgg.neko in DroidEggs
@@ -44,7 +46,7 @@ public class NekoActivationActivity extends AppCompatActivity {
             }
             pm.setComponentEnabledSetting(cn, PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
                     PackageManager.DONT_KILL_APP);
-            MetricsLogger.histogram(this, "egg_neko_enable", 0);
+            FirebaseLogger.histogram(this, "egg_neko_enable", 0);
             toastUp("\uD83D\uDEAB");
         } else {
             if (NekoLand.DEBUG) {
@@ -52,7 +54,7 @@ public class NekoActivationActivity extends AppCompatActivity {
             }
             pm.setComponentEnabledSetting(cn, PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                     PackageManager.DONT_KILL_APP);
-            MetricsLogger.histogram(this, "egg_neko_enable", 1);
+            FirebaseLogger.histogram(this, "egg_neko_enable", 1);
             toastUp("\uD83D\uDC31");
         }
         finish();

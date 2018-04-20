@@ -14,6 +14,7 @@ import com.itachi1706.droideggs.LollipopEgg.PlatLogoActivityLOLLIPOP;
 import com.itachi1706.droideggs.MarshmallowEgg.PlatLogoActivityMARSHMALLOW;
 import com.itachi1706.droideggs.NougatEgg.PlatLogoActivityNougat;
 import com.itachi1706.droideggs.OreoEgg.PlatLogoActivityOreo;
+import com.itachi1706.droideggs.OreoMR1Egg.PlatLogoActivityOreoMR1;
 
 /**
  * Created by Kenneth on 20/4/2018.
@@ -28,8 +29,8 @@ public class CurrentEgg extends AppCompatActivity {
         Intent errorIntent = new Intent();
         if (Build.VERSION.SDK_INT >= 99999) // ??? (Future P)
             errorIntent.putExtra("class", "comingsoon");
-        else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) // ???
-            errorIntent.putExtra("class", "comingsoon");
+        else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) // Nougat
+            startActivity(new Intent(this, PlatLogoActivityOreoMR1.class));
         else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) // Nougat
             startActivity(new Intent(this, PlatLogoActivityOreo.class));
         else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) // Nougat

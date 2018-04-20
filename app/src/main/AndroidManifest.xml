@@ -54,6 +54,17 @@
             android:configChanges="orientation|keyboardHidden"
             android:process=":ui" />
 
+        <!-- FileProvider for sending pictures -->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.android.egg.fileprovider"
+            android:grantUriPermissions="true"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+            </provider>
+
         <!-- Long press the QS tile to get here -->
         <activity android:name=".NougatEgg.EasterEgg.neko.NekoLand"
             android:theme="@style/AppTheme.NoActionBar"

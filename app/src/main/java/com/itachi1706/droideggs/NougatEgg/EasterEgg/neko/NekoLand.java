@@ -282,7 +282,7 @@ public class NekoLand extends Activity implements PrefState.PrefsListener {
                         new String[] {"image/png"},
                         null);
                 Log.v("Neko", "cat file: " + png);
-                Uri uri = FileProvider.getUriForFile(this, "com.android.egg.fileprovider", png);
+                Uri uri = FileProvider.getUriForFile(this, this.getPackageName() + ".appupdater.provider", png);
                 Log.v("Neko", "cat uri: " + uri);
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.putExtra(Intent.EXTRA_STREAM, uri);

@@ -38,6 +38,12 @@
 
         <activity android:name=".CurrentEgg" />
 
+        <!-- Oreo MR1 Egg Activities -->
+        <activity android:name=".OreoMR1Egg.PlatLogoActivityOreoMR1"
+            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
+            android:configChanges="orientation|keyboardHidden"
+            android:process=":ui" />
+
         <!-- Oreo Egg Activities -->
         <activity android:name=".OreoEgg.PlatLogoActivityOreo"
             android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"

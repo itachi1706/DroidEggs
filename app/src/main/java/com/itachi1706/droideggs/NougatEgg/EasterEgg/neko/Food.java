@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Icon;
 import android.os.Build;
+import android.preference.PreferenceManager;
 
 import com.itachi1706.droideggs.R;
 
@@ -24,8 +25,12 @@ public class Food {
     }
 
     public Icon getIcon(Context context) {
+        // Personal Edit: Check if we should use old or new icons
+        int foodicon = R.array.nougat_food_icons;
+        if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean("neko_food", false))
+            foodicon = R.array.nougat_food_icons_new;
         if (sIcons == null) {
-            TypedArray icons = context.getResources().obtainTypedArray(R.array.food_icons);
+            TypedArray icons = context.getResources().obtainTypedArray(foodicon);
             sIcons = new int[icons.length()];
             for (int i = 0; i < sIcons.length; i++) {
                 sIcons[i] = icons.getResourceId(i, 0);

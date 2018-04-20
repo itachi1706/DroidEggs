@@ -13,6 +13,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.itachi1706.droideggs.R;
@@ -68,10 +69,9 @@ public class NekoService extends JobService {
             final int size = getResources()
                     .getDimensionPixelSize(android.R.dimen.notification_large_icon_width);
             final Cat cat = Cat.create(this);
-            final Notification.Builder builder
+            final NotificationCompat.Builder builder
                     = cat.buildNotification(this)
                     .setContentTitle("DEBUG")
-                    .setChannel(CHAN_ID)
                     .setContentText("Ran job: " + params);
             noman.notify(DEBUG_NOTIFICATION, builder.build());
         }
@@ -97,7 +97,7 @@ public class NekoService extends JobService {
                     Log.v(TAG, "A cat has returned: " + cat.getName());
                 }
 
-                final Notification.Builder builder = cat.buildNotification(this);
+                final NotificationCompat.Builder builder = cat.buildNotification(this);
                 noman.notify(CAT_NOTIFICATION, builder.build());
             }
         }
@@ -136,13 +136,12 @@ public class NekoService extends JobService {
 
         if (NekoLand.DEBUG_NOTIFICATIONS) {
             NotificationManager noman = context.getSystemService(NotificationManager.class);
-            noman.notify(DEBUG_NOTIFICATION, new Notification.Builder(context)
+            noman.notify(DEBUG_NOTIFICATION, new NotificationCompat.Builder(context, CHAN_ID)
                     .setSmallIcon(R.drawable.nougat_stat_icon)
                     .setContentTitle(String.format("Job scheduled in %d min", (interval / MINUTES)))
                     .setContentText(String.valueOf(jobInfo))
                     .setPriority(Notification.PRIORITY_MIN)
                     .setCategory(Notification.CATEGORY_SERVICE)
-                    .setChannel(CHAN_ID)
                     .setShowWhen(true)
                     .build());
         }

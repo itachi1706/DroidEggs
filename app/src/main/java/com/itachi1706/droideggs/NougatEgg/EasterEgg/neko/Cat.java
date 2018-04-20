@@ -16,6 +16,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
 
 import com.itachi1706.droideggs.FirebaseLogger;
 import com.itachi1706.droideggs.R;
@@ -201,14 +202,14 @@ public class Cat extends Drawable {
         return new Cat(context, Math.abs(ThreadLocalRandom.current().nextInt()));
     }
 
-    public Notification.Builder buildNotification(Context context) {
+    public NotificationCompat.Builder buildNotification(Context context) {
         final Bundle extras = new Bundle();
         extras.putString("android.substName", context.getString(R.string.nougat_notification_name));
         final Intent intent = new Intent(Intent.ACTION_MAIN)
                 .setClass(context, NekoLand.class)
                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        return new Notification.Builder(context)
-                .setSmallIcon(Icon.createWithResource(context, R.drawable.nougat_stat_icon))
+        return new NotificationCompat.Builder(context, CHAN_ID)
+                .setSmallIcon(R.drawable.nougat_stat_icon)
                 .setLargeIcon(createNotificationLargeIcon(context))
                 .setColor(getBodyColor())
                 .setPriority(Notification.PRIORITY_LOW)
@@ -218,7 +219,6 @@ public class Cat extends Drawable {
                 .setContentText(getName())
                 .setContentIntent(PendingIntent.getActivity(context, 0, intent, 0))
                 .setAutoCancel(true)
-                .setChannel(CHAN_ID)
                 .setVibrate(PURR)
                 .addExtras(extras);
     }
@@ -260,21 +260,29 @@ public class Cat extends Drawable {
         return result;
     }
 
-    public static Icon recompressIcon(Icon bitmapIcon) {
-        if (bitmapIcon.getType() != Icon.TYPE_BITMAP) return bitmapIcon;
-        final Bitmap bits = bitmapIcon.getBitmap();
-        final ByteArrayOutputStream ostream = new ByteArrayOutputStream(
-                bits.getWidth() * bits.getHeight() * 2); // guess 50% compression
-        final boolean ok = bits.compress(Bitmap.CompressFormat.PNG, 100, ostream);
-        if (!ok) return null;
-        return Icon.createWithData(ostream.toByteArray(), 0, ostream.size());
-    }
-
-    public Icon createNotificationLargeIcon(Context context) {
+    public Bitmap createNotificationLargeIcon(Context context) {
         final Resources res = context.getResources();
         final int w = 2*res.getDimensionPixelSize(android.R.dimen.notification_large_icon_width);
         final int h = 2*res.getDimensionPixelSize(android.R.dimen.notification_large_icon_height);
-        return recompressIcon(createIcon(context, w, h));
+        return createBitmapIcon(context, w, h);
+    }
+
+    public Bitmap createBitmapIcon(Context context, int w, int h) {
+        Bitmap result = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+        final Canvas canvas = new Canvas(result);
+        final Paint pt = new Paint();
+        float[] hsv = new float[3];
+        Color.colorToHSV(mBodyColor, hsv);
+        hsv[2] = (hsv[2]>0.5f)
+                ? (hsv[2] - 0.25f)
+                : (hsv[2] + 0.25f);
+        pt.setColor(Color.HSVToColor(hsv));
+        float r = w/2;
+        canvas.drawCircle(r, r, r, pt);
+        int m = w/10;
+
+        slowDraw(canvas, m, m, w-m-m, h-m-m);
+        return result;
     }
 
     public Icon createIcon(Context context, int w, int h) {

@@ -31,9 +31,11 @@ public class NekoActivationActivity extends AppCompatActivity {
         toast.getView().setBackgroundDrawable(null);
         toast.show();
     }
+
     @Override
     public void onStart() {
         super.onStart();
+
         final PackageManager pm = getPackageManager();
         final ComponentName cn = new ComponentName(this, NekoTile.class);
         if (pm.getComponentEnabledSetting(cn) == PackageManager.COMPONENT_ENABLED_STATE_ENABLED) {
@@ -42,6 +44,7 @@ public class NekoActivationActivity extends AppCompatActivity {
             }
             pm.setComponentEnabledSetting(cn, PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
                     PackageManager.DONT_KILL_APP);
+            MetricsLogger.histogram(this, "egg_neko_enable", 0);
             toastUp("\uD83D\uDEAB");
         } else {
             if (NekoLand.DEBUG) {
@@ -49,9 +52,9 @@ public class NekoActivationActivity extends AppCompatActivity {
             }
             pm.setComponentEnabledSetting(cn, PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                     PackageManager.DONT_KILL_APP);
+            MetricsLogger.histogram(this, "egg_neko_enable", 1);
             toastUp("\uD83D\uDC31");
         }
-        // TODO: Add a warning that you are not able to use the app without API 24 (Android N)
         finish();
     }
 

@@ -12,27 +12,32 @@ import java.util.Map;
  * for com.itachi1706.droideggs.NougatEgg.EasterEgg.neko in DroidEggs
  */
 public class PrefState implements SharedPreferences.OnSharedPreferenceChangeListener {
-    private static final String FILE_NAME = "mPrefsNeko";
+    private static final String FILE_NAME = "mPrefs";
+
     private static final String FOOD_STATE = "food";
+
     private static final String CAT_KEY_PREFIX = "cat:";
+
     private final Context mContext;
     private final SharedPreferences mPrefs;
     private PrefsListener mListener;
+
     public PrefState(Context context) {
         mContext = context;
         mPrefs = mContext.getSharedPreferences(FILE_NAME, 0);
     }
+
     // Can also be used for renaming.
     public void addCat(Cat cat) {
         mPrefs.edit()
                 .putString(CAT_KEY_PREFIX + String.valueOf(cat.getSeed()), cat.getName())
-                .commit();
+                .apply();
     }
+
     public void removeCat(Cat cat) {
-        mPrefs.edit()
-                .remove(CAT_KEY_PREFIX + String.valueOf(cat.getSeed()))
-                .commit();
+        mPrefs.edit().remove(CAT_KEY_PREFIX + String.valueOf(cat.getSeed())).apply();
     }
+
     public List<Cat> getCats() {
         ArrayList<Cat> cats = new ArrayList<>();
         Map<String, ?> map = mPrefs.getAll();
@@ -46,12 +51,15 @@ public class PrefState implements SharedPreferences.OnSharedPreferenceChangeList
         }
         return cats;
     }
+
     public int getFoodState() {
         return mPrefs.getInt(FOOD_STATE, 0);
     }
+
     public void setFoodState(int foodState) {
-        mPrefs.edit().putInt(FOOD_STATE, foodState).commit();
+        mPrefs.edit().putInt(FOOD_STATE, foodState).apply();
     }
+
     public void setListener(PrefsListener listener) {
         mListener = listener;
         if (mListener != null) {
@@ -60,10 +68,12 @@ public class PrefState implements SharedPreferences.OnSharedPreferenceChangeList
             mPrefs.unregisterOnSharedPreferenceChangeListener(this);
         }
     }
+
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         mListener.onPrefsChanged();
     }
+
     public interface PrefsListener {
         void onPrefsChanged();
     }

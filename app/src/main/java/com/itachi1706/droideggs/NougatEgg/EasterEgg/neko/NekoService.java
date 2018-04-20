@@ -13,6 +13,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -46,6 +47,7 @@ public class NekoService extends JobService {
 
     public static float INTERVAL_JITTER_FRAC = 0.25f;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private static void setupNotificationChannels(Context context) {
         NotificationManager noman = context.getSystemService(NotificationManager.class);
         NotificationChannel eggChan = new NotificationChannel(CHAN_ID,
@@ -53,7 +55,7 @@ public class NekoService extends JobService {
                 NotificationManager.IMPORTANCE_DEFAULT);
         eggChan.setSound(Uri.EMPTY, Notification.AUDIO_ATTRIBUTES_DEFAULT); // cats are quiet
         eggChan.setVibrationPattern(PURR); // not totally quiet though
-        eggChan.setBlockableSystem(true); // unlike a real cat, you can push this one off your lap
+        //eggChan.setBlockableSystem(true); // unlike a real cat, you can push this one off your lap
         eggChan.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC); // cats sit in the window
         noman.createNotificationChannel(eggChan);
     }
@@ -119,7 +121,8 @@ public class NekoService extends JobService {
     }
 
     public static void registerJob(Context context, long intervalMinutes) {
-        setupNotificationChannels(context);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+            setupNotificationChannels(context);
 
         JobScheduler jss = context.getSystemService(JobScheduler.class);
         jss.cancel(JOB_ID);

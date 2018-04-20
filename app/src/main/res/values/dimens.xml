@@ -5,4 +5,7 @@
 
     <!-- used by DessertCase -->
     <dimen name="dessert_case_cell_size">192dp</dimen>
+
+    <!-- used by NekoLand -->
+    <dimen name="neko_display_size">64dp</dimen>
 </resources>

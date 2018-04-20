@@ -9,12 +9,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -33,6 +35,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * Created by Kenneth on 8/9/2016.
@@ -58,7 +63,7 @@ public class NekoLand extends Activity implements PrefState.PrefsListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.neko_activity);
+        setContentView(R.layout.nougat_neko_activity);
         final ActionBar actionBar = getActionBar();
         if (actionBar != null) {
             actionBar.setLogo(Cat.create(this));
@@ -130,7 +135,7 @@ public class NekoLand extends Activity implements PrefState.PrefsListener {
         final Context context = new ContextThemeWrapper(this,
                 android.R.style.Theme_Material_Light_Dialog_NoActionBar);
         // TODO: Move to XML, add correct margins.
-        View view = LayoutInflater.from(context).inflate(R.layout.edit_text, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.nougat_edit_text, null);
         final EditText text = (EditText) view.findViewById(android.R.id.edit);
         text.setText(cat.getName());
         text.setSelection(cat.getName().length());
@@ -141,7 +146,7 @@ public class NekoLand extends Activity implements PrefState.PrefsListener {
                 .setTitle(" ")
                 .setIcon(catIcon)
                 .setView(view)
-                .setPositiveButton(android.R.string.ok, new OnClickListener() {
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         cat.logRename(context);
@@ -168,7 +173,7 @@ public class NekoLand extends Activity implements PrefState.PrefsListener {
         @Override
         public CatHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             return new CatHolder(LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.cat_view, parent, false));
+                    .inflate(R.layout.nougat_cat_view, parent, false));
         }
 
         private void setContextGroupVisible(final CatHolder holder, boolean vis) {
@@ -208,7 +213,7 @@ public class NekoLand extends Activity implements PrefState.PrefsListener {
                     onCatClick(mCats[holder.getAdapterPosition()]);
                 }
             });
-            holder.itemView.setOnLongClickListener(new OnLongClickListener() {
+            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
                     setContextGroupVisible(holder, true);
@@ -258,7 +263,7 @@ public class NekoLand extends Activity implements PrefState.PrefsListener {
     private void shareCat(Cat cat) {
         final File dir = new File(
                 Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
-                getString(R.string.directory_name));
+                getString(R.string.nougat_directory_name));
         if (!dir.exists() && !dir.mkdirs()) {
             Log.e("NekoLand", "save: error: can't create Pictures directory");
             return;

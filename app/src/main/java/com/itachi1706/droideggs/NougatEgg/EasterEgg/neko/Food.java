@@ -37,13 +37,13 @@ public class Food {
 
     public String getName(Context context) {
         if (sNames == null) {
-            sNames = context.getResources().getStringArray(R.array.food_names);
+            sNames = context.getResources().getStringArray(R.array.nougat_food_names);
         }
         return sNames[mType];
     }
 
     public long getInterval(Context context) {
-        return context.getResources().getIntArray(R.array.food_intervals)[mType];
+        return context.getResources().getIntArray(R.array.nougat_food_intervals)[mType];
     }
 
     public int getType() {

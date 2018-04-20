@@ -55,7 +55,7 @@ public class NekoDialog extends Dialog {
 
         public Adapter(Context context) {
             mContext = context;
-            int[] foods = context.getResources().getIntArray(R.array.food_names);
+            int[] foods = context.getResources().getIntArray(R.array.nougat_food_names);
             // skip food 0, you can't choose it
             for (int i = 1; i < foods.length; i++) {
                 mFoods.add(new Food(i));
@@ -65,7 +65,7 @@ public class NekoDialog extends Dialog {
         @Override
         public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
             return new Holder(LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.food_layout, parent, false));
+                    .inflate(R.layout.nougat_food_layout, parent, false));
         }
 
         @Override

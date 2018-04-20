@@ -28,12 +28,15 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <meta-data android:name="android.app.shortcuts" android:resource="@xml/static_shortcuts"/>
         </activity>
 
         <activity
             android:name=".MainSettings"
             android:label="@string/title_activity_main_settings" >
         </activity>
+
+        <activity android:name=".CurrentEgg" />
 
         <!-- Oreo Egg Activities -->
         <activity android:name=".OreoEgg.PlatLogoActivityOreo"

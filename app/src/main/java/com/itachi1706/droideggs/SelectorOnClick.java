@@ -3,6 +3,9 @@ package com.itachi1706.droideggs;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ShortcutInfo;
+import android.content.pm.ShortcutManager;
+import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -21,23 +24,22 @@ import com.itachi1706.droideggs.NDPEgg.PlatLogoActivityNDP;
 import com.itachi1706.droideggs.NougatEgg.PlatLogoActivityNougat;
 import com.itachi1706.droideggs.OreoEgg.PlatLogoActivityOreo;
 
+import java.util.LinkedList;
+
 /**
  * Created by Kenneth on 1/6/2015
  * for DroidEggs in package com.itachi1706.droideggs
  */
 public class SelectorOnClick implements AdapterView.OnItemClickListener {
 
-    Context context;
-
-    public SelectorOnClick(Context context){
-        this.context = context;
-    }
+    public SelectorOnClick() {}
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        String[] version_code = context.getResources().getStringArray(R.array.legacy_version_with_egg_code);
+        String[] version_code = view.getContext().getResources().getStringArray(R.array.legacy_version_with_egg_code);
+        String[] version_name = view.getContext().getResources().getStringArray(R.array.android_ver);
 
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(view.getContext());
         boolean debugMode = sp.getBoolean("debug", false);
 
         Log.d("Selected Version", position + "");
@@ -47,63 +49,89 @@ public class SelectorOnClick implements AdapterView.OnItemClickListener {
             return;
         }
         String version = version_code[position];
+        Intent selectedEgg = null;
         switch (version){
-            case "GB": context.startActivity(new Intent(context, PlatLogoActivityGINGERBREAD.class)); break;
-            case "HC": context.startActivity(new Intent(context, PlatLogoActivityHONEYCOMB.class)); break;
+            case "GB": selectedEgg = new Intent(view.getContext(), PlatLogoActivityGINGERBREAD.class); break;
+            case "HC": selectedEgg = new Intent(view.getContext(), PlatLogoActivityHONEYCOMB.class); break;
             case "ICS":
                 if (Build.VERSION.SDK_INT >= 16)
-                    context.startActivity(new Intent(context, PlatLogoActivityICS.class));
+                    selectedEgg = new Intent(view.getContext(), PlatLogoActivityICS.class);
                 else
                     MainScreen.unableToAccessEasterEgg("JELLYBEAN");
                 break;
             case "JB":
                 if (Build.VERSION.SDK_INT >= 16)
-                    context.startActivity(new Intent(context, PlatLogoActivityJELLYBEAN.class));
+                    selectedEgg = new Intent(view.getContext(), PlatLogoActivityJELLYBEAN.class);
                 else
                     MainScreen.unableToAccessEasterEgg("JELLYBEAN");
                 break;
             case "KK":
                 if (Build.VERSION.SDK_INT >= 19)
-                    context.startActivity(new Intent(context, PlatLogoActivityKITKAT.class));
+                    selectedEgg = new Intent(view.getContext(), PlatLogoActivityKITKAT.class);
                 else
                     MainScreen.unableToAccessEasterEgg("KITKAT");
                 break;
             case "L":
                 if (Build.VERSION.SDK_INT >= 21)
-                    context.startActivity(new Intent(context, PlatLogoActivityLOLLIPOP.class));
+                    selectedEgg = new Intent(view.getContext(), PlatLogoActivityLOLLIPOP.class);
                 else
                     MainScreen.unableToAccessEasterEgg("LOLLIPOP");
                 break;
             case "MNC":
                 if (Build.VERSION.SDK_INT >= 21)
-                    context.startActivity(new Intent(context, PlatLogoActivityMNC.class));
+                    selectedEgg = new Intent(view.getContext(), PlatLogoActivityMNC.class);
                 else
                     MainScreen.unableToAccessEasterEgg("LOLLIPOP");
                 break;
             case "MM":
                 if (Build.VERSION.SDK_INT >= 21)
-                    context.startActivity(new Intent(context, PlatLogoActivityMARSHMALLOW.class));
+                    selectedEgg = new Intent(view.getContext(), PlatLogoActivityMARSHMALLOW.class);
                 else
                     MainScreen.unableToAccessEasterEgg("LOLLIPOP");
                 break;
             case "NDP":
                 if (Build.VERSION.SDK_INT >= 21)
-                    context.startActivity(new Intent(context, PlatLogoActivityNDP.class));
+                    selectedEgg = new Intent(view.getContext(), PlatLogoActivityNDP.class);
                 else
                     MainScreen.unableToAccessEasterEgg("LOLLIPOP");
                 break;
             case "N":
                 if (Build.VERSION.SDK_INT >= 24)
-                    context.startActivity(new Intent(context, PlatLogoActivityNougat.class));
+                    selectedEgg = new Intent(view.getContext(), PlatLogoActivityNougat.class);
                 else
                     MainScreen.unableToAccessEasterEgg("NOUGAT");
                 break;
             case "O":
                 if (Build.VERSION.SDK_INT >= 21)
-                    context.startActivity(new Intent(context, PlatLogoActivityOreo.class));
+                    selectedEgg = new Intent(view.getContext(), PlatLogoActivityOreo.class);
                 else
                     MainScreen.unableToAccessEasterEgg("OREO");
                 break;
+        }
+        if (selectedEgg != null) {
+            view.getContext().startActivity(selectedEgg);
+
+            // Add dynamic shortcuts
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+                ShortcutManager shortcutManager = view.getContext().getSystemService(ShortcutManager.class);
+                LinkedList<ShortcutInfo> infos = new LinkedList<>(shortcutManager.getDynamicShortcuts());
+                final int shortcutCount = shortcutManager.getMaxShortcutCountPerActivity() - 2;
+                if (infos.size() >= shortcutCount) {
+                    Log.i("ShortcutManager", "Dynamic Shortcuts more than " + shortcutCount
+                            + ". Removing extras");
+                    do {
+                        infos.removeLast();
+                    } while (infos.size() > shortcutCount);
+                }
+                selectedEgg.setAction(Intent.ACTION_VIEW);
+                ShortcutInfo newShortcut = new ShortcutInfo.Builder(view.getContext(), "egg-" + version)
+                        .setShortLabel(version_name[position]).setLongLabel("Launch this egg directly")
+                        .setIcon(Icon.createWithResource(view.getContext(), R.mipmap.ic_launcher_round))
+                        .setIntent(selectedEgg).build();
+
+                infos.add(newShortcut);
+                shortcutManager.setDynamicShortcuts(infos);
+            }
         }
     }
 }

@@ -35,6 +35,7 @@ public class MainScreen extends AppCompatActivity {
     static Activity staticAct;
 
     private ArrayList<SelectorObject> populatedList;
+    private static final int RC_CURRENT_EGG = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,26 +50,7 @@ public class MainScreen extends AppCompatActivity {
         currentVer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) // Nougat
-                    startActivity(new Intent(MainScreen.this, PlatLogoActivityOreo.class));
-                else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) // Nougat
-                    startActivity(new Intent(MainScreen.this, PlatLogoActivityNougat.class));
-                else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) //Marshmallow
-                    startActivity(new Intent(MainScreen.this, PlatLogoActivityMARSHMALLOW.class));
-                else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) //Lollipop (21-22)
-                    startActivity(new Intent(MainScreen.this, PlatLogoActivityLOLLIPOP.class));
-                else if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) //KitKat
-                    startActivity(new Intent(MainScreen.this, PlatLogoActivityKITKAT.class));
-                else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) //Jelly Bean
-                    startActivity(new Intent(MainScreen.this, PlatLogoActivityJELLYBEAN.class));
-                else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) //ICS
-                    weird("ICE CREAM SANDWICH", "JELLY BEAN");
-                else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) //Honeycomb
-                    startActivity(new Intent(MainScreen.this, PlatLogoActivityHONEYCOMB.class));
-                else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD)  //Gingerbread
-                    startActivity(new Intent(MainScreen.this, PlatLogoActivityGINGERBREAD.class));
-                else
-                    noEgg();
+                startActivityForResult(new Intent(MainScreen.this, CurrentEgg.class), RC_CURRENT_EGG);
             }
         });
 
@@ -90,13 +72,37 @@ public class MainScreen extends AppCompatActivity {
         if (newSel) {
             ArrayAdapter<String> tmpAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.legacy_version_with_egg));
             selectionList.setAdapter(tmpAdapter);
-            selectionList.setOnItemClickListener(new SelectorOnClick(this));
+            selectionList.setOnItemClickListener(new SelectorOnClick());
         } else {
             SelectorAdapter adapter = new SelectorAdapter(this, R.layout.listview_selector, populatedList);
             selectionList.setAdapter(adapter);
-            selectionList.setOnItemClickListener(new SelectorOnClick(this));
+            selectionList.setOnItemClickListener(new SelectorOnClick());
         }
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == RC_CURRENT_EGG) {
+            if (resultCode == RESULT_CANCELED) {
+                String type = data.getStringExtra("class");
+                switch (type) {
+                    case "noaccess":
+                        String t1 = data.getStringExtra("title");
+                        unableToAccessEasterEgg(t1);
+                        break;
+                    case "comingsoon":
+                        eggComingSoon();
+                        break;
+                    case "weird":
+                        String t2 = data.getStringExtra("title");
+                        String t3 = data.getStringExtra("body");
+                        weird(t2, t3);
+                        break;
+                    case "noegg":
+                    default: noEgg();
+                }
+            }
+        }
     }
 
     public static void unableToAccessEasterEgg(final String SDK_VERSION){

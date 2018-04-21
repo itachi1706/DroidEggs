@@ -135,8 +135,8 @@ public class MLand extends FrameLayout {
             .setUsage(AudioAttributes.USAGE_GAME).build();
     private View mSplash;
     private ViewGroup mScoreFields;
-    private ArrayList<Player> mPlayers = new ArrayList<Player>();
-    private ArrayList<Obstacle> mObstaclesInPlay = new ArrayList<Obstacle>();
+    private ArrayList<Player> mPlayers = new ArrayList<>();
+    private ArrayList<Obstacle> mObstaclesInPlay = new ArrayList<>();
     private float t, dt;
     private float mLastPipeTime; // in sec
     private int mCurrentPipeId; // basically, equivalent to the current score

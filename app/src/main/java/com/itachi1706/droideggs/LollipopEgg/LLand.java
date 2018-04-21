@@ -133,7 +133,7 @@ public class LLand extends FrameLayout {
     private View mSplash;
 
     private Player mDroid;
-    private ArrayList<Obstacle> mObstaclesInPlay = new ArrayList<Obstacle>();
+    private ArrayList<Obstacle> mObstaclesInPlay = new ArrayList<>();
 
     private float t, dt;
 

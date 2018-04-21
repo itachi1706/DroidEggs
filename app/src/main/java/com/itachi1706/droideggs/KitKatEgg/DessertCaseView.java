@@ -103,7 +103,7 @@ public class DessertCaseView extends FrameLayout {
     private static final int NUM_PASTRIES = PASTRIES.length + RARE_PASTRIES.length
             + XRARE_PASTRIES.length + XXRARE_PASTRIES.length;
 
-    private SparseArray<Drawable> mDrawables = new SparseArray<Drawable>(NUM_PASTRIES);
+    private SparseArray<Drawable> mDrawables = new SparseArray<>(NUM_PASTRIES);
 
     private static final float[] MASK = {
             0f,  0f,  0f,  0f, 255f,
@@ -139,7 +139,7 @@ public class DessertCaseView extends FrameLayout {
     private int mRows, mColumns;
     private View[] mCells;
 
-    private final Set<Point> mFreeList = new HashSet<Point>();
+    private final Set<Point> mFreeList = new HashSet<>();
 
     private final Handler mHandler = new Handler();
 
@@ -357,7 +357,7 @@ public class DessertCaseView extends FrameLayout {
         };
     }
 
-    private final HashSet<View> tmpSet = new HashSet<View>();
+    private final HashSet<View> tmpSet = new HashSet<>();
     public synchronized void place(View v, Point pt, boolean animate) {
         final int i = pt.x;
         final int j = pt.y;

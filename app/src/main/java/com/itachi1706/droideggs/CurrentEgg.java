@@ -3,6 +3,7 @@ package com.itachi1706.droideggs;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
@@ -33,9 +34,12 @@ public class CurrentEgg extends AppCompatActivity {
             startActivity(new Intent(this, PlatLogoActivityOreoMR1.class));
         else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) // Nougat
             startActivity(new Intent(this, PlatLogoActivityOreo.class));
-        else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) // Nougat
-            startActivity(new Intent(this, PlatLogoActivityNougat.class));
-        else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) //Marshmallow
+        else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) { // Nougat
+            Intent i = new Intent(this, PlatLogoActivityNougat.class);
+            i.putExtra("setting", PreferenceManager.getDefaultSharedPreferences(this)
+                    .getBoolean("actual_neko_egg", false));
+            startActivity(i);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) //Marshmallow
             startActivity(new Intent(this, PlatLogoActivityMARSHMALLOW.class));
         else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) //Lollipop (21-22)
             startActivity(new Intent(this, PlatLogoActivityLOLLIPOP.class));

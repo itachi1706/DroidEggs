@@ -3,7 +3,6 @@ package com.itachi1706.droideggs;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
@@ -17,14 +16,6 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.itachi1706.appupdater.AppUpdateInitializer;
-import com.itachi1706.droideggs.GingerbreadEgg.PlatLogoActivityGINGERBREAD;
-import com.itachi1706.droideggs.HoneycombEgg.PlatLogoActivityHONEYCOMB;
-import com.itachi1706.droideggs.JellyBeanEgg.PlatLogoActivityJELLYBEAN;
-import com.itachi1706.droideggs.KitKatEgg.PlatLogoActivityKITKAT;
-import com.itachi1706.droideggs.LollipopEgg.PlatLogoActivityLOLLIPOP;
-import com.itachi1706.droideggs.MarshmallowEgg.PlatLogoActivityMARSHMALLOW;
-import com.itachi1706.droideggs.NougatEgg.PlatLogoActivityNougat;
-import com.itachi1706.droideggs.OreoEgg.PlatLogoActivityOreo;
 
 import java.util.ArrayList;
 

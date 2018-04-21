@@ -19,12 +19,13 @@ package com.itachi1706.droideggs.NougatEgg;
 import android.animation.ObjectAnimator;
 import android.annotation.TargetApi;
 import android.content.ActivityNotFoundException;
-import android.content.ContentResolver;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -54,12 +55,16 @@ public class PlatLogoActivityNougat extends AppCompatActivity {
     int mKeyCount;
     PathInterpolator mInterpolator = new PathInterpolator(0f, 0f, 0.5f, 1f);
 
+    private boolean realNeko = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         mLayout = new FrameLayout(this);
         setContentView(mLayout);
+
+        realNeko = getIntent().getBooleanExtra("setting", false);
     }
     @Override
     public void onAttachedToWindow() {
@@ -115,7 +120,13 @@ public class PlatLogoActivityNougat extends AppCompatActivity {
                             @Override
                             public void run() {
                                 try {
-                                    Intent neko = new Intent(PlatLogoActivityNougat.this, NekoActivationActivity.class);
+                                    Intent neko;
+                                    if (realNeko && (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)) {
+                                        neko = new Intent();
+                                        neko.setComponent(new ComponentName("com.android.egg", "com.android.egg.neko.NekoActivationActivity"));
+                                    } else {
+                                        neko = new Intent(PlatLogoActivityNougat.this, NekoActivationActivity.class);
+                                    }
                                     startActivity(neko);
                                 } catch (ActivityNotFoundException ex) {
                                     Log.e("PlatLogoActivity", "No more eggs.");

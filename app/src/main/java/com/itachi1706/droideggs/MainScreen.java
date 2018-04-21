@@ -10,7 +10,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -38,12 +37,7 @@ public class MainScreen extends AppCompatActivity {
 
         staticAct = this;
 
-        currentVer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivityForResult(new Intent(MainScreen.this, CurrentEgg.class), RC_CURRENT_EGG);
-            }
-        });
+        currentVer.setOnClickListener(v -> startActivityForResult(new Intent(MainScreen.this, CurrentEgg.class), RC_CURRENT_EGG));
 
         //Check for updates
         new AppUpdateInitializer(this, PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()),
@@ -98,52 +92,34 @@ public class MainScreen extends AppCompatActivity {
 
     public static void unableToAccessEasterEgg(final String SDK_VERSION){
         Snackbar.make(staticAct.findViewById(android.R.id.content), "Unable to launch (INVALID VERSION)", Snackbar.LENGTH_LONG)
-                .setAction("WHY?", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        new AlertDialog.Builder(staticAct).setMessage("We are unable to give you access to " +
-                                "this easter egg due to incompatible Android Version. You require at least Android " +
-                                SDK_VERSION + " to access this activity")
-                                .setPositiveButton("AWWW :(", null).show();
-                    }
-                }).show();
+                .setAction("WHY?", v -> new AlertDialog.Builder(staticAct).setMessage("We are unable to give you access to " +
+                        "this easter egg due to incompatible Android Version. You require at least Android " +
+                        SDK_VERSION + " to access this activity")
+                        .setPositiveButton("AWWW :(", null).show()).show();
     }
 
     private static void weird(final String expected, final String actual){
         Snackbar.make(staticAct.findViewById(android.R.id.content), "Unable to launch (INVALID VERSION)", Snackbar.LENGTH_LONG)
-                .setAction("WAIT WHAT?", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        new AlertDialog.Builder(staticAct).setMessage("We are unable to give you access to " +
-                                "this easter egg due to incompatible Android Version. You require at least Android " +
-                                actual + " to access this activity\n\nDev Note: Interestingly... this easter egg is for " +
-                                expected + ", so I'm confused. LOL")
-                                .setPositiveButton("WAIT WTF? O.o", null)
-                                .setNegativeButton("AWWW :(", null).show();
-                    }
-                }).show();
+                .setAction("WAIT WHAT?", v -> new AlertDialog.Builder(staticAct).setMessage("We are unable to give you access to " +
+                        "this easter egg due to incompatible Android Version. You require at least Android " +
+                        actual + " to access this activity\n\nDev Note: Interestingly... this easter egg is for " +
+                        expected + ", so I'm confused. LOL")
+                        .setPositiveButton("WAIT WTF? O.o", null)
+                        .setNegativeButton("AWWW :(", null).show()).show();
     }
 
     private static void noEgg(){
         Snackbar.make(staticAct.findViewById(android.R.id.content), "No Eggs for you", Snackbar.LENGTH_LONG)
-                .setAction("WAIT WHAT?", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        new AlertDialog.Builder(staticAct).setMessage("Easter Eggs are only present in Android" +
-                                " from Android 2.3 Gingerbread. Your Android Version is do not have an easter egg" +
-                                " unfortunately :(")
-                                .setPositiveButton("AWWW :(", null).show();
-                    }
-                }).show();
+                .setAction("WAIT WHAT?", v -> new AlertDialog.Builder(staticAct).setMessage("Easter Eggs are only present in Android" +
+                        " from Android 2.3 Gingerbread. Your Android Version is do not have an easter egg" +
+                        " unfortunately :(")
+                        .setPositiveButton("AWWW :(", null).show()).show();
     }
 
     public static void eggComingSoon(){
         Snackbar.make(staticAct.findViewById(android.R.id.content), "Easter Egg Coming Soon", Snackbar.LENGTH_SHORT)
-                .setAction("DISMISS", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+                .setAction("DISMISS", v -> {
 
-                    }
                 }).show();
     }
 

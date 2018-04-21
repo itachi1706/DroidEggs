@@ -47,11 +47,7 @@ public class DessertCaseDream extends DreamService {
     @Override
     public void onDreamingStarted() {
         super.onDreamingStarted();
-        mView.postDelayed(new Runnable() {
-            public void run() {
-                mView.start();
-            }
-        }, 1000);
+        mView.postDelayed(() -> mView.start(), 1000);
     }
 
     @Override

@@ -31,8 +31,8 @@ public class LLandActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lland);
-        LLand world = (LLand) findViewById(R.id.world);
-        world.setScoreField((TextView) findViewById(R.id.score));
+        LLand world = findViewById(R.id.world);
+        world.setScoreField(findViewById(R.id.score));
         world.setSplash(findViewById(R.id.welcome));
         Log.v(LLand.TAG, "focus: " + world.requestFocus());
     }

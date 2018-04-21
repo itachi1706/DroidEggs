@@ -89,57 +89,45 @@ public class PlatLogoActivityOreoMR1 extends AppCompatActivity {
         });
         im.setElevation(12f*dp);
         im.setClickable(true);
-        im.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                im.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View v) {
-                        if (mTapCount < 5) return false;
+        im.setOnClickListener(v -> {
+            im.setOnLongClickListener(v1 -> {
+                if (mTapCount < 5) return false;
 
-                        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                        if (pref.getLong("O_MR1_EGG_MODE", 0) == 0){
-                            // For posterity: the moment this user unlocked the easter egg
-                            pref.edit().putLong("O_MR1_EGG_MODE", System.currentTimeMillis()).apply();
-                        }
-                        im.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                try {
-                                    Intent octo = new Intent(PlatLogoActivityOreoMR1.this, Ocquarium.class);
-                                    startActivity(octo);
-                                } catch (ActivityNotFoundException ex) {
-                                    Log.e("PlatLogoActivity", "No more eggs.");
-                                }
-                                if (FINISH) finish();
-                            }
-                        });
-                        return true;
+                SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                if (pref.getLong("O_MR1_EGG_MODE", 0) == 0) {
+                    // For posterity: the moment this user unlocked the easter egg
+                    pref.edit().putLong("O_MR1_EGG_MODE", System.currentTimeMillis()).apply();
+                }
+                im.post(() -> {
+                    try {
+                        Intent octo = new Intent(PlatLogoActivityOreoMR1.this, Ocquarium.class);
+                        startActivity(octo);
+                    } catch (ActivityNotFoundException ex) {
+                        Log.e("PlatLogoActivity", "No more eggs.");
                     }
+                    if (FINISH) finish();
                 });
-                mTapCount++;
-            }
+                return true;
+            });
+            mTapCount++;
         });
 
         // Enable hardware keyboard input for TV compatibility.
         im.setFocusable(true);
         im.requestFocus();
-        im.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (keyCode != KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
-                    ++mKeyCount;
-                    if (mKeyCount > 2) {
-                        if (mTapCount > 5) {
-                            im.performLongClick();
-                        } else {
-                            im.performClick();
-                        }
+        im.setOnKeyListener((v, keyCode, event) -> {
+            if (keyCode != KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+                ++mKeyCount;
+                if (mKeyCount > 2) {
+                    if (mTapCount > 5) {
+                        im.performLongClick();
+                    } else {
+                        im.performClick();
                     }
-                    return true;
-                } else {
-                    return false;
                 }
+                return true;
+            } else {
+                return false;
             }
         });
 

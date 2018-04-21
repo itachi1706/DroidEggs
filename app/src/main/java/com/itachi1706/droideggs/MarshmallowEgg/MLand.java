@@ -442,12 +442,7 @@ public class MLand extends FrameLayout {
             mAnim.cancel();
         }
         mAnim = new TimeAnimator();
-        mAnim.setTimeListener(new TimeAnimator.TimeListener() {
-            @Override
-            public void onTimeUpdate(TimeAnimator timeAnimator, long t, long dt) {
-                step(t, dt);
-            }
-        });
+        mAnim.setTimeListener((timeAnimator, t, dt) -> step(t, dt));
     }
     public void start(boolean startPlaying) {
         L("start(startPlaying=%s)", startPlaying ? "true" : "false");
@@ -455,7 +450,7 @@ public class MLand extends FrameLayout {
             showSplash();
             mSplash.findViewById(R.id.play_button).setEnabled(false);
             final View playImage = mSplash.findViewById(R.id.play_button_image);
-            final TextView playText = (TextView) mSplash.findViewById(R.id.play_button_text);
+            final TextView playText = mSplash.findViewById(R.id.play_button_text);
             playImage.animate().alpha(0f);
             playText.animate().alpha(1f);
             mCountdown = 3;
@@ -484,12 +479,7 @@ public class MLand extends FrameLayout {
         if (mSplash != null && mSplash.getVisibility() == View.VISIBLE) {
             mSplash.setClickable(false);
             mSplash.animate().alpha(0).translationZ(0).setDuration(300).withEndAction(
-                    new Runnable() {
-                        @Override
-                        public void run() {
-                            mSplash.setVisibility(View.GONE);
-                        }
-                    }
+                    () -> mSplash.setVisibility(View.GONE)
             );
         }
     }
@@ -535,12 +525,7 @@ public class MLand extends FrameLayout {
             for (Player p : mPlayers) {
                 p.die();
             }
-            postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    mFrozen = false;
-                }
-            }, 250);
+            postDelayed(() -> mFrozen = false, 250);
         }
     }
     public static final float lerp(float x, float a, float b) {

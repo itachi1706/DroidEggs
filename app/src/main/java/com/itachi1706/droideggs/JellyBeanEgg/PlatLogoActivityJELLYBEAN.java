@@ -115,29 +115,23 @@ public class PlatLogoActivityJELLYBEAN extends AppCompatActivity {
         final int p = (int)(32 * metrics.density);
         mContent.setPadding(p, p, p, p);
 
-        mContent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mToast.show();
-                mContent.setImageResource(R.drawable.jb_platlogo);
-            }
+        mContent.setOnClickListener(v -> {
+            mToast.show();
+            mContent.setImageResource(R.drawable.jb_platlogo);
         });
 
-        mContent.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                try {
-                    Intent beanbag = new Intent(PlatLogoActivityJELLYBEAN.this, BeanBag.class);
-                    beanbag.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                    | Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-                    startActivity(beanbag);
-                } catch (ActivityNotFoundException ex) {
-                    android.util.Log.e("PlatLogoActivity", "Couldn't find a bag of beans.");
-                }
-                finish();
-                return true;
+        mContent.setOnLongClickListener(v -> {
+            try {
+                Intent beanbag = new Intent(PlatLogoActivityJELLYBEAN.this, BeanBag.class);
+                beanbag.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                | Intent.FLAG_ACTIVITY_CLEAR_TASK
+                | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+                startActivity(beanbag);
+            } catch (ActivityNotFoundException ex) {
+                android.util.Log.e("PlatLogoActivity", "Couldn't find a bag of beans.");
             }
+            finish();
+            return true;
         });
 
         setContentView(mContent);

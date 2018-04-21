@@ -135,10 +135,7 @@ public class Nyandroid extends AppCompatActivity {
                     fixedStar.setX(randfrange(0, getWidth()));
                     fixedStar.setY(randfrange(0, getHeight()));
                     final AnimationDrawable anim = (AnimationDrawable) fixedStar.getDrawable();
-                    postDelayed(new Runnable() {
-                        public void run() {
-                            anim.start();
-                        }}, (int) randfrange(0, 1000));
+                    postDelayed(anim::start, (int) randfrange(0, 1000));
                 }
             }
 
@@ -150,10 +147,7 @@ public class Nyandroid extends AppCompatActivity {
                 nv.reset();
                 nv.setX(randfrange(0,Board.this.getWidth()));
                 final AnimationDrawable anim = (AnimationDrawable) nv.getDrawable();
-                postDelayed(new Runnable() {
-                    public void run() {
-                        anim.start();
-                    }}, (int) randfrange(0, 1000));
+                postDelayed(anim::start, (int) randfrange(0, 1000));
             }
 
             if (mAnim != null) {
@@ -162,25 +156,23 @@ public class Nyandroid extends AppCompatActivity {
 
             //Wait what? An ICS Easter Egg requiring JELLYBEAN API? O.o
             mAnim = new TimeAnimator();
-            mAnim.setTimeListener(new TimeAnimator.TimeListener() {
-                public void onTimeUpdate(TimeAnimator animation, long totalTime, long deltaTime) {
-                    // setRotation(totalTime * 0.01f); // not as cool as you would think
+            mAnim.setTimeListener((animation, totalTime, deltaTime) -> {
+                // setRotation(totalTime * 0.01f); // not as cool as you would think
 //                    android.util.Log.d("Nyandroid", "t=" + totalTime);
 
-                    for (int i=0; i<getChildCount(); i++) {
-                        View v = getChildAt(i);
-                        if (!(v instanceof FlyingCat)) continue;
-                        FlyingCat nv = (FlyingCat) v;
-                        nv.update(deltaTime / 1000f);
-                        final float catWidth = nv.getWidth() * nv.getScaleX();
-                        final float catHeight = nv.getHeight() * nv.getScaleY();
-                        if (   nv.getX() + catWidth < -2
-                                || nv.getX() > getWidth() + 2
-                                || nv.getY() + catHeight < -2
-                                || nv.getY() > getHeight() + 2)
-                        {
-                            nv.reset();
-                        }
+                for (int i=0; i<getChildCount(); i++) {
+                    View v = getChildAt(i);
+                    if (!(v instanceof FlyingCat)) continue;
+                    FlyingCat nv = (FlyingCat) v;
+                    nv.update(deltaTime / 1000f);
+                    final float catWidth = nv.getWidth() * nv.getScaleX();
+                    final float catHeight = nv.getHeight() * nv.getScaleY();
+                    if (   nv.getX() + catWidth < -2
+                            || nv.getX() > getWidth() + 2
+                            || nv.getY() + catHeight < -2
+                            || nv.getY() > getHeight() + 2)
+                    {
+                        nv.reset();
                     }
                 }
             });
@@ -190,10 +182,10 @@ public class Nyandroid extends AppCompatActivity {
         protected void onSizeChanged (int w, int h, int oldw, int oldh) {
             super.onSizeChanged(w,h,oldw,oldh);
 //            android.util.Log.d("Nyandroid", "resized: " + w + "x" + h);
-            post(new Runnable() { public void run() {
+            post(() -> {
                 reset();
                 mAnim.start();
-            } });
+            });
         }
 
 
@@ -227,12 +219,9 @@ public class Nyandroid extends AppCompatActivity {
         mBoard = new Board(this, null);
         setContentView(mBoard);
 
-        mBoard.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
-            @Override
-            public void onSystemUiVisibilityChange(int vis) {
-                if (0 == (vis & View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)) {
-                    Nyandroid.this.finish();
-                }
+        mBoard.setOnSystemUiVisibilityChangeListener(vis -> {
+            if (0 == (vis & View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)) {
+                Nyandroid.this.finish();
             }
         });
 

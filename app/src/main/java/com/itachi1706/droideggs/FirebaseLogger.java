@@ -1,7 +1,6 @@
 package com.itachi1706.droideggs;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.util.Log;
 
 /**

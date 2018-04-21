@@ -297,12 +297,9 @@ public class DessertCaseView extends FrameLayout {
 
             if (mCells[j*mColumns+i] != null) continue;
             final ImageView v = new ImageView(ctx);
-            v.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    place(v, true);
-                    postDelayed(new Runnable() { public void run() { fillFreeList(); } }, DURATION/2);
-                }
+            v.setOnClickListener(view -> {
+                place(v, true);
+                postDelayed(this::fillFreeList, DURATION/2);
             });
 
             final int c = random_color();

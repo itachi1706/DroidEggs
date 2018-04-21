@@ -145,86 +145,74 @@ public class PlatLogoActivityLOLLIPOP extends AppCompatActivity {
         highlight.setBounds((int)(size*.15f), (int)(size*.15f),
                 (int)(size*.6f), (int)(size*.6f));
         im.getOverlay().add(highlight);
-        im.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mTapCount == 0) {
-                    im.animate()
-                            .translationZ(40)
-                            .scaleX(1)
-                            .scaleY(1)
-                            .setInterpolator(mInterpolator)
-                            .setDuration(700)
-                            .setStartDelay(500)
-                            .start();
+        im.setOnClickListener(v -> {
+            if (mTapCount == 0) {
+                im.animate()
+                        .translationZ(40)
+                        .scaleX(1)
+                        .scaleY(1)
+                        .setInterpolator(mInterpolator)
+                        .setDuration(700)
+                        .setStartDelay(500)
+                        .start();
 
-                    final ObjectAnimator a = ObjectAnimator.ofInt(platlogo, "alpha", 0, 255);
-                    a.setInterpolator(mInterpolator);
-                    a.setStartDelay(1000);
-                    a.start();
+                final ObjectAnimator a = ObjectAnimator.ofInt(platlogo, "alpha", 0, 255);
+                a.setInterpolator(mInterpolator);
+                a.setStartDelay(1000);
+                a.start();
 
-                    stick.animate()
-                            .translationZ(20)
-                            .alpha(1)
-                            .setInterpolator(mInterpolator)
-                            .setDuration(700)
-                            .setStartDelay(750)
-                            .start();
+                stick.animate()
+                        .translationZ(20)
+                        .alpha(1)
+                        .setInterpolator(mInterpolator)
+                        .setDuration(700)
+                        .setStartDelay(750)
+                        .start();
 
-                    im.setOnLongClickListener(new View.OnLongClickListener() {
-                        @Override
-                        public boolean onLongClick(View v) {
-                            if (mTapCount < 5) return false;
+                im.setOnLongClickListener(v1 -> {
+                    if (mTapCount < 5) return false;
 
-                            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(PlatLogoActivityLOLLIPOP.this);
-                            if (pref.getLong("L_EGG_MODE", 0) == 0){
-                                // For posterity: the moment this user unlocked the easter egg
-                                pref.edit().putLong("L_EGG_MODE", System.currentTimeMillis()).apply();
-                            }
-                            im.post(new Runnable() {
-                                @Override
-                                public void run() {
-                                    try {
-                                        Intent lland = new Intent(PlatLogoActivityLOLLIPOP.this, LLandActivity.class);
-                                        lland.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                                                | Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                                | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-                                        startActivity(lland);
-                                    } catch (ActivityNotFoundException ex) {
-                                        Log.e("PlatLogoActivity", "No more eggs.");
-                                    }
-                                    finish();
-                                }
-                            });
-                            return true;
+                    SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(PlatLogoActivityLOLLIPOP.this);
+                    if (pref.getLong("L_EGG_MODE", 0) == 0) {
+                        // For posterity: the moment this user unlocked the easter egg
+                        pref.edit().putLong("L_EGG_MODE", System.currentTimeMillis()).apply();
+                    }
+                    im.post(() -> {
+                        try {
+                            Intent lland = new Intent(PlatLogoActivityLOLLIPOP.this, LLandActivity.class);
+                            lland.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                                    | Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                    | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+                            startActivity(lland);
+                        } catch (ActivityNotFoundException ex) {
+                            Log.e("PlatLogoActivity", "No more eggs.");
                         }
+                        finish();
                     });
-                } else {
-                    im.setBackground(makeRipple());
-                }
-                mTapCount++;
+                    return true;
+                });
+            } else {
+                im.setBackground(makeRipple());
             }
+            mTapCount++;
         });
 
         // Enable hardware keyboard input for TV compatibility.
         im.setFocusable(true);
         im.requestFocus();
-        im.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (keyCode != KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
-                    ++mKeyCount;
-                    if (mKeyCount > 2) {
-                        if (mTapCount > 5) {
-                            im.performLongClick();
-                        } else {
-                            im.performClick();
-                        }
+        im.setOnKeyListener((v, keyCode, event) -> {
+            if (keyCode != KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+                ++mKeyCount;
+                if (mKeyCount > 2) {
+                    if (mTapCount > 5) {
+                        im.performLongClick();
+                    } else {
+                        im.performClick();
                     }
-                    return true;
-                } else {
-                    return false;
                 }
+                return true;
+            } else {
+                return false;
             }
         });
 

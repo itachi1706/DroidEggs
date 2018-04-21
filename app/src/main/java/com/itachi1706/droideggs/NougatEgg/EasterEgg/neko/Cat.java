@@ -21,7 +21,6 @@ import android.support.v4.app.NotificationCompat;
 import com.itachi1706.droideggs.FirebaseLogger;
 import com.itachi1706.droideggs.R;
 
-import java.io.ByteArrayOutputStream;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 

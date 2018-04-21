@@ -333,10 +333,10 @@ public class BeanBag extends AppCompatActivity {
         public void startAnimation() {
             stopAnimation();
             if (mAnim == null) {
-                post(new Runnable() { public void run() {
+                post(() -> {
                     reset();
                     startAnimation();
-                } });
+                });
             } else {
                 mAnim.start();
             }

@@ -322,12 +322,7 @@ public class LLand extends FrameLayout {
         addView(mDroid, new FrameLayout.LayoutParams(PARAMS.PLAYER_SIZE, PARAMS.PLAYER_SIZE));
 
         mAnim = new TimeAnimator();
-        mAnim.setTimeListener(new TimeAnimator.TimeListener() {
-            @Override
-            public void onTimeUpdate(TimeAnimator timeAnimator, long t, long dt) {
-                step(t, dt);
-            }
-        });
+        mAnim.setTimeListener((timeAnimator, t, dt) -> step(t, dt));
     }
 
     private void setScore(int score) {
@@ -380,12 +375,7 @@ public class LLand extends FrameLayout {
             mScoreField.setBackgroundResource(R.drawable.lollipop_scorecard_gameover);
             mTimeOfDay = irand(0, SKIES.length); // for next reset
             mFrozen = true;
-            postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    mFrozen = false;
-                }
-            }, 250);
+            postDelayed(() -> mFrozen = false, 250);
         }
     }
 

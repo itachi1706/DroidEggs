@@ -28,7 +28,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.View;
 import android.view.animation.PathInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -79,63 +78,49 @@ public class PlatLogoActivityNDP extends AppCompatActivity {
 //            }
 //        });
         im.setClickable(true);
-        im.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                im.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View v) {
-                        if (mTapCount < 5) return false;
+        im.setOnClickListener(v -> {
+            im.setOnLongClickListener(v1 -> {
+                if (mTapCount < 5) return false;
 
-                        if (REVEAL_THE_NAME) {
-                            final Drawable overlay = getDrawable(
-                                        R.drawable.ndp_platlogo_n);
-                            overlay.setBounds(0, 0, v.getMeasuredWidth(), v.getMeasuredHeight());
-                            im.getOverlay().clear();
-                            im.getOverlay().add(overlay);
-                            overlay.setAlpha(0);
-                            ObjectAnimator.ofInt(overlay, "alpha", 0, 255)
-                                        .setDuration(500)
-                                        .start();
-                            return true;
-                        }
+                if (REVEAL_THE_NAME) {
+                    final Drawable overlay = getDrawable(
+                            R.drawable.ndp_platlogo_n);
+                    overlay.setBounds(0, 0, v1.getMeasuredWidth(), v1.getMeasuredHeight());
+                    im.getOverlay().clear();
+                    im.getOverlay().add(overlay);
+                    overlay.setAlpha(0);
+                    ObjectAnimator.ofInt(overlay, "alpha", 0, 255)
+                            .setDuration(500)
+                            .start();
+                    return true;
+                }
 
-                        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(PlatLogoActivityNDP.this);
-                        if (pref.getLong("NDP_EGG_MODE", 0) == 0){
-                            // For posterity: the moment this user unlocked the easter egg
-                            pref.edit().putLong("NDP_EGG_MODE", System.currentTimeMillis()).apply();
-                        }
-                        im.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                finish();
-                            }
-                        });
-                        return true;
-                    }
-                });
-                mTapCount++;
-            }
+                SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(PlatLogoActivityNDP.this);
+                if (pref.getLong("NDP_EGG_MODE", 0) == 0) {
+                    // For posterity: the moment this user unlocked the easter egg
+                    pref.edit().putLong("NDP_EGG_MODE", System.currentTimeMillis()).apply();
+                }
+                im.post(this::finish);
+                return true;
+            });
+            mTapCount++;
         });
         // Enable hardware keyboard input for TV compatibility.
         im.setFocusable(true);
         im.requestFocus();
-        im.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (keyCode != KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
-                    ++mKeyCount;
-                    if (mKeyCount > 2) {
-                        if (mTapCount > 5) {
-                            im.performLongClick();
-                        } else {
-                            im.performClick();
-                        }
+        im.setOnKeyListener((v, keyCode, event) -> {
+            if (keyCode != KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+                ++mKeyCount;
+                if (mKeyCount > 2) {
+                    if (mTapCount > 5) {
+                        im.performLongClick();
+                    } else {
+                        im.performClick();
                     }
-                    return true;
-                } else {
-                    return false;
                 }
+                return true;
+            } else {
+                return false;
             }
         });
         mLayout.addView(im, new FrameLayout.LayoutParams(size, size, Gravity.CENTER));

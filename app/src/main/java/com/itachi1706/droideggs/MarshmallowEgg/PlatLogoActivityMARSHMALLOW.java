@@ -114,64 +114,52 @@ public class PlatLogoActivityMARSHMALLOW extends AppCompatActivity {
             }
         });
         im.setClickable(true);
-        im.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mTapCount == 0) {
-                    showMarshmallow(im);
-                }
-                im.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View v) {
-                        if (mTapCount < 5) return false;
-                        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(PlatLogoActivityMARSHMALLOW.this);
-                        if (pref.getLong("M_EGG_MODE", 0) == 0){
-                            // For posterity: the moment this user unlocked the easter egg
-                            pref.edit().putLong("M_EGG_MODE", System.currentTimeMillis()).apply();
-                        }
-                        im.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                try {
-                                    Intent mland = new Intent(PlatLogoActivityMARSHMALLOW.this, MLandActivity.class);
-                                    mland.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                                            | Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                            | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-                                    startActivity(mland);
-                                } catch (ActivityNotFoundException ex) {
-                                    Log.e("PlatLogoActivity", "No more eggs.");
-                                }
-                                finish();
-                            }
-                        });
-                        return true;
-                    }
-                });
-                mTapCount++;
+        im.setOnClickListener(v -> {
+            if (mTapCount == 0) {
+                showMarshmallow(im);
             }
+            im.setOnLongClickListener(v1 -> {
+                if (mTapCount < 5) return false;
+                SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(PlatLogoActivityMARSHMALLOW.this);
+                if (pref.getLong("M_EGG_MODE", 0) == 0) {
+                    // For posterity: the moment this user unlocked the easter egg
+                    pref.edit().putLong("M_EGG_MODE", System.currentTimeMillis()).apply();
+                }
+                im.post(() -> {
+                    try {
+                        Intent mland = new Intent(PlatLogoActivityMARSHMALLOW.this, MLandActivity.class);
+                        mland.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                                | Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+                        startActivity(mland);
+                    } catch (ActivityNotFoundException ex) {
+                        Log.e("PlatLogoActivity", "No more eggs.");
+                    }
+                    finish();
+                });
+                return true;
+            });
+            mTapCount++;
         });
         // Enable hardware keyboard input for TV compatibility.
         im.setFocusable(true);
         im.requestFocus();
-        im.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (keyCode != KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
-                    if (mKeyCount == 0) {
-                        showMarshmallow(im);
-                    }
-                    ++mKeyCount;
-                    if (mKeyCount > 2) {
-                        if (mTapCount > 5) {
-                            im.performLongClick();
-                        } else {
-                            im.performClick();
-                        }
-                    }
-                    return true;
-                } else {
-                    return false;
+        im.setOnKeyListener((v, keyCode, event) -> {
+            if (keyCode != KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+                if (mKeyCount == 0) {
+                    showMarshmallow(im);
                 }
+                ++mKeyCount;
+                if (mKeyCount > 2) {
+                    if (mTapCount > 5) {
+                        im.performLongClick();
+                    } else {
+                        im.performClick();
+                    }
+                }
+                return true;
+            } else {
+                return false;
             }
         });
         mLayout.addView(im, new FrameLayout.LayoutParams(size, size, Gravity.CENTER));

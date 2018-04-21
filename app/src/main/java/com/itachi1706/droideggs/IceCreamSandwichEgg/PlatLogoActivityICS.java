@@ -25,7 +25,6 @@ import android.os.Handler;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
-import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -51,24 +50,21 @@ public class PlatLogoActivityICS extends AppCompatActivity {
         mContent.setImageResource(R.drawable.ics_platlogo);
         mContent.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
 
-        mContent.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                final int action = event.getAction();
-                if (action == MotionEvent.ACTION_DOWN) {
-                    mContent.setPressed(true);
+        mContent.setOnTouchListener((v, event) -> {
+            final int action = event.getAction();
+            if (action == MotionEvent.ACTION_DOWN) {
+                mContent.setPressed(true);
+                mHandler.removeCallbacks(mSuperLongPress);
+                mCount = 0;
+                mHandler.postDelayed(mSuperLongPress, 2* ViewConfiguration.getLongPressTimeout());
+            } else if (action == MotionEvent.ACTION_UP) {
+                if (mContent.isPressed()) {
+                    mContent.setPressed(false);
                     mHandler.removeCallbacks(mSuperLongPress);
-                    mCount = 0;
-                    mHandler.postDelayed(mSuperLongPress, 2* ViewConfiguration.getLongPressTimeout());
-                } else if (action == MotionEvent.ACTION_UP) {
-                    if (mContent.isPressed()) {
-                        mContent.setPressed(false);
-                        mHandler.removeCallbacks(mSuperLongPress);
-                        mToast.show();
-                    }
+                    mToast.show();
                 }
-                return true;
             }
+            return true;
         });
 
         setContentView(mContent);

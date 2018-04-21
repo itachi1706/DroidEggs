@@ -11,7 +11,6 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.Toast;
 
 import com.itachi1706.appupdater.SettingsInitializer;
@@ -74,44 +73,38 @@ public class MainSettings extends AppCompatActivity {
                     getResources().getString(R.string.update_link), getResources().getString(R.string.link_updates))
                     .explodeSettings(this);
 
-            verPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                @Override
-                public boolean onPreferenceClick(Preference preference) {
-                    if (!isActive) {
-                        if (count == 10) {
-                            count = 0;
-                            startEgg();
-                            Snackbar.make(getActivity().findViewById(android.R.id.content), "Hope you like Vocaloid! xD", Snackbar.LENGTH_LONG)
-                                    .setAction("NO I DON'T! D:", new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            Toast.makeText(getActivity(), "Aww okay... :(", Toast.LENGTH_SHORT).show();
-                                            endEgg();
-                                        }
-                                    }).show();
-                        } else {
-                            switch (count) {
-                                case 5:
-                                    prompt(5);
-                                    break;
-                                case 6:
-                                    prompt(4);
-                                    break;
-                                case 7:
-                                    prompt(3);
-                                    break;
-                                case 8:
-                                    prompt(2);
-                                    break;
-                                case 9:
-                                    prompt(1);
-                                    break;
-                            }
+            verPref.setOnPreferenceClickListener(preference -> {
+                if (!isActive) {
+                    if (count == 10) {
+                        count = 0;
+                        startEgg();
+                        Snackbar.make(getActivity().findViewById(android.R.id.content), "Hope you like Vocaloid! xD", Snackbar.LENGTH_LONG)
+                                .setAction("NO I DON'T! D:", v -> {
+                                    Toast.makeText(getActivity(), "Aww okay... :(", Toast.LENGTH_SHORT).show();
+                                    endEgg();
+                                }).show();
+                    } else {
+                        switch (count) {
+                            case 5:
+                                prompt(5);
+                                break;
+                            case 6:
+                                prompt(4);
+                                break;
+                            case 7:
+                                prompt(3);
+                                break;
+                            case 8:
+                                prompt(2);
+                                break;
+                            case 9:
+                                prompt(1);
+                                break;
                         }
-                        count++;
                     }
-                    return false;
+                    count++;
                 }
+                return false;
             });
         }
 

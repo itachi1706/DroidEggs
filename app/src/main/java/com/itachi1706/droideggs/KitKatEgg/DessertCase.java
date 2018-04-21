@@ -50,11 +50,7 @@ public class DessertCase extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        mView.postDelayed(new Runnable() {
-            public void run() {
-                mView.start();
-            }
-        }, 1000);
+        mView.postDelayed(() -> mView.start(), 1000);
     }
 
     @Override

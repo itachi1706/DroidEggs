@@ -135,54 +135,48 @@ public class PlatLogoActivityKITKAT extends AppCompatActivity {
             }
         });
 
-        mContent.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                if (logo.getVisibility() != View.VISIBLE) {
-                    bg.setScaleX(0.01f);
-                    bg.animate().alpha(1f).scaleX(1f).setStartDelay(500).start();
-                    letter.animate().alpha(0f).scaleY(0.5f).scaleX(0.5f)
-                            .rotationBy(360)
-                            .setInterpolator(new AccelerateInterpolator())
-                            .setDuration(1000)
-                            .start();
-                    logo.setAlpha(0f);
-                    logo.setVisibility(View.VISIBLE);
-                    logo.setScaleX(0.5f);
-                    logo.setScaleY(0.5f);
-                    logo.animate().alpha(1f).scaleX(1f).scaleY(1f)
-                            .setDuration(1000).setStartDelay(500)
-                            .setInterpolator(new AnticipateOvershootInterpolator())
-                            .start();
-                    tv.setAlpha(0f);
-                    tv.setVisibility(View.VISIBLE);
-                    tv.animate().alpha(1f).setDuration(1000).setStartDelay(1000).start();
-                    return true;
-                }
-                return false;
-            }
-        });
-
-        logo.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(PlatLogoActivityKITKAT.this);
-                if (pref.getLong("K_EGG_MODE", 0) == 0){
-                    // For posterity: the moment this user unlocked the easter egg
-                    pref.edit().putLong("K_EGG_MODE", System.currentTimeMillis()).apply();
-                }
-                try {
-                    Intent dessertcase = new Intent(PlatLogoActivityKITKAT.this, DessertCase.class);
-                    dessertcase.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                    | Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-                    startActivity(dessertcase);
-                } catch (ActivityNotFoundException ex) {
-                    android.util.Log.e("PlatLogoActivity", "Couldn't catch a break.");
-                }
-                finish();
+        mContent.setOnLongClickListener(v -> {
+            if (logo.getVisibility() != View.VISIBLE) {
+                bg.setScaleX(0.01f);
+                bg.animate().alpha(1f).scaleX(1f).setStartDelay(500).start();
+                letter.animate().alpha(0f).scaleY(0.5f).scaleX(0.5f)
+                        .rotationBy(360)
+                        .setInterpolator(new AccelerateInterpolator())
+                        .setDuration(1000)
+                        .start();
+                logo.setAlpha(0f);
+                logo.setVisibility(View.VISIBLE);
+                logo.setScaleX(0.5f);
+                logo.setScaleY(0.5f);
+                logo.animate().alpha(1f).scaleX(1f).scaleY(1f)
+                        .setDuration(1000).setStartDelay(500)
+                        .setInterpolator(new AnticipateOvershootInterpolator())
+                        .start();
+                tv.setAlpha(0f);
+                tv.setVisibility(View.VISIBLE);
+                tv.animate().alpha(1f).setDuration(1000).setStartDelay(1000).start();
                 return true;
             }
+            return false;
+        });
+
+        logo.setOnLongClickListener(v -> {
+            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(PlatLogoActivityKITKAT.this);
+            if (pref.getLong("K_EGG_MODE", 0) == 0){
+                // For posterity: the moment this user unlocked the easter egg
+                pref.edit().putLong("K_EGG_MODE", System.currentTimeMillis()).apply();
+            }
+            try {
+                Intent dessertcase = new Intent(PlatLogoActivityKITKAT.this, DessertCase.class);
+                dessertcase.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                | Intent.FLAG_ACTIVITY_CLEAR_TASK
+                | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+                startActivity(dessertcase);
+            } catch (ActivityNotFoundException ex) {
+                android.util.Log.e("PlatLogoActivity", "Couldn't catch a break.");
+            }
+            finish();
+            return true;
         });
 
         setContentView(mContent);

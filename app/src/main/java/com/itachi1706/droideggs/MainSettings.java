@@ -1,19 +1,13 @@
 package com.itachi1706.droideggs;
 
-import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.preference.Preference;
 import android.preference.PreferenceActivity;
-import android.preference.PreferenceFragment;
-import android.preference.PreferenceManager;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
+import com.itachi1706.appupdater.EasterEggResMusicPrefFragment;
 import com.itachi1706.appupdater.SettingsInitializer;
+
+import de.psdev.licensesdialog.LicensesDialog;
 
 
 /**
@@ -43,118 +37,41 @@ public class MainSettings extends AppCompatActivity {
      * activity is showing a two-pane settings UI.
      */
     @SuppressWarnings("ConstantConditions")
-    public static class GeneralPreferenceFragment extends PreferenceFragment {
+    public static class GeneralPreferenceFragment extends EasterEggResMusicPrefFragment {
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.pref_general);
 
-            final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
-
-            //Debug Info Get
-            String version = "NULL", packName = "NULL";
-            int versionCode = 0;
-            try {
-                PackageInfo pInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
-                version = pInfo.versionName;
-                packName = pInfo.packageName;
-                versionCode = pInfo.versionCode;
-            } catch (PackageManager.NameNotFoundException e) {
-                e.printStackTrace();
-            }
-            Preference verPref = findPreference("view_app_version");
-            verPref.setSummary(version + "-b" + versionCode);
-            Preference pNamePref = findPreference("view_app_name");
-            pNamePref.setSummary(packName);
-            Preference prefs = findPreference("view_sdk_version");
-            prefs.setSummary(android.os.Build.VERSION.RELEASE);
-
             new SettingsInitializer(getActivity(), R.mipmap.ic_launcher, CommonVariables.BASE_SERVER_URL,
-                    getResources().getString(R.string.update_link), getResources().getString(R.string.link_updates))
-                    .explodeSettings(this);
+                    getResources().getString(R.string.update_link), getResources().getString(R.string.link_updates), true)
+                    .explodeUpdaterSettings(this);
 
-            verPref.setOnPreferenceClickListener(preference -> {
-                if (!isActive) {
-                    if (count == 10) {
-                        count = 0;
-                        startEgg();
-                        Snackbar.make(getActivity().findViewById(android.R.id.content), "Hope you like Vocaloid! xD", Snackbar.LENGTH_LONG)
-                                .setAction("NO I DON'T! D:", v -> {
-                                    Toast.makeText(getActivity(), "Aww okay... :(", Toast.LENGTH_SHORT).show();
-                                    endEgg();
-                                }).show();
-                    } else {
-                        switch (count) {
-                            case 5:
-                                prompt(5);
-                                break;
-                            case 6:
-                                prompt(4);
-                                break;
-                            case 7:
-                                prompt(3);
-                                break;
-                            case 8:
-                                prompt(2);
-                                break;
-                            case 9:
-                                prompt(1);
-                                break;
-                        }
-                    }
-                    count++;
-                }
-                return false;
+            super.addEggMethods(true, preference -> {
+                new LicensesDialog.Builder(getActivity()).setNotices(R.raw.notices)
+                        .setIncludeOwnLicense(true).build().show();
+                return true;
             });
         }
 
-        MediaPlayer mp;
-        int count = 0;
-        Toast toasty;
-        boolean isActive = false;
-
-        private void prompt(int left){
-            if (toasty != null){
-                toasty.cancel();
-            }
-            if (left > 1)
-                toasty = Toast.makeText(getActivity(), left + " more clicks to have fun!", Toast.LENGTH_SHORT);
-            else
-                toasty = Toast.makeText(getActivity(), left + " more click to have fun!", Toast.LENGTH_SHORT);
-            toasty.show();
+        @Override
+        public int getMusicResource() {
+            return R.raw.hatsune_miku_romeo_and_cinderella;
         }
 
         @Override
-        public void onResume(){
-            super.onResume();
-            count = 0;
+        public String getStartEggMessage() {
+            return "Hope you like Vocaloid! xD";
         }
 
         @Override
-        public void onPause(){
-            super.onPause();
-            endEgg();
+        public String getEndEggMessage() {
+            return "Aww okay... :(";
         }
 
-        private void startEgg(){
-            if (!isActive) {
-                mp = MediaPlayer.create(getActivity(), R.raw.hatsune_miku_romeo_and_cinderella);
-                mp.start();
-                isActive = true;
-            }
-        }
-
-        private void endEgg(){
-            count = 0;
-            isActive = false;
-            if (mp != null){
-                if (mp.isPlaying()){
-                    mp.stop();
-                    mp.reset();
-                }
-                mp.release();
-                mp = null;
-            }
+        @Override
+        public String getStopEggButtonText() {
+            return "NO I DON'T! D:";
         }
     }
 }

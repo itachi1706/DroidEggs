@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+apply plugin: 'com.google.firebase.firebase-perf'
 
 def isTravis = System.getenv("TRAVIS")
 
@@ -59,6 +61,8 @@ dependencies {
     implementation "com.android.support:support-dynamic-animation:$supportLibraryVersion"
     implementation 'de.psdev.licensesdialog:licensesdialog:1.8.3'
     implementation "com.google.firebase:firebase-core:$playServicesVersion"
+    implementation "com.google.firebase:firebase-perf:$playServicesVersion"
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.1'
     implementation project(':appupdater')
 }
 apply plugin: 'com.google.gms.google-services'

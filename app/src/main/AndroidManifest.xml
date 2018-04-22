@@ -14,6 +14,8 @@
     <!-- SDK Use required by Octo -->
     <uses-sdk tools:overrideLibrary="android.support.dynamicanimation" />
 
+    <meta-data android:name="firebase_crashlytics_collection_enabled" android:value="false" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"

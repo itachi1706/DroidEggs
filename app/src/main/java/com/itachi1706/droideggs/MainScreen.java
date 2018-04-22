@@ -14,12 +14,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.itachi1706.appupdater.AppUpdateInitializer;
 import com.itachi1706.appupdater.Objects.CAAnalytics;
 import com.itachi1706.appupdater.Util.AnalyticsHelper;
 
 import java.util.ArrayList;
+
+import io.fabric.sdk.android.Fabric;
 
 public class MainScreen extends AppCompatActivity {
 
@@ -35,6 +38,9 @@ public class MainScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
+
+        Fabric fabric = new Fabric.Builder(this).kits(new Crashlytics()).debuggable(BuildConfig.DEBUG).build();
+        if (!BuildConfig.DEBUG) Fabric.with(fabric);
 
         currentVer = findViewById(R.id.btnCurrent);
         selectionList = findViewById(R.id.lvEasterEggSelection);

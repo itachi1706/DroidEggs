@@ -58,5 +58,7 @@ dependencies {
     implementation "com.android.support:support-v4:$supportLibraryVersion"
     implementation "com.android.support:support-dynamic-animation:$supportLibraryVersion"
     implementation 'de.psdev.licensesdialog:licensesdialog:1.8.3'
+    implementation "com.google.firebase:firebase-core:$playServicesVersion"
     implementation project(':appupdater')
 }
+apply plugin: 'com.google.gms.google-services'

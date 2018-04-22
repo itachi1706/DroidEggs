@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.itachi1706.droideggs.GingerbreadEgg.PlatLogoActivityGINGERBREAD;
 import com.itachi1706.droideggs.HoneycombEgg.PlatLogoActivityHONEYCOMB;
 import com.itachi1706.droideggs.JellyBeanEgg.PlatLogoActivityJELLYBEAN;
@@ -63,8 +65,16 @@ public class CurrentEgg extends AppCompatActivity {
 
         if (errorIntent.hasExtra("class"))
             setResult(RESULT_CANCELED, errorIntent);
-        else
+        else {
             setResult(RESULT_OK);
+            // Firebase Analytics Event Logging
+            FirebaseAnalytics analytics = FirebaseAnalytics.getInstance(this);
+            Bundle bundle = new Bundle();
+            bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "SDK: " + Build.VERSION.SDK_INT);
+            bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "current_egg_selected");
+            analytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+            Log.i("Firebase", "Logged Current Egg Selected for SDK " + Build.VERSION.SDK_INT);
+        }
         finish();
     }
 }

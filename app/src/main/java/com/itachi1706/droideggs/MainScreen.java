@@ -14,7 +14,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.itachi1706.appupdater.AppUpdateInitializer;
+import com.itachi1706.appupdater.Objects.CAAnalytics;
+import com.itachi1706.appupdater.Util.AnalyticsHelper;
 
 import java.util.ArrayList;
 
@@ -26,6 +29,7 @@ public class MainScreen extends AppCompatActivity {
 
     private ArrayList<SelectorObject> populatedList;
     private static final int RC_CURRENT_EGG = 2;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,17 @@ public class MainScreen extends AppCompatActivity {
         //Check for updates
         new AppUpdateInitializer(this, PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()),
                 R.mipmap.ic_launcher, CommonVariables.BASE_SERVER_URL, true).checkForUpdate(true);
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        AnalyticsHelper helper = new AnalyticsHelper(this, true);
+        CAAnalytics analytics = helper.getData();
+        if (analytics != null) {
+            // Update Firebase Analytics User Properties
+            setAnalyticsData(true, mFirebaseAnalytics, analytics);
+        } else {
+            setAnalyticsData(false, mFirebaseAnalytics, null);
+        }
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.APP_OPEN, null);
     }
 
     @Override
@@ -144,5 +159,17 @@ public class MainScreen extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setAnalyticsData(boolean enabled, FirebaseAnalytics firebaseAnalytics, CAAnalytics analytics) {
+        firebaseAnalytics.setUserProperty("debug_mode", (enabled) ? analytics.isDebug() + "" : null);
+        firebaseAnalytics.setUserProperty("device_manufacturer", (enabled) ? analytics.getdManufacturer() : null);
+        firebaseAnalytics.setUserProperty("device_codename", (enabled) ? analytics.getdCodename() : null);
+        firebaseAnalytics.setUserProperty("device_fingerprint", (enabled) ? analytics.getdFingerprint() : null);
+        firebaseAnalytics.setUserProperty("device_cpu_abi", (enabled) ? analytics.getdCPU() : null);
+        firebaseAnalytics.setUserProperty("device_tags", (enabled) ? analytics.getdTags() : null);
+        firebaseAnalytics.setUserProperty("app_version_code", (enabled) ? Integer.toString(analytics.getAppVerCode()) : null);
+        firebaseAnalytics.setUserProperty("android_sec_patch", (enabled) ? analytics.getSdkPatch() : null);
+        firebaseAnalytics.setUserProperty("AndroidOS", (enabled) ? Integer.toString(analytics.getSdkver()) : null);
     }
 }

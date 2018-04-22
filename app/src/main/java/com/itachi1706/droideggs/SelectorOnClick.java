@@ -6,11 +6,13 @@ import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
 import android.graphics.drawable.Icon;
 import android.os.Build;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.itachi1706.droideggs.GingerbreadEgg.PlatLogoActivityGINGERBREAD;
 import com.itachi1706.droideggs.HoneycombEgg.PlatLogoActivityHONEYCOMB;
 import com.itachi1706.droideggs.IceCreamSandwichEgg.PlatLogoActivityICS;
@@ -117,6 +119,14 @@ public class SelectorOnClick implements AdapterView.OnItemClickListener {
         }
         if (selectedEgg != null) {
             view.getContext().startActivity(selectedEgg);
+
+            // Firebase Analytics Event Logging
+            FirebaseAnalytics analytics = FirebaseAnalytics.getInstance(view.getContext());
+            Bundle bundle = new Bundle();
+            bundle.putString(FirebaseAnalytics.Param.ITEM_ID, version_name[position]);
+            bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "egg_select");
+            analytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+            Log.i("Firebase", "Logged Egg Selected: " + version_name[position]);
 
             // Add dynamic shortcuts
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {

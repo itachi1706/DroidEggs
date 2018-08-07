@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.itachi1706.droideggs"
-    android:installLocation="auto" >
+    android:installLocation="auto"> <!-- SDK Use required by Octo -->
+    <uses-sdk tools:overrideLibrary="android.support.dynamicanimation" />
 
     <!-- Permission required by Nyandroid -->
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -11,73 +12,76 @@
     <uses-permission android:name="android.permission.SUBSTITUTE_NOTIFICATION_APP_NAME" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-    <!-- SDK Use required by Octo -->
-    <uses-sdk tools:overrideLibrary="android.support.dynamicanimation" />
-
-    <meta-data android:name="firebase_crashlytics_collection_enabled" android:value="false" />
+    <meta-data
+        android:name="firebase_crashlytics_collection_enabled"
+        android:value="false" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:theme="@style/AppTheme">
         <activity
             android:name=".MainScreen"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <meta-data android:name="android.app.shortcuts" android:resource="@xml/static_shortcuts"/>
-        </activity>
 
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/static_shortcuts" />
+        </activity>
         <activity
             android:name=".MainSettings"
-            android:label="@string/title_activity_main_settings" >
-        </activity>
-
+            android:label="@string/title_activity_main_settings"></activity>
         <activity android:name=".CurrentEgg" />
 
         <!-- Oreo MR1 Egg Activities -->
-        <activity android:name=".OreoMR1Egg.PlatLogoActivityOreoMR1"
-            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
+        <activity
+            android:name=".OreoMR1Egg.PlatLogoActivityOreoMR1"
             android:configChanges="orientation|keyboardHidden"
-            android:process=":ui" />
+            android:process=":ui"
+            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen" />
 
         <!-- Oreo Egg Activities -->
-        <activity android:name=".OreoEgg.PlatLogoActivityOreo"
-            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
+        <activity
+            android:name=".OreoEgg.PlatLogoActivityOreo"
             android:configChanges="orientation|keyboardHidden"
-            android:process=":ui" />
-
-        <activity android:name=".OreoEgg.EasterEgg.octo.Ocquarium"
-            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
-            android:label="@string/app_name" />
+            android:process=":ui"
+            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen" />
+        <activity
+            android:name=".OreoEgg.EasterEgg.octo.Ocquarium"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen" />
 
         <!-- Nougat Egg Activities -->
-        <activity android:name=".NougatEgg.PlatLogoActivityNougat"
-            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
+        <activity
+            android:name=".NougatEgg.PlatLogoActivityNougat"
             android:configChanges="orientation|keyboardHidden"
-            android:process=":ui" />
+            android:process=":ui"
+            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen" />
 
         <!-- FileProvider for sending pictures -->
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.appupdater.provider"
-            android:grantUriPermissions="true"
-            android:exported="false">
+            android:exported="false"
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/filepaths"
                 tools:replace="android:resource" />
-            </provider>
+        </provider>
 
         <!-- Long press the QS tile to get here -->
-        <activity android:name=".NougatEgg.EasterEgg.neko.NekoLand"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:label="@string/app_name">
+        <activity
+            android:name=".NougatEgg.EasterEgg.neko.NekoLand"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE_PREFERENCES" />
             </intent-filter>
@@ -87,65 +91,66 @@
         <service
             android:name=".NougatEgg.EasterEgg.neko.NekoService"
             android:enabled="true"
-            android:permission="android.permission.BIND_JOB_SERVICE"
-            android:exported="true" />
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
 
         <!-- Used to show over lock screen -->
-        <activity android:name=".NougatEgg.EasterEgg.neko.NekoLockedActivity"
+        <activity
+            android:name=".NougatEgg.EasterEgg.neko.NekoLockedActivity"
             android:excludeFromRecents="true"
-            android:theme="@style/AppTheme.Dialog.NoActionBar"
-            android:showOnLockScreen="true" />
+            android:showOnLockScreen="true"
+            android:theme="@style/AppTheme.Dialog.NoActionBar" />
 
         <!-- Used to enable easter egg -->
-        <activity android:name=".NougatEgg.EasterEgg.neko.NekoActivationActivity"
+        <activity
+            android:name=".NougatEgg.EasterEgg.neko.NekoActivationActivity"
             android:excludeFromRecents="true"
             android:theme="@style/AppTheme.NoDisplay" />
 
         <!-- The quick settings tile, disabled by default -->
         <service
             android:name=".NougatEgg.EasterEgg.neko.NekoTile"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
-            android:icon="@drawable/nougat_stat_icon"
             android:enabled="false"
-            android:label="@string/nougat_default_tile_name">
+            android:icon="@drawable/nougat_stat_icon"
+            android:label="@string/nougat_default_tile_name"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
         </service>
 
         <!-- NDP Egg Activities -->
-        <activity android:name=".NDPEgg.PlatLogoActivityNDP"
-            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
+        <activity
+            android:name=".NDPEgg.PlatLogoActivityNDP"
             android:configChanges="orientation|keyboardHidden"
-            android:process=":ui">
-        </activity>
+            android:process=":ui"
+            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"></activity>
 
         <!-- Marshmallow Egg Activities -->
-        <activity android:name=".MarshmallowEgg.PlatLogoActivityMARSHMALLOW"
-            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
+        <activity
+            android:name=".MarshmallowEgg.PlatLogoActivityMARSHMALLOW"
             android:configChanges="orientation|keyboardHidden"
-            android:process=":ui">
-        </activity>
-        <activity android:name=".MarshmallowEgg.MLandActivity"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:process=":ui"
+            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"></activity>
+        <activity
+            android:name=".MarshmallowEgg.MLandActivity"
+            android:excludeFromRecents="true"
             android:exported="true"
+            android:hardwareAccelerated="true"
             android:icon="@drawable/marshmallow_icon"
             android:label="@string/title_activity_plat_logo_activity_marshmallow_mland"
-            android:hardwareAccelerated="true"
             android:launchMode="singleInstance"
-            android:screenOrientation="locked"
             android:process=":sweetsweetdesserts"
-            android:excludeFromRecents="true">
-        </activity>
+            android:screenOrientation="locked"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <!-- MNC Egg Activity -->
         <activity
             android:name=".MNCEgg.PlatLogoActivityMNC"
-            android:label="@string/title_activity_plat_logo_activity_mnc"
             android:configChanges="orientation|keyboardHidden"
+            android:label="@string/title_activity_plat_logo_activity_mnc"
             android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
-            tools:ignore="InnerclassSeparator">
-        </activity>
+            tools:ignore="InnerclassSeparator"></activity>
 
         <!-- Lollipop Easter Egg Activities -->
         <activity
@@ -157,23 +162,20 @@
             android:process=":flappydroid"
             android:screenOrientation="locked"
             android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="InnerclassSeparator" >
-        </activity>
+            tools:ignore="InnerclassSeparator"></activity>
         <activity
             android:name=".LollipopEgg.PlatLogoActivityLOLLIPOP"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_activity_plat_logo_activity_lollipop"
             android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
-            tools:ignore="InnerclassSeparator" >
-        </activity>
+            tools:ignore="InnerclassSeparator"></activity>
 
         <!-- KitKat Egg Activity -->
         <activity
             android:name=".KitKatEgg.PlatLogoActivityKITKAT"
             android:label="@string/title_activity_plat_logo_activity_kitkat"
             android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
-            tools:ignore="InnerclassSeparator" >
-        </activity>
+            tools:ignore="InnerclassSeparator"></activity>
         <activity
             android:name=".KitKatEgg.DessertCase"
             android:exported="true"
@@ -183,8 +185,7 @@
             android:process=":sweetsweetdesserts"
             android:screenOrientation="locked"
             android:theme="@style/AppTheme.NoActionBar.FullScreen"
-            tools:ignore="InnerclassSeparator" >
-        </activity>
+            tools:ignore="InnerclassSeparator"></activity>
         <!-- a gallery of delicious treats -->
         <service
             android:name=".KitKatEgg.DessertCaseDream"
@@ -193,7 +194,7 @@
             android:exported="true"
             android:label="@string/dessert_case"
             android:process=":sweetsweetdesserts"
-            tools:ignore="ExportedService,InnerclassSeparator" >
+            tools:ignore="ExportedService,InnerclassSeparator">
             <intent-filter>
                 <action android:name="android.service.dreams.DreamService" />
 
@@ -206,8 +207,7 @@
             android:name=".JellyBeanEgg.PlatLogoActivityJELLYBEAN"
             android:label="@string/title_activity_plat_logo_activity_jellybean"
             android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
-            tools:ignore="InnerclassSeparator" >
-        </activity>
+            tools:ignore="InnerclassSeparator"></activity>
         <activity
             android:name=".JellyBeanEgg.BeanBag"
             android:excludeFromRecents="true"
@@ -218,16 +218,14 @@
             android:launchMode="singleInstance"
             android:process=":beanbag"
             android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
-            tools:ignore="InnerclassSeparator" >
-        </activity>
+            tools:ignore="InnerclassSeparator"></activity>
 
         <!-- Ice Cream Sandwich Egg Activities -->
         <activity
             android:name=".IceCreamSandwichEgg.PlatLogoActivityICS"
             android:label="@string/title_activity_plat_logo_activity_ics"
             android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
-            tools:ignore="InnerclassSeparator" >
-        </activity>
+            tools:ignore="InnerclassSeparator"></activity>
         <activity
             android:name=".IceCreamSandwichEgg.Nyandroid"
             android:excludeFromRecents="true"
@@ -237,24 +235,22 @@
             android:launchMode="singleInstance"
             android:process=":nyandroid"
             android:theme="@style/AppTheme.NoActionBar.FullScreen"
-            tools:ignore="InnerclassSeparator" >
-        </activity>
+            tools:ignore="InnerclassSeparator"></activity>
 
         <!-- Honeycomb Egg Activity -->
         <activity
             android:name=".HoneycombEgg.PlatLogoActivityHONEYCOMB"
             android:label="@string/title_activity_plat_logo_activity_honeycomb"
             android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
-            tools:ignore="InnerclassSeparator" >
-        </activity>
+            tools:ignore="InnerclassSeparator"></activity>
 
         <!-- Gingerbread Egg Activity -->
         <activity
             android:name=".GingerbreadEgg.PlatLogoActivityGINGERBREAD"
             android:label="@string/title_activity_plat_logo_activity_gingerbread"
             android:theme="@style/AppTheme.NoActionBar.FullScreen"
-            tools:ignore="InnerclassSeparator" >
-        </activity>
+            tools:ignore="InnerclassSeparator"></activity>
+        <activity android:name=".PieEgg.PlatLogoActivityPie"></activity>
     </application>
 
 </manifest>

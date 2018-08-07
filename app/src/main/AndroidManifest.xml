@@ -40,6 +40,12 @@
             android:label="@string/title_activity_main_settings"></activity>
         <activity android:name=".CurrentEgg" />
 
+        <!-- Pie Egg Activities -->
+        <activity android:name=".PieEgg.PlatLogoActivityPie"
+            android:configChanges="orientation|keyboardHidden"
+            android:process=":ui"
+            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"/>
+
         <!-- Oreo MR1 Egg Activities -->
         <activity
             android:name=".OreoMR1Egg.PlatLogoActivityOreoMR1"
@@ -250,7 +256,6 @@
             android:label="@string/title_activity_plat_logo_activity_gingerbread"
             android:theme="@style/AppTheme.NoActionBar.FullScreen"
             tools:ignore="InnerclassSeparator"></activity>
-        <activity android:name=".PieEgg.PlatLogoActivityPie"></activity>
     </application>
 
 </manifest>

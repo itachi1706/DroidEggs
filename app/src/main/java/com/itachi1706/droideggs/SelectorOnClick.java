@@ -109,19 +109,19 @@ public class SelectorOnClick implements AdapterView.OnItemClickListener {
                 if (Build.VERSION.SDK_INT >= 21)
                     selectedEgg = new Intent(view.getContext(), PlatLogoActivityOreo.class);
                 else
-                    MainScreen.unableToAccessEasterEgg("OREO");
+                    MainScreen.unableToAccessEasterEgg("LOLLIPOP");
                 break;
             case "O_MR1":
                 if (Build.VERSION.SDK_INT >= 21)
                     selectedEgg = new Intent(view.getContext(), PlatLogoActivityOreoMR1.class);
                 else
-                    MainScreen.unableToAccessEasterEgg("OREO");
+                    MainScreen.unableToAccessEasterEgg("LOLLIPOP");
                 break;
             case "P":
                 if (Build.VERSION.SDK_INT >= 21)
                     selectedEgg = new Intent(view.getContext(), PlatLogoActivityPie.class);
                 else
-                    MainScreen.unableToAccessEasterEgg("OREO");
+                    MainScreen.unableToAccessEasterEgg("LOLLIPOP");
                 break;
         }
         if (selectedEgg != null) {

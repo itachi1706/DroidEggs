@@ -39,3 +39,4 @@ proguard/
 
 *.iml
 app/google-services.json
+app/release/output.json

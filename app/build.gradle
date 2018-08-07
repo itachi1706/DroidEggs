@@ -12,7 +12,7 @@ android {
         applicationId "com.itachi1706.droideggs"
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 148
+        versionCode 149
         versionName "3.1.0"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"

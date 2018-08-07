@@ -77,9 +77,9 @@
         <item>Lollipop</item>
         <item>Lollipop</item>
         <item>Nougat</item>
-        <item>Oreo</item>
-        <item>Oreo</item>
-        <item>Oreo</item>
+        <item>Lollipop</item>
+        <item>Lollipop</item>
+        <item>Lollipop</item>
     </string-array>
 
     <integer-array name="android_egg_require_min_sdk">

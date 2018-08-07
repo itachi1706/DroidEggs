@@ -14,6 +14,7 @@
         <item>Nougat (7.0)</item>
         <item>Oreo (8.0)</item>
         <item>Oreo (8.1)</item>
+        <item>Pie (9.0)</item>
     </string-array>
 
     <string-array name="legacy_version_with_egg_code">
@@ -29,6 +30,7 @@
         <item>N</item>
         <item>O</item>
         <item>O_MR1</item>
+        <item>P</item>
     </string-array>
 
     <!-- New Method -->
@@ -45,6 +47,7 @@
         <item>Nougat</item>
         <item>Oreo</item>
         <item>Oreo</item>
+        <item>Pie</item>
     </string-array>
 
     <string-array name="android_ver_range">
@@ -60,6 +63,7 @@
         <item>7.0 – 7.1.2</item>
         <item>8.0</item>
         <item>8.1</item>
+        <item>9.0</item>
     </string-array>
 
     <string-array name="android_egg_require">
@@ -75,6 +79,7 @@
         <item>Nougat</item>
         <item>Oreo</item>
         <item>Oreo</item>
+        <item>Oreo</item>
     </string-array>
 
     <integer-array name="android_egg_require_min_sdk">
@@ -88,6 +93,7 @@
         <item>21</item>
         <item>21</item>
         <item>24</item>
+        <item>21</item>
         <item>21</item>
         <item>21</item>
     </integer-array>

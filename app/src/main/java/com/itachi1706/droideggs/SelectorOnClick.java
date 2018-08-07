@@ -25,6 +25,7 @@ import com.itachi1706.droideggs.NDPEgg.PlatLogoActivityNDP;
 import com.itachi1706.droideggs.NougatEgg.PlatLogoActivityNougat;
 import com.itachi1706.droideggs.OreoEgg.PlatLogoActivityOreo;
 import com.itachi1706.droideggs.OreoMR1Egg.PlatLogoActivityOreoMR1;
+import com.itachi1706.droideggs.PieEgg.PlatLogoActivityPie;
 
 import java.util.LinkedList;
 
@@ -113,6 +114,12 @@ public class SelectorOnClick implements AdapterView.OnItemClickListener {
             case "O_MR1":
                 if (Build.VERSION.SDK_INT >= 21)
                     selectedEgg = new Intent(view.getContext(), PlatLogoActivityOreoMR1.class);
+                else
+                    MainScreen.unableToAccessEasterEgg("OREO");
+                break;
+            case "P":
+                if (Build.VERSION.SDK_INT >= 21)
+                    selectedEgg = new Intent(view.getContext(), PlatLogoActivityPie.class);
                 else
                     MainScreen.unableToAccessEasterEgg("OREO");
                 break;

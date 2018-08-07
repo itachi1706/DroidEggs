@@ -48,7 +48,6 @@ android {
 
 ext {
     supportLibraryVersion = '27.1.1'
-    playServicesVersion = '15.0.0'
 }
 
 dependencies {
@@ -61,9 +60,9 @@ dependencies {
     implementation "com.android.support:support-v4:$supportLibraryVersion"
     implementation "com.android.support:support-dynamic-animation:$supportLibraryVersion"
     implementation 'de.psdev.licensesdialog:licensesdialog:1.8.3'
-    implementation "com.google.firebase:firebase-core:$playServicesVersion"
-    implementation "com.google.firebase:firebase-perf:$playServicesVersion"
-    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.1'
+    implementation 'com.google.firebase:firebase-core:16.0.1'
+    implementation 'com.google.firebase:firebase-perf:16.0.0'
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.4'
     implementation project(':appupdater')
 }
 apply plugin: 'com.google.gms.google-services'

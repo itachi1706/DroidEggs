@@ -25,7 +25,7 @@
         <CheckBoxPreference
             android:key="actual_neko_egg"
             android:title="Launch actual Android N Easter Egg"
-            android:summary="Launches the actual Easter Egg for Android N as if you have tapped the version number on an Android N device (Android 7 and above only)"
+            android:summary="Launches the actual Easter Egg for Android N as if you have tapped the version number on an Android N device (Android 7 &amp; 8 only)"
             android:defaultValue="false" />
 
         <CheckBoxPreference

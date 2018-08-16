@@ -114,7 +114,7 @@ public class PlatLogoActivityNougat extends AppCompatActivity {
                 im.post(() -> {
                     try {
                         Intent neko;
-                        if (realNeko && (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)) {
+                        if (realNeko && (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && Build.VERSION.SDK_INT < Build.VERSION_CODES.P)) {
                             neko = new Intent();
                             neko.setComponent(new ComponentName("com.android.egg", "com.android.egg.neko.NekoActivationActivity"));
                         } else {

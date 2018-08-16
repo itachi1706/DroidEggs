@@ -18,6 +18,7 @@ import com.itachi1706.droideggs.MarshmallowEgg.PlatLogoActivityMARSHMALLOW;
 import com.itachi1706.droideggs.NougatEgg.PlatLogoActivityNougat;
 import com.itachi1706.droideggs.OreoEgg.PlatLogoActivityOreo;
 import com.itachi1706.droideggs.OreoMR1Egg.PlatLogoActivityOreoMR1;
+import com.itachi1706.droideggs.PieEgg.PlatLogoActivityPie;
 
 /**
  * Created by Kenneth on 20/4/2018.
@@ -32,6 +33,8 @@ public class CurrentEgg extends AppCompatActivity {
         Intent errorIntent = new Intent();
         if (Build.VERSION.SDK_INT >= 99999) // ??? (Future P)
             errorIntent.putExtra("class", "comingsoon");
+        else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) // Pie
+            startActivity(new Intent(this, PlatLogoActivityPie.class));
         else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) // Nougat
             startActivity(new Intent(this, PlatLogoActivityOreoMR1.class));
         else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) // Nougat
@@ -50,7 +53,6 @@ public class CurrentEgg extends AppCompatActivity {
         else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) //Jelly Bean
             startActivity(new Intent(this, PlatLogoActivityJELLYBEAN.class));
         else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) { //ICS
-            //weird("ICE CREAM SANDWICH", "JELLY BEAN");
             errorIntent.putExtra("class", "weird");
             errorIntent.putExtra("title", "ICE CREAM SANDWICH"); // ICS with JB usage
             errorIntent.putExtra("body", "JELLY BEAN");

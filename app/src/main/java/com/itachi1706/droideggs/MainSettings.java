@@ -36,7 +36,6 @@ public class MainSettings extends AppCompatActivity {
      * This fragment shows general preferences only. It is used when the
      * activity is showing a two-pane settings UI.
      */
-    @SuppressWarnings("ConstantConditions")
     public static class GeneralPreferenceFragment extends EasterEggResMusicPrefFragment {
         @Override
         public void onCreate(Bundle savedInstanceState) {

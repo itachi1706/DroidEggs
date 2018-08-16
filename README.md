@@ -19,4 +19,10 @@ This application is licensed under the *Apache License 2.0* as it contains files
 | Android 4.1 JELLY BEAN | Bean Bag | DONE |
 | Android 4.4 KITKAT | Dessert Case | DONE |
 | Android 5.0 LOLLIPOP | (LLand) Flappy Droid | DONE |
-| Android MNC Preview MACADAMIA NUT COOKIE | ¯\\\_\(ツ\)\_/¯ | TODO |
+| Android MNC Preview MACADAMIA NUT COOKIE | ¯\\\_\(ツ\)\_/¯ | DONE |
+| Android 6.0 MARSHMALLOW | (MLand) Flappy Droid Multiplayer | DONE |
+| Android NDP Preview | Namey McNameFace | DONE |
+| Android 7.0 NOUGAT | Android Neko | DONE |
+| Android 8.0 OREO | Android Octo | DONE |
+| Android 8.1 OREO_MR1 | Android Octo | DONE |
+| Android 9.0 PIE | Swirly P | DONE (INCOMPLETE) |

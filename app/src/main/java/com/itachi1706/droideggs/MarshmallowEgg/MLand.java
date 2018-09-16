@@ -938,6 +938,7 @@ public class MLand extends FrameLayout {
             super(context);
             setBackgroundResource(R.drawable.marshmallow_android);
             getBackground().setTintMode(PorterDuff.Mode.SRC_ATOP);
+            setBackgroundTintMode(PorterDuff.Mode.SRC_ATOP);
             color = sColors[(sNextColor++%sColors.length)];
             getBackground().setTint(color);
             setOutlineProvider(new ViewOutlineProvider() {

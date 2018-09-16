@@ -12,8 +12,8 @@ android {
         applicationId "com.itachi1706.droideggs"
         minSdkVersion 15
         targetSdkVersion 28
-        versionCode 151
-        versionName "3.1.1"
+        versionCode 157
+        versionName "3.1.2"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         resValue "string", "tray__authority", "${applicationId}.tray"
@@ -60,9 +60,9 @@ dependencies {
     implementation "com.android.support:support-v4:$supportLibraryVersion"
     implementation "com.android.support:support-dynamic-animation:$supportLibraryVersion"
     implementation 'de.psdev.licensesdialog:licensesdialog:1.8.3'
-    implementation 'com.google.firebase:firebase-core:16.0.1'
+    implementation 'com.google.firebase:firebase-core:16.0.3'
     implementation 'com.google.firebase:firebase-perf:16.1.0'
-    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.4'
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.5'
     implementation project(':appupdater')
 }
 apply plugin: 'com.google.gms.google-services'

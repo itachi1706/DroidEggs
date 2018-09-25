@@ -16,8 +16,8 @@
 
 package com.itachi1706.droideggs.MarshmallowEgg;
 
-import android.support.annotation.ColorInt;
-import android.support.annotation.Size;
+import androidx.annotation.ColorInt;
+import androidx.annotation.Size;
 
 /**
  * Created by Kenneth on 7/10/2015.

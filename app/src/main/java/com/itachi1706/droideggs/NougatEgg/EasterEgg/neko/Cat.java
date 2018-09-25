@@ -30,7 +30,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
+import androidx.core.app.NotificationCompat;
 
 import com.itachi1706.droideggs.FirebaseLogger;
 import com.itachi1706.droideggs.R;

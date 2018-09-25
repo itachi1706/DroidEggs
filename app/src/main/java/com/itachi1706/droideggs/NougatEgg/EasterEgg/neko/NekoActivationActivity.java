@@ -16,7 +16,7 @@ package com.itachi1706.droideggs.NougatEgg.EasterEgg.neko;
 
 import android.content.ComponentName;
 import android.content.pm.PackageManager;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 

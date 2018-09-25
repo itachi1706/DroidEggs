@@ -18,7 +18,7 @@ package com.itachi1706.droideggs.KitKatEgg;
 
 import android.content.ComponentName;
 import android.content.pm.PackageManager;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 
 public class DessertCase extends AppCompatActivity {

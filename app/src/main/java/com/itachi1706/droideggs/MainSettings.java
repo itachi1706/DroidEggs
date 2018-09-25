@@ -16,7 +16,7 @@ package com.itachi1706.droideggs;
 
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.itachi1706.appupdater.EasterEggResMusicPrefFragment;
 import com.itachi1706.appupdater.SettingsInitializer;

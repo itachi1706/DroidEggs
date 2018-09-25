@@ -30,12 +30,12 @@ import android.graphics.RectF;
 import android.graphics.Region;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.animation.DynamicAnimation;
-import android.support.animation.FloatValueHolder;
-import android.support.animation.SpringAnimation;
-import android.support.animation.SpringForce;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.dynamicanimation.animation.DynamicAnimation;
+import androidx.dynamicanimation.animation.FloatValueHolder;
+import androidx.dynamicanimation.animation.SpringAnimation;
+import androidx.dynamicanimation.animation.SpringForce;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Created by Kenneth on 2/9/2017.

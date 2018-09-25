@@ -17,8 +17,8 @@ package com.itachi1706.droideggs.NougatEgg.EasterEgg.neko;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.WindowManager;
 
 /**

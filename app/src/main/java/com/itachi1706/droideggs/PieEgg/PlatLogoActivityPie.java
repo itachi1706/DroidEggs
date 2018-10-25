@@ -29,6 +29,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -36,6 +37,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.itachi1706.droideggs.PieEgg.EasterEgg.paint.PaintActivity;
 
 import org.json.JSONObject;
@@ -240,7 +242,13 @@ public class PlatLogoActivityPie extends AppCompatActivity {
         }
         try {
             Intent pie = new Intent(this, PaintActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(pie);
+            // MAKE SURE YOU ARE AT LEAST NOUGAT (API 24)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+                startActivity(pie);
+            else {
+                Snackbar.make(findViewById(android.R.id.content), "Your version of Android is too low to advance further. Requires Android 7.0 Nougat to advance", Snackbar.LENGTH_LONG).show();
+                return;
+            }
         } catch (ActivityNotFoundException ex) {
             Log.e("PlatLogoActivity", "No more eggs.");
         }

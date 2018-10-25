@@ -28,6 +28,7 @@ import android.view.WindowInsets
 import java.util.concurrent.TimeUnit
 import android.util.Log
 import android.provider.Settings.System
+import androidx.annotation.RequiresApi
 
 import org.json.JSONObject
 
@@ -39,6 +40,8 @@ fun invlerp(x: Float, a: Float, b: Float): Float {
         (x - a) / (b - a)
     } else 1.0f
 }
+
+@RequiresApi(21)
 public class Painting : View, SpotFilter.Plotter {
     companion object {
         val FADE_MINS = TimeUnit.MINUTES.toMillis(3) // about how long a drawing should last

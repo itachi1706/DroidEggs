@@ -25,13 +25,15 @@ import android.graphics.drawable.Drawable
 import android.text.TextPaint
 import android.transition.ChangeBounds
 import android.transition.Transition
-import android.transition.TransitionListenerAdapter
 import android.transition.TransitionManager
 import android.util.AttributeSet
 import android.view.*
 import android.view.animation.OvershootInterpolator
 import android.widget.FrameLayout
+import androidx.annotation.RequiresApi
+import com.itachi1706.droideggs.forwardPortedCode.TransitionListenerAdapter
 
+@RequiresApi(21)
 class ToolbarView : FrameLayout {
     var inTransition = false
     var transitionListener: Transition.TransitionListener = object : TransitionListenerAdapter() {

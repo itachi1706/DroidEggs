@@ -34,11 +34,18 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Magnifier;
+
+import com.itachi1706.droideggs.R;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.stream.IntStream;
 
+import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
+
+@RequiresApi(28)
 public class PaintActivity extends Activity {
     private static final float MAX_BRUSH_WIDTH_DP = 100f;
     private static final float MIN_BRUSH_WIDTH_DP = 1f;
@@ -120,14 +127,14 @@ public class PaintActivity extends Activity {
         return a + (b-a) * f;
     }
     void setupViews(Painting oldPainting) {
-        setContentView(R.layout.activity_paint);
+        setContentView(R.layout.pie_activity_paint);
         painting = oldPainting != null ? oldPainting : new Painting(this);
         ((FrameLayout) findViewById(R.id.contentView)).addView(painting,
                 new FrameLayout.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.MATCH_PARENT));
-        painting.setPaperColor(getColor(R.color.paper_color));
-        painting.setPaintColor(getColor(R.color.paint_color));
+        painting.setPaperColor(ContextCompat.getColor(getApplicationContext(), R.color.paper_color));
+        painting.setPaintColor(ContextCompat.getColor(getApplicationContext(),R.color.paint_color));
         toolbar = findViewById(R.id.toolbar);
         brushes = findViewById(R.id.brushes);
         colors = findViewById(R.id.colors);
@@ -189,9 +196,9 @@ public class PaintActivity extends Activity {
             }
         });
         widthButtonDrawable = new BrushPropertyDrawable(this);
-        widthButtonDrawable.setFrameColor(getColor(R.color.toolbar_icon_color));
+        widthButtonDrawable.setFrameColor(ContextCompat.getColor(getApplicationContext(),R.color.toolbar_icon_color));
         colorButtonDrawable = new BrushPropertyDrawable(this);
-        colorButtonDrawable.setFrameColor(getColor(R.color.toolbar_icon_color));
+        colorButtonDrawable.setFrameColor(ContextCompat.getColor(getApplicationContext(),R.color.toolbar_icon_color));
         ((ImageButton) findViewById(R.id.btnBrush)).setImageDrawable(widthButtonDrawable);
         ((ImageButton) findViewById(R.id.btnColor)).setImageDrawable(colorButtonDrawable);
         refreshBrushAndColor();
@@ -203,16 +210,16 @@ public class PaintActivity extends Activity {
         if (brushes.getChildCount() == 0) {
             for (int i = 0; i < NUM_BRUSHES; i++) {
                 final BrushPropertyDrawable icon = new BrushPropertyDrawable(this);
-                icon.setFrameColor(getColor(R.color.toolbar_icon_color));
+                icon.setFrameColor(ContextCompat.getColor(getApplicationContext(),R.color.toolbar_icon_color));
                 // exponentially increasing brush size
                 final float width = lerp(
                         (float) Math.pow((float) i / NUM_BRUSHES, 2f), minBrushWidth,
                         maxBrushWidth);
                 icon.setWellScale(width / maxBrushWidth);
-                icon.setWellColor(getColor(R.color.toolbar_icon_color));
+                icon.setWellColor(ContextCompat.getColor(getApplicationContext(),R.color.toolbar_icon_color));
                 final ImageButton button = new ImageButton(this);
                 button.setImageDrawable(icon);
-                button.setBackground(getDrawable(R.drawable.toolbar_button_bg));
+                button.setBackground(getDrawable(R.drawable.pie_toolbar_button_bg));
                 button.setOnClickListener(
                         new View.OnClickListener() {
                             @Override
@@ -233,11 +240,11 @@ public class PaintActivity extends Activity {
                     Arrays.stream(pal.getColors())
             ).toArray()) {
                 final BrushPropertyDrawable icon = new BrushPropertyDrawable(this);
-                icon.setFrameColor(getColor(R.color.toolbar_icon_color));
+                icon.setFrameColor(ContextCompat.getColor(getApplicationContext(),R.color.toolbar_icon_color));
                 icon.setWellColor(c);
                 final ImageButton button = new ImageButton(this);
                 button.setImageDrawable(icon);
-                button.setBackground(getDrawable(R.drawable.toolbar_button_bg));
+                button.setBackground(getDrawable(R.drawable.pie_toolbar_button_bg));
                 button.setOnClickListener(
                         new View.OnClickListener() {
                             @Override

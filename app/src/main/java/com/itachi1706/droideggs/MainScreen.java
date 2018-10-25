@@ -19,8 +19,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -36,6 +34,8 @@ import com.itachi1706.appupdater.Util.AnalyticsHelper;
 
 import java.util.ArrayList;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import io.fabric.sdk.android.Fabric;
 
 public class MainScreen extends AppCompatActivity {
@@ -156,6 +156,16 @@ public class MainScreen extends AppCompatActivity {
                 .setAction("DISMISS", v -> {
 
                 }).show();
+    }
+
+    public static void limitedAccessToEgg(final String SDK_VERSION) {
+        Snackbar.make(staticAct.findViewById(android.R.id.content), "Unable to access egg (INVALID VERSION)", Snackbar.LENGTH_LONG)
+                .setAction("Get Access", v -> new AlertDialog.Builder(staticAct).setMessage("At your current version of Android, you are not able " +
+                        "to experience the full easter egg. You require Android " +
+                        SDK_VERSION + " to access it fully. \n\nHowever, if you wish you are able to access a limited version of the egg by checking " +
+                        "the \"Access Partial Egg\" setting in the app settings")
+                        .setNeutralButton("App Settings", (dialog, which) -> staticAct.startActivity(new Intent(staticAct, MainSettings.class)))
+                        .setPositiveButton("AWWW :(", null).show()).show();
     }
 
     @Override

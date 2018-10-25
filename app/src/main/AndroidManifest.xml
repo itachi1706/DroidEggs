@@ -47,6 +47,11 @@
             android:configChanges="orientation|keyboardHidden"
             android:process=":ui"
             android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"/>
+        <activity
+            android:name=".PieEgg.EasterEgg.paint.PaintActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|uiMode"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.PieEgg" />
 
         <!-- Oreo MR1 Egg Activities -->
         <activity

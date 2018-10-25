@@ -41,6 +41,12 @@
             android:defaultValue="false" />
 
         <CheckBoxPreference
+            android:key="access_partial_egg"
+            android:title="Access Partial Egg"
+            android:summary="Checking this option will allow you to access the Easter Eggs up till the point where you need a later version of Android to access"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference
             android:key="current_num"
             android:title="Use Current Device's Build Number"
             android:summary="Whether the easter eggs should use your phone's Build object or hardcoded values that fits the easter egg selected"

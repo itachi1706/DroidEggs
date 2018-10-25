@@ -17,7 +17,11 @@
 package com.itachi1706.droideggs.PieEgg;
 
 import android.animation.TimeAnimator;
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
@@ -25,12 +29,20 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
-import androidx.appcompat.app.AppCompatActivity;
+import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
+
+import com.google.android.material.snackbar.Snackbar;
+import com.itachi1706.droideggs.PieEgg.EasterEgg.paint.PaintActivity;
+
+import org.json.JSONObject;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Created by Kenneth on 7/8/2018.
@@ -88,7 +100,7 @@ public class PlatLogoActivityPie extends AppCompatActivity {
             darkest = 0;
             for (int i=0; i<slots; i++) {
                 palette[i] = Color.HSVToColor(color);
-                color[0] += 360f/slots;
+                color[0] = (color[0] + 360f/slots) % 360f;
                 if (lum(palette[i]) < lum(palette[darkest])) darkest = i;
             }
             final StringBuilder str = new StringBuilder();
@@ -154,6 +166,7 @@ public class PlatLogoActivityPie extends AppCompatActivity {
             return PixelFormat.UNKNOWN;
         }
     }
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -161,24 +174,85 @@ public class PlatLogoActivityPie extends AppCompatActivity {
         setContentView(layout);
         bg = new PBackground();
         layout.setBackground(bg);
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         layout.setOnTouchListener(new View.OnTouchListener() {
             final MotionEvent.PointerCoords pc0 = new MotionEvent.PointerCoords();
             final MotionEvent.PointerCoords pc1 = new MotionEvent.PointerCoords();
+            double pressure_min, pressure_max;
+            int maxPointers;
+            int tapCount;
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+                final float pressure = event.getPressure();
                 switch (event.getActionMasked()) {
                     case MotionEvent.ACTION_DOWN:
+                        pressure_min = pressure_max = pressure;
+                        // fall through
                     case MotionEvent.ACTION_MOVE:
-                        if (event.getPointerCount() > 1) {
+                        if (pressure < pressure_min) pressure_min = pressure;
+                        if (pressure > pressure_max) pressure_max = pressure;
+                        final int pc = event.getPointerCount();
+                        if (pc > maxPointers) maxPointers = pc;
+                        if (pc > 1) {
                             event.getPointerCoords(0, pc0);
                             event.getPointerCoords(1, pc1);
                             bg.setRadius((float) Math.hypot(pc0.x - pc1.x, pc0.y - pc1.y) / 2f);
                         }
                         break;
+                    case MotionEvent.ACTION_CANCEL:
+                    case MotionEvent.ACTION_UP:
+                        try {
+                            final String touchDataJson = pref.getString("PIE_TOUCH_STATS", null);
+                            final JSONObject touchData = new JSONObject(
+                                    touchDataJson != null ? touchDataJson : "{}");
+                            if (touchData.has("min")) {
+                                pressure_min = Math.min(pressure_min, touchData.getDouble("min"));
+                            }
+                            if (touchData.has("max")) {
+                                pressure_max = Math.max(pressure_max, touchData.getDouble("max"));
+                            }
+                            touchData.put("min", pressure_min);
+                            touchData.put("max", pressure_max);
+                            pref.edit().putString("PIE_TOUCH_STATS", touchDataJson).apply();
+                        } catch (Exception e) {
+                            Log.e("PlatLogoActivity", "Can't write touch settings", e);
+                        }
+                        if (maxPointers == 1) {
+                            tapCount ++;
+                            if (tapCount < 7) {
+                                bg.randomizePalette();
+                            } else {
+                                launchNextStage();
+                            }
+                        } else {
+                            tapCount = 0;
+                        }
+                        maxPointers = 0;
+                        break;
                 }
                 return true;
             }
         });
+    }
+    private void launchNextStage() {
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        if (pref.getLong("P_EGG_MODE", 0) == 0) {
+            // For posterity: the moment this user unlocked the easter egg
+            pref.edit().putLong("P_EGG_MODE", System.currentTimeMillis()).apply();
+        }
+        try {
+            Intent pie = new Intent(this, PaintActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            // MAKE SURE YOU ARE AT LEAST NOUGAT (API 24)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+                startActivity(pie);
+            else {
+                Snackbar.make(findViewById(android.R.id.content), "Your version of Android is too low to advance further. Requires Android 7.0 Nougat to advance", Snackbar.LENGTH_LONG).show();
+                return;
+            }
+        } catch (ActivityNotFoundException ex) {
+            Log.e("PlatLogoActivity", "No more eggs.");
+        }
+        finish();
     }
     @Override
     public void onStart() {

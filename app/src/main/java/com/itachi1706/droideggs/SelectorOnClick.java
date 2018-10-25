@@ -132,9 +132,13 @@ public class SelectorOnClick implements AdapterView.OnItemClickListener {
                     MainScreen.unableToAccessEasterEgg("LOLLIPOP");
                 break;
             case "P":
-                if (Build.VERSION.SDK_INT >= 21)
-                    selectedEgg = new Intent(view.getContext(), PlatLogoActivityPie.class);
-                else
+                if (Build.VERSION.SDK_INT >= 21) {
+                    // Do check and make sure you can access as some part of the egg requires Nougat (24)
+                    if (Build.VERSION.SDK_INT >= 24 || (sp.getBoolean("access_partial_egg", false)))
+                        selectedEgg = new Intent(view.getContext(), PlatLogoActivityPie.class);
+                    else
+                        MainScreen.limitedAccessToEgg("NOUGAT");
+                } else
                     MainScreen.unableToAccessEasterEgg("LOLLIPOP");
                 break;
         }

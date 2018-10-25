@@ -56,8 +56,9 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/pie_toolbar_button_bg"
-            app:srcCompat="@drawable/pie_ic_dropper"
-            android:tint="@color/toolbar_icon_color" />
+            android:tint="@color/toolbar_icon_color"
+            android:src="@drawable/pie_ic_dropper"
+            tools:ignore="VectorDrawableCompat" />
     </LinearLayout>
     <Space
         android:tag="cutoutCenter"
@@ -78,7 +79,8 @@
             android:layout_weight="1"
             android:background="@drawable/pie_toolbar_button_bg"
             android:tint="@color/toolbar_icon_color"
-            app:srcCompat="@drawable/pie_ic_hourglass" />
+            android:src="@drawable/pie_ic_hourglass"
+            tools:ignore="VectorDrawableCompat" />
         <ImageButton
             android:id="@+id/btnClear"
             android:layout_width="48dp"
@@ -86,7 +88,8 @@
             android:layout_weight="1"
             android:background="@drawable/pie_toolbar_button_bg"
             android:tint="@color/toolbar_icon_color"
-            app:srcCompat="@drawable/pie_ic_clear" />
+            android:src="@drawable/pie_ic_clear"
+            tools:ignore="VectorDrawableCompat" />
     </LinearLayout>
     <Space
         android:tag="cutoutRight"

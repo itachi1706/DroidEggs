@@ -17,11 +17,14 @@
 package com.itachi1706.droideggs.PieEgg.EasterEgg.paint
 
 import android.content.Context
+import android.os.Build
 import android.util.AttributeSet
 import android.view.*
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.widget.LinearLayout
+import androidx.annotation.RequiresApi
 
+@RequiresApi(24)
 class CutoutAvoidingToolbar : LinearLayout {
     private var _insets: WindowInsets? = null
     constructor(context: Context) : super(context) {
@@ -35,13 +38,14 @@ class CutoutAvoidingToolbar : LinearLayout {
     }
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
-        adjustLayout()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) adjustLayout()
     }
     override fun onApplyWindowInsets(insets: WindowInsets?): WindowInsets {
         _insets = insets
-        adjustLayout()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) adjustLayout()
         return super.onApplyWindowInsets(insets)
     }
+    @RequiresApi(28)
     fun adjustLayout() {
         _insets?.displayCutout?.boundingRects?.let {
             var cutoutCenter = 0

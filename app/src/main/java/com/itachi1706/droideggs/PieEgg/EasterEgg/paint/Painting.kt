@@ -17,7 +17,6 @@
 package com.itachi1706.droideggs.PieEgg.EasterEgg.paint
 
 import android.content.Context
-import android.content.res.Resources
 import android.graphics.*
 import android.provider.Settings
 import android.util.AttributeSet
@@ -25,12 +24,9 @@ import android.util.DisplayMetrics
 import android.view.MotionEvent
 import android.view.View
 import android.view.WindowInsets
-import java.util.concurrent.TimeUnit
-import android.util.Log
-import android.provider.Settings.System
 import androidx.annotation.RequiresApi
-
 import org.json.JSONObject
+import java.util.concurrent.TimeUnit
 
 fun hypot(x: Float, y: Float): Float {
     return Math.hypot(x.toDouble(), y.toDouble()).toFloat()

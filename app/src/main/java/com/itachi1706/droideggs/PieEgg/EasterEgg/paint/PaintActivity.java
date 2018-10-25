@@ -16,17 +16,12 @@
 
 package com.itachi1706.droideggs.PieEgg.EasterEgg.paint;
 
-import static android.view.MotionEvent.ACTION_CANCEL;
-import static android.view.MotionEvent.ACTION_DOWN;
-import static android.view.MotionEvent.ACTION_MOVE;
-import static android.view.MotionEvent.ACTION_UP;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.res.Configuration;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -38,16 +33,16 @@ import android.widget.Magnifier;
 
 import com.itachi1706.droideggs.R;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Spliterator;
-import java.util.Spliterators;
 import java.util.stream.IntStream;
-import java.util.stream.StreamSupport;
 
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
+
+import static android.view.MotionEvent.ACTION_CANCEL;
+import static android.view.MotionEvent.ACTION_DOWN;
+import static android.view.MotionEvent.ACTION_MOVE;
+import static android.view.MotionEvent.ACTION_UP;
 
 @RequiresApi(24)
 public class PaintActivity extends Activity {
@@ -61,35 +56,32 @@ public class PaintActivity extends Activity {
     private LinearLayout colors = null;
     private Magnifier magnifier = null;
     private boolean sampling = false;
-    private View.OnClickListener buttonHandler = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.btnBrush:
-                    view.setSelected(true);
-                    hideToolbar(colors);
-                    toggleToolbar(brushes);
-                    break;
-                case R.id.btnColor:
-                    view.setSelected(true);
-                    hideToolbar(brushes);
-                    toggleToolbar(colors);
-                    break;
-                case R.id.btnClear:
-                    painting.clear();
-                    break;
-                case R.id.btnSample:
-                    sampling = true;
-                    view.setSelected(true);
-                    break;
-                case R.id.btnZen:
-                    painting.setZenMode(!painting.getZenMode());
-                    view.animate()
-                            .setStartDelay(200)
-                            .setInterpolator(new OvershootInterpolator())
-                            .rotation(painting.getZenMode() ? 0f : 90f);
-                    break;
-            }
+    private View.OnClickListener buttonHandler = view -> {
+        switch (view.getId()) {
+            case R.id.btnBrush:
+                view.setSelected(true);
+                hideToolbar(colors);
+                toggleToolbar(brushes);
+                break;
+            case R.id.btnColor:
+                view.setSelected(true);
+                hideToolbar(brushes);
+                toggleToolbar(colors);
+                break;
+            case R.id.btnClear:
+                painting.clear();
+                break;
+            case R.id.btnSample:
+                sampling = true;
+                view.setSelected(true);
+                break;
+            case R.id.btnZen:
+                painting.setZenMode(!painting.getZenMode());
+                view.animate()
+                        .setStartDelay(200)
+                        .setInterpolator(new OvershootInterpolator())
+                        .rotation(painting.getZenMode() ? 0f : 90f);
+                break;
         }
     };
     private void showToolbar(View bar) {
@@ -108,12 +100,7 @@ public class PaintActivity extends Activity {
                 .translationY(toolbar.getHeight()/2)
                 .alpha(0f)
                 .setDuration(150)
-                .withEndAction(new Runnable() {
-                    @Override
-                    public void run() {
-                        bar.setVisibility(View.GONE);
-                    }
-                })
+                .withEndAction(() -> bar.setVisibility(View.GONE))
                 .start();
     }
     private void toggleToolbar(View bar) {
@@ -130,6 +117,7 @@ public class PaintActivity extends Activity {
     static final float lerp(float f, float a, float b) {
         return a + (b-a) * f;
     }
+    @SuppressLint("ClickableViewAccessibility")
     void setupViews(Painting oldPainting) {
         setContentView(R.layout.pie_activity_paint);
         painting = oldPainting != null ? oldPainting : new Painting(this);
@@ -144,60 +132,51 @@ public class PaintActivity extends Activity {
         colors = findViewById(R.id.colors);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) magnifier = new Magnifier(painting);
         painting.setOnTouchListener(
-                new View.OnTouchListener() {
-                    @Override
-                    public boolean onTouch(View view, MotionEvent event) {
-                        switch (event.getActionMasked()) {
-                            case ACTION_DOWN:
-                            case ACTION_MOVE:
-                                if (sampling) {
-                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) magnifier.show(event.getX(), event.getY());
-                                    colorButtonDrawable.setWellColor(
-                                            painting.sampleAt(event.getX(), event.getY()));
-                                    return true;
-                                }
-                                break;
-                            case ACTION_CANCEL:
-                                if (sampling) {
-                                    findViewById(R.id.btnSample).setSelected(false);
-                                    sampling = false;
-                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) magnifier.dismiss();
-                                }
-                                break;
-                            case ACTION_UP:
-                                if (sampling) {
-                                    findViewById(R.id.btnSample).setSelected(false);
-                                    sampling = false;
-                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) magnifier.dismiss();
-                                    painting.setPaintColor(
-                                            painting.sampleAt(event.getX(), event.getY()));
-                                    refreshBrushAndColor();
-                                }
-                                break;
-                        }
-                        return false; // allow view to continue handling
+                (view, event) -> {
+                    switch (event.getActionMasked()) {
+                        case ACTION_DOWN:
+                        case ACTION_MOVE:
+                            if (sampling) {
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) magnifier.show(event.getX(), event.getY());
+                                colorButtonDrawable.setWellColor(
+                                        painting.sampleAt(event.getX(), event.getY()));
+                                return true;
+                            }
+                            break;
+                        case ACTION_CANCEL:
+                            if (sampling) {
+                                findViewById(R.id.btnSample).setSelected(false);
+                                sampling = false;
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) magnifier.dismiss();
+                            }
+                            break;
+                        case ACTION_UP:
+                            if (sampling) {
+                                findViewById(R.id.btnSample).setSelected(false);
+                                sampling = false;
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) magnifier.dismiss();
+                                painting.setPaintColor(
+                                        painting.sampleAt(event.getX(), event.getY()));
+                                refreshBrushAndColor();
+                            }
+                            break;
                     }
+                    return false; // allow view to continue handling
                 });
         findViewById(R.id.btnBrush).setOnClickListener(buttonHandler);
         findViewById(R.id.btnColor).setOnClickListener(buttonHandler);
         findViewById(R.id.btnClear).setOnClickListener(buttonHandler);
         findViewById(R.id.btnSample).setOnClickListener(buttonHandler);
         findViewById(R.id.btnZen).setOnClickListener(buttonHandler);
-        findViewById(R.id.btnColor).setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                colors.removeAllViews();
-                showToolbar(colors);
-                refreshBrushAndColor();
-                return true;
-            }
+        findViewById(R.id.btnColor).setOnLongClickListener(view -> {
+            colors.removeAllViews();
+            showToolbar(colors);
+            refreshBrushAndColor();
+            return true;
         });
-        findViewById(R.id.btnClear).setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                painting.invertContents();
-                return true;
-            }
+        findViewById(R.id.btnClear).setOnLongClickListener(view -> {
+            painting.invertContents();
+            return true;
         });
         widthButtonDrawable = new BrushPropertyDrawable(this);
         widthButtonDrawable.setFrameColor(ContextCompat.getColor(getApplicationContext(),R.color.toolbar_icon_color));
@@ -225,14 +204,11 @@ public class PaintActivity extends Activity {
                 button.setImageDrawable(icon);
                 button.setBackground(getDrawable(R.drawable.pie_toolbar_button_bg));
                 button.setOnClickListener(
-                        new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                brushes.setSelected(false);
-                                hideToolbar(brushes);
-                                painting.setBrushWidth(width);
-                                refreshBrushAndColor();
-                            }
+                        view -> {
+                            brushes.setSelected(false);
+                            hideToolbar(brushes);
+                            painting.setBrushWidth(width);
+                            refreshBrushAndColor();
                         });
                 brushes.addView(button, button_lp);
             }
@@ -250,14 +226,11 @@ public class PaintActivity extends Activity {
                 button.setImageDrawable(icon);
                 button.setBackground(getDrawable(R.drawable.pie_toolbar_button_bg));
                 button.setOnClickListener(
-                        new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                colors.setSelected(false);
-                                hideToolbar(colors);
-                                painting.setPaintColor(c);
-                                refreshBrushAndColor();
-                            }
+                        view -> {
+                            colors.setSelected(false);
+                            hideToolbar(colors);
+                            painting.setPaintColor(c);
+                            refreshBrushAndColor();
                         });
                 colors.addView(button, button_lp);
             }
@@ -276,13 +249,14 @@ public class PaintActivity extends Activity {
                 setupViews(painting);
                 final View decorView = getWindow().getDecorView();
                 int decorSUIV = decorView.getSystemUiVisibility();
-                if (newNightMode == Configuration.UI_MODE_NIGHT_YES) {
-                    decorView.setSystemUiVisibility(
-                            decorSUIV & ~View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
-                } else {
-                    decorView.setSystemUiVisibility(
-                            decorSUIV | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
-                }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                    if (newNightMode == Configuration.UI_MODE_NIGHT_YES) {
+                            decorView.setSystemUiVisibility(
+                                    decorSUIV & ~View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+                    } else {
+                        decorView.setSystemUiVisibility(
+                                decorSUIV | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+                    }
             }
             nightMode = newNightMode;
         }

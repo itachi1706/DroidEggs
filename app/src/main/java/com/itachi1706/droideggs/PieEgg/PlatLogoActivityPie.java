@@ -17,9 +17,9 @@
 package com.itachi1706.droideggs.PieEgg;
 
 import android.animation.TimeAnimator;
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.ActivityNotFoundException;
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
@@ -29,10 +29,8 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -41,6 +39,8 @@ import android.widget.FrameLayout;
 import com.itachi1706.droideggs.PieEgg.EasterEgg.paint.PaintActivity;
 
 import org.json.JSONObject;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Created by Kenneth on 7/8/2018.
@@ -164,6 +164,7 @@ public class PlatLogoActivityPie extends AppCompatActivity {
             return PixelFormat.UNKNOWN;
         }
     }
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -171,10 +172,8 @@ public class PlatLogoActivityPie extends AppCompatActivity {
         setContentView(layout);
         bg = new PBackground();
         layout.setBackground(bg);
-        final ContentResolver cr = getContentResolver();
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         layout.setOnTouchListener(new View.OnTouchListener() {
-            final String TOUCH_STATS = "touch.stats";
             final MotionEvent.PointerCoords pc0 = new MotionEvent.PointerCoords();
             final MotionEvent.PointerCoords pc1 = new MotionEvent.PointerCoords();
             double pressure_min, pressure_max;
@@ -212,7 +211,7 @@ public class PlatLogoActivityPie extends AppCompatActivity {
                             }
                             touchData.put("min", pressure_min);
                             touchData.put("max", pressure_max);
-                            pref.edit().putString("PIE_TOUCH_STATS", touchDataJson);
+                            pref.edit().putString("PIE_TOUCH_STATS", touchDataJson).apply();
                         } catch (Exception e) {
                             Log.e("PlatLogoActivity", "Can't write touch settings", e);
                         }
@@ -253,12 +252,9 @@ public class PlatLogoActivityPie extends AppCompatActivity {
         bg.randomizePalette();
         anim = new TimeAnimator();
         anim.setTimeListener(
-                new TimeAnimator.TimeListener() {
-                    @Override
-                    public void onTimeUpdate(TimeAnimator animation, long totalTime, long deltaTime) {
-                        bg.setOffset((float) totalTime / 60000f);
-                        bg.invalidateSelf();
-                    }
+                (animation, totalTime, deltaTime) -> {
+                    bg.setOffset((float) totalTime / 60000f);
+                    bg.invalidateSelf();
                 });
         anim.start();
     }

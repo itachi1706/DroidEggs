@@ -20,7 +20,6 @@ import android.content.Context
 import android.graphics.*
 import android.graphics.PixelFormat.TRANSLUCENT
 import android.graphics.drawable.Drawable
-import android.util.DisplayMetrics
 
 class BrushPropertyDrawable : Drawable {
     val framePaint = Paint(Paint.ANTI_ALIAS_FLAG).also {

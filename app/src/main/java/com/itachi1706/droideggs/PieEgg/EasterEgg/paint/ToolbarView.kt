@@ -17,18 +17,9 @@
 package com.itachi1706.droideggs.PieEgg.EasterEgg.paint
 
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.Rect
-import android.graphics.drawable.Drawable
-import android.text.TextPaint
-import android.transition.ChangeBounds
 import android.transition.Transition
-import android.transition.TransitionManager
 import android.util.AttributeSet
-import android.view.*
-import android.view.animation.OvershootInterpolator
+import android.view.WindowInsets
 import android.widget.FrameLayout
 import androidx.annotation.RequiresApi
 import com.itachi1706.droideggs.forwardPortedCode.TransitionListenerAdapter

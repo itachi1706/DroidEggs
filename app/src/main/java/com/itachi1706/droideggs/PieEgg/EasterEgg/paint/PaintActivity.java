@@ -24,6 +24,7 @@ import android.app.Activity;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -40,12 +41,15 @@ import com.itachi1706.droideggs.R;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Spliterator;
+import java.util.Spliterators;
 import java.util.stream.IntStream;
+import java.util.stream.StreamSupport;
 
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 
-@RequiresApi(28)
+@RequiresApi(24)
 public class PaintActivity extends Activity {
     private static final float MAX_BRUSH_WIDTH_DP = 100f;
     private static final float MIN_BRUSH_WIDTH_DP = 1f;
@@ -138,7 +142,7 @@ public class PaintActivity extends Activity {
         toolbar = findViewById(R.id.toolbar);
         brushes = findViewById(R.id.brushes);
         colors = findViewById(R.id.colors);
-        magnifier = new Magnifier(painting);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) magnifier = new Magnifier(painting);
         painting.setOnTouchListener(
                 new View.OnTouchListener() {
                     @Override
@@ -147,7 +151,7 @@ public class PaintActivity extends Activity {
                             case ACTION_DOWN:
                             case ACTION_MOVE:
                                 if (sampling) {
-                                    magnifier.show(event.getX(), event.getY());
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) magnifier.show(event.getX(), event.getY());
                                     colorButtonDrawable.setWellColor(
                                             painting.sampleAt(event.getX(), event.getY()));
                                     return true;
@@ -157,14 +161,14 @@ public class PaintActivity extends Activity {
                                 if (sampling) {
                                     findViewById(R.id.btnSample).setSelected(false);
                                     sampling = false;
-                                    magnifier.dismiss();
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) magnifier.dismiss();
                                 }
                                 break;
                             case ACTION_UP:
                                 if (sampling) {
                                     findViewById(R.id.btnSample).setSelected(false);
                                     sampling = false;
-                                    magnifier.dismiss();
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) magnifier.dismiss();
                                     painting.setPaintColor(
                                             painting.sampleAt(event.getX(), event.getY()));
                                     refreshBrushAndColor();
@@ -237,7 +241,7 @@ public class PaintActivity extends Activity {
             final Palette pal = new Palette(NUM_COLORS);
             for (final int c : IntStream.concat(
                     IntStream.of(Color.BLACK, Color.WHITE),
-                    Arrays.stream(pal.getColors())
+                    Arrays.stream(pal.getColors(), 0, pal.getColors().length)
             ).toArray()) {
                 final BrushPropertyDrawable icon = new BrushPropertyDrawable(this);
                 icon.setFrameColor(ContextCompat.getColor(getApplicationContext(),R.color.toolbar_icon_color));

@@ -13,6 +13,11 @@
 -->
 <resources>
 
+    <!-- Paint App (Pie Egg) -->
+    <color name="toolbar_bg_color">#FFDDDDDD</color>
+    <color name="paper_color">#FFFFFFFF</color>
+    <color name="paint_color">#FF000000</color>
+
     <color name="statusBarColor">@color/green_700</color>
     <color name="primaryDark">@color/green_700</color>
     <color name="primary">@color/green_500</color>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme.PieEgg" parent="@android:style/Theme.DeviceDefault.Light.NoActionBar.Fullscreen">
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+</resources>

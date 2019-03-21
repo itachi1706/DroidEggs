@@ -167,7 +167,7 @@ public class SelectorOnClick implements AdapterView.OnItemClickListener {
                 }
                 selectedEgg.setAction(Intent.ACTION_VIEW);
                 ShortcutInfo newShortcut = new ShortcutInfo.Builder(view.getContext(), "egg-" + version)
-                        .setShortLabel(version_name[position]).setLongLabel("Launch this egg directly")
+                        .setShortLabel(version_name[position]).setLongLabel(version_name[position] + " Egg")
                         .setIcon(Icon.createWithResource(view.getContext(), R.mipmap.ic_launcher_round))
                         .setIntent(selectedEgg).build();
 

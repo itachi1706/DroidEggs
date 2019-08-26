@@ -1,7 +1,7 @@
 language: android
 jdk: oraclejdk8
 sudo: true
-dist: trusty # Use Ubuntu 14.04 as its faster
+dist: trusty
 before_cache:
 - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
 - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
@@ -40,7 +40,7 @@ before_install:
 - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
 - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
 - touch ~/.android/repositories.cfg
-- yes | sdkmanager "platforms;android-28" "system-images;android-23;google_apis;armeabi-v7a" # Temporary fix for checksum mismatch (travis-ci/#8874)
+- yes | sdkmanager "platforms;android-28" "system-images;android-23;google_apis;armeabi-v7a"
 - android list targets
 - chmod +x gradlew
 - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI --tag $ANDROID_TAG
@@ -78,5 +78,5 @@ notifications:
     - "$PRIVATE_EMAIL"
     on_success: change
     on_failure: always
-  slack:
-    secure: ZBsTCx+I4dV8o+oEdJqE2c42IwulqxToRBJCOp8kAmDJQKCz8eO5LEeJabsi83iKcDD5DNQkAE/w7bQSVNdTQV0jwkZfYJ04GnwvgB8zzYLxVDy51m249hR9E3S+ji8QfgSeVkOPS5bKZRTneOptai8WQbhn0EJ05Dx7cdGqwr1tCih2XtD0UW+fYnxGJekXT+ZWk3w6jmrjeNIxKiQzv2ZhYrAkqQPZ37S5KxkEGBt8gDIrCyHJh0COeOHVZPcd+0g8gq5ALGrIv70ni4z8hMltTCLkyXgcftrxfV40yEydRURtV3xgUl11QyUQVXC+vK2RLgVN2Z+FojxUumuDV7aqcEL7ur5sf3MILXueTD1ikBZd6cBhGBOmnmY92N1c5b3k9WE0ndQwnzBU4NgJdUb5Y4ABJQFVvclDUDPJBaJhL6PYrwEpALwPBlEtvFEiA8h1bhyjw9msU0hdr5N10WNr5qRg+ube93X1cR9jZb4o8mP8B95U2+evmevMKm7w45ABQ0B5/YFTMafJN4U4ObX6CGYtAqJU6f6Oi1SAbthDIVd387TrJ9eBSwZcB2BRQJunTsZhXuSSc+gcdQgR2ggKxwR/YpP7fThbhRJvL41bSl3xZF7rOyVnt5DgrERn8PGvB+PwfP2ni/QwqzfOgxKNh+9vG7UZk4qBuDigWqQ=
+  webhooks:
+    secure: ZUAbU53yRQwdM33I6lL0pkZnMy+JEhjSG2USd7Pfe1Cnzv6hhFRwjGkPG3S1oWFxmrmZkI2Q+bVTnWSjhvRO0Wjwu3koj0DZ/RiY8Bj3QDMIZzznF7ws3Y9Al8RCmzEp8RJ1m2D4wLTo8KxknMD9rZgoI7c7xMPlDcLtfJA5lr81ZE+32KzrPYEWrSx66i66XKCdc8GD3f8CYUx1rDPhXIy+WFu4ui9jSgmfJhpWI1DRzMklTJ6wc+vHQ7V3htk7t3uhuvQ4WDum4aNKiA+1iKCTkBkl/a+7zZxRw2NiJ7Hnq7NJCVGmtmUx4guhw9zy4dDKJje1JHTma2xagRruFI5DwmAEZZbK5RQWDEKDe3dW0j7Si+1ekdxAw9YVGYyOIkiAjrdBqt/0wQpIexcXF17ttx5YZfdkPXMQAKBy7HDumD4bCEwgSY+Rep3qwIPxtkvCWnCSPYTyZkpv5EbZWviYrNZFcrwMDCcfQISO8KS9p2jK1jz1K1RoiceZ255Fr283CYKJNKCpAhTKgq9s28VP5py6Qcv6DG0FT++hZqEZYGBOwJpqsH0DZaWcueMLnpI3iyDtQnyRiEk2PBGvUcgXF8WePlvBAHIMPTDKnYMuENVTbwbdyG1aaAF+M0LYt4aW3tdCAcijVTdcEynzfDBDqT3QMUoYXvOLSyu6tK8=

@@ -20,5 +20,5 @@ package com.itachi1706.droideggs;
  */
 public class CommonVariables {
 
-    public static final String BASE_SERVER_URL = "http://api.itachi1706.com/api/appupdatechecker.php?action=androidretrievedata&packagename=";
+    public static final String BASE_SERVER_URL = "https://api.itachi1706.com/api/appupdatechecker.php?action=androidretrievedata&packagename=";
 }

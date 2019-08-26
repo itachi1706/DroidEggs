@@ -81,13 +81,12 @@
         <!-- FileProvider for sending pictures -->
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="${applicationId}.appupdater.provider"
+            android:authorities="${applicationId}.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/filepaths"
-                tools:replace="android:resource" />
+                android:resource="@xml/filepaths" />
         </provider>
 
         <!-- Long press the QS tile to get here -->

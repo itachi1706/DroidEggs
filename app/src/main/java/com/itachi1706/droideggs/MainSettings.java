@@ -41,7 +41,7 @@ public class MainSettings extends AppCompatActivity {
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
-        getFragmentManager().beginTransaction()
+        getSupportFragmentManager().beginTransaction()
                 .replace(android.R.id.content, new GeneralPreferenceFragment())
                 .commit();
     }
@@ -51,14 +51,13 @@ public class MainSettings extends AppCompatActivity {
      * activity is showing a two-pane settings UI.
      */
     public static class GeneralPreferenceFragment extends EasterEggResMusicPrefFragment {
+
         @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
+        public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             addPreferencesFromResource(R.xml.pref_general);
 
-            new SettingsInitializer(getActivity(), R.mipmap.ic_launcher, CommonVariables.BASE_SERVER_URL,
-                    getResources().getString(R.string.update_link), getResources().getString(R.string.link_updates), true)
-                    .explodeUpdaterSettings(this);
+            new SettingsInitializer().setFullscreen(true).explodeUpdaterSettings(getActivity(), R.mipmap.ic_launcher, CommonVariables.BASE_SERVER_URL,
+                    getResources().getString(R.string.update_link), getResources().getString(R.string.link_updates), this);
 
             super.addEggMethods(true, preference -> {
                 new LicensesDialog.Builder(getActivity()).setNotices(R.raw.notices)

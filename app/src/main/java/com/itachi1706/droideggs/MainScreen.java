@@ -65,7 +65,7 @@ public class MainScreen extends AppCompatActivity {
 
         //Check for updates
         new AppUpdateInitializer(this, PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()),
-                R.mipmap.ic_launcher, CommonVariables.BASE_SERVER_URL, true).checkForUpdate(true);
+                R.mipmap.ic_launcher, CommonVariables.BASE_SERVER_URL, true).setOnlyOnWifiCheck(true).checkForUpdate();
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         AnalyticsHelper helper = new AnalyticsHelper(this, true);
@@ -122,6 +122,8 @@ public class MainScreen extends AppCompatActivity {
                     default: noEgg();
                 }
             }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
         }
     }
 

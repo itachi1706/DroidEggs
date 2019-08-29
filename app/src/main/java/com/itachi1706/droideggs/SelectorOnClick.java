@@ -159,15 +159,14 @@ public class SelectorOnClick implements AdapterView.OnItemClickListener {
                 LinkedList<ShortcutInfo> infos = new LinkedList<>(shortcutManager.getDynamicShortcuts());
                 final int shortcutCount = shortcutManager.getMaxShortcutCountPerActivity() - 2;
                 if (infos.size() >= shortcutCount) {
-                    Log.i("ShortcutManager", "Dynamic Shortcuts more than " + shortcutCount
-                            + ". Removing extras");
+                    Log.i("ShortcutManager", "Dynamic Shortcuts more than " + shortcutCount + ". Removing extras");
                     do {
                         infos.removeLast();
                     } while (infos.size() > shortcutCount);
                 }
                 selectedEgg.setAction(Intent.ACTION_VIEW);
                 ShortcutInfo newShortcut = new ShortcutInfo.Builder(view.getContext(), "egg-" + version)
-                        .setShortLabel(version_name[position]).setLongLabel(version_name[position] + " Egg")
+                        .setShortLabel(version_name[position] + " Egg").setLongLabel(version_name[position] + " Egg")
                         .setIcon(Icon.createWithResource(view.getContext(), R.mipmap.ic_launcher_round))
                         .setIntent(selectedEgg).build();
 

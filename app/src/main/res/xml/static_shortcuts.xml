@@ -18,7 +18,7 @@
         android:enabled="true"
         android:icon="@mipmap/ic_launcher_round"
         android:shortcutShortLabel="@string/static_egg_label"
-        android:shortcutLongLabel="@string/static_egg_long_label"
+        android:shortcutLongLabel="@string/static_egg_label"
         android:shortcutDisabledMessage="@string/static_egg_disabled_label"
         tools:ignore="UnusedAttribute">
         <intent

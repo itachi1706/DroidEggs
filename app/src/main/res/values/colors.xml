@@ -21,7 +21,7 @@
     <color name="statusBarColor">@color/green_700</color>
     <color name="primaryDark">@color/green_700</color>
     <color name="primary">@color/green_500</color>
-    <color name="accent">@color/light_green_200</color>
+    <color name="accent">@color/green_200</color>
     <color name="transparent">#00000000</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>

@@ -59,12 +59,12 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.dynamicanimation:dynamicanimation:1.0.0'
+    implementation 'androidx.dynamicanimation:dynamicanimation-ktx:1.0.0-alpha02'
+    implementation 'androidx.preference:preference-ktx:1.1.0-rc01'
     implementation 'de.psdev.licensesdialog:licensesdialog:2.0.0'
-    implementation 'com.google.firebase:firebase-core:17.1.0'
+    implementation 'com.google.firebase:firebase-core:17.2.0'
     implementation 'com.google.firebase:firebase-perf:19.0.0'
     implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
-    implementation 'androidx.preference:preference-ktx:1.1.0-rc01'
     implementation project(':appupdater')
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

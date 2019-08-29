@@ -109,4 +109,15 @@
         <item>21</item>
         <item>21</item>
     </integer-array>
+
+    <string-array name="dark_mode_selector">
+        <item>Light (Default)</item>
+        <item>Dark [BETA]</item>
+        <item>Set by Battery Saver</item>
+    </string-array>
+    <string-array name="dark_mode_selector_option">
+        <item>light</item>
+        <item>dark</item>
+        <item>battery</item>
+    </string-array>
 </resources>

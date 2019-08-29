@@ -24,6 +24,7 @@
     <color name="accent">@color/light_green_200</color>
     <color name="transparent">#00000000</color>
     <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
 
     <!-- General Colors -->
     <!-- RED -->

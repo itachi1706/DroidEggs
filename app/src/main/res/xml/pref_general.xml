@@ -58,6 +58,9 @@
             android:summary="Enables some upcoming eggs for testing purposes (Note: These eggs are still in development)"
             android:defaultValue="false" />
 
+        <ListPreference android:title="Application Theme" android:summary="%s" android:defaultValue="light" android:entries="@array/dark_mode_selector"
+            android:entryValues="@array/dark_mode_selector_option" android:key="app_theme" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>

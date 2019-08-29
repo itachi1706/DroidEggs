@@ -25,17 +25,19 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.crashlytics.android.Crashlytics;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.itachi1706.appupdater.AppUpdateInitializer;
 import com.itachi1706.appupdater.Objects.CAAnalytics;
 import com.itachi1706.appupdater.Util.AnalyticsHelper;
+import com.itachi1706.appupdater.Util.PrefHelper;
 
 import java.util.ArrayList;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import io.fabric.sdk.android.Fabric;
 
 public class MainScreen extends AppCompatActivity {
@@ -69,14 +71,15 @@ public class MainScreen extends AppCompatActivity {
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         AnalyticsHelper helper = new AnalyticsHelper(this, true);
-        CAAnalytics analytics = helper.getData();
-        if (analytics != null) {
-            // Update Firebase Analytics User Properties
-            setAnalyticsData(true, mFirebaseAnalytics, analytics);
-        } else {
-            setAnalyticsData(false, mFirebaseAnalytics, null);
-        }
+        final Runnable analyticsRunner = () -> {
+            CAAnalytics analytics = helper.getData();
+            if (analytics != null) setAnalyticsData(true, mFirebaseAnalytics, analytics); // Update Firebase Analytics User Properties
+            else setAnalyticsData(false, mFirebaseAnalytics, null);
+        };
+        analyticsRunner.run();
         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.APP_OPEN, null);
+
+        PrefHelper.handleDefaultThemeSwitch(PrefHelper.getDefaultSharedPreferences(this).getString("app_theme", "batterydefault"));
     }
 
     @Override

@@ -17,10 +17,10 @@ package com.itachi1706.droideggs
 import android.os.Bundle
 import android.preference.PreferenceActivity
 import androidx.appcompat.app.AppCompatActivity
-
+import androidx.preference.Preference
 import com.itachi1706.appupdater.EasterEggResMusicPrefFragment
 import com.itachi1706.appupdater.SettingsInitializer
-
+import com.itachi1706.appupdater.Util.PrefHelper
 import de.psdev.licensesdialog.LicensesDialog
 
 
@@ -56,6 +56,7 @@ class MainSettings : AppCompatActivity() {
                     resources.getString(R.string.update_link), resources.getString(R.string.link_updates), this)
 
             super.addEggMethods(true) { LicensesDialog.Builder(activity!!).setNotices(R.raw.notices).setIncludeOwnLicense(true).build().show(); true }
+            findPreference<Preference>("app_theme")?.setOnPreferenceChangeListener{ _, newValue -> PrefHelper.handleDefaultThemeSwitch(newValue.toString()); true }
         }
 
         override fun getMusicResource(): Int { return R.raw.hatsune_miku_romeo_and_cinderella }

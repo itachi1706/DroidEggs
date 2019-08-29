@@ -14,26 +14,18 @@
 
 package com.itachi1706.droideggs.NougatEgg.EasterEgg.neko;
 
-import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import androidx.core.content.FileProvider;
-import androidx.appcompat.app.AlertDialog;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -43,13 +35,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.itachi1706.droideggs.FirebaseLogger;
 import com.itachi1706.droideggs.R;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.util.Collections;
 import java.util.List;
 
@@ -221,14 +213,6 @@ public class NekoLand extends Activity implements PrefState.PrefsListener {
             holder.share.setOnClickListener(v -> {
                 setContextGroupVisible(holder, false);
                 Cat cat = mCats[holder.getAdapterPosition()];
-                if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                        != PackageManager.PERMISSION_GRANTED) {
-                    mPendingShareCat = cat;
-                    requestPermissions(
-                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                            STORAGE_PERM_REQUEST);
-                    return;
-                }
                 shareCat(cat);
             });
         }
@@ -240,39 +224,22 @@ public class NekoLand extends Activity implements PrefState.PrefsListener {
     }
 
     private void shareCat(Cat cat) {
-        final File dir = new File(
-                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
-                getString(R.string.nougat_directory_name));
-        if (!dir.exists() && !dir.mkdirs()) {
-            Log.e("NekoLand", "save: error: can't create Pictures directory");
-            return;
-        }
-        final File png = new File(dir, cat.getName().replaceAll("[/ #:]+", "_") + ".png");
         Bitmap bitmap = cat.createBitmap(EXPORT_BITMAP_SIZE, EXPORT_BITMAP_SIZE);
         if (bitmap != null) {
-            try {
-                OutputStream os = new FileOutputStream(png);
-                bitmap.compress(Bitmap.CompressFormat.PNG, 0, os);
-                os.close();
-                MediaScannerConnection.scanFile(
-                        this,
-                        new String[] {png.toString()},
-                        new String[] {"image/png"},
-                        null);
-                Log.v("Neko", "cat file: " + png);
-                Uri uri = FileProvider.getUriForFile(this, this.getPackageName() + ".appupdater.provider", png);
+            String filename = cat.getName().replaceAll("[/ #:]+", "_");
+            String uriString = MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, filename, "Android EasterEgg Neko " + cat.getName());
+            if (uriString != null) {
+                Uri uri = Uri.parse(uriString);
                 Log.v("Neko", "cat uri: " + uri);
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.putExtra(Intent.EXTRA_STREAM, uri);
                 intent.putExtra(Intent.EXTRA_SUBJECT, cat.getName());
                 intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-                intent.setType("image/png");
+                intent.setType("image/jpeg");
                 startActivity(Intent.createChooser(intent, null));
                 cat.logShare(this);
-            } catch (IOException e) {
-                Log.e("NekoLand", "save: error: " + e);
-            }
-        }
+            } else Log.e("NekoLand", "error saving to media store");
+        } else Log.e("NekoLand", "error generating bitmap");
     }
 
     @Override

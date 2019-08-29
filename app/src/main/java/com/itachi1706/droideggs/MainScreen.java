@@ -69,13 +69,12 @@ public class MainScreen extends AppCompatActivity {
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         AnalyticsHelper helper = new AnalyticsHelper(this, true);
-        CAAnalytics analytics = helper.getData();
-        if (analytics != null) {
-            // Update Firebase Analytics User Properties
-            setAnalyticsData(true, mFirebaseAnalytics, analytics);
-        } else {
-            setAnalyticsData(false, mFirebaseAnalytics, null);
-        }
+        final Runnable analyticsRunner = () -> {
+            CAAnalytics analytics = helper.getData();
+            if (analytics != null) setAnalyticsData(true, mFirebaseAnalytics, analytics); // Update Firebase Analytics User Properties
+            else setAnalyticsData(false, mFirebaseAnalytics, null);
+        };
+        analyticsRunner.run();
         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.APP_OPEN, null);
     }
 

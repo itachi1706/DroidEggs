@@ -59,7 +59,7 @@ public class NekoDialog extends Dialog {
         if (currentState == 0 && food.getType() != 0) {
             NekoService.registerJob(getContext(), food.getInterval(getContext()));
         }
-        FirebaseLogger.histogram(getContext(), "egg_neko_offered_food", food.getType());
+        FirebaseLogger.INSTANCE.histogram(getContext(), "egg_neko_offered_food", food.getType());
         prefs.setFoodState(food.getType());
         dismiss();
     }

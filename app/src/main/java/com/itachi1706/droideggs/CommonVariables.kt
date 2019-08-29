@@ -12,13 +12,13 @@
  * permissions and limitations under the License.
  */
 
-package com.itachi1706.droideggs;
+package com.itachi1706.droideggs
 
 /**
  * Created by Kenneth on 9/8/2016.
  * for com.itachi1706.droideggs in DroidEggs
  */
-public class CommonVariables {
+object CommonVariables {
 
-    public static final String BASE_SERVER_URL = "https://api.itachi1706.com/api/appupdatechecker.php?action=androidretrievedata&packagename=";
+    const val BASE_SERVER_URL = "https://api.itachi1706.com/api/appupdatechecker.php?action=androidretrievedata&packagename="
 }

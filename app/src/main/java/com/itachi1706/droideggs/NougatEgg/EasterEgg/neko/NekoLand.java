@@ -226,7 +226,8 @@ public class NekoLand extends Activity implements PrefState.PrefsListener {
     private void shareCat(Cat cat) {
         Bitmap bitmap = cat.createBitmap(EXPORT_BITMAP_SIZE, EXPORT_BITMAP_SIZE);
         if (bitmap != null) {
-            String uriString = MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, cat.getName(), "Android EasterEgg Neko " + cat.getName());
+            String filename = cat.getName().replaceAll("[/ #:]+", "_");
+            String uriString = MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, filename, "Android EasterEgg Neko " + cat.getName());
             if (uriString != null) {
                 Uri uri = Uri.parse(uriString);
                 Log.v("Neko", "cat uri: " + uri);
@@ -234,7 +235,7 @@ public class NekoLand extends Activity implements PrefState.PrefsListener {
                 intent.putExtra(Intent.EXTRA_STREAM, uri);
                 intent.putExtra(Intent.EXTRA_SUBJECT, cat.getName());
                 intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-                intent.setType("image/png");
+                intent.setType("image/jpeg");
                 startActivity(Intent.createChooser(intent, null));
                 cat.logShare(this);
             } else Log.e("NekoLand", "error saving to media store");

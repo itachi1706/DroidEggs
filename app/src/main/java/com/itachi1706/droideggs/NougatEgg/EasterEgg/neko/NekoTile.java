@@ -55,13 +55,13 @@ public class NekoTile extends TileService implements PrefState.PrefsListener {
     @Override
     public void onTileAdded() {
         super.onTileAdded();
-        FirebaseLogger.count(this, "egg_neko_tile_added", 1);
+        FirebaseLogger.INSTANCE.count(this, "egg_neko_tile_added", 1);
     }
 
     @Override
     public void onTileRemoved() {
         super.onTileRemoved();
-        FirebaseLogger.count(this, "egg_neko_tile_removed", 1);
+        FirebaseLogger.INSTANCE.count(this, "egg_neko_tile_removed", 1);
     }
 
     @Override
@@ -86,7 +86,7 @@ public class NekoTile extends TileService implements PrefState.PrefsListener {
     public void onClick() {
         if (mPrefs.getFoodState() != 0) {
             // there's already food loaded, let's empty it
-            FirebaseLogger.count(this, "egg_neko_empty_food", 1);
+            FirebaseLogger.INSTANCE.count(this, "egg_neko_empty_food", 1);
             mPrefs.setFoodState(0);
             NekoService.cancelJob(this);
         } else {
@@ -108,7 +108,7 @@ public class NekoTile extends TileService implements PrefState.PrefsListener {
 
     private void showNekoDialog() {
         Log.d(TAG, "showNekoDialog");
-        FirebaseLogger.count(this, "egg_neko_select_food", 1);
+        FirebaseLogger.INSTANCE.count(this, "egg_neko_select_food", 1);
         showDialog(new NekoDialog(this));
     }
 }

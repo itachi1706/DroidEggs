@@ -361,11 +361,11 @@ public class Cat extends Drawable {
     }
 
     private void logCatAction(Context context, String prefix) {
-        FirebaseLogger.count(context, prefix, 1);
-        FirebaseLogger.histogram(context, prefix +"_color",
+        FirebaseLogger.INSTANCE.count(context, prefix, 1);
+        FirebaseLogger.INSTANCE.histogram(context, prefix +"_color",
                 getColorIndex(mBodyColor, P_BODY_COLORS));
-        FirebaseLogger.histogram(context, prefix + "_bowtie", mBowTie ? 1 : 0);
-        FirebaseLogger.histogram(context, prefix + "_feet", mFootType);
+        FirebaseLogger.INSTANCE.histogram(context, prefix + "_bowtie", mBowTie ? 1 : 0);
+        FirebaseLogger.INSTANCE.histogram(context, prefix + "_feet", mFootType);
     }
 
     public static class CatParts {

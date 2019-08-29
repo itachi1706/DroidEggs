@@ -84,7 +84,7 @@ public class MainScreen extends AppCompatActivity {
         super.onResume();
 
         populatedList = new ArrayList<>();
-        populatedList = PopulateSelector.populateSelectors(this);
+        populatedList = PopulateSelector.INSTANCE.populateSelectors(this);
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         boolean newSel = sp.getBoolean("check_version", false);

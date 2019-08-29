@@ -23,6 +23,7 @@
         <meta-data
             android:name="firebase_crashlytics_collection_enabled"
             android:value="false" />
+        <meta-data android:name="android.allow_multiple_resumed_activities" android:value="true" />
 
         <activity
             android:name=".MainScreen"

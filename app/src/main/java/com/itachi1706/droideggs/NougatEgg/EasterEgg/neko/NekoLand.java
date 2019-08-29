@@ -92,7 +92,7 @@ public class NekoLand extends Activity implements PrefState.PrefsListener {
         recyclerView.setAdapter(mAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         int numCats = updateCats();
-        FirebaseLogger.histogram(this, "egg_neko_visit_gallery", numCats);
+        FirebaseLogger.INSTANCE.histogram(this, "egg_neko_visit_gallery", numCats);
     }
 
     @Override

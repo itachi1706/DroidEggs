@@ -46,7 +46,7 @@ public class NekoActivationActivity extends AppCompatActivity {
             }
             pm.setComponentEnabledSetting(cn, PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
                     PackageManager.DONT_KILL_APP);
-            FirebaseLogger.histogram(this, "egg_neko_enable", 0);
+            FirebaseLogger.INSTANCE.histogram(this, "egg_neko_enable", 0);
             toastUp("\uD83D\uDEAB");
         } else {
             if (NekoLand.DEBUG) {
@@ -54,7 +54,7 @@ public class NekoActivationActivity extends AppCompatActivity {
             }
             pm.setComponentEnabledSetting(cn, PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                     PackageManager.DONT_KILL_APP);
-            FirebaseLogger.histogram(this, "egg_neko_enable", 1);
+            FirebaseLogger.INSTANCE.histogram(this, "egg_neko_enable", 1);
             toastUp("\uD83D\uDC31");
         }
         finish();

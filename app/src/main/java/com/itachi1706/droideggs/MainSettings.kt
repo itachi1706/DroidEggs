@@ -21,7 +21,7 @@ import androidx.preference.Preference
 import com.itachi1706.appupdater.EasterEggResMusicPrefFragment
 import com.itachi1706.appupdater.SettingsInitializer
 import com.itachi1706.appupdater.Util.PrefHelper
-import de.psdev.licensesdialog.LicensesDialog
+import me.jfenn.attribouter.Attribouter
 
 
 /**
@@ -55,7 +55,7 @@ class MainSettings : AppCompatActivity() {
             SettingsInitializer().setFullscreen(true).explodeUpdaterSettings(activity, R.mipmap.ic_launcher, CommonVariables.BASE_SERVER_URL,
                     resources.getString(R.string.update_link), resources.getString(R.string.link_updates), this)
 
-            super.addEggMethods(true) { LicensesDialog.Builder(activity!!).setNotices(R.raw.notices).setIncludeOwnLicense(true).build().show(); true }
+            super.addEggMethods(false, null, true, { Attribouter.from(context).show(); true})
             findPreference<Preference>("app_theme")?.setOnPreferenceChangeListener{ _, newValue -> PrefHelper.handleDefaultThemeSwitch(newValue.toString()); true }
         }
 

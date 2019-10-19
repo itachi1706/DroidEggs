@@ -1,6 +1,6 @@
 # DroidEggs 
 
-[![JIRA Issues](https://img.shields.io/badge/JIRA-Issues-blue)](https://jira.itachi1706.com:8123/browse/DEGGAND) [![Build Status](https://travis-ci.org/itachi1706/DroidEggs.svg?branch=master)](https://travis-ci.org/itachi1706/DroidEggs)
+[![JIRA Issues](https://img.shields.io/badge/JIRA-Issues-blue)](https://itachi1706.atlassian.net/browse/DEGGAND) [![Build Status](https://travis-ci.org/itachi1706/DroidEggs.svg?branch=master)](https://travis-ci.org/itachi1706/DroidEggs)
 
 An Android Application containing all of the Easter Eggs ever found on Android
 

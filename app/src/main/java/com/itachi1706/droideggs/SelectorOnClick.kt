@@ -36,6 +36,7 @@ import com.itachi1706.droideggs.NougatEgg.PlatLogoActivityNougat
 import com.itachi1706.droideggs.OreoEgg.PlatLogoActivityOreo
 import com.itachi1706.droideggs.OreoMR1Egg.PlatLogoActivityOreoMR1
 import com.itachi1706.droideggs.PieEgg.PlatLogoActivityPie
+import com.itachi1706.droideggs.QEgg.PlatLogoActivityQ
 import java.util.*
 
 /**
@@ -77,6 +78,7 @@ class SelectorOnClick : AdapterView.OnItemClickListener {
                 if (Build.VERSION.SDK_INT >= 24 || sp.getBoolean("access_partial_egg", false))
                     selectedEgg = Intent(view.context, PlatLogoActivityPie::class.java) else MainScreen.limitedAccessToEgg("NOUGAT")
             } else MainScreen.unableToAccessEasterEgg("LOLLIPOP")
+            "Q" -> selectedEgg = Intent(view.context, PlatLogoActivityQ::class.java)
         }
         if (selectedEgg != null) {
             view.context.startActivity(selectedEgg)

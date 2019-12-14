@@ -29,6 +29,7 @@ import com.itachi1706.droideggs.NougatEgg.PlatLogoActivityNougat
 import com.itachi1706.droideggs.OreoEgg.PlatLogoActivityOreo
 import com.itachi1706.droideggs.OreoMR1Egg.PlatLogoActivityOreoMR1
 import com.itachi1706.droideggs.PieEgg.PlatLogoActivityPie
+import com.itachi1706.droideggs.QEgg.PlatLogoActivityQ
 
 /**
  * Created by Kenneth on 20/4/2018.
@@ -42,6 +43,8 @@ class CurrentEgg : AppCompatActivity() {
         val errorIntent = Intent()
         when {
             Build.VERSION.SDK_INT >= 99999 -> errorIntent.putExtra("class", "comingsoon") // ??? (Future P)
+            //Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q -> startActivity(Intent(this, PlatLogoActivityQ::class.java)) // Q TODO: Use this when targeting Q
+            Build.VERSION.SDK_INT >= 29 -> startActivity(Intent(this, PlatLogoActivityQ::class.java)) // Q TODO: Remove when targeting Q
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.P -> startActivity(Intent(this, PlatLogoActivityPie::class.java)) // Pie
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1 -> startActivity(Intent(this, PlatLogoActivityOreoMR1::class.java)) // Nougat
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.O -> startActivity(Intent(this, PlatLogoActivityOreo::class.java)) // Nougat

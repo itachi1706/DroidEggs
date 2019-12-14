@@ -64,7 +64,8 @@ public class PlatLogoActivityQ extends AppCompatActivity {
             getWindow().setNavigationBarColor(0);
             getWindow().setStatusBarColor(0);
         }
-        getActionBar().hide();
+        if (getActionBar() != null) getActionBar().hide();
+        else if (getSupportActionBar() != null) getSupportActionBar().hide();
         setContentView(R.layout.q_platlogo_layout);
         mBackslash = new BackslashDrawable((int) (50 * dp));
         mOneView = findViewById(R.id.one);

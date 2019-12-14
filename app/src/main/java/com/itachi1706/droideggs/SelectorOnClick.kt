@@ -78,7 +78,8 @@ class SelectorOnClick : AdapterView.OnItemClickListener {
                 if (Build.VERSION.SDK_INT >= 24 || sp.getBoolean("access_partial_egg", false))
                     selectedEgg = Intent(view.context, PlatLogoActivityPie::class.java) else MainScreen.limitedAccessToEgg("NOUGAT")
             } else MainScreen.unableToAccessEasterEgg("LOLLIPOP")
-            "Q" -> selectedEgg = Intent(view.context, PlatLogoActivityQ::class.java)
+            "Q" -> if (sp.getBoolean("access_partial_egg", false) || Build.VERSION.SDK_INT >= 23) selectedEgg = Intent(view.context, PlatLogoActivityQ::class.java)
+            else MainScreen.unableToAccessEasterEgg("MARSHMALLOW")
         }
         if (selectedEgg != null) {
             view.context.startActivity(selectedEgg)

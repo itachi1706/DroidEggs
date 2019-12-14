@@ -1,3 +1,19 @@
+/*
+ * Copyright (C) 2018 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.itachi1706.droideggs.QEgg;
 
 import android.animation.ObjectAnimator;
@@ -28,6 +44,7 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.itachi1706.droideggs.QEgg.EasterEgg.quares.QuaresActivity;
 import com.itachi1706.droideggs.R;
 
 import org.json.JSONObject;
@@ -149,9 +166,8 @@ public class PlatLogoActivityQ extends AppCompatActivity {
             pref.edit().putLong("P_EGG_MODE", System.currentTimeMillis()).apply();
         }
         try {
-            // TODO: Override this start activity
-            Intent q = new Intent(PlatLogoActivityQ.this, PlatLogoActivityQ.class)
-                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // TODO: Change target class to intended class
+            Intent q = new Intent(PlatLogoActivityQ.this, QuaresActivity.class)
+                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // TODO: Require API 23 to access
             startActivity(q);
         } catch (ActivityNotFoundException ex) {
             Log.e("PlatLogoActivity", "No more eggs.");

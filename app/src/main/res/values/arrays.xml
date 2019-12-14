@@ -27,7 +27,7 @@
         <item>Oreo (8.0)</item>
         <item>Oreo (8.1)</item>
         <item>Pie (9.0)</item>
-        <item>10 (10.0)</item>
+        <item>10/Q (10.0)</item>
     </string-array>
 
     <string-array name="legacy_version_with_egg_code">
@@ -62,7 +62,7 @@
         <item>Oreo</item>
         <item>Oreo</item>
         <item>Pie</item>
-        <item>10</item>
+        <item>10 (Q)</item>
     </string-array>
 
     <string-array name="android_ver_range">

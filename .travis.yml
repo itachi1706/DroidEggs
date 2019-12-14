@@ -21,6 +21,7 @@ env:
   - ADB_INSTALL_TIMEOUT=20
   - ANDROID_TARGET=android-23
   - ANDROID_TAG=google_apis
+  - DISCORD_URL=https://raw.githubusercontent.com/itachi1706/travis-ci-discord-webhook/master/send.sh
 android:
   components:
   - tools
@@ -34,13 +35,12 @@ android:
   - addon-google_apis-google-$ANDROID_EMULATOR_API_LEVEL
   - sys-img-armeabi-v7a-google_apis-$ANDROID_EMULATOR_API_LEVEL
 before_install:
-- openssl aes-256-cbc -K $encrypted_275e5b1934bb_key -iv $encrypted_275e5b1934bb_iv
-  -in google-services.json.enc -out ./app/google-services.json -d
+- openssl aes-256-cbc -K $encrypted_275e5b1934bb_key -iv $encrypted_275e5b1934bb_iv -in google-services.json.enc -out ./app/google-services.json -d
 - mkdir "$ANDROID_HOME/licenses" || true
 - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
 - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
 - touch ~/.android/repositories.cfg
-- yes | sdkmanager "platforms;android-28" "system-images;android-23;google_apis;armeabi-v7a"
+- yes | sdkmanager "platforms;android-28" # Temporary fix for checksum mismatch (travis-ci/#8874)
 - android list targets
 - chmod +x gradlew
 - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI --tag $ANDROID_TAG
@@ -53,7 +53,14 @@ script: travis_retry travis_wait ./gradlew connectedAndroidTest -x assembleDebug
 after_success:
 - mv ./app/build/outputs/apk/app-debug.apk ./app/build/outputs/apk/DroidEggs-debug.apk
 - ls ./app/build/outputs/apk/
-after_failure: cat $TRAVIS_BUILD_DIR/app/build/outputs/lint-results-debug.xml
+- wget $DISCORD_URL
+- chmod +x send.sh
+- ./send.sh success $WEBHOOK_URL
+after_failure:
+- cat $TRAVIS_BUILD_DIR/app/build/outputs/lint-results-debug.xml
+- wget $DISCORD_URL
+- chmod +x send.sh
+- ./send.sh failure $WEBHOOK_URL
 deploy:
   provider: releases
   api_key: "$OAUTH_KEY"

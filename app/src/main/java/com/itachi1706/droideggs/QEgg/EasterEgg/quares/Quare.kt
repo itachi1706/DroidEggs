@@ -28,7 +28,7 @@ import java.util.ArrayList
 import kotlin.math.abs
 import kotlin.math.round
 
-@RequiresApi(21)
+@RequiresApi(23)
 class Quare(val width: Int, val height: Int, val depth: Int) : Parcelable {
     private val data: IntArray = IntArray(width * height)
     private val user: IntArray = data.copyOf()

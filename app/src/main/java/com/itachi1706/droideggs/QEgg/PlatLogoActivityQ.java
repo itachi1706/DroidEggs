@@ -44,6 +44,7 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.itachi1706.droideggs.QEgg.EasterEgg.quares.QuaresActivity;
 import com.itachi1706.droideggs.R;
 
@@ -163,12 +164,16 @@ public class PlatLogoActivityQ extends AppCompatActivity {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         if (pref.getLong("Q_EGG_MODE", 0) == 0) {
             // For posterity: the moment this user unlocked the easter egg
-            pref.edit().putLong("P_EGG_MODE", System.currentTimeMillis()).apply();
+            pref.edit().putLong("Q_EGG_MODE", System.currentTimeMillis()).apply();
         }
         try {
-            Intent q = new Intent(PlatLogoActivityQ.this, QuaresActivity.class)
-                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // TODO: Require API 23 to access
-            startActivity(q);
+            Intent q = new Intent(PlatLogoActivityQ.this, QuaresActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            // MAKE SURE YOU ARE AT LEAST MARSHMALLOW (API 23)
+            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.M) startActivity(q);
+            else {
+                Snackbar.make(findViewById(android.R.id.content), "Your version of Android is too low to advance further. Requires Android 6.0 Marshmallow to advance", Snackbar.LENGTH_LONG).show();
+                return;
+            }
         } catch (ActivityNotFoundException ex) {
             Log.e("PlatLogoActivity", "No more eggs.");
         }

@@ -19,6 +19,5 @@ package com.itachi1706.droideggs
  * for com.itachi1706.droideggs in DroidEggs
  */
 object CommonVariables {
-
     const val BASE_SERVER_URL = "https://api.itachi1706.com/api/appupdatechecker.php?action=androidretrievedata&packagename="
 }

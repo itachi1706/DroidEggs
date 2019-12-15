@@ -98,7 +98,7 @@ public class Painting : View, SpotFilter.Plotter {
                         else
                             FADE_TO_BLACK_CF
                 synchronized(_bitmapLock) {
-                    c.drawBitmap(bitmap, 0f, 0f, pt)
+                    c.drawBitmap(bitmap!!, 0f, 0f, pt)
                 }
                 invalidate()
             }
@@ -222,11 +222,11 @@ public class Painting : View, SpotFilter.Plotter {
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         bitmap?.let {
-            canvas.drawBitmap(bitmap, 0f, 0f, _drawPaint);
+            canvas.drawBitmap(bitmap!!, 0f, 0f, _drawPaint);
         }
     }
     // public api
-    fun clear() {
+    fun clear() { 
         bitmap = null
         setupBitmaps()
         invalidate()
@@ -282,11 +282,11 @@ public class Painting : View, SpotFilter.Plotter {
                             bits.width.toFloat()/oldBits.height,
                             bits.height.toFloat()/oldBits.width)
                 }
-                c.matrix = matrix
+                c.setMatrix(matrix)
             }
             // paint the old artwork atop the new
             c.drawBitmap(oldBits, 0f, 0f, _drawPaint)
-            c.matrix = Matrix()
+            c.setMatrix(matrix)
         } else {
             c.drawColor(paperColor)
         }
@@ -297,7 +297,7 @@ public class Painting : View, SpotFilter.Plotter {
         val invertPaint = Paint()
         invertPaint.colorFilter = INVERT_CF
         synchronized(_bitmapLock) {
-            _paintCanvas?.drawBitmap(bitmap, 0f, 0f, invertPaint)
+            _paintCanvas?.drawBitmap(bitmap!!, 0f, 0f, invertPaint)
         }
         invalidate()
     }

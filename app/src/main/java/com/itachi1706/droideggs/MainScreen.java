@@ -28,17 +28,15 @@ import android.widget.ListView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.crashlytics.android.Crashlytics;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.itachi1706.appupdater.AppUpdateInitializer;
 import com.itachi1706.appupdater.object.CAAnalytics;
 import com.itachi1706.appupdater.utils.AnalyticsHelper;
 import com.itachi1706.helperlib.helpers.PrefHelper;
 
 import java.util.ArrayList;
-
-import io.fabric.sdk.android.Fabric;
 
 public class MainScreen extends AppCompatActivity {
 
@@ -55,8 +53,7 @@ public class MainScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
 
-        Fabric fabric = new Fabric.Builder(this).kits(new Crashlytics()).debuggable(BuildConfig.DEBUG).build();
-        if (!BuildConfig.DEBUG) Fabric.with(fabric);
+        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(!BuildConfig.DEBUG);
 
         currentVer = findViewById(R.id.btnCurrent);
         selectionList = findViewById(R.id.lvEasterEggSelection);

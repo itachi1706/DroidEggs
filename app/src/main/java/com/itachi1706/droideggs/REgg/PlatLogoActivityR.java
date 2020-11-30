@@ -20,8 +20,6 @@ import android.animation.ObjectAnimator;
 import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.content.ActivityNotFoundException;
-import android.content.ComponentName;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -37,7 +35,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.HapticFeedbackConstants;
@@ -97,9 +94,7 @@ public class PlatLogoActivityR extends AppCompatActivity {
         mDialView = new BigDialView(this, null);
         realNeko = getIntent().getBooleanExtra("setting", false);
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        long unlockSettingCheck;
-        if (realNeko) unlockSettingCheck = Settings.System.getLong(getContentResolver(), R_EGG_UNLOCK_SETTING, 0);
-        else unlockSettingCheck = pref.getLong(R_EGG_UNLOCK_SETTING, 0);
+        long unlockSettingCheck = pref.getLong(R_EGG_UNLOCK_SETTING, 0);
         if (unlockSettingCheck == 0) {
             mDialView.setUnlockTries(UNLOCK_TRIES);
         } else {
@@ -114,33 +109,23 @@ public class PlatLogoActivityR extends AppCompatActivity {
     }
 
     private void launchNextStage(boolean locked) {
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences pref = this.getSharedPreferences("com.itachi1706.droideggs_preferences", MODE_MULTI_PROCESS);
         if (pref.getLong("R_EGG_MODE", 0) == 0) {
             // For posterity: the moment this user unlocked the easter egg
             pref.edit().putLong("R_EGG_MODE", System.currentTimeMillis()).apply();
         }
 
-        final ContentResolver cr = getContentResolver();
-
         try {
             if (WRITE_SETTINGS) {
-                if (realNeko) Settings.System.putLong(cr, R_EGG_UNLOCK_SETTING, locked ? 0 : System.currentTimeMillis());
-                else pref.edit().putLong(R_EGG_UNLOCK_SETTING, locked ? 0 : System.currentTimeMillis()).apply();
+                pref.edit().putLong(R_EGG_UNLOCK_SETTING, locked ? 0 : System.currentTimeMillis()).apply();
             }
         } catch (RuntimeException e) {
             Log.e("PlatLogoActivity", "Can't write settings", e);
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             try {
-                Intent neko;
-                if (realNeko && Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    neko = new Intent();
-                    neko.setComponent(new ComponentName("com.android.egg", "com.android.egg.neko.NekoActivationActivity"));
-                } else {
-                    neko = new Intent(this, NekoActivationActivity.class);
-                }
-                startActivity(neko);
+                startActivity(new Intent(this, NekoActivationActivity.class));
             } catch (ActivityNotFoundException ex) {
                 Log.e("PlatLogoActivity", "No more eggs.");
             }
@@ -171,8 +156,7 @@ public class PlatLogoActivityR extends AppCompatActivity {
 
     private void syncTouchPressure() {
         try {
-            final String touchDataJson = Settings.System.getString(
-                    getContentResolver(), TOUCH_STATS);
+            final String touchDataJson = PrefHelper.getDefaultSharedPreferences(this).getString(TOUCH_STATS, null);
             final JSONObject touchData = new JSONObject(
                     touchDataJson != null ? touchDataJson : "{}");
             if (touchData.has("min")) {
@@ -185,8 +169,7 @@ public class PlatLogoActivityR extends AppCompatActivity {
                 touchData.put("min", mPressureMin);
                 touchData.put("max", mPressureMax);
                 if (WRITE_SETTINGS) {
-                    Settings.System.putString(getContentResolver(), TOUCH_STATS,
-                            touchData.toString());
+                    PrefHelper.getDefaultSharedPreferences(this).edit().putString(TOUCH_STATS, touchData.toString()).apply();
                 }
             }
         } catch (Exception e) {

@@ -41,12 +41,6 @@
             android:defaultValue="false" />
 
         <SwitchPreferenceCompat
-            android:key="actual_neko_r_egg"
-            android:title="Launch actual Android 11 Easter Egg"
-            android:summary="Launches the actual Easter Egg for Android 11 as if you have tapped the version number on an Android 11 device"
-            android:defaultValue="false" />
-
-        <SwitchPreferenceCompat
             android:key="access_partial_egg"
             android:title="Access Partial Egg"
             android:summary="Checking this option will allow you to access the Easter Eggs up till the point where you need a later version of Android to access"

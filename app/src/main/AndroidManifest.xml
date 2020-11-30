@@ -11,6 +11,8 @@
 
     <!-- Permission required by Neko -->
     <uses-permission android:name="android.permission.SUBSTITUTE_NOTIFICATION_APP_NAME" tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.BIND_CONTROLS" />
 
     <application
         android:allowBackup="true"

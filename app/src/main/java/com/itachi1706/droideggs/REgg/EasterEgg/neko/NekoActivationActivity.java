@@ -21,6 +21,8 @@ import android.content.pm.PackageManager;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.preference.PreferenceManager;
+
 import com.itachi1706.droideggs.FirebaseLogger;
 import com.itachi1706.helperlib.helpers.PrefHelper;
 
@@ -38,9 +40,8 @@ public class NekoActivationActivity extends Activity {
 
         final PackageManager pm = getPackageManager();
         final ComponentName cn = new ComponentName(this, NekoControlsService.class);
-        final boolean componentEnabled = pm.getComponentEnabledSetting(cn)
-                == PackageManager.COMPONENT_ENABLED_STATE_ENABLED;
-        SharedPreferences sp = PrefHelper.getDefaultSharedPreferences(this);
+        final boolean componentEnabled = pm.getComponentEnabledSetting(cn) == PackageManager.COMPONENT_ENABLED_STATE_ENABLED;
+        SharedPreferences sp = this.getSharedPreferences("com.itachi1706.droideggs_preferences", MODE_MULTI_PROCESS);
         if (sp.getLong(R_EGG_UNLOCK_SETTING, 0) == 0) {
             if (componentEnabled) {
                 Log.v("Neko", "Disabling controls.");

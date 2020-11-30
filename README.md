@@ -29,3 +29,6 @@ This application is licensed under the *Apache License 2.0* as it contains files
 | Android 8.1 OREO_MR1 | Android Octo | DONE |
 | Android 9.0 PIE | Swirly P | DONE |
 | Android 10.0 Q | Picross | DONE |
+
+
+This application is also available on [my personal F-Droid repository](https://fdroid.itachi1706.com/) for alternative downloads.

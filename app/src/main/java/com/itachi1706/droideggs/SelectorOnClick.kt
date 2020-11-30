@@ -43,7 +43,7 @@ import java.util.*
  * Created by Kenneth on 1/6/2015
  * for DroidEggs in package com.itachi1706.droideggs
  */
-class SelectorOnClick : AdapterView.OnItemClickListener {
+class SelectorOnClick(val act: MainScreen) : AdapterView.OnItemClickListener {
 
     override fun onItemClick(parent: AdapterView<*>, view: View, position: Int, id: Long) {
         val versionCode = view.context.resources.getStringArray(R.array.legacy_version_with_egg_code)
@@ -60,26 +60,26 @@ class SelectorOnClick : AdapterView.OnItemClickListener {
         when (version) {
             "GB" -> selectedEgg = Intent(view.context, PlatLogoActivityGINGERBREAD::class.java)
             "HC" -> selectedEgg = Intent(view.context, PlatLogoActivityHONEYCOMB::class.java)
-            "ICS" -> if (Build.VERSION.SDK_INT >= 16) selectedEgg = Intent(view.context, PlatLogoActivityICS::class.java) else MainScreen.unableToAccessEasterEgg("JELLYBEAN")
-            "JB" -> if (Build.VERSION.SDK_INT >= 16) selectedEgg = Intent(view.context, PlatLogoActivityJELLYBEAN::class.java) else MainScreen.unableToAccessEasterEgg("JELLYBEAN")
-            "KK" -> if (Build.VERSION.SDK_INT >= 19) selectedEgg = Intent(view.context, PlatLogoActivityKITKAT::class.java) else MainScreen.unableToAccessEasterEgg("KITKAT")
-            "L" -> if (Build.VERSION.SDK_INT >= 21) selectedEgg = Intent(view.context, PlatLogoActivityLOLLIPOP::class.java) else MainScreen.unableToAccessEasterEgg("LOLLIPOP")
-            "MNC" -> if (Build.VERSION.SDK_INT >= 21) selectedEgg = Intent(view.context, PlatLogoActivityMNC::class.java) else MainScreen.unableToAccessEasterEgg("LOLLIPOP")
-            "MM" -> if (Build.VERSION.SDK_INT >= 21) selectedEgg = Intent(view.context, PlatLogoActivityMARSHMALLOW::class.java) else MainScreen.unableToAccessEasterEgg("LOLLIPOP")
-            "NDP" -> if (Build.VERSION.SDK_INT >= 21) selectedEgg = Intent(view.context, PlatLogoActivityNDP::class.java) else MainScreen.unableToAccessEasterEgg("LOLLIPOP")
+            "ICS" -> if (Build.VERSION.SDK_INT >= 16) selectedEgg = Intent(view.context, PlatLogoActivityICS::class.java) else act.unableToAccessEasterEgg("JELLYBEAN")
+            "JB" -> if (Build.VERSION.SDK_INT >= 16) selectedEgg = Intent(view.context, PlatLogoActivityJELLYBEAN::class.java) else act.unableToAccessEasterEgg("JELLYBEAN")
+            "KK" -> if (Build.VERSION.SDK_INT >= 19) selectedEgg = Intent(view.context, PlatLogoActivityKITKAT::class.java) else act.unableToAccessEasterEgg("KITKAT")
+            "L" -> if (Build.VERSION.SDK_INT >= 21) selectedEgg = Intent(view.context, PlatLogoActivityLOLLIPOP::class.java) else act.unableToAccessEasterEgg("LOLLIPOP")
+            "MNC" -> if (Build.VERSION.SDK_INT >= 21) selectedEgg = Intent(view.context, PlatLogoActivityMNC::class.java) else act.unableToAccessEasterEgg("LOLLIPOP")
+            "MM" -> if (Build.VERSION.SDK_INT >= 21) selectedEgg = Intent(view.context, PlatLogoActivityMARSHMALLOW::class.java) else act.unableToAccessEasterEgg("LOLLIPOP")
+            "NDP" -> if (Build.VERSION.SDK_INT >= 21) selectedEgg = Intent(view.context, PlatLogoActivityNDP::class.java) else act.unableToAccessEasterEgg("LOLLIPOP")
             "N" -> if (Build.VERSION.SDK_INT >= 24) {
                 selectedEgg = Intent(view.context, PlatLogoActivityNougat::class.java)
                 selectedEgg.putExtra("setting", sp.getBoolean("actual_neko_egg", false))
-            } else MainScreen.unableToAccessEasterEgg("NOUGAT")
-            "O" -> if (Build.VERSION.SDK_INT >= 21) selectedEgg = Intent(view.context, PlatLogoActivityOreo::class.java) else MainScreen.unableToAccessEasterEgg("LOLLIPOP")
-            "O_MR1" -> if (Build.VERSION.SDK_INT >= 21) selectedEgg = Intent(view.context, PlatLogoActivityOreoMR1::class.java) else MainScreen.unableToAccessEasterEgg("LOLLIPOP")
+            } else act.unableToAccessEasterEgg("NOUGAT")
+            "O" -> if (Build.VERSION.SDK_INT >= 21) selectedEgg = Intent(view.context, PlatLogoActivityOreo::class.java) else act.unableToAccessEasterEgg("LOLLIPOP")
+            "O_MR1" -> if (Build.VERSION.SDK_INT >= 21) selectedEgg = Intent(view.context, PlatLogoActivityOreoMR1::class.java) else act.unableToAccessEasterEgg("LOLLIPOP")
             "P" -> if (Build.VERSION.SDK_INT >= 21) {
                 // Do check and make sure you can access as some part of the egg requires Nougat (24)
                 if (Build.VERSION.SDK_INT >= 24 || sp.getBoolean("access_partial_egg", false))
-                    selectedEgg = Intent(view.context, PlatLogoActivityPie::class.java) else MainScreen.limitedAccessToEgg("NOUGAT")
-            } else MainScreen.unableToAccessEasterEgg("LOLLIPOP")
+                    selectedEgg = Intent(view.context, PlatLogoActivityPie::class.java) else act.limitedAccessToEgg("NOUGAT")
+            } else act.unableToAccessEasterEgg("LOLLIPOP")
             "Q" -> if (sp.getBoolean("access_partial_egg", false) || Build.VERSION.SDK_INT >= 23) selectedEgg = Intent(view.context, PlatLogoActivityQ::class.java)
-            else MainScreen.unableToAccessEasterEgg("MARSHMALLOW")
+            else act.unableToAccessEasterEgg("MARSHMALLOW")
         }
         if (selectedEgg != null) {
             view.context.startActivity(selectedEgg)

@@ -33,6 +33,7 @@ import com.itachi1706.droideggs.OreoEgg.PlatLogoActivityOreo
 import com.itachi1706.droideggs.OreoMR1Egg.PlatLogoActivityOreoMR1
 import com.itachi1706.droideggs.PieEgg.PlatLogoActivityPie
 import com.itachi1706.droideggs.QEgg.PlatLogoActivityQ
+import com.itachi1706.droideggs.REgg.PlatLogoActivityR
 
 /**
  * Created by Kenneth on 20/4/2018.
@@ -57,6 +58,7 @@ class CurrentEgg : AppCompatActivity() {
             O_MR1 -> PlatLogoActivityOreoMR1::class.java // Oreo
             P -> PlatLogoActivityPie::class.java // Pie
             Q -> PlatLogoActivityQ::class.java // Android 10 (Q)
+            R -> PlatLogoActivityR::class.java // Android 11 (R)
             else -> null // Future Android Versions (As minSDK is way above GB, it does not matter to do a check before)
         }
 

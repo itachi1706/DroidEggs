@@ -16,17 +16,21 @@
 
 package com.itachi1706.droideggs.REgg;
 
+import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.animation.ObjectAnimator;
 import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
@@ -36,7 +40,9 @@ import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -47,17 +53,26 @@ import android.view.animation.PathInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import com.itachi1706.droideggs.BuildConfig;
+import com.itachi1706.droideggs.NougatEgg.EasterEgg.neko.NekoActivationActivity;
+import com.itachi1706.droideggs.NougatEgg.PlatLogoActivityNougat;
 import com.itachi1706.droideggs.R;
+import com.itachi1706.helperlib.helpers.PrefHelper;
 
 import org.json.JSONObject;
 
-//@TargetApi(21)
-@TargetApi(30)
+@TargetApi(21)
 public class PlatLogoActivityR extends AppCompatActivity {
 
     private static final boolean WRITE_SETTINGS = true;
 
+    private static final String R_EGG_UNLOCK_SETTING = "egg_mode_r";
+
+    private static final int UNLOCK_TRIES = 3;
+
     BigDialView mDialView;
+
+    private boolean realNeko = false;
 
     @Override
     protected void onPause() {
@@ -76,16 +91,17 @@ public class PlatLogoActivityR extends AppCompatActivity {
 
         final ActionBar ab = getActionBar();
         if (ab != null) ab.hide();
-        else {
-            // Handle support action bar
-            androidx.appcompat.app.ActionBar abar = getSupportActionBar();
-            if (abar != null) abar.hide();
-        }
 
         mDialView = new BigDialView(this, null);
-        if (Settings.System.getLong(getContentResolver(),
-                "egg_mode" /* Settings.System.EGG_MODE */, 0) == 0) {
-            mDialView.setUnlockTries(3);
+        realNeko = getIntent().getBooleanExtra("setting", false);
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        long unlockSettingCheck;
+        if (realNeko) unlockSettingCheck = Settings.System.getLong(getContentResolver(), R_EGG_UNLOCK_SETTING, 0);
+        else unlockSettingCheck = pref.getLong(R_EGG_UNLOCK_SETTING, 0);
+        if (unlockSettingCheck == 0) {
+            mDialView.setUnlockTries(UNLOCK_TRIES);
+        } else {
+            mDialView.setUnlockTries(0);
         }
 
         final FrameLayout layout = new FrameLayout(this);
@@ -96,25 +112,33 @@ public class PlatLogoActivityR extends AppCompatActivity {
     }
 
     private void launchNextStage(boolean locked) {
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        if (pref.getLong("R_EGG_MODE", 0) == 0) {
+            // For posterity: the moment this user unlocked the easter egg
+            pref.edit().putLong("R_EGG_MODE", System.currentTimeMillis()).apply();
+        }
+
         final ContentResolver cr = getContentResolver();
 
-        if (Settings.System.getLong(cr, "egg_mode" /* Settings.System.EGG_MODE */, 0) == 0) {
-            // For posterity: the moment this user unlocked the easter egg
-            try {
-                if (WRITE_SETTINGS) {
-                    Settings.System.putLong(cr,
-                            "egg_mode", // Settings.System.EGG_MODE,
-                            locked ? 0 : System.currentTimeMillis());
-                }
-            } catch (RuntimeException e) {
-                Log.e("PlatLogoActivity", "Can't write settings", e);
-            }
-        }
         try {
-            startActivity(new Intent(Intent.ACTION_MAIN)
-                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                            | Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                    .addCategory("com.android.internal.category.PLATLOGO"));
+            if (WRITE_SETTINGS) {
+                if (realNeko) Settings.System.putLong(cr, R_EGG_UNLOCK_SETTING, locked ? 0 : System.currentTimeMillis());
+                else pref.edit().putLong(R_EGG_UNLOCK_SETTING, locked ? 0 : System.currentTimeMillis()).apply();
+            }
+        } catch (RuntimeException e) {
+            Log.e("PlatLogoActivity", "Can't write settings", e);
+        }
+
+        try {
+            Intent neko;
+            if (realNeko && Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                neko = new Intent();
+                // TODO: Start new R Neko Activity
+                neko.setComponent(new ComponentName("com.android.egg", "com.android.egg.neko.NekoActivationActivity"));
+            } else {
+                neko = new Intent(this, NekoActivationActivity.class);
+            }
+            startActivity(neko);
         } catch (ActivityNotFoundException ex) {
             Log.e("PlatLogoActivity", "No more eggs.");
         }
@@ -230,14 +254,14 @@ public class PlatLogoActivityR extends AppCompatActivity {
                     mDialDrawable.touchAngle(angle);
                     final int newLevel = mDialDrawable.getUserLevel();
                     if (oldLevel != newLevel) {
-                        performHapticFeedback(newLevel == STEPS
-                                ? HapticFeedbackConstants.CONFIRM
-                                : HapticFeedbackConstants.CLOCK_TICK);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                            performHapticFeedback(newLevel == STEPS ? HapticFeedbackConstants.CONFIRM : HapticFeedbackConstants.CLOCK_TICK);
+                        } else performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK);
                     }
                     return true;
                 case MotionEvent.ACTION_UP:
-                    if (mWasLocked && !mDialDrawable.isLocked()) {
-                        launchNextStage(false);
+                    if (mWasLocked != mDialDrawable.isLocked()) {
+                        launchNextStage(mDialDrawable.isLocked());
                     }
                     return true;
             }
@@ -262,7 +286,7 @@ public class PlatLogoActivityR extends AppCompatActivity {
             private int mUnlockTries = 0;
             final Paint mPaint = new Paint();
             final Drawable mEleven;
-            private boolean mNightMode;
+            private final boolean mNightMode;
             private float mValue = 0f;
             float mElevenAnim = 0f;
             ObjectAnimator mElevenShowAnimator = ObjectAnimator.ofFloat(this, "elevenAnim", 0f,
@@ -271,8 +295,12 @@ public class PlatLogoActivityR extends AppCompatActivity {
                     0f).setDuration(500);
 
             BigDialDrawable() {
-                mNightMode = getContext().getResources().getConfiguration().isNightModeActive();
-                mEleven = getContext().getDrawable(R.drawable.r_ic_number11);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    mNightMode = getContext().getResources().getConfiguration().isNightModeActive();
+                } else {
+                    mNightMode = PrefHelper.isNightModeEnabled(getContext());
+                }
+                mEleven = ContextCompat.getDrawable(getContext(), R.drawable.r_ic_number11);
                 mElevenShowAnimator.setInterpolator(new PathInterpolator(0.4f, 0f, 0.2f, 1f));
                 mElevenHideAnimator.setInterpolator(new PathInterpolator(0.8f, 0.2f, 0.6f, 1f));
             }
@@ -292,7 +320,7 @@ public class PlatLogoActivityR extends AppCompatActivity {
             public void setValue(float v) {
                 // until the dial is "unlocked", you can't turn it all the way to 11
                 final float max = isLocked() ? 1f - 1f / STEPS : 1f;
-                mValue = v < 0f ? 0f : v > max ? max : v;
+                mValue = v < 0f ? 0f : Math.min(v, max);
                 invalidateSelf();
             }
 
@@ -312,6 +340,7 @@ public class PlatLogoActivityR extends AppCompatActivity {
                 return mElevenAnim;
             }
 
+            @Keep
             public void setElevenAnim(float f) {
                 if (mElevenAnim != f) {
                     mElevenAnim = f;
@@ -359,14 +388,13 @@ public class PlatLogoActivityR extends AppCompatActivity {
                 }
 
                 if (mElevenAnim > 0f) {
-                    final int color = COLOR_ORANGE;
                     final int size2 = (int) ((0.5 + 0.5f * mElevenAnim) * w / 14);
                     final float cx11 = cx + size2 / 4f;
                     mEleven.setBounds((int) cx11 - size2, (int) h2 - size2,
                             (int) cx11 + size2, (int) h2 + size2);
                     final int alpha = 0xFFFFFF | ((int) clamp(0xFF * 2 * mElevenAnim, 0, 0xFF)
                             << 24);
-                    mEleven.setTint(alpha & color);
+                    mEleven.setTint(alpha & COLOR_ORANGE);
                     mEleven.draw(canvas);
                 }
 
@@ -381,7 +409,7 @@ public class PlatLogoActivityR extends AppCompatActivity {
             }
 
             float clamp(float x, float a, float b) {
-                return x < a ? a : x > b ? b : x;
+                return x < a ? a : Math.min(x, b);
             }
 
             float angleToValue(float a) {
@@ -405,6 +433,8 @@ public class PlatLogoActivityR extends AppCompatActivity {
 
                     if (isLocked() && oldUserLevel != STEPS - 1 && getUserLevel() == STEPS - 1) {
                         mUnlockTries--;
+                    } else if (!isLocked() && getUserLevel() == 0) {
+                        mUnlockTries = UNLOCK_TRIES;
                     }
 
                     if (!isLocked()) {

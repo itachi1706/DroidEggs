@@ -30,7 +30,8 @@ public class NekoActivationActivity extends AppCompatActivity {
 
     private void toastUp(String s) {
         Toast toast = Toast.makeText(this, s, Toast.LENGTH_SHORT);
-        toast.getView().setBackgroundDrawable(null);
+        if (toast.getView() != null)
+            toast.getView().setBackgroundDrawable(null);
         toast.show();
     }
 

@@ -16,12 +16,6 @@
 
 package com.itachi1706.droideggs.REgg;
 
-import androidx.annotation.Keep;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
 import android.animation.ObjectAnimator;
 import android.annotation.TargetApi;
 import android.app.ActionBar;
@@ -51,12 +45,16 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.PathInterpolator;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 
-import com.itachi1706.droideggs.BuildConfig;
-import com.itachi1706.droideggs.NougatEgg.EasterEgg.neko.NekoActivationActivity;
-import com.itachi1706.droideggs.NougatEgg.PlatLogoActivityNougat;
+import androidx.annotation.Keep;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
+import com.google.android.material.snackbar.Snackbar;
 import com.itachi1706.droideggs.R;
+import com.itachi1706.droideggs.REgg.EasterEgg.neko.NekoActivationActivity;
 import com.itachi1706.helperlib.helpers.PrefHelper;
 
 import org.json.JSONObject;
@@ -133,18 +131,22 @@ public class PlatLogoActivityR extends AppCompatActivity {
             Log.e("PlatLogoActivity", "Can't write settings", e);
         }
 
-        try {
-            Intent neko;
-            if (realNeko && Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                neko = new Intent();
-                // TODO: Start new R Neko Activity
-                neko.setComponent(new ComponentName("com.android.egg", "com.android.egg.neko.NekoActivationActivity"));
-            } else {
-                neko = new Intent(this, NekoActivationActivity.class);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            try {
+                Intent neko;
+                if (realNeko && Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    neko = new Intent();
+                    neko.setComponent(new ComponentName("com.android.egg", "com.android.egg.neko.NekoActivationActivity"));
+                } else {
+                    neko = new Intent(this, NekoActivationActivity.class);
+                }
+                startActivity(neko);
+            } catch (ActivityNotFoundException ex) {
+                Log.e("PlatLogoActivity", "No more eggs.");
             }
-            startActivity(neko);
-        } catch (ActivityNotFoundException ex) {
-            Log.e("PlatLogoActivity", "No more eggs.");
+        }
+        else {
+            Snackbar.make(findViewById(android.R.id.content), "Your version of Android is too low to advance further. Requires Android 11 to advance", Snackbar.LENGTH_LONG).show();
         }
         //finish(); // no longer finish upon unlock; it's fun to frob the dial
     }

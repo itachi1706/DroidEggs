@@ -56,7 +56,7 @@ class CurrentEgg : AppCompatActivity() {
             O -> PlatLogoActivityOreo::class.java // Oreo
             O_MR1 -> PlatLogoActivityOreoMR1::class.java // Oreo
             P -> PlatLogoActivityPie::class.java // Pie
-            29 -> PlatLogoActivityQ::class.java // Android 10 (Q) // TODO: Replace 29 with Q when targeting Q
+            Q -> PlatLogoActivityQ::class.java // Android 10 (Q)
             else -> null // Future Android Versions (As minSDK is way above GB, it does not matter to do a check before)
         }
 

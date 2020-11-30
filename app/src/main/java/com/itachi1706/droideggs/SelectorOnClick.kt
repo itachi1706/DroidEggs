@@ -19,7 +19,6 @@ import android.content.pm.ShortcutInfo
 import android.content.pm.ShortcutManager
 import android.graphics.drawable.Icon
 import android.os.Build
-import android.preference.PreferenceManager
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
@@ -38,6 +37,7 @@ import com.itachi1706.droideggs.OreoMR1Egg.PlatLogoActivityOreoMR1
 import com.itachi1706.droideggs.PieEgg.PlatLogoActivityPie
 import com.itachi1706.droideggs.QEgg.PlatLogoActivityQ
 import com.itachi1706.droideggs.REgg.PlatLogoActivityR
+import com.itachi1706.helperlib.helpers.PrefHelper
 import java.util.*
 
 /**
@@ -49,7 +49,7 @@ class SelectorOnClick(val act: MainScreen) : AdapterView.OnItemClickListener {
     override fun onItemClick(parent: AdapterView<*>, view: View, position: Int, id: Long) {
         val versionCode = view.context.resources.getStringArray(R.array.legacy_version_with_egg_code)
         val versionName = view.context.resources.getStringArray(R.array.android_ver)
-        val sp = PreferenceManager.getDefaultSharedPreferences(view.context)
+        val sp = PrefHelper.getDefaultSharedPreferences(view.context)
         Log.d("Selected Version", position.toString() + "")
 
         if (!(position < versionCode.size && position >= 0)) {

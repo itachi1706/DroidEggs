@@ -28,7 +28,7 @@ class MainScreen : AppCompatActivity() {
 
         Firebase.crashlytics.setCrashlyticsCollectionEnabled(!BuildConfig.DEBUG)
 
-        btnCurrent.setOnClickListener { v -> this.startActivityForResult(Intent(this, CurrentEgg::class.java), RC_CURRENT_EGG) }
+        btnCurrent.setOnClickListener { v -> this.startActivityForResult(Intent(v.context, CurrentEgg::class.java), RC_CURRENT_EGG) }
 
         AppUpdateInitializer(this, PrefHelper.getDefaultSharedPreferences(applicationContext), R.mipmap.ic_launcher, CommonVariables.BASE_SERVER_URL, true).setOnlyOnWifiCheck(true).checkForUpdate()
 

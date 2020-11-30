@@ -25,7 +25,7 @@
         <meta-data android:name="android.allow_multiple_resumed_activities" android:value="true" />
 
         <activity
-            android:name=".MainScreenKtx"
+            android:name=".MainScreen"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

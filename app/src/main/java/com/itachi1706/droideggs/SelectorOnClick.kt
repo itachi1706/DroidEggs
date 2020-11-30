@@ -43,7 +43,7 @@ import java.util.*
  * Created by Kenneth on 1/6/2015
  * for DroidEggs in package com.itachi1706.droideggs
  */
-class SelectorOnClick(val act: MainScreenKtx) : AdapterView.OnItemClickListener {
+class SelectorOnClick(val act: MainScreen) : AdapterView.OnItemClickListener {
 
     override fun onItemClick(parent: AdapterView<*>, view: View, position: Int, id: Long) {
         val versionCode = view.context.resources.getStringArray(R.array.legacy_version_with_egg_code)

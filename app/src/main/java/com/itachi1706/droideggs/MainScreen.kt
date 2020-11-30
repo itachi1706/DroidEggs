@@ -18,7 +18,7 @@ import com.itachi1706.appupdater.utils.AnalyticsHelper
 import com.itachi1706.helperlib.helpers.PrefHelper
 import kotlinx.android.synthetic.main.activity_main_screen.*
 
-class MainScreenKtx : AppCompatActivity() {
+class MainScreen : AppCompatActivity() {
 
     private var populatedList = ArrayList<SelectorObject>()
 

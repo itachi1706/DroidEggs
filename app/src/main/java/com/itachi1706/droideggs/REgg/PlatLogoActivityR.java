@@ -91,6 +91,10 @@ public class PlatLogoActivityR extends AppCompatActivity {
 
         final ActionBar ab = getActionBar();
         if (ab != null) ab.hide();
+        else {
+            final androidx.appcompat.app.ActionBar spAb = getSupportActionBar();
+            if (spAb != null) spAb.hide();
+        }
 
         mDialView = new BigDialView(this, null);
         realNeko = getIntent().getBooleanExtra("setting", false);

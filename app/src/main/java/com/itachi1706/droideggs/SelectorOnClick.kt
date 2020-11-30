@@ -83,7 +83,7 @@ class SelectorOnClick(val act: MainScreen) : AdapterView.OnItemClickListener {
             else act.unableToAccessEasterEgg("MARSHMALLOW")
             "R" -> if (Build.VERSION.SDK_INT >= 21) {
                 selectedEgg = Intent(view.context, PlatLogoActivityR::class.java)
-                selectedEgg.putExtra("setting", sp.getBoolean("actual_neko_egg", false))
+                selectedEgg.putExtra("setting", sp.getBoolean("actual_neko_r_egg", false))
             } else act.unableToAccessEasterEgg("R")
         }
         if (selectedEgg != null) {

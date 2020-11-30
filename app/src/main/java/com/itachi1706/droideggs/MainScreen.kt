@@ -101,41 +101,43 @@ class MainScreen : AppCompatActivity() {
         firebaseAnalytics.setUserProperty("AndroidOS", if (enabled) analytics?.sdkver.toString() else null)
     }
 
+    private fun presentSnackbar(title: String, actionText: String, actionMessage: String, closeText: String, hasNegativeBtn: Boolean = false, showAppSettings: Boolean = false) {
+        Snackbar.make(findViewById(android.R.id.content), title, Snackbar.LENGTH_LONG).setAction(actionText) { v -> run {
+                val dialog = AlertDialog.Builder(v.context).setMessage(actionMessage).setPositiveButton(closeText, null)
+                if (hasNegativeBtn) dialog.setNegativeButton("AWW :(", null)
+                if (showAppSettings) dialog.setNeutralButton("App Settings") { _, _ -> startActivity(Intent(this, MainSettings::class.java)) }
+                dialog.show()
+            }
+        }.show()
+    }
+
     fun unableToAccessEasterEgg(SDK_VERSION: String?) {
-        Snackbar.make(this.findViewById(android.R.id.content), "Unable to launch (INVALID VERSION)", Snackbar.LENGTH_LONG)
-                .setAction("WHY?") { v -> AlertDialog.Builder(v.context)
-                        .setMessage("We are unable to give you access to this easter egg due to incompatible Android Version. You require at least Android $SDK_VERSION to access this activity")
-                        .setPositiveButton("AWW :(", null).show()
-                }.show()
+        presentSnackbar("Unable to launch (INVALID VERSION)", "WHY?",
+                "We are unable to give you access to this easter egg due to incompatible Android Version. You require at least Android $SDK_VERSION to access this activity", "AWW :(")
     }
 
-    fun weird(expected: String?, actual: String?) {
-        Snackbar.make(findViewById(android.R.id.content), "Unable to launch (INVALID VERSION)", Snackbar.LENGTH_LONG)
-                .setAction("WAIT WHAT?") { v -> AlertDialog.Builder(v.context).setMessage("We are unable to give you access to this easter egg due to incompatible Android Version. " +
-                        "You require at least Android $actual to access this activity \n\n Dev Note: Interestingly... this easter egg is for $expected, so I'm confused. LOL")
-                        .setPositiveButton("WAIT WTF? O.o", null).setNegativeButton("AWW :(", null).show()}.show()
+    private fun weird(expected: String?, actual: String?) {
+        presentSnackbar("Unable to launch (INVALID VERSION)","WAIT WHAT?", "We are unable to give you access to this easter egg due to incompatible Android Version. " +
+                "You require at least Android $actual to access this activity \n\n Dev Note: Interestingly... this easter egg is for $expected, so I'm confused. LOL", "WAIT WTF? O.o", true)
     }
 
-    fun noEgg() {
-        Snackbar.make(findViewById(android.R.id.content), "No Eggs for you", Snackbar.LENGTH_LONG)
-                .setAction("WAIT WHAT?") { v -> AlertDialog.Builder(v.context).setMessage("Easter Eggs are only present in Android from Android 2.3 Gingerbread. " +
-                        "Your Android Version is do not have an easter egg unfortunately :(").setPositiveButton("AWW :(", null).show() }.show()
+    private fun noEgg() {
+        presentSnackbar("No Eggs for you", "WAIT WHAT?", "Easter Eggs are only present in Android from Android 2.3 Gingerbread. " +
+                "Your Android Version is do not have an easter egg unfortunately :(", "AWW :(")
     }
 
-    fun eggComingSoon() {
-        Snackbar.make(findViewById(android.R.id.content), "Easter Egg Coming Soon", Snackbar.LENGTH_SHORT).setAction("DISMISS", null).show()
+    private fun eggComingSoon() {
+        Snackbar.make(findViewById(android.R.id.content), "Easter Egg Coming Soon", Snackbar.LENGTH_SHORT).setAction("DISMISS"){}.show()
     }
 
     fun limitedAccessToEgg(SDK_VERSION: String) {
-        Snackbar.make(findViewById(android.R.id.content), "Unable to access egg (INVALID VERSION)", Snackbar.LENGTH_LONG)
-                .setAction("Get Access") { v -> AlertDialog.Builder(v.context).setMessage("At your current version of Android, you are not able to experience the full easter egg. " +
-                        "You require Android $SDK_VERSION to access it fully. \n\nHowever, if you wish you are able to access a limited version of the egg by checking the \"Access Partial Egg\" setting in the app settings")
-                        .setNeutralButton("App Settings") { _, _ -> startActivity(Intent(this, MainSettings::class.java)) }
-                        .setPositiveButton("AWW :(", null).show()}.show()
+        presentSnackbar("Unable to access egg (INVALID VERSION)", "Get Access", "At your current version of Android, you are not able to experience the full easter egg. " +
+                "You require Android $SDK_VERSION to access it fully. \n\nHowever, if you wish you are able to access a limited version of the egg by checking the \"Access Partial Egg\" setting in the app settings",
+                "AWW :(", false, showAppSettings = true)
     }
 
     companion object {
-        private val RC_CURRENT_EGG = 2
+        private const val RC_CURRENT_EGG = 2
     }
 
 }

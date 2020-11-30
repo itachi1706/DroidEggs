@@ -16,43 +16,43 @@
         android:key="pref_cat_general"
         android:title="App Setings" >
 
-        <CheckBoxPreference
+        <SwitchPreferenceCompat
             android:key="check_version"
             android:title="Compact Easter Egg Selector"
             android:summary="Whether you want a selector that is compact, or has more info"
             android:defaultValue="false" />
 
-        <CheckBoxPreference
+        <SwitchPreferenceCompat
             android:key="nyannyan"
             android:title="~Nyan Nyan Nyan~"
             android:summary="Enables the Nyan Cat Song (You know you want to hear it ;D)"
             android:defaultValue="true" />
 
-        <CheckBoxPreference
+        <SwitchPreferenceCompat
             android:key="neko_food"
             android:title="New Treats for Neko"
             android:summary="Switches the treats from donuts for cookies for the nekos :D (Requires Restart)"
             android:defaultValue="false" />
 
-        <CheckBoxPreference
+        <SwitchPreferenceCompat
             android:key="actual_neko_egg"
             android:title="Launch actual Android N Easter Egg"
             android:summary="Launches the actual Easter Egg for Android N as if you have tapped the version number on an Android N device (Android 7 &amp; 8 only)"
             android:defaultValue="false" />
 
-        <CheckBoxPreference
+        <SwitchPreferenceCompat
             android:key="access_partial_egg"
             android:title="Access Partial Egg"
             android:summary="Checking this option will allow you to access the Easter Eggs up till the point where you need a later version of Android to access"
             android:defaultValue="false" />
 
-        <CheckBoxPreference
+        <SwitchPreferenceCompat
             android:key="current_num"
             android:title="Use Current Device's Build Number"
             android:summary="Whether the easter eggs should use your phone's Build object or hardcoded values that fits the easter egg selected"
             android:defaultValue="true" />
 
-        <CheckBoxPreference
+        <SwitchPreferenceCompat
             android:key="debug"
             android:title="Test Upcoming Eggs"
             android:summary="Enables some upcoming eggs for testing purposes (Note: These eggs are still in development)"

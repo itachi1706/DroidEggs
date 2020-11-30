@@ -1,6 +1,6 @@
 # DroidEggs 
 
-[![JIRA Issues](https://img.shields.io/badge/JIRA-Issues-blue)](https://itachi1706.atlassian.net/browse/DEGGAND) [![Build Status](https://travis-ci.org/itachi1706/DroidEggs.svg?branch=master)](https://travis-ci.org/itachi1706/DroidEggs)
+[![JIRA Issues](https://img.shields.io/badge/JIRA-Issues-blue)](https://itachi1706.atlassian.net/browse/DEGGAND) [![Android CI](https://github.com/itachi1706/DroidEggs/workflows/Android%20CI/badge.svg)](https://github.com/itachi1706/DroidEggs/actions?query=workflow%3A%22Android+CI%22) [![CodeQL](https://github.com/itachi1706/DroidEggs/workflows/CodeQL/badge.svg)](https://github.com/itachi1706/DroidEggs/actions?query=workflow%3ACodeQL)
 
 An Android Application containing all of the Easter Eggs ever found on Android
 
@@ -30,3 +30,6 @@ This application is licensed under the *Apache License 2.0* as it contains files
 | Android 9.0 PIE | Swirly P | DONE |
 | Android 10.0 Q | Picross | DONE |
 | Android 11.0 R | Android Neko Home Controls | TODO |
+
+
+This application is also available on [my personal F-Droid repository](https://fdroid.itachi1706.com/) for alternative downloads.

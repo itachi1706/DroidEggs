@@ -25,7 +25,6 @@ class MainScreenKtx : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_screen)
-        supportActionBar?.title = "Test"
 
         Firebase.crashlytics.setCrashlyticsCollectionEnabled(!BuildConfig.DEBUG)
 
@@ -57,7 +56,7 @@ class MainScreenKtx : AppCompatActivity() {
         val tmpAdapter = if (newSel) ArrayAdapter(this, android.R.layout.simple_list_item_1, resources.getStringArray(R.array.legacy_version_with_egg))
             else SelectorAdapter(this, R.layout.listview_selector, populatedList)
         lvEasterEggSelection.adapter = tmpAdapter
-        lvEasterEggSelection.onItemClickListener = SelectorOnClick()
+        lvEasterEggSelection.onItemClickListener = SelectorOnClick(this)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

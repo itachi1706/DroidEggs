@@ -20,7 +20,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.Preference
 import com.itachi1706.appupdater.EasterEggResMusicPrefFragment
 import com.itachi1706.appupdater.SettingsInitializer
-import com.itachi1706.appupdater.Util.PrefHelper
+import com.itachi1706.helperlib.helpers.PrefHelper
 import me.jfenn.attribouter.Attribouter
 
 
@@ -54,8 +54,12 @@ class MainSettings : AppCompatActivity() {
 
             SettingsInitializer().setFullscreen(true).explodeUpdaterSettings(activity, R.mipmap.ic_launcher, CommonVariables.BASE_SERVER_URL,
                     resources.getString(R.string.update_link), resources.getString(R.string.link_updates), this)
+                    .setAboutApp(true) { Attribouter.from(context).show(); true; }
+                    .setIssueTracking(true, "https://itachi1706.atlassian.net/browse/DEGGAND")
+                    .setBugReporting(true, "https://itachi1706.atlassian.net/servicedesk/customer/portal/3")
+                    .explodeInfoSettings(this)
 
-            super.addEggMethods(false, null, true, { Attribouter.from(context).show(); true})
+            super.init()
             findPreference<Preference>("app_theme")?.setOnPreferenceChangeListener{ _, newValue -> PrefHelper.handleDefaultThemeSwitch(newValue.toString()); true }
         }
 

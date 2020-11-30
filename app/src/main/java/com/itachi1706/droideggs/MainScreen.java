@@ -32,9 +32,9 @@ import com.crashlytics.android.Crashlytics;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.itachi1706.appupdater.AppUpdateInitializer;
-import com.itachi1706.appupdater.Objects.CAAnalytics;
-import com.itachi1706.appupdater.Util.AnalyticsHelper;
-import com.itachi1706.appupdater.Util.PrefHelper;
+import com.itachi1706.appupdater.object.CAAnalytics;
+import com.itachi1706.appupdater.utils.AnalyticsHelper;
+import com.itachi1706.helperlib.helpers.PrefHelper;
 
 import java.util.ArrayList;
 

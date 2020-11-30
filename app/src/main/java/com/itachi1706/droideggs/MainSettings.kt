@@ -15,7 +15,6 @@
 package com.itachi1706.droideggs
 
 import android.os.Bundle
-import android.preference.PreferenceActivity
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.Preference
 import com.itachi1706.appupdater.EasterEggResMusicPrefFragment
@@ -24,17 +23,6 @@ import com.itachi1706.helperlib.helpers.PrefHelper
 import me.jfenn.attribouter.Attribouter
 
 
-/**
- * A [PreferenceActivity] that presents a set of application settings. On
- * handset devices, settings are presented as a single list. On tablets,
- * settings are split by category, with category headers shown to the left of
- * the list of settings.
- *
- *
- * See [
- * Android Design: Settings](http://developer.android.com/design/patterns/settings.html) for design guidelines and the [Settings
- * API Guide](http://developer.android.com/guide/topics/ui/settings.html) for more information on developing a Settings UI.
- */
 class MainSettings : AppCompatActivity() {
 
     override fun onPostCreate(savedInstanceState: Bundle?) {

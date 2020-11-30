@@ -37,6 +37,7 @@ import com.itachi1706.droideggs.OreoEgg.PlatLogoActivityOreo
 import com.itachi1706.droideggs.OreoMR1Egg.PlatLogoActivityOreoMR1
 import com.itachi1706.droideggs.PieEgg.PlatLogoActivityPie
 import com.itachi1706.droideggs.QEgg.PlatLogoActivityQ
+import com.itachi1706.droideggs.REgg.PlatLogoActivityR
 import java.util.*
 
 /**
@@ -80,6 +81,10 @@ class SelectorOnClick(val act: MainScreen) : AdapterView.OnItemClickListener {
             } else act.unableToAccessEasterEgg("LOLLIPOP")
             "Q" -> if (sp.getBoolean("access_partial_egg", false) || Build.VERSION.SDK_INT >= 23) selectedEgg = Intent(view.context, PlatLogoActivityQ::class.java)
             else act.unableToAccessEasterEgg("MARSHMALLOW")
+            "R" -> if (Build.VERSION.SDK_INT >= 21) {
+                selectedEgg = Intent(view.context, PlatLogoActivityR::class.java)
+                selectedEgg.putExtra("setting", sp.getBoolean("actual_neko_egg", false))
+            } else act.unableToAccessEasterEgg("R")
         }
         if (selectedEgg != null) {
             view.context.startActivity(selectedEgg)

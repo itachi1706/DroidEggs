@@ -42,6 +42,13 @@
             android:label="@string/title_activity_main_settings" />
         <activity android:name=".CurrentEgg" />
 
+        <!-- R (11) Egg Activities -->
+        <activity android:name=".REgg.PlatLogoActivityR"
+            android:theme="@style/AppTheme"
+            android:configChanges="orientation|keyboardHidden"
+            android:icon="@drawable/r_platlogo"
+            android:process=":ui"/>
+
         <!-- Q (10) Egg Activities -->
         <activity android:name=".QEgg.PlatLogoActivityQ"
             android:theme="@style/AppTheme"

@@ -9,11 +9,11 @@ def isGHActions = System.getenv("GITHUB_ACTIONS") ?: false
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.itachi1706.droideggs"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 30
         versionCode 277
         versionName "4.0.0"
@@ -77,8 +77,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-perf-ktx:19.1.0'
     implementation 'com.google.firebase:firebase-crashlytics-ktx:17.3.0'
     implementation 'com.google.firebase:firebase-analytics-ktx:18.0.1'
-    implementation 'com.itachi1706.appupdater:appupdater:2.2.4'
-    implementation 'com.itachi1706.helpers:helperlib:1.1.1'
+    implementation 'com.itachi1706.appupdater:appupdater:2.3.0'
+    implementation 'com.itachi1706.helpers:helperlib:1.1.2'
     implementation 'me.jfenn:Attribouter:0.1.5'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

@@ -19,8 +19,9 @@ package com.itachi1706.droideggs.PieEgg.EasterEgg.paint
 import android.content.Context
 import android.os.Build
 import android.util.AttributeSet
-import android.view.*
+import android.view.View
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
+import android.view.WindowInsets
 import android.widget.LinearLayout
 import androidx.annotation.RequiresApi
 
@@ -75,6 +76,7 @@ class CutoutAvoidingToolbar : LinearLayout {
             requestLayout()
         }
     }
+    @Suppress("UNUSED_PARAMETER")
     private fun init(attrs: AttributeSet?, defStyle: Int) {
     }
 }

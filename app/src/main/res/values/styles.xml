@@ -51,7 +51,7 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AttribouterTheme" parent="AppTheme.NoActionBar" />
+    <style name="AttribouterTheme" parent="Theme.MaterialComponents.NoActionBar.Bridge" />
 
     <style name="AppTheme.NoActionBar.FullScreen" parent="AppTheme.NoActionBar">
         <item name="android:windowFullscreen">true</item>

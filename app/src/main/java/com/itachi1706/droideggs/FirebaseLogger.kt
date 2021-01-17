@@ -37,7 +37,7 @@ object FirebaseLogger {
     fun count(context: Context, name: String, value: Int) {
         // Log to Firebase with SELECT_CONTENT, where type = counter and id = name, ignore value
         logFirebase(context, name, "counter")
-        Log.i("Firebase", "Logged MetricsLogger Count: $name")
+        Log.i("Firebase", "Logged MetricsLogger Count: $name with $value")
     }
 
     fun histogram(context: Context, name: String, bucket: Int) {

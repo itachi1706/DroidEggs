@@ -9,7 +9,7 @@
 
     <ContributorsWedge
         showDefaults="false"
-        repo="itachi1706/DroidEggs">
+        title="Developers">
 
         <!-- Lead developer: itachi1706 -->
         <ContributorWedge
@@ -21,11 +21,12 @@
             email="kenneth@itachi1706.com"
             position="1"
             task="^Lead Developer">
-            <me.jfenn.attribouter.wedges.link.LinkWedge
+            <LinkWedge
                 name="Twitter"
                 icon="@drawable/ic_twitter"
                 url="https://twitter.com/itachi1706" />
-            <me.jfenn.attribouter.wedges.link.LinkWedge
+            <LinkWedge
+                id="gitlab_lead"
                 name="GitLab"
                 icon="@drawable/ic_gitlab"
                 url="https://gitlab.com/itachi1706" />

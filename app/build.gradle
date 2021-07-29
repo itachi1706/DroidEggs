@@ -75,7 +75,7 @@ dependencies {
     implementation 'androidx.dynamicanimation:dynamicanimation-ktx:1.0.0-alpha03'
     implementation 'androidx.preference:preference-ktx:1.1.1'
     implementation 'com.google.firebase:firebase-perf-ktx:20.0.2'
-    implementation 'com.google.firebase:firebase-crashlytics-ktx:18.0.0'
+    implementation 'com.google.firebase:firebase-crashlytics-ktx:18.2.0'
     implementation 'com.google.firebase:firebase-analytics-ktx:19.0.0'
     implementation 'com.itachi1706.appupdater:appupdater:2.3.0'
     implementation 'com.itachi1706.helpers:helperlib:1.2.1'

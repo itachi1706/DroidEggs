@@ -76,7 +76,7 @@ dependencies {
     implementation 'androidx.preference:preference-ktx:1.1.1'
     implementation 'com.google.firebase:firebase-perf-ktx:20.0.3'
     implementation 'com.google.firebase:firebase-crashlytics-ktx:18.2.4'
-    implementation 'com.google.firebase:firebase-analytics-ktx:19.0.2'
+    implementation 'com.google.firebase:firebase-analytics-ktx:20.0.0'
     implementation 'com.itachi1706.appupdater:appupdater:2.4.1'
     implementation 'com.itachi1706.helpers:helperlib:1.2.1'
     implementation 'me.jfenn:Attribouter:0.1.9'

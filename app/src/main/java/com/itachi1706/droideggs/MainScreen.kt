@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ArrayAdapter
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
@@ -15,27 +16,44 @@ import com.google.firebase.ktx.Firebase
 import com.itachi1706.appupdater.AppUpdateInitializer
 import com.itachi1706.appupdater.`object`.CAAnalytics
 import com.itachi1706.appupdater.utils.AnalyticsHelper
+import com.itachi1706.droideggs.databinding.ActivityMainScreenBinding
 import com.itachi1706.helperlib.helpers.PrefHelper
-import kotlinx.android.synthetic.main.activity_main_screen.*
 
 class MainScreen : AppCompatActivity() {
 
     private var populatedList = ArrayList<SelectorObject>()
+    private lateinit var binding: ActivityMainScreenBinding
+
+    private val checkForCurrentEggResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == RESULT_CANCELED) {
+            val type = result.data?.getStringExtra("class")
+            val title = result.data?.getStringExtra("title")
+            val body = result.data?.getStringExtra("body")
+            when (type) {
+                "noaccess" -> unableToAccessEasterEgg(title)
+                "comingsoon" -> eggComingSoon()
+                "weird" -> weird(title, body)
+                else -> noEgg()
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main_screen)
+        binding = ActivityMainScreenBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         Firebase.crashlytics.setCrashlyticsCollectionEnabled(!BuildConfig.DEBUG)
 
-        btnCurrent.setOnClickListener { v -> this.startActivityForResult(Intent(v.context, CurrentEgg::class.java), RC_CURRENT_EGG) }
+        binding.btnCurrent.setOnClickListener { v -> checkForCurrentEggResult.launch(Intent(v.context, CurrentEgg::class.java)) }
 
         AppUpdateInitializer(this, PrefHelper.getDefaultSharedPreferences(applicationContext), R.mipmap.ic_launcher, CommonVariables.BASE_SERVER_URL, true).setOnlyOnWifiCheck(true).checkForUpdate()
 
         val mFirebaseAnalytics = Firebase.analytics
         val helper = AnalyticsHelper(this, true)
         Runnable {
-            val analytics = helper.data
+            val analytics = helper.getData(BuildConfig.DEBUG)
             if (analytics != null) setAnalyticsData(true, mFirebaseAnalytics, analytics)
             else setAnalyticsData(false, mFirebaseAnalytics, null)
         }.run()
@@ -55,24 +73,8 @@ class MainScreen : AppCompatActivity() {
 
         val tmpAdapter = if (newSel) ArrayAdapter(this, android.R.layout.simple_list_item_1, resources.getStringArray(R.array.legacy_version_with_egg))
             else SelectorAdapter(this, R.layout.listview_selector, populatedList)
-        lvEasterEggSelection.adapter = tmpAdapter
-        lvEasterEggSelection.onItemClickListener = SelectorOnClick(this)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == RC_CURRENT_EGG) {
-            if (resultCode == RESULT_CANCELED) {
-                val type = data?.getStringExtra("class")
-                val title = data?.getStringExtra("title")
-                val body = data?.getStringExtra("body")
-                when (type) {
-                    "noaccess" -> unableToAccessEasterEgg(title)
-                    "comingsoon" -> eggComingSoon()
-                    "weird" -> weird(title, body)
-                    else -> noEgg()
-                }
-            }
-        } else super.onActivityResult(requestCode, resultCode, data)
+        binding.lvEasterEggSelection.adapter = tmpAdapter
+        binding.lvEasterEggSelection.onItemClickListener = SelectorOnClick(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -135,9 +137,4 @@ class MainScreen : AppCompatActivity() {
                 "You require Android $SDK_VERSION to access it fully. \n\nHowever, if you wish you are able to access a limited version of the egg by checking the \"Access Partial Egg\" setting in the app settings",
                 "AWW :(", false, showAppSettings = true)
     }
-
-    companion object {
-        private const val RC_CURRENT_EGG = 2
-    }
-
 }

@@ -3,7 +3,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: 'com.google.firebase.firebase-perf'
 
-def isTravis = System.getenv("TRAVIS")
 def isGHActions = System.getenv("GITHUB_ACTIONS") ?: false
 
 android {
@@ -52,9 +51,6 @@ android {
     buildFeatures {
         viewBinding true
     }
-//    dexOptions {
-//        preDexLibraries = !(isTravis || isGHActions)
-//    }
     lintOptions {
         abortOnError !isGHActions
     }

@@ -15,20 +15,23 @@ import com.google.firebase.ktx.Firebase
 import com.itachi1706.appupdater.AppUpdateInitializer
 import com.itachi1706.appupdater.`object`.CAAnalytics
 import com.itachi1706.appupdater.utils.AnalyticsHelper
+import com.itachi1706.droideggs.databinding.ActivityMainScreenBinding
 import com.itachi1706.helperlib.helpers.PrefHelper
-import kotlinx.android.synthetic.main.activity_main_screen.*
 
 class MainScreen : AppCompatActivity() {
 
     private var populatedList = ArrayList<SelectorObject>()
+    private lateinit var binding: ActivityMainScreenBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main_screen)
+        binding = ActivityMainScreenBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         Firebase.crashlytics.setCrashlyticsCollectionEnabled(!BuildConfig.DEBUG)
 
-        btnCurrent.setOnClickListener { v -> this.startActivityForResult(Intent(v.context, CurrentEgg::class.java), RC_CURRENT_EGG) }
+        binding.btnCurrent.setOnClickListener { v -> this.startActivityForResult(Intent(v.context, CurrentEgg::class.java), RC_CURRENT_EGG) }
 
         AppUpdateInitializer(this, PrefHelper.getDefaultSharedPreferences(applicationContext), R.mipmap.ic_launcher, CommonVariables.BASE_SERVER_URL, true).setOnlyOnWifiCheck(true).checkForUpdate()
 
@@ -55,8 +58,8 @@ class MainScreen : AppCompatActivity() {
 
         val tmpAdapter = if (newSel) ArrayAdapter(this, android.R.layout.simple_list_item_1, resources.getStringArray(R.array.legacy_version_with_egg))
             else SelectorAdapter(this, R.layout.listview_selector, populatedList)
-        lvEasterEggSelection.adapter = tmpAdapter
-        lvEasterEggSelection.onItemClickListener = SelectorOnClick(this)
+        binding.lvEasterEggSelection.adapter = tmpAdapter
+        binding.lvEasterEggSelection.onItemClickListener = SelectorOnClick(this)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

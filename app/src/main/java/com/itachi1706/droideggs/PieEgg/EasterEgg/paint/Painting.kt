@@ -19,12 +19,11 @@ package com.itachi1706.droideggs.PieEgg.EasterEgg.paint
 import android.content.Context
 import android.graphics.*
 import android.provider.Settings
-import android.util.AttributeSet
-import android.util.DisplayMetrics
 import android.view.MotionEvent
 import android.view.View
 import android.view.WindowInsets
 import androidx.annotation.RequiresApi
+import com.itachi1706.droideggs.compat.ScreenMetricsCompat
 import org.json.JSONObject
 import java.util.concurrent.TimeUnit
 
@@ -38,7 +37,7 @@ fun invlerp(x: Float, a: Float, b: Float): Float {
 }
 
 @RequiresApi(21)
-public class Painting : View, SpotFilter.Plotter {
+class Painting(context: Context) : View(context), SpotFilter.Plotter {
     companion object {
         val FADE_MINS = TimeUnit.MINUTES.toMillis(3) // about how long a drawing should last
         val ZEN_RATE = TimeUnit.SECONDS.toMillis(2)  // how often to apply the fade
@@ -105,16 +104,8 @@ public class Painting : View, SpotFilter.Plotter {
             postDelayed(this, ZEN_RATE)
         }
     }
-    constructor(context: Context) : super(context) {
-        init(null, 0)
-    }
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        init(attrs, 0)
-    }
-    constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {
-        init(attrs, defStyle)
-    }
-    private fun init(attrs: AttributeSet?, defStyle: Int) {
+
+    init {
         loadDevicePressureData()
     }
     override fun onAttachedToWindow() {
@@ -249,10 +240,9 @@ public class Painting : View, SpotFilter.Plotter {
         return _brushWidth
     }
     private fun setupBitmaps() {
-        val dm = DisplayMetrics()
-        display.getRealMetrics(dm)
-        val w = dm.widthPixels
-        val h = dm.heightPixels
+        val smc = ScreenMetricsCompat.getScreenSize(context);
+        val w = smc.width
+        val h = smc.height
         val oldBits = bitmap
         var bits = oldBits
         if (bits == null || bits.width != w || bits.height != h) {

@@ -8,7 +8,6 @@ import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -32,7 +31,6 @@ import android.widget.ImageView;
 
 import com.itachi1706.droideggs.R;
 import com.itachi1706.droideggs.forwardPortedCode.AnalogClock;
-import com.itachi1706.droideggs.s_egg.easter_egg.widget.PaintChipsActivity;
 import com.itachi1706.droideggs.s_egg.easter_egg.widget.WidgetActivationActivity;
 import com.itachi1706.helperlib.helpers.PrefHelper;
 
@@ -138,9 +136,7 @@ public class PlatLogoActivityS extends Activity {
         }
 
         try {
-            // Intent.ACTION_MAIN
-            startActivity(new Intent(this, WidgetActivationActivity.class)
-                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+            startActivity(new Intent(this, WidgetActivationActivity.class));
         } catch (ActivityNotFoundException ex) {
             ex.printStackTrace();
             Log.e(TAG, "No more eggs.");

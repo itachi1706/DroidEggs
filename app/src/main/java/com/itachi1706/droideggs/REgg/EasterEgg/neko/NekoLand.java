@@ -220,50 +220,31 @@ public class NekoLand extends Activity implements PrefState.PrefsListener {
             final int size = context.getResources().getDimensionPixelSize(R.dimen.neko_display_size);
             holder.imageView.setImageIcon(mCats[position].createIcon(context, size, size));
             holder.textView.setText(mCats[position].getName());
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onCatClick(mCats[holder.getAdapterPosition()]);
-                }
+            holder.itemView.setOnClickListener(v -> onCatClick(mCats[holder.getAdapterPosition()]));
+            holder.itemView.setOnLongClickListener(v -> {
+                setContextGroupVisible(holder, true);
+                return true;
             });
-            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    setContextGroupVisible(holder, true);
-                    return true;
-                }
+            holder.delete.setOnClickListener(v -> {
+                setContextGroupVisible(holder, false);
+                new AlertDialog.Builder(NekoLand.this)
+                        .setTitle(getString(R.string.confirm_delete, mCats[holder.getAdapterPosition()].getName()))
+                        .setNegativeButton(android.R.string.cancel, null)
+                        .setPositiveButton(android.R.string.ok, (dialog, which) -> onCatRemove(mCats[holder.getAdapterPosition()]))
+                        .show();
             });
-            holder.delete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    setContextGroupVisible(holder, false);
-                    new AlertDialog.Builder(NekoLand.this)
-                            .setTitle(getString(R.string.confirm_delete, mCats[position].getName()))
-                            .setNegativeButton(android.R.string.cancel, null)
-                            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    onCatRemove(mCats[holder.getAdapterPosition()]);
-                                }
-                            })
-                            .show();
+            holder.share.setOnClickListener(v -> {
+                setContextGroupVisible(holder, false);
+                Cat cat = mCats[holder.getAdapterPosition()];
+                if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    mPendingShareCat = cat;
+                    requestPermissions(
+                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                            STORAGE_PERM_REQUEST);
+                    return;
                 }
-            });
-            holder.share.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    setContextGroupVisible(holder, false);
-                    Cat cat = mCats[holder.getAdapterPosition()];
-                    if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                            != PackageManager.PERMISSION_GRANTED) {
-                        mPendingShareCat = cat;
-                        requestPermissions(
-                                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                STORAGE_PERM_REQUEST);
-                        return;
-                    }
-                    shareCat(cat);
-                }
+                shareCat(cat);
             });
         }
 

@@ -121,7 +121,9 @@ public class PlatLogoActivityQ extends AppCompatActivity {
                     case MotionEvent.ACTION_MOVE:
                         v.setX(event.getRawX() - mOffsetX);
                         v.setY(event.getRawY() - mOffsetY);
-                        v.performHapticFeedback(HapticFeedbackConstants.TEXT_HANDLE_MOVE);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
+                            v.performHapticFeedback(HapticFeedbackConstants.TEXT_HANDLE_MOVE);
+                        }
                         break;
                     case MotionEvent.ACTION_UP:
                         v.performClick();
@@ -167,9 +169,11 @@ public class PlatLogoActivityQ extends AppCompatActivity {
             pref.edit().putLong("Q_EGG_MODE", System.currentTimeMillis()).apply();
         }
         try {
-            Intent q = new Intent(PlatLogoActivityQ.this, QuaresActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             // MAKE SURE YOU ARE AT LEAST MARSHMALLOW (API 23)
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) startActivity(q);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                Intent q = new Intent(PlatLogoActivityQ.this, QuaresActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(q);
+            }
             else {
                 Snackbar.make(findViewById(android.R.id.content), "Your version of Android is too low to advance further. Requires Android 6.0 Marshmallow to advance", Snackbar.LENGTH_LONG).show();
                 return;
@@ -287,7 +291,8 @@ public class PlatLogoActivityQ extends AppCompatActivity {
             canvas.drawPaint(mPaint);
         }
         BackslashDrawable(int width) {
-            mTile = Bitmap.createBitmap(width, width, Bitmap.Config.ALPHA_8);
+            int height = width + 1 - 1;
+            mTile = Bitmap.createBitmap(width, height, Bitmap.Config.ALPHA_8);
             mAnimator.setTimeListener(this);
             final Canvas tileCanvas = new Canvas(mTile);
             final float w = tileCanvas.getWidth();

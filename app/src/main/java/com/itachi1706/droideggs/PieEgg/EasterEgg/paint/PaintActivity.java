@@ -37,6 +37,7 @@ import java.util.Arrays;
 import java.util.stream.IntStream;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
 
 import static android.view.MotionEvent.ACTION_CANCEL;
@@ -87,7 +88,7 @@ public class PaintActivity extends Activity {
     private void showToolbar(View bar) {
         if (bar.getVisibility() != View.GONE) return;
         bar.setVisibility(View.VISIBLE);
-        bar.setTranslationY(toolbar.getHeight()/2);
+        bar.setTranslationY(toolbar.getHeight()/2f);
         bar.animate()
                 .translationY(toolbar.getHeight())
                 .alpha(1f)
@@ -97,7 +98,7 @@ public class PaintActivity extends Activity {
     private void hideToolbar(View bar) {
         if (bar.getVisibility() != View.VISIBLE) return;
         bar.animate()
-                .translationY(toolbar.getHeight()/2)
+                .translationY(toolbar.getHeight()/2f)
                 .alpha(0f)
                 .setDuration(150)
                 .withEndAction(() -> bar.setVisibility(View.GONE))
@@ -114,7 +115,7 @@ public class PaintActivity extends Activity {
     private BrushPropertyDrawable colorButtonDrawable;
     private float maxBrushWidth, minBrushWidth;
     private int nightMode = Configuration.UI_MODE_NIGHT_UNDEFINED;
-    static final float lerp(float f, float a, float b) {
+    static float lerp(float f, float a, float b) {
         return a + (b-a) * f;
     }
     @SuppressLint("ClickableViewAccessibility")
@@ -202,7 +203,7 @@ public class PaintActivity extends Activity {
                 icon.setWellColor(ContextCompat.getColor(getApplicationContext(),R.color.toolbar_icon_color));
                 final ImageButton button = new ImageButton(this);
                 button.setImageDrawable(icon);
-                button.setBackground(getDrawable(R.drawable.pie_toolbar_button_bg));
+                button.setBackground(AppCompatResources.getDrawable(getApplicationContext(), R.drawable.pie_toolbar_button_bg));
                 button.setOnClickListener(
                         view -> {
                             brushes.setSelected(false);
@@ -224,7 +225,7 @@ public class PaintActivity extends Activity {
                 icon.setWellColor(c);
                 final ImageButton button = new ImageButton(this);
                 button.setImageDrawable(icon);
-                button.setBackground(getDrawable(R.drawable.pie_toolbar_button_bg));
+                button.setBackground(AppCompatResources.getDrawable(getApplicationContext(), R.drawable.pie_toolbar_button_bg));
                 button.setOnClickListener(
                         view -> {
                             colors.setSelected(false);

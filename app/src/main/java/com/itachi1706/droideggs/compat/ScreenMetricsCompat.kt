@@ -21,9 +21,7 @@ object ScreenMetricsCompat {
      * Returns screen size in pixels.
      */
     fun getScreenSize(context: Context): Size = api.getScreenSize(context)
-
-    fun getInsetsMetricTop(insets: WindowInsets): Int = api.getInsetsMetricsTop(insets)
-    fun getInsetsMetricBottom(insets: WindowInsets): Int = api.getInsetsMetricBottom(insets)
+    fun getInsetsMetric(insets: WindowInsets): InsetsCompat = api.getInsetsMetric(insets);
 
     @Suppress("DEPRECATION")
     private open class Api {
@@ -38,19 +36,11 @@ object ScreenMetricsCompat {
             return Size(metrics.widthPixels, metrics.heightPixels)
         }
 
-        open fun getInsetsMetricsTop(insets: WindowInsets): Int {
+        open fun getInsetsMetric(insets: WindowInsets): InsetsCompat {
             return if (insets.hasStableInsets()) {
-                insets.stableInsetTop
+                InsetsCompat(insets.stableInsetTop, insets.stableInsetBottom, insets.stableInsetLeft, insets.stableInsetRight)
             } else {
-                insets.systemWindowInsetTop
-            }
-        }
-
-        open fun getInsetsMetricBottom(insets: WindowInsets): Int {
-            return if (insets.hasStableInsets()) {
-                insets.stableInsetBottom
-            } else {
-                insets.systemWindowInsetBottom
+                InsetsCompat(insets.systemWindowInsetTop, insets.systemWindowInsetBottom, insets.systemWindowInsetLeft, insets.systemWindowInsetRight)
             }
         }
     }
@@ -62,14 +52,11 @@ object ScreenMetricsCompat {
             return Size(metrics.bounds.width(), metrics.bounds.height())
         }
 
-        override fun getInsetsMetricsTop(insets: WindowInsets): Int {
+        override fun getInsetsMetric(insets: WindowInsets): InsetsCompat {
             val inset = insets.getInsetsIgnoringVisibility(WindowInsets.Type.systemBars())
-            return inset.top
-        }
-
-        override fun getInsetsMetricBottom(insets: WindowInsets): Int {
-            val inset = insets.getInsetsIgnoringVisibility(WindowInsets.Type.systemBars())
-            return inset.bottom
+            return InsetsCompat(inset.top, inset.bottom, inset.left, inset.right)
         }
     }
+
+    data class InsetsCompat(val top: Int, val bottom: Int, val left: Int, val right: Int)
 }

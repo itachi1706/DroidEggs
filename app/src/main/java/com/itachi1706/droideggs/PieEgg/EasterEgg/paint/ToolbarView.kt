@@ -27,8 +27,9 @@ class ToolbarView(context: Context) : FrameLayout(context) {
     override fun onApplyWindowInsets(insets: WindowInsets?): WindowInsets {
         val lp = layoutParams as LayoutParams?
         if (lp != null && insets != null) {
-            lp.topMargin = ScreenMetricsCompat.getInsetsMetricTop(insets)
-            lp.bottomMargin = ScreenMetricsCompat.getInsetsMetricBottom(insets)
+            val metric = ScreenMetricsCompat.getInsetsMetric(insets)
+            lp.topMargin = metric.top
+            lp.bottomMargin = metric.bottom
             layoutParams = lp
         }
         return super.onApplyWindowInsets(insets)

@@ -143,7 +143,7 @@ public class PlatLogoActivityS extends Activity {
                     .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
         } catch (ActivityNotFoundException ex) {
             ex.printStackTrace();
-            Log.e("PlatLogoActivity", "No more eggs.");
+            Log.e(TAG, "No more eggs.");
         }
         //finish(); // no longer finish upon unlock; it's fun to frob the dial
     }
@@ -185,7 +185,7 @@ public class PlatLogoActivityS extends Activity {
                 }
             }
         } catch (Exception e) {
-            Log.e("PlatLogoActivity", "Can't write touch settings", e);
+            Log.e(TAG, "Can't write touch settings", e);
         }
     }
 
@@ -409,12 +409,21 @@ public class PlatLogoActivityS extends Activity {
                     mNumBubbs, (int) (100f * mNumBubbs / MAX_BUBBS)));
         }
 
+        /*
+         * Set to no-op
+         */
         @Override
         public void setAlpha(int alpha) { }
 
+        /*
+         * Set to no-op
+         */
         @Override
         public void setColorFilter(ColorFilter colorFilter) { }
 
+        /*
+         * Set to no-op
+         */
         @Override
         public int getOpacity() {
             return TRANSLUCENT;

@@ -5,6 +5,7 @@ import android.content.res.Resources
 import android.os.Build
 import android.util.DisplayMetrics
 import android.util.Size
+import android.view.WindowInsets
 import android.view.WindowManager
 import android.view.WindowMetrics
 import androidx.annotation.RequiresApi
@@ -21,6 +22,9 @@ object ScreenMetricsCompat {
      */
     fun getScreenSize(context: Context): Size = api.getScreenSize(context)
 
+    fun getInsetsMetricTop(insets: WindowInsets): Int = api.getInsetsMetricsTop(insets)
+    fun getInsetsMetricBottom(insets: WindowInsets): Int = api.getInsetsMetricBottom(insets)
+
     @Suppress("DEPRECATION")
     private open class Api {
         open fun getScreenSize(context: Context): Size {
@@ -33,6 +37,22 @@ object ScreenMetricsCompat {
             }
             return Size(metrics.widthPixels, metrics.heightPixels)
         }
+
+        open fun getInsetsMetricsTop(insets: WindowInsets): Int {
+            return if (insets.hasStableInsets()) {
+                insets.stableInsetTop
+            } else {
+                insets.systemWindowInsetTop
+            }
+        }
+
+        open fun getInsetsMetricBottom(insets: WindowInsets): Int {
+            return if (insets.hasStableInsets()) {
+                insets.stableInsetBottom
+            } else {
+                insets.systemWindowInsetBottom
+            }
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.R)
@@ -40,6 +60,16 @@ object ScreenMetricsCompat {
         override fun getScreenSize(context: Context): Size {
             val metrics: WindowMetrics = context.getSystemService(WindowManager::class.java).currentWindowMetrics
             return Size(metrics.bounds.width(), metrics.bounds.height())
+        }
+
+        override fun getInsetsMetricsTop(insets: WindowInsets): Int {
+            val inset = insets.getInsetsIgnoringVisibility(WindowInsets.Type.systemBars())
+            return inset.top
+        }
+
+        override fun getInsetsMetricBottom(insets: WindowInsets): Int {
+            val inset = insets.getInsetsIgnoringVisibility(WindowInsets.Type.systemBars())
+            return inset.bottom
         }
     }
 }

@@ -9,6 +9,10 @@ import android.view.MotionEvent;
 import org.json.JSONObject;
 
 public class PlatLogoCommon {
+    private PlatLogoCommon() {
+        throw new IllegalStateException("Utility class");
+    }
+
     static double mPressureMin = 0, mPressureMax = -1;
 
     public static void measureTouchPressure(MotionEvent event) {

@@ -19,7 +19,6 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
@@ -126,7 +125,6 @@ public class PlatLogoActivityS extends Activity {
                 500
         );
 
-        final ContentResolver cr = getContentResolver();
 
         try {
             if (shouldWriteSettings()) {
@@ -143,6 +141,7 @@ public class PlatLogoActivityS extends Activity {
             startActivity(new Intent(this, PaintChipsActivity.class)
                     .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
         } catch (ActivityNotFoundException ex) {
+            ex.printStackTrace();
             Log.e("PlatLogoActivity", "No more eggs.");
         }
         //finish(); // no longer finish upon unlock; it's fun to frob the dial
@@ -306,16 +305,6 @@ public class PlatLogoActivityS extends Activity {
                 android.R.color.system_accent2_600,
         };
 
-        private final int[] mColorIdsCompat = {
-                R.color.system_accent1_400,
-                R.color.system_accent1_500,
-                R.color.system_accent1_600,
-
-                R.color.system_accent2_400,
-                R.color.system_accent2_500,
-                R.color.system_accent2_600,
-        };
-
         private int[] mColors = new int[mColorIds.length];
 
         private final Bubble[] mBubbs = new Bubble[MAX_BUBBS];
@@ -328,6 +317,16 @@ public class PlatLogoActivityS extends Activity {
         public float minR = 0f;
 
         BubblesDrawable() {
+            int[] mColorIdsCompat = {
+                R.color.system_accent1_400,
+                R.color.system_accent1_500,
+                R.color.system_accent1_600,
+
+                R.color.system_accent2_400,
+                R.color.system_accent2_500,
+                R.color.system_accent2_600,
+            };
+
             for (int i = 0; i < mColorIds.length; i++) {
                 mColors[i] = getColor((Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) ? mColorIds[i] : mColorIdsCompat[i]);
             }

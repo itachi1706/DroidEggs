@@ -140,7 +140,7 @@ public class AnalogClock extends View {
         }
 
 //        mSecondHand = a.getDrawable(android.R.styleable.AnalogClock_hand_second);
-        mSecondHand = context.getDrawable(R.drawable.clock_hand_minute); // Use minute here as we wont use it anw
+        mSecondHand = null; // context.getDrawable(R.drawable.clock_hand_minute); // Use minute here as we wont use it anw
 
         if (mSecondHandTintInfo.mHasTintList || mSecondHandTintInfo.mHasTintBlendMode) {
             mSecondHand = mSecondHandTintInfo.apply(mSecondHand);
@@ -504,6 +504,7 @@ public class AnalogClock extends View {
             // For example, when adding widgets from a user profile to the
             // home screen. Therefore, we register the receiver as the current
             // user not the one the context is for.
+            getContext().registerReceiver(mIntentReceiver, filter, null, getHandler());
 //            getContext().registerReceiverAsUser(mIntentReceiver,
 //                    android.os.Process.myUserHandle(), filter, null, getHandler());
             mReceiverAttached = true;
@@ -583,13 +584,8 @@ public class AnalogClock extends View {
             mChanged = false;
         }
 
-        Size size = ScreenMetricsCompat.INSTANCE.getScreenSize(mContext);
-
-        int availableWidth = size.getWidth();
-        int availableHeight = size.getHeight();
-
-//        int availableWidth = mRight - mLeft;
-//        int availableHeight = mBottom - mTop;
+        int availableWidth = getRight() - getLeft();
+        int availableHeight = getBottom() - getTop();
 
         int x = availableWidth / 2;
         int y = availableHeight / 2;

@@ -18,14 +18,18 @@ import android.app.Activity;
 import android.content.ComponentName;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.preference.PreferenceManager;
 
+import com.itachi1706.droideggs.BuildConfig;
 import com.itachi1706.droideggs.FirebaseLogger;
 import com.itachi1706.helperlib.helpers.PrefHelper;
 
+@RequiresApi(Build.VERSION_CODES.R)
 public class NekoActivationActivity extends Activity {
     private static final String R_EGG_UNLOCK_SETTING = "egg_mode_r";
 

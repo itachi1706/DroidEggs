@@ -19,14 +19,15 @@ package com.itachi1706.droideggs.PieEgg.EasterEgg.paint
 import android.content.Context
 import android.graphics.*
 import android.provider.Settings
-import android.util.AttributeSet
-import android.util.DisplayMetrics
 import android.view.MotionEvent
 import android.view.View
 import android.view.WindowInsets
 import androidx.annotation.RequiresApi
+import com.itachi1706.droideggs.compat.ScreenMetricsCompat
 import org.json.JSONObject
 import java.util.concurrent.TimeUnit
+import kotlin.math.min
+import kotlin.math.pow
 
 fun hypot(x: Float, y: Float): Float {
     return Math.hypot(x.toDouble(), y.toDouble()).toFloat()
@@ -38,11 +39,11 @@ fun invlerp(x: Float, a: Float, b: Float): Float {
 }
 
 @RequiresApi(21)
-public class Painting : View, SpotFilter.Plotter {
+class Painting(context: Context) : View(context), SpotFilter.Plotter {
     companion object {
-        val FADE_MINS = TimeUnit.MINUTES.toMillis(3) // about how long a drawing should last
+        private val FADE_MINS = TimeUnit.MINUTES.toMillis(3) // about how long a drawing should last
         val ZEN_RATE = TimeUnit.SECONDS.toMillis(2)  // how often to apply the fade
-        val ZEN_FADE = Math.max(1f, ZEN_RATE / FADE_MINS * 255f)
+        private val ZEN_FADE = Math.max(1f, ZEN_RATE / FADE_MINS * 255f)
         val FADE_TO_WHITE_CF = ColorMatrixColorFilter(ColorMatrix(floatArrayOf(
                 1f, 0f, 0f, 0f, ZEN_FADE,
                 0f, 1f, 0f, 0f, ZEN_FADE,
@@ -61,10 +62,10 @@ public class Painting : View, SpotFilter.Plotter {
                 0f, 0f, -1f, 0f, 255f,
                 0f, 0f, 0f, 1f, 0f
         )))
-        val TOUCH_STATS = "touch.stats" // Settings.System key
+        const val TOUCH_STATS = "touch.stats" // Settings.System key
     }
-    var devicePressureMin = 0f; // ideal value
-    var devicePressureMax = 1f; // ideal value
+    private var devicePressureMin = 0f // ideal value
+    private var devicePressureMax = 1f // ideal value
     var zenMode = true
         set(value) {
             if (field != value) {
@@ -105,16 +106,8 @@ public class Painting : View, SpotFilter.Plotter {
             postDelayed(this, ZEN_RATE)
         }
     }
-    constructor(context: Context) : super(context) {
-        init(null, 0)
-    }
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        init(attrs, 0)
-    }
-    constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {
-        init(attrs, defStyle)
-    }
-    private fun init(attrs: AttributeSet?, defStyle: Int) {
+
+    init {
         loadDevicePressureData()
     }
     override fun onAttachedToWindow() {
@@ -144,20 +137,19 @@ public class Painting : View, SpotFilter.Plotter {
         return super.onApplyWindowInsets(insets)
     }
     private fun powf(a: Float, b: Float): Float {
-        return Math.pow(a.toDouble(), b.toDouble()).toFloat()
+        return a.toDouble().pow(b.toDouble()).toFloat()
     }
     override fun plot(s: MotionEvent.PointerCoords) {
-        val c = _paintCanvas
-        if (c == null) return
+        val c = _paintCanvas ?: return
         synchronized(_bitmapLock) {
             var x = _lastX
             var y = _lastY
             var r = _lastR
-            val newR = Math.max(1f, powf(adjustPressure(s.pressure), 2f).toFloat() * _brushWidth)
+            val newR = Math.max(1f, powf(adjustPressure(s.pressure), 2f) * _brushWidth)
             if (r >= 0) {
                 val d = hypot(s.x - x, s.y - y)
                 if (d > 1f && (r + newR) > 1f) {
-                    val N = (2 * d / Math.min(4f, r + newR)).toInt()
+                    val N = (2 * d / min(4f, r + newR)).toInt()
                     val stepX = (s.x - x) / N
                     val stepY = (s.y - y) / N
                     val stepR = (newR - r) / N
@@ -177,9 +169,9 @@ public class Painting : View, SpotFilter.Plotter {
     }
     private fun loadDevicePressureData() {
         try {
-            val touchDataJson = Settings.System.getString(context.contentResolver, TOUCH_STATS)
             val touchData = JSONObject(
-                    if (touchDataJson != null) touchDataJson else "{}")
+                Settings.System.getString(context.contentResolver, TOUCH_STATS) ?: "{}"
+            )
             if (touchData.has("min")) devicePressureMin = touchData.getDouble("min").toFloat()
             if (touchData.has("max")) devicePressureMax = touchData.getDouble("max").toFloat()
             if (devicePressureMin < 0) devicePressureMin = 0f
@@ -222,7 +214,7 @@ public class Painting : View, SpotFilter.Plotter {
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         bitmap?.let {
-            canvas.drawBitmap(bitmap!!, 0f, 0f, _drawPaint);
+            canvas.drawBitmap(bitmap!!, 0f, 0f, _drawPaint)
         }
     }
     // public api
@@ -249,10 +241,9 @@ public class Painting : View, SpotFilter.Plotter {
         return _brushWidth
     }
     private fun setupBitmaps() {
-        val dm = DisplayMetrics()
-        display.getRealMetrics(dm)
-        val w = dm.widthPixels
-        val h = dm.heightPixels
+        val smc = ScreenMetricsCompat.getScreenSize(context)
+        val w = smc.width
+        val h = smc.height
         val oldBits = bitmap
         var bits = oldBits
         if (bits == null || bits.width != w || bits.height != h) {

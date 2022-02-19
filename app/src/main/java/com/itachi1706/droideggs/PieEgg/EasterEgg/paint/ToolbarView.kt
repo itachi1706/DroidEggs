@@ -17,47 +17,21 @@
 package com.itachi1706.droideggs.PieEgg.EasterEgg.paint
 
 import android.content.Context
-import android.transition.Transition
-import android.util.AttributeSet
 import android.view.WindowInsets
 import android.widget.FrameLayout
 import androidx.annotation.RequiresApi
-import com.itachi1706.droideggs.forwardPortedCode.TransitionListenerAdapter
+import com.itachi1706.droideggs.compat.ScreenMetricsCompat
 
 @RequiresApi(21)
-class ToolbarView : FrameLayout {
-    var inTransition = false
-    var transitionListener: Transition.TransitionListener = object : TransitionListenerAdapter() {
-        override fun onTransitionStart(transition: Transition?) {
-            inTransition = true
-        }
-        override fun onTransitionEnd(transition: Transition?) {
-            inTransition = false
-        }
-    }
-    constructor(context: Context) : super(context) {
-        init(null, 0)
-    }
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        init(attrs, 0)
-    }
-    constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {
-        init(attrs, defStyle)
-    }
+class ToolbarView(context: Context) : FrameLayout(context) {
     override fun onApplyWindowInsets(insets: WindowInsets?): WindowInsets {
-        var lp = layoutParams as FrameLayout.LayoutParams?
+        val lp = layoutParams as LayoutParams?
         if (lp != null && insets != null) {
-            if (insets.hasStableInsets()) {
-                lp.topMargin = insets.stableInsetTop
-                lp.bottomMargin = insets.stableInsetBottom
-            } else {
-                lp.topMargin = insets.systemWindowInsetTop
-                lp.bottomMargin = insets.systemWindowInsetBottom
-            }
+            val metric = ScreenMetricsCompat.getInsetsMetric(insets)
+            lp.topMargin = metric.top
+            lp.bottomMargin = metric.bottom
             layoutParams = lp
         }
         return super.onApplyWindowInsets(insets)
-    }
-    private fun init(attrs: AttributeSet?, defStyle: Int) {
     }
 }

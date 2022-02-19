@@ -29,6 +29,11 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
+    - name: Upload lint artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: lint-artifact
+        path: app/build/reports/lint-results-debug.html
   device-test:
     runs-on: macOS-latest
     name: Android Device Test Runner

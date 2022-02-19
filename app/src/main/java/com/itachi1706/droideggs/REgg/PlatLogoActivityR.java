@@ -136,23 +136,8 @@ public class PlatLogoActivityR extends AppCompatActivity {
         //finish(); // no longer finish upon unlock; it's fun to frob the dial
     }
 
-    static final String TOUCH_STATS = "touch.stats";
+    static final String TOUCH_STATS = "r_touch.stats";
     double mPressureMin = 0, mPressureMax = -1;
-
-    private void measureTouchPressure(MotionEvent event) {
-        final float pressure = event.getPressure();
-        switch (event.getActionMasked()) {
-            case MotionEvent.ACTION_DOWN:
-                if (mPressureMax < 0) {
-                    mPressureMin = mPressureMax = pressure;
-                }
-                break;
-            case MotionEvent.ACTION_MOVE:
-                if (pressure < mPressureMin) mPressureMin = pressure;
-                if (pressure > mPressureMax) mPressureMax = pressure;
-                break;
-        }
-    }
 
     private void syncTouchPressure() {
         try {

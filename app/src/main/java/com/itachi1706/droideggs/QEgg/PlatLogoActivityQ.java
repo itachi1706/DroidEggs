@@ -45,10 +45,9 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.itachi1706.droideggs.PlatLogoCommon;
 import com.itachi1706.droideggs.QEgg.EasterEgg.quares.QuaresActivity;
 import com.itachi1706.droideggs.R;
-
-import org.json.JSONObject;
 
 /**
  * Created by Kenneth on 14/12/2019.
@@ -100,7 +99,7 @@ public class PlatLogoActivityQ extends AppCompatActivity {
             ObjectAnimator mRotAnim;
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                measureTouchPressure(event);
+                PlatLogoCommon.measureTouchPressure(event);
                 switch (event.getActionMasked()) {
                     case MotionEvent.ACTION_DOWN:
                         v.animate().scaleX(1.1f).scaleY(1.1f);
@@ -184,51 +183,15 @@ public class PlatLogoActivityQ extends AppCompatActivity {
         finish();
     }
     static final String TOUCH_STATS = "touch.stats";
-    double mPressureMin = 0, mPressureMax = -1;
-    private void measureTouchPressure(MotionEvent event) {
-        final float pressure = event.getPressure();
-        switch (event.getActionMasked()) {
-            case MotionEvent.ACTION_DOWN:
-                if (mPressureMax < 0) {
-                    mPressureMin = mPressureMax = pressure;
-                }
-                break;
-            case MotionEvent.ACTION_MOVE:
-                if (pressure < mPressureMin) mPressureMin = pressure;
-                if (pressure > mPressureMax) mPressureMax = pressure;
-                break;
-        }
-    }
-    private void syncTouchPressure() {
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        final String KEY = "q_" + TOUCH_STATS;
-        try {
-            final String touchDataJson = pref.getString(KEY, null);
-            final JSONObject touchData = new JSONObject(
-                    touchDataJson != null ? touchDataJson : "{}");
-            if (touchData.has("min")) {
-                mPressureMin = Math.min(mPressureMin, touchData.getDouble("min"));
-            }
-            if (touchData.has("max")) {
-                mPressureMax = Math.max(mPressureMax, touchData.getDouble("max"));
-            }
-            if (mPressureMax >= 0) {
-                touchData.put("min", mPressureMin);
-                touchData.put("max", mPressureMax);
-                pref.edit().putString(KEY, touchData.toString()).apply();
-            }
-        } catch (Exception e) {
-            Log.e("PlatLogoActivity", "Can't write touch settings", e);
-        }
-    }
+
     @Override
     public void onStart() {
         super.onStart();
-        syncTouchPressure();
+        PlatLogoCommon.syncTouchPressure(TOUCH_STATS, getApplicationContext());
     }
     @Override
     public void onStop() {
-        syncTouchPressure();
+        PlatLogoCommon.syncTouchPressure(TOUCH_STATS, getApplicationContext());
         super.onStop();
     }
     static class ZeroDrawable extends Drawable {

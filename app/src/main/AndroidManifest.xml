@@ -44,6 +44,42 @@
             android:label="@string/title_activity_main_settings" />
         <activity android:name=".CurrentEgg" />
 
+        <!-- S (12) Egg Activities -->
+        <activity android:name=".s_egg.PlatLogoActivityS"
+            android:theme="@style/AppTheme.Wallpaper.NoActionBar"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+            android:icon="@drawable/s_platlogo"
+            android:process=":ui" />
+        <!-- List of all system theme colors on the device. -->
+        <activity
+            android:name=".s_egg.easter_egg.widget.PaintChipsActivity"
+            android:theme="@android:style/Theme.Material.Wallpaper.NoTitleBar"
+            android:configChanges="orientation|keyboardHidden|screenSize|uiMode"
+            android:label="@string/s_egg_name"
+            android:enabled="false"
+            android:exported="true"
+            tools:targetApi="lollipop" /> <!-- This is only accessible > API 21 -->
+        <!-- Homescreen widget also showing paint chips (may be affected by the exact position in
+             the workspace) -->
+        <receiver
+            android:name=".s_egg.easter_egg.widget.PaintChipsWidget"
+            android:label="@string/s_egg_name"
+            android:exported="true"
+            android:enabled="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/s_paint_chips_widget_info" />
+        </receiver>
+        <activity
+            android:name=".s_egg.easter_egg.widget.WidgetActivationActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:theme="@android:style/Theme.NoDisplay" />
+
         <!-- R (11) Egg Activities -->
         <activity android:name=".REgg.PlatLogoActivityR"
             android:theme="@style/AppTheme"

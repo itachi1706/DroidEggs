@@ -14,6 +14,7 @@
 
 package com.itachi1706.droideggs
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Build
@@ -34,6 +35,7 @@ import com.itachi1706.droideggs.OreoMR1Egg.PlatLogoActivityOreoMR1
 import com.itachi1706.droideggs.PieEgg.PlatLogoActivityPie
 import com.itachi1706.droideggs.QEgg.PlatLogoActivityQ
 import com.itachi1706.droideggs.REgg.PlatLogoActivityR
+import com.itachi1706.droideggs.s_egg.PlatLogoActivityS
 
 /**
  * Created by Kenneth on 20/4/2018.
@@ -41,6 +43,8 @@ import com.itachi1706.droideggs.REgg.PlatLogoActivityR
  */
 class CurrentEgg : AppCompatActivity() {
 
+    // As this function will only execute for the correct version, we do not need to care about errors
+    @SuppressLint("NewApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -59,6 +63,7 @@ class CurrentEgg : AppCompatActivity() {
             P -> PlatLogoActivityPie::class.java // Pie
             Q -> PlatLogoActivityQ::class.java // Android 10 (Q)
             R -> PlatLogoActivityR::class.java // Android 11 (R)
+            S -> PlatLogoActivityS::class.java // Android 12 (S)
             else -> null // Future Android Versions (As minSDK is way above GB, it does not matter to do a check before)
         }
 

@@ -29,12 +29,10 @@ import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import com.itachi1706.droideggs.PlatLogoCommon;
 import com.itachi1706.droideggs.R;
 import com.itachi1706.droideggs.forwardPortedCode.AnalogClock;
 import com.itachi1706.droideggs.s_egg.easter_egg.widget.WidgetActivationActivity;
-import com.itachi1706.helperlib.helpers.PrefHelper;
-
-import org.json.JSONObject;
 
 import java.time.Clock;
 import java.time.Instant;
@@ -93,11 +91,6 @@ public class PlatLogoActivityS extends Activity {
         setContentView(layout);
     }
 
-    private boolean shouldWriteSettings() {
-//        return getPackageName().equals("android");
-        return true;
-    }
-
     private void launchNextStage(boolean locked) {
         SharedPreferences pref = this.getSharedPreferences("com.itachi1706.droideggs_preferences", MODE_MULTI_PROCESS);
         mClock.animate()
@@ -126,11 +119,9 @@ public class PlatLogoActivityS extends Activity {
 
 
         try {
-            if (shouldWriteSettings()) {
-                Log.v(TAG, "Saving egg unlock=" + locked);
-                syncTouchPressure();
-                pref.edit().putLong(S_EGG_UNLOCK_SETTING, locked ? 0 : System.currentTimeMillis()).apply();
-            }
+            Log.v(TAG, "Saving egg unlock=" + locked);
+            PlatLogoCommon.syncTouchPressure(TOUCH_STATS, getApplicationContext());
+            pref.edit().putLong(S_EGG_UNLOCK_SETTING, locked ? 0 : System.currentTimeMillis()).apply();
         } catch (RuntimeException e) {
             Log.e(TAG, "Can't write settings", e);
         }
@@ -144,56 +135,17 @@ public class PlatLogoActivityS extends Activity {
         //finish(); // no longer finish upon unlock; it's fun to frob the dial
     }
 
-    static final String TOUCH_STATS = "s.touch.stats";
-    double mPressureMin = 0, mPressureMax = -1;
-
-    private void measureTouchPressure(MotionEvent event) {
-        final float pressure = event.getPressure();
-        switch (event.getActionMasked()) {
-            case MotionEvent.ACTION_DOWN:
-                if (mPressureMax < 0) {
-                    mPressureMin = mPressureMax = pressure;
-                }
-                break;
-            case MotionEvent.ACTION_MOVE:
-                if (pressure < mPressureMin) mPressureMin = pressure;
-                if (pressure > mPressureMax) mPressureMax = pressure;
-                break;
-        }
-    }
-
-    private void syncTouchPressure() {
-        try {
-            final String touchDataJson = PrefHelper.getDefaultSharedPreferences(this).getString(TOUCH_STATS, null);
-            final JSONObject touchData = new JSONObject(
-                    touchDataJson != null ? touchDataJson : "{}");
-            if (touchData.has("min")) {
-                mPressureMin = Math.min(mPressureMin, touchData.getDouble("min"));
-            }
-            if (touchData.has("max")) {
-                mPressureMax = Math.max(mPressureMax, touchData.getDouble("max"));
-            }
-            if (mPressureMax >= 0) {
-                touchData.put("min", mPressureMin);
-                touchData.put("max", mPressureMax);
-                if (shouldWriteSettings()) {
-                    PrefHelper.getDefaultSharedPreferences(this).edit().putString(TOUCH_STATS, touchData.toString()).apply();
-                }
-            }
-        } catch (Exception e) {
-            Log.e(TAG, "Can't write touch settings", e);
-        }
-    }
+    static final String TOUCH_STATS = "s_touch.stats";
 
     @Override
     public void onStart() {
         super.onStart();
-        syncTouchPressure();
+        PlatLogoCommon.syncTouchPressure(TOUCH_STATS, getApplicationContext());
     }
 
     @Override
     public void onStop() {
-        syncTouchPressure();
+        PlatLogoCommon.syncTouchPressure(TOUCH_STATS, getApplicationContext());
         super.onStop();
     }
 
@@ -239,7 +191,7 @@ public class PlatLogoActivityS extends Activity {
                     mOverride = true;
                     // pass through
                 case MotionEvent.ACTION_MOVE:
-                    measureTouchPressure(ev);
+                    PlatLogoCommon.measureTouchPressure(ev);
 
                     float x = ev.getX();
                     float y = ev.getY();
@@ -405,21 +357,16 @@ public class PlatLogoActivityS extends Activity {
                     mNumBubbs, (int) (100f * mNumBubbs / MAX_BUBBS)));
         }
 
-        /*
-         * Set to no-op
-         */
         @Override
-        public void setAlpha(int alpha) { }
+        public void setAlpha(int alpha) {
+            // Set to no-op to prevent unintended use
+        }
 
-        /*
-         * Set to no-op
-         */
         @Override
-        public void setColorFilter(ColorFilter colorFilter) { }
+        public void setColorFilter(ColorFilter colorFilter) {
+            // Set to no-op to prevent unintended use
+        }
 
-        /*
-         * Set to no-op
-         */
         @Override
         public int getOpacity() {
             return TRANSLUCENT;

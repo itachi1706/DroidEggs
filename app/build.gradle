@@ -63,7 +63,7 @@ ext {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     // Import the BoM for the Firebase platform
-    implementation platform('com.google.firebase:firebase-bom:30.2.0')
+    implementation platform('com.google.firebase:firebase-bom:30.3.0')
 
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.appcompat:appcompat:1.4.1'

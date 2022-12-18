@@ -19,6 +19,10 @@ jobs:
           java-version: 11
       - name: Make Gradle executable
         run: chmod +x gradlew
+      - name: Copy secure values
+        run: echo $GOOGLE_SERVICES > ./app/google-services.json
+        env:
+          GOOGLE_SERVICES: ${{ secrets.GOOGLE_SERVICES }}
       - name: Cache SonarCloud packages
         uses: actions/cache@v1
         with:

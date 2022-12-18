@@ -18,11 +18,24 @@ buildscript {
     }
 }
 
+plugins {
+    id "org.sonarqube" version "3.5.0.2730"
+}
+
 allprojects {
     repositories {
         google()
         mavenCentral()
         maven { url 'https://jitpack.io' }
         jcenter()
+    }
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "itachi1706_DroidEggs"
+        property "sonar.organization", "itachi1706"
+        property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.androidLint.reportPaths", "app/build/reports/lint-results-debug.xml"
     }
 }

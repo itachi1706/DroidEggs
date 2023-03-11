@@ -17,6 +17,7 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
+          distribution: 'temurin'
       - name: Make Gradle executable
         run: chmod +x gradlew
       - name: Copy secure values

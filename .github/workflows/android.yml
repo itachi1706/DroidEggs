@@ -61,7 +61,7 @@ jobs:
         distribution: 'adopt'
         java-version: 11
     - name: run tests
-      uses: reactivecircus/android-emulator-runner@v2.27.0
+      uses: reactivecircus/android-emulator-runner@v2.28.0
       with:
         api-level: 28
         target: google_apis

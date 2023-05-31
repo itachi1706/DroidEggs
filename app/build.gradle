@@ -17,9 +17,9 @@ android {
         versionName "4.1.0"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        resValue "string", "tray__authority", "${applicationId}.tray"
         // add this to set a unique tray authority based on your applicationId
-        resConfigs "en"
+        resValue "string", "tray__authority", "${applicationId}.tray"
+        resConfigs 'en'
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
@@ -29,9 +29,9 @@ android {
         jvmTarget = '11'
     }
     packagingOptions {
-        exclude 'META-INF/DEPENDENCIES'
-        exclude 'META-INF/NOTICE'
-        exclude 'META-INF/LICENSE'
+        resources {
+            excludes += ['META-INF/DEPENDENCIES', 'META-INF/NOTICE', 'META-INF/LICENSE']
+        }
     }
     buildTypes {
         release {
@@ -44,14 +44,15 @@ android {
         }
     }
     // This enables long timeouts required on slow environments, e.g. Travis
-    adbOptions {
-        timeOutInMs 10 * 60 * 1000  // Set the timeout to 10 minutes
-        installOptions "-d", "-t"
-    }
     buildFeatures {
         viewBinding true
     }
-    lintOptions {
+    namespace 'com.itachi1706.droideggs'
+    installation {
+        timeOutInMs 10 * 60 * 1000 // Set the timeout to 10 minutes
+        installOptions '-d', '-t'
+    }
+    lint {
         abortOnError !isGHActions
     }
 }

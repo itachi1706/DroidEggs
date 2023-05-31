@@ -24,7 +24,6 @@ import android.graphics.drawable.Icon
 import android.os.Parcel
 import android.os.Parcelable
 import androidx.annotation.RequiresApi
-import java.util.ArrayList
 import kotlin.math.abs
 import kotlin.math.round
 
@@ -123,8 +122,8 @@ class Quare(val width: Int, val height: Int, val depth: Int) : Parcelable {
     override fun describeContents(): Int {
         return 0
     }
-    override fun writeToParcel(p: Parcel?, flags: Int) {
-        p?.let {
+    override fun writeToParcel(p: Parcel, flags: Int) {
+        p.let {
             p.writeInt(width)
             p.writeInt(height)
             p.writeInt(depth)

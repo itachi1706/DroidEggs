@@ -13,8 +13,8 @@ android {
         applicationId "com.itachi1706.droideggs"
         minSdkVersion 19
         targetSdkVersion 31
-        versionCode 437
-        versionName "4.1.0"
+        versionCode 525
+        versionName "4.1.1"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         // add this to set a unique tray authority based on your applicationId

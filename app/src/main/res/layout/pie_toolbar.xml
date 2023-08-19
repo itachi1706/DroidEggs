@@ -39,17 +39,15 @@
             android:layout_width="48dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:tint="@color/toolbar_icon_color"
             android:background="@drawable/pie_toolbar_button_bg"
-            />
+            app:tint="@color/toolbar_icon_color" />
         <ImageButton
             android:id="@+id/btnColor"
             android:layout_width="48dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:tint="@color/toolbar_icon_color"
             android:background="@drawable/pie_toolbar_button_bg"
-            />
+            app:tint="@color/toolbar_icon_color" />
         <ImageButton
             android:id="@+id/btnSample"
             android:layout_width="48dp"
@@ -57,7 +55,7 @@
             android:layout_weight="1"
             android:background="@drawable/pie_toolbar_button_bg"
             app:srcCompat="@drawable/pie_ic_dropper"
-            android:tint="@color/toolbar_icon_color" />
+            app:tint="@color/toolbar_icon_color" />
     </LinearLayout>
     <Space
         android:tag="cutoutCenter"
@@ -77,16 +75,16 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/pie_toolbar_button_bg"
-            android:tint="@color/toolbar_icon_color"
-            app:srcCompat="@drawable/pie_ic_hourglass" />
+            app:srcCompat="@drawable/pie_ic_hourglass"
+            app:tint="@color/toolbar_icon_color" />
         <ImageButton
             android:id="@+id/btnClear"
             android:layout_width="48dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/pie_toolbar_button_bg"
-            android:tint="@color/toolbar_icon_color"
-            app:srcCompat="@drawable/pie_ic_clear" />
+            app:srcCompat="@drawable/pie_ic_clear"
+            app:tint="@color/toolbar_icon_color" />
     </LinearLayout>
     <Space
         android:tag="cutoutRight"

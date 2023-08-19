@@ -37,12 +37,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.snackbar.Snackbar;
 import com.itachi1706.droideggs.PieEgg.EasterEgg.paint.PaintActivity;
 
 import org.json.JSONObject;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Created by Kenneth on 7/8/2018.
@@ -241,11 +241,12 @@ public class PlatLogoActivityPie extends AppCompatActivity {
             pref.edit().putLong("P_EGG_MODE", System.currentTimeMillis()).apply();
         }
         try {
-            Intent pie = new Intent(this, PaintActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            // MAKE SURE YOU ARE AT LEAST NOUGAT (API 24)
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                Intent pie = new Intent(this, PaintActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                // MAKE SURE YOU ARE AT LEAST NOUGAT (API 24)
+
                 startActivity(pie);
-            else {
+            } else {
                 Snackbar.make(findViewById(android.R.id.content), "Your version of Android is too low to advance further. Requires Android 7.0 Nougat to advance", Snackbar.LENGTH_LONG).show();
                 return;
             }

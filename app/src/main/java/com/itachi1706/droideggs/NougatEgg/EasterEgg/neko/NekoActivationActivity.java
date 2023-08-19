@@ -16,11 +16,15 @@ package com.itachi1706.droideggs.NougatEgg.EasterEgg.neko;
 
 import android.content.ComponentName;
 import android.content.pm.PackageManager;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.itachi1706.droideggs.FirebaseLogger;
+import com.itachi1706.droideggs.NotificationUtils;
 
 /**
  * Created by Kenneth on 8/9/2016.
@@ -35,6 +39,17 @@ public class NekoActivationActivity extends AppCompatActivity {
         toast.show();
     }
 
+    private static final String TAG = "Neko";
+
+    private final ActivityResultLauncher<String> notificationPermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+                Log.i(TAG, "Notification permission granted: " + isGranted);
+                if (Boolean.FALSE.equals(isGranted)) {
+                    Toast.makeText(this, "Notification permission not granted. You will not know when a cat visits",
+                            Toast.LENGTH_SHORT).show();
+                }
+            });
+
     @Override
     public void onStart() {
         super.onStart();
@@ -43,7 +58,7 @@ public class NekoActivationActivity extends AppCompatActivity {
         final ComponentName cn = new ComponentName(this, NekoTile.class);
         if (pm.getComponentEnabledSetting(cn) == PackageManager.COMPONENT_ENABLED_STATE_ENABLED) {
             if (NekoLand.DEBUG) {
-                Log.v("Neko", "Disabling tile.");
+                Log.v(TAG, "Disabling tile.");
             }
             pm.setComponentEnabledSetting(cn, PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
                     PackageManager.DONT_KILL_APP);
@@ -51,8 +66,15 @@ public class NekoActivationActivity extends AppCompatActivity {
             toastUp("\uD83D\uDEAB");
         } else {
             if (NekoLand.DEBUG) {
-                Log.v("Neko", "Enabling tile.");
+                Log.v(TAG, "Enabling tile.");
             }
+            // Check for notification permission
+            var notificationutils = NotificationUtils.INSTANCE;
+            if (!notificationutils.canSendNotification(this)) {
+                Log.d(TAG, "Requesting notification permission");
+                notificationutils.requestNotificationPermission("Notification permission is required to show you when a cat visits", this, notificationPermissionLauncher);
+            }
+
             pm.setComponentEnabledSetting(cn, PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                     PackageManager.DONT_KILL_APP);
             FirebaseLogger.INSTANCE.histogram(this, "egg_neko_enable", 1);

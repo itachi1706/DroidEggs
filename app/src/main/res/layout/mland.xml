@@ -12,6 +12,7 @@
      limitations under the License.
 -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -46,9 +47,8 @@
                 android:layout_height="48dp"
                 android:scaleType="fitCenter"
                 android:layout_gravity="center"
-                android:tint="#000000"
                 android:src="@drawable/marshmallow_play"
-                />
+                app:tint="#000000" />
             <TextView
                 android:id="@+id/play_button_text"
                 android:layout_width="wrap_content"

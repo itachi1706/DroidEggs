@@ -16,6 +16,11 @@
 
 package com.itachi1706.droideggs.PieEgg.EasterEgg.paint;
 
+import static android.view.MotionEvent.ACTION_CANCEL;
+import static android.view.MotionEvent.ACTION_DOWN;
+import static android.view.MotionEvent.ACTION_MOVE;
+import static android.view.MotionEvent.ACTION_UP;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.res.Configuration;
@@ -31,19 +36,14 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Magnifier;
 
-import com.itachi1706.droideggs.R;
-
-import java.util.Arrays;
-import java.util.stream.IntStream;
-
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
 
-import static android.view.MotionEvent.ACTION_CANCEL;
-import static android.view.MotionEvent.ACTION_DOWN;
-import static android.view.MotionEvent.ACTION_MOVE;
-import static android.view.MotionEvent.ACTION_UP;
+import com.itachi1706.droideggs.R;
+
+import java.util.Arrays;
+import java.util.stream.IntStream;
 
 @RequiresApi(24)
 public class PaintActivity extends Activity {
@@ -58,31 +58,25 @@ public class PaintActivity extends Activity {
     private Magnifier magnifier = null;
     private boolean sampling = false;
     private View.OnClickListener buttonHandler = view -> {
-        switch (view.getId()) {
-            case R.id.btnBrush:
-                view.setSelected(true);
-                hideToolbar(colors);
-                toggleToolbar(brushes);
-                break;
-            case R.id.btnColor:
-                view.setSelected(true);
-                hideToolbar(brushes);
-                toggleToolbar(colors);
-                break;
-            case R.id.btnClear:
-                painting.clear();
-                break;
-            case R.id.btnSample:
-                sampling = true;
-                view.setSelected(true);
-                break;
-            case R.id.btnZen:
-                painting.setZenMode(!painting.getZenMode());
-                view.animate()
-                        .setStartDelay(200)
-                        .setInterpolator(new OvershootInterpolator())
-                        .rotation(painting.getZenMode() ? 0f : 90f);
-                break;
+        if (view.getId() == R.id.btnBrush) {
+            view.setSelected(true);
+            hideToolbar(colors);
+            toggleToolbar(brushes);
+        } else if (view.getId() == R.id.btnColor) {
+            view.setSelected(true);
+            hideToolbar(brushes);
+            toggleToolbar(colors);
+        } else if (view.getId() == R.id.btnClear) {
+            painting.clear();
+        } else if (view.getId() == R.id.btnSample) {
+            sampling = true;
+            view.setSelected(true);
+        } else if (view.getId() == R.id.btnZen) {
+            painting.setZenMode(!painting.getZenMode());
+            view.animate()
+                    .setStartDelay(200)
+                    .setInterpolator(new OvershootInterpolator())
+                    .rotation(painting.getZenMode() ? 0f : 90f);
         }
     };
     private void showToolbar(View bar) {

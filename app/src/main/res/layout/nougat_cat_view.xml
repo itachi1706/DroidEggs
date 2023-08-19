@@ -21,7 +21,7 @@
     android:paddingRight="16dp"
     android:paddingTop="8dp"
     android:paddingBottom="8dp"
-    android:background="?android:attr/selectableItemBackgroundBorderless"
+    android:background="?attr/selectableItemBackgroundBorderless"
     android:gravity="center_horizontal"
     android:clipToPadding="false">
 

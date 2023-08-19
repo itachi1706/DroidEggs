@@ -39,26 +39,24 @@
             android:layout_width="48dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:tint="@color/toolbar_icon_color"
             android:background="@drawable/pie_toolbar_button_bg"
-            />
+            app:tint="@color/toolbar_icon_color" />
         <ImageButton
             android:id="@+id/btnColor"
             android:layout_width="48dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:tint="@color/toolbar_icon_color"
             android:background="@drawable/pie_toolbar_button_bg"
-            />
+            app:tint="@color/toolbar_icon_color" />
         <ImageButton
             android:id="@+id/btnSample"
             android:layout_width="48dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/pie_toolbar_button_bg"
-            android:tint="@color/toolbar_icon_color"
             android:src="@drawable/pie_ic_dropper"
-            tools:ignore="VectorDrawableCompat" />
+            tools:ignore="VectorDrawableCompat"
+            app:tint="@color/toolbar_icon_color" />
     </LinearLayout>
     <Space
         android:tag="cutoutCenter"
@@ -78,18 +76,18 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/pie_toolbar_button_bg"
-            android:tint="@color/toolbar_icon_color"
             android:src="@drawable/pie_ic_hourglass"
-            tools:ignore="VectorDrawableCompat" />
+            tools:ignore="VectorDrawableCompat"
+            app:tint="@color/toolbar_icon_color" />
         <ImageButton
             android:id="@+id/btnClear"
             android:layout_width="48dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/pie_toolbar_button_bg"
-            android:tint="@color/toolbar_icon_color"
             android:src="@drawable/pie_ic_clear"
-            tools:ignore="VectorDrawableCompat" />
+            tools:ignore="VectorDrawableCompat"
+            app:tint="@color/toolbar_icon_color" />
     </LinearLayout>
     <Space
         android:tag="cutoutRight"

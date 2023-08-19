@@ -55,3 +55,8 @@
 -keep public class com.itachi1706.droideggs.**
 -keepattributes Signature
 -keepattributes InnerClasses
+
+# Please add these rules to your existing keep rules in order to suppress warnings.
+# This is generated automatically by the Android Gradle plugin.
+-dontwarn kotlin.Experimental$Level
+-dontwarn kotlin.Experimental

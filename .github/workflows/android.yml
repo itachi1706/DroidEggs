@@ -20,7 +20,7 @@ jobs:
       uses: actions/setup-java@v3
       with:
         distribution: 'adopt'
-        java-version: 11
+        java-version: 17
     - name: Copy secure values
       run: echo $GOOGLE_SERVICES > ./app/google-services.json
       env:
@@ -59,7 +59,7 @@ jobs:
       uses: actions/setup-java@v3
       with:
         distribution: 'adopt'
-        java-version: 11
+        java-version: 17
     - name: run tests
       uses: reactivecircus/android-emulator-runner@v2.28.0
       with:
@@ -80,7 +80,7 @@ jobs:
       uses: actions/setup-java@v3
       with:
         distribution: 'adopt'
-        java-version: 11
+        java-version: 17
     - name: Copy secure values
       run: echo $GOOGLE_SERVICES > ./app/google-services.json
       env:

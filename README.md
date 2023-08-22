@@ -13,23 +13,25 @@ This application is licensed under the *Apache License 2.0* as it contains files
 
 **Easter Egg List**
 
-| Android Version | Easter Egg Name | Status |
-| :-----------------: | :-----------------: | :--------: |
-| Android 2.3 GINGERBREAD | Zombie Art | DONE |
-| Android 3.0 HONEYCOMB | Honeybee | DONE |
-| Android 4.0 ICE CREAM SANDWICH | NyanDroid | DONE |
-| Android 4.1 JELLY BEAN | Bean Bag | DONE |
-| Android 4.4 KITKAT | Dessert Case | DONE |
-| Android 5.0 LOLLIPOP | (LLand) Flappy Droid | DONE |
-| Android MNC Preview MACADAMIA NUT COOKIE | ¯\\\_\(ツ\)\_/¯ | DONE |
-| Android 6.0 MARSHMALLOW | (MLand) Flappy Droid Multiplayer | DONE |
-| Android NDP Preview | Namey McNameFace | DONE |
-| Android 7.0 NOUGAT | Android Neko | DONE |
-| Android 8.0 OREO | Android Octo | DONE |
-| Android 8.1 OREO_MR1 | Android Octo | DONE |
-| Android 9.0 PIE | Swirly P | DONE |
-| Android 10.0 Q | Picross | DONE |
-| Android 11.0 R | Android Neko Home Controls | DONE |
+|             Android Version              |         Easter Egg Name          | Status |
+|:----------------------------------------:|:--------------------------------:|:------:|
+|         Android 2.3 GINGERBREAD          |            Zombie Art            |  DONE  |
+|          Android 3.0 HONEYCOMB           |             Honeybee             |  DONE  |
+|      Android 4.0 ICE CREAM SANDWICH      |            NyanDroid             |  DONE  |
+|          Android 4.1 JELLY BEAN          |             Bean Bag             |  DONE  |
+|            Android 4.4 KITKAT            |           Dessert Case           |  DONE  |
+|           Android 5.0 LOLLIPOP           |       (LLand) Flappy Droid       |  DONE  |
+| Android MNC Preview MACADAMIA NUT COOKIE |          ¯\\\_\(ツ\)\_/¯          |  DONE  |
+|         Android 6.0 MARSHMALLOW          | (MLand) Flappy Droid Multiplayer |  DONE  |
+|           Android NDP Preview            |         Namey McNameFace         |  DONE  |
+|            Android 7.0 NOUGAT            |           Android Neko           |  DONE  |
+|             Android 8.0 OREO             |           Android Octo           |  DONE  |
+|           Android 8.1 OREO_MR1           |           Android Octo           |  DONE  |
+|             Android 9.0 PIE              |             Swirly P             |  DONE  |
+|              Android 10.0 Q              |             Picross              |  DONE  |
+|              Android 11.0 R              |    Android Neko Home Controls    |  DONE  |
+|              Android 12.0 S              |     Timely Material Design 3     |  DONE  |
+|              Android 13.0 T              |         Emoji Wallpaper          |  TODO  |
 
 
 This application is also available on [my personal F-Droid repository](https://fdroid.itachi1706.com/) for alternative downloads.

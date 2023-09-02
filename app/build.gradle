@@ -50,7 +50,7 @@ android {
     namespace 'com.itachi1706.droideggs'
     installation {
         timeOutInMs 10 * 60 * 1000 // Set the timeout to 10 minutes
-        installOptions '-d', '-t'
+        installOptions = ['-d', '-t']
     }
     lint {
         abortOnError !isGHActions

@@ -58,12 +58,9 @@ public class NekoLand extends Activity implements PrefState.PrefsListener {
 
     private static final int EXPORT_BITMAP_SIZE = 600;
 
-    private static final int STORAGE_PERM_REQUEST = 123;
-
     private static boolean CAT_GEN = false;
     private PrefState mPrefs;
     private CatAdapter mAdapter;
-    private Cat mPendingShareCat;
 
 
     @Override
@@ -240,17 +237,6 @@ public class NekoLand extends Activity implements PrefState.PrefsListener {
                 cat.logShare(this);
             } else Log.e("NekoLand", "error saving to media store");
         } else Log.e("NekoLand", "error generating bitmap");
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
-        if (requestCode == STORAGE_PERM_REQUEST) {
-            if (mPendingShareCat != null) {
-                shareCat(mPendingShareCat);
-                mPendingShareCat = null;
-            }
-        }
     }
 
     private static class CatHolder extends RecyclerView.ViewHolder {

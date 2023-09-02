@@ -11,7 +11,6 @@
 
     <!-- Permission required by Neko -->
     <uses-permission android:name="android.permission.SUBSTITUTE_NOTIFICATION_APP_NAME" tools:ignore="ProtectedPermissions" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.BIND_CONTROLS" tools:ignore="ProtectedPermissions" />
 
     <!-- For installing the app update. Comment this out before we generate the Google Play AAB -->
@@ -173,17 +172,6 @@
             android:configChanges="orientation|keyboardHidden"
             android:process=":ui"
             android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen" />
-
-        <!-- FileProvider for sending pictures -->
-        <provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities="${applicationId}.provider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/filepaths" />
-        </provider>
 
         <!-- Long press the QS tile to get here -->
         <activity

@@ -46,7 +46,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.itachi1706.droideggs.R;
@@ -813,8 +812,8 @@ public class MLand extends FrameLayout {
                     float x2 = p.getX() + p.getPivotX();
                     float y2 = p.getY() + p.getPivotY();
                     float angle = PI_2 - (float) Math.atan2(x2-x1, y2-y1);
-                    x1 += 100*Math.cos(angle);
-                    y1 += 100*Math.sin(angle);
+                    x1 = (float) (x1 + (100*Math.cos(angle)));
+                    y1 = (float) (y1 + (100*Math.sin(angle)));
                     c.drawLine(x1, y1, x2, y2, mPlayerTracePaint);
                 }
             }
@@ -865,7 +864,7 @@ public class MLand extends FrameLayout {
     private interface GameView {
         public void step(long t_ms, long dt_ms, float t, float dt);
     }
-    private static class Player extends ImageView implements GameView {
+    private static class Player extends androidx.appcompat.widget.AppCompatImageView implements GameView {
         public float dv;
         public int color;
         private MLand mLand;

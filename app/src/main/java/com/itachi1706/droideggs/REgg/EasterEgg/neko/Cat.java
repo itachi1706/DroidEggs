@@ -16,6 +16,8 @@
 
 package com.itachi1706.droideggs.REgg.EasterEgg.neko;
 
+import static com.itachi1706.droideggs.REgg.EasterEgg.neko.NekoLand.CHAN_ID;
+
 import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.PendingIntent;
@@ -43,8 +45,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
-
-import static com.itachi1706.droideggs.REgg.EasterEgg.neko.NekoLand.CHAN_ID;
 
 /** It's a cat. */
 @TargetApi(Build.VERSION_CODES.R)
@@ -261,7 +261,7 @@ public class Cat extends Drawable {
 
         Notification.BubbleMetadata bubbs = new Notification.BubbleMetadata.Builder()
                 .setIntent(
-                        PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE))
+                        PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_MUTABLE))
                 .setIcon(notificationIcon)
                 .setSuppressNotification(false)
                 .setDesiredHeight(context.getResources().getDisplayMetrics().heightPixels)
@@ -276,7 +276,7 @@ public class Cat extends Drawable {
                 .setCategory(Notification.CATEGORY_STATUS)
                 .setContentText(getName())
                 .setContentIntent(
-                        PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE))
+                        PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_MUTABLE))
                 .setAutoCancel(true)
                 .setStyle(new Notification.MessagingStyle(createPerson())
                         .addMessage(mFirstMessage, System.currentTimeMillis(), createPerson())

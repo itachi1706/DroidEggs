@@ -94,9 +94,6 @@
             android:name=".REgg.EasterEgg.neko.NekoLand"
             android:theme="@style/AppTheme.NoActionBar"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.service.quicksettings.action.QS_TILE_PREFERENCES" />
-            </intent-filter>
         </activity>
 
         <!-- This is where the magic happens -->
@@ -119,18 +116,6 @@
             android:excludeFromRecents="true"
             android:theme="@style/AppTheme.NoDisplay" />
 
-        <!-- The quick settings tile, disabled by default -->
-        <service
-            android:name=".REgg.EasterEgg.neko.NekoTile"
-            android:enabled="false"
-            android:icon="@drawable/nougat_stat_icon"
-            android:label="@string/nougat_default_tile_name"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.service.quicksettings.action.QS_TILE" />
-            </intent-filter>
-        </service>
         <service android:name=".REgg.EasterEgg.neko.NekoControlsService"
             android:permission="android.permission.BIND_CONTROLS"
             android:label="@string/r_egg_name"

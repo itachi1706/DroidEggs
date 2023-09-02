@@ -14,6 +14,8 @@
 
 package com.itachi1706.droideggs.NougatEgg.EasterEgg.neko;
 
+import static com.itachi1706.droideggs.NougatEgg.EasterEgg.neko.NekoLand.CHAN_ID;
+
 import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.PendingIntent;
@@ -30,6 +32,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.os.Bundle;
+
 import androidx.core.app.NotificationCompat;
 
 import com.itachi1706.droideggs.FirebaseLogger;
@@ -37,8 +40,6 @@ import com.itachi1706.droideggs.R;
 
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
-
-import static com.itachi1706.droideggs.NougatEgg.EasterEgg.neko.NekoLand.CHAN_ID;
 
 /**
  * Created by Kenneth on 8/9/2016.
@@ -230,7 +231,7 @@ public class Cat extends Drawable {
                 .setShowWhen(true)
                 .setCategory(Notification.CATEGORY_STATUS)
                 .setContentText(getName())
-                .setContentIntent(PendingIntent.getActivity(context, 0, intent, 0))
+                .setContentIntent(PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE))
                 .setAutoCancel(true)
                 .setVibrate(PURR)
                 .addExtras(extras);

@@ -26,7 +26,7 @@ import java.util.Map;
  * for com.itachi1706.droideggs.NougatEgg.EasterEgg.neko in DroidEggs
  */
 public class PrefState implements SharedPreferences.OnSharedPreferenceChangeListener {
-    private static final String FILE_NAME = "mPrefs";
+    private static final String FILE_NAME = "mPrefs_nougat";
 
     private static final String FOOD_STATE = "food";
 

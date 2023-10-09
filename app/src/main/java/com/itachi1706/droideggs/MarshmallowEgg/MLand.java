@@ -46,7 +46,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.itachi1706.droideggs.R;
@@ -354,19 +353,19 @@ public class MLand extends FrameLayout {
         mHeight = getHeight();
         boolean showingSun = (mTimeOfDay == DAY || mTimeOfDay == SUNSET) && frand() > 0.25;
         if (showingSun) {
-            final Star sun = new Star(getContext());
-            sun.setBackgroundResource(R.drawable.marshmallow_sun);
+            final Star bgSun = new Star(getContext());
+            bgSun.setBackgroundResource(R.drawable.marshmallow_sun);
             final int w = getResources().getDimensionPixelSize(R.dimen.sun_size);
-            sun.setTranslationX(frand(w, mWidth-w));
+            bgSun.setTranslationX(frand(w, mWidth-w));
             if (mTimeOfDay == DAY) {
-                sun.setTranslationY(frand(w, (mHeight * 0.66f)));
-                sun.getBackground().setTint(0);
+                bgSun.setTranslationY(frand(w, (mHeight * 0.66f)));
+                bgSun.getBackground().setTint(0);
             } else {
-                sun.setTranslationY(frand(mHeight * 0.66f, mHeight - w));
-                sun.getBackground().setTintMode(PorterDuff.Mode.SRC_ATOP);
-                sun.getBackground().setTint(0xC0FF8000);
+                bgSun.setTranslationY(frand(mHeight * 0.66f, mHeight - w));
+                bgSun.getBackground().setTintMode(PorterDuff.Mode.SRC_ATOP);
+                bgSun.getBackground().setTint(0xC0FF8000);
             }
-            addView(sun, new LayoutParams(w, w));
+            addView(bgSun, new LayoutParams(w, w));
         }
         if (!showingSun) {
             final boolean dark = mTimeOfDay == NIGHT || mTimeOfDay == TWILIGHT;
@@ -813,8 +812,8 @@ public class MLand extends FrameLayout {
                     float x2 = p.getX() + p.getPivotX();
                     float y2 = p.getY() + p.getPivotY();
                     float angle = PI_2 - (float) Math.atan2(x2-x1, y2-y1);
-                    x1 += 100*Math.cos(angle);
-                    y1 += 100*Math.sin(angle);
+                    x1 = (float) (x1 + (100*Math.cos(angle)));
+                    y1 = (float) (y1 + (100*Math.sin(angle)));
                     c.drawLine(x1, y1, x2, y2, mPlayerTracePaint);
                 }
             }
@@ -865,7 +864,7 @@ public class MLand extends FrameLayout {
     private interface GameView {
         public void step(long t_ms, long dt_ms, float t, float dt);
     }
-    private static class Player extends ImageView implements GameView {
+    private static class Player extends androidx.appcompat.widget.AppCompatImageView implements GameView {
         public float dv;
         public int color;
         private MLand mLand;

@@ -25,7 +25,7 @@ import java.util.Map;
 
 public class PrefState implements SharedPreferences.OnSharedPreferenceChangeListener {
 
-    private static final String FILE_NAME = "mPrefs";
+    private static final String FILE_NAME = "mPrefs_r";
 
     private static final String FOOD_STATE = "food";
 

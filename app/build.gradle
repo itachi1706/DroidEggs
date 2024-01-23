@@ -80,7 +80,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.itachi1706.appupdater:appupdater:3.0.2'
-    implementation 'com.itachi1706.helpers:helperlib:1.4.2'
+    implementation 'com.itachi1706.helpers:helperlib:1.4.3'
     implementation 'me.jfenn:Attribouter:0.1.9'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

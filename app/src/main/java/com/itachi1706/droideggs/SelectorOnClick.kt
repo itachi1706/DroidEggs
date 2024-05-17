@@ -38,6 +38,7 @@ import com.itachi1706.droideggs.PieEgg.PlatLogoActivityPie
 import com.itachi1706.droideggs.quince_tart_egg.PlatLogoActivityQuinceTart
 import com.itachi1706.droideggs.red_velvet_cake_egg.PlatLogoActivityRedVelvetCake
 import com.itachi1706.droideggs.snow_cone_egg.PlatLogoActivitySnowCone
+import com.itachi1706.droideggs.tiramisu_egg.PlatLogoActivityTiramisu
 import com.itachi1706.helperlib.helpers.PrefHelper
 import java.util.*
 
@@ -84,6 +85,7 @@ class SelectorOnClick(val act: MainScreen) : AdapterView.OnItemClickListener {
             else act.unableToAccessEasterEgg("MARSHMALLOW")
             "R" -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) selectedEgg = Intent(view.context, PlatLogoActivityRedVelvetCake::class.java) else act.unableToAccessEasterEgg("R")
             "S" -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) selectedEgg = Intent(view.context, PlatLogoActivitySnowCone::class.java) else act.unableToAccessEasterEgg("Q")
+            "T" -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) selectedEgg = Intent(view.context, PlatLogoActivityTiramisu::class.java) else act.unableToAccessEasterEgg("Q")
         }
         if (selectedEgg != null) {
             view.context.startActivity(selectedEgg)

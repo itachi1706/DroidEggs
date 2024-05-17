@@ -46,6 +46,13 @@
             android:label="@string/title_activity_main_settings" />
         <activity android:name=".CurrentEgg" />
 
+        <!-- T/Tiramisu (13) Egg Activities -->
+        <activity android:name=".tiramisu_egg.PlatLogoActivityTiramisu"
+            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+            android:icon="@drawable/tiramisu_platlogo"
+            android:process=":ui" />
+
         <!-- S (12) Egg Activities -->
         <activity android:name=".snow_cone_egg.PlatLogoActivitySnowCone"
             android:theme="@style/AppTheme.Wallpaper.NoActionBar"

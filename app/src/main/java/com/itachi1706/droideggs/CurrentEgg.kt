@@ -36,6 +36,7 @@ import com.itachi1706.droideggs.PieEgg.PlatLogoActivityPie
 import com.itachi1706.droideggs.quince_tart_egg.PlatLogoActivityQuinceTart
 import com.itachi1706.droideggs.red_velvet_cake_egg.PlatLogoActivityRedVelvetCake
 import com.itachi1706.droideggs.snow_cone_egg.PlatLogoActivitySnowCone
+import com.itachi1706.droideggs.tiramisu_egg.PlatLogoActivityTiramisu
 
 /**
  * Created by Kenneth on 20/4/2018.
@@ -64,6 +65,7 @@ class CurrentEgg : AppCompatActivity() {
             Q -> PlatLogoActivityQuinceTart::class.java // Android 10 (Q)
             R -> PlatLogoActivityRedVelvetCake::class.java // Android 11 (R)
             S -> PlatLogoActivitySnowCone::class.java // Android 12 (S)
+            TIRAMISU -> PlatLogoActivityTiramisu::class.java // Android 13 (Tiramisu)
             else -> null // Future Android Versions (As minSDK is way above GB, it does not matter to do a check before)
         }
 

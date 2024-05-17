@@ -30,6 +30,8 @@
         <item>10/Q (10.0)</item>
         <item>11/R (11.0)</item>
         <item>12/S (12.0)</item>
+        <item>13/T (13.0)</item>
+        <item>14/U (14.0)</item>
     </string-array>
 
     <string-array name="legacy_version_with_egg_code">
@@ -49,6 +51,8 @@
         <item>Q</item>
         <item>R</item>
         <item>S</item>
+        <item>T</item>
+        <item>U</item>
     </string-array>
 
     <!-- New Method -->
@@ -69,6 +73,8 @@
         <item>10 (Q)</item>
         <item>11 (R)</item>
         <item>12 (S)</item>
+        <item>13 (T)</item>
+        <item>14 (U)</item>
     </string-array>
 
     <string-array name="android_ver_range">
@@ -88,6 +94,8 @@
         <item>10.0</item>
         <item>11.0</item>
         <item>12.0</item>
+        <item>13.0</item>
+        <item>14.0</item>
     </string-array>
 
     <string-array name="android_egg_require">
@@ -107,6 +115,8 @@
         <item>None</item>
         <item>Lollipop</item>
         <item>Q</item>
+        <item>None</item>
+        <item>None</item>
     </string-array>
 
     <integer-array name="android_egg_require_min_sdk">
@@ -126,6 +136,8 @@
         <item>1</item>
         <item>21</item>
         <item>29</item>
+        <item>1</item>
+        <item>1</item>
     </integer-array>
 
     <string-array name="dark_mode_selector">

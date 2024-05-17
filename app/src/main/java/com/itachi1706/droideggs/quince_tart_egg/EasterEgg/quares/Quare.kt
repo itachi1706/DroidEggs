@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.itachi1706.droideggs.QEgg.EasterEgg.quares
+package com.itachi1706.droideggs.quince_tart_egg.EasterEgg.quares
 
 import android.content.Context
 import android.graphics.Bitmap

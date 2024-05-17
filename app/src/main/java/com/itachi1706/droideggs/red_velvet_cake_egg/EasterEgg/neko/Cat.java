@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package com.itachi1706.droideggs.REgg.EasterEgg.neko;
+package com.itachi1706.droideggs.red_velvet_cake_egg.EasterEgg.neko;
 
-import static com.itachi1706.droideggs.REgg.EasterEgg.neko.NekoLand.CHAN_ID;
+import static com.itachi1706.droideggs.red_velvet_cake_egg.EasterEgg.neko.NekoLand.CHAN_ID;
 
 import android.annotation.TargetApi;
 import android.app.Notification;

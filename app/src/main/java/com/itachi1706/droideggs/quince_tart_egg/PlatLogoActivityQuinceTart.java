@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.itachi1706.droideggs.QEgg;
+package com.itachi1706.droideggs.quince_tart_egg;
 
 import android.animation.ObjectAnimator;
 import android.animation.TimeAnimator;
@@ -46,14 +46,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.itachi1706.droideggs.PlatLogoCommon;
-import com.itachi1706.droideggs.QEgg.EasterEgg.quares.QuaresActivity;
+import com.itachi1706.droideggs.quince_tart_egg.EasterEgg.quares.QuaresActivity;
 import com.itachi1706.droideggs.R;
 
 /**
  * Created by Kenneth on 14/12/2019.
  * for com.itachi1706.droideggs.QEgg in DroidEggs
  */
-public class PlatLogoActivityQ extends AppCompatActivity {
+public class PlatLogoActivityQuinceTart extends AppCompatActivity {
     ImageView mZeroView, mOneView;
     BackslashDrawable mBackslash;
     int mClicks;
@@ -170,7 +170,7 @@ public class PlatLogoActivityQ extends AppCompatActivity {
         try {
             // MAKE SURE YOU ARE AT LEAST MARSHMALLOW (API 23)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                Intent q = new Intent(PlatLogoActivityQ.this, QuaresActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                Intent q = new Intent(PlatLogoActivityQuinceTart.this, QuaresActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(q);
             }
             else {

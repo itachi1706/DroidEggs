@@ -47,14 +47,14 @@
         <activity android:name=".CurrentEgg" />
 
         <!-- S (12) Egg Activities -->
-        <activity android:name=".s_egg.PlatLogoActivityS"
+        <activity android:name=".snow_cone_egg.PlatLogoActivitySnowCone"
             android:theme="@style/AppTheme.Wallpaper.NoActionBar"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
             android:icon="@drawable/s_platlogo"
             android:process=":ui" />
         <!-- List of all system theme colors on the device. -->
         <activity
-            android:name=".s_egg.easter_egg.widget.PaintChipsActivity"
+            android:name=".snow_cone_egg.easter_egg.widget.PaintChipsActivity"
             android:theme="@android:style/Theme.Material.Wallpaper.NoTitleBar"
             android:configChanges="orientation|keyboardHidden|screenSize|uiMode"
             android:label="@string/s_egg_name"
@@ -64,7 +64,7 @@
         <!-- Homescreen widget also showing paint chips (may be affected by the exact position in
              the workspace) -->
         <receiver
-            android:name=".s_egg.easter_egg.widget.PaintChipsWidget"
+            android:name=".snow_cone_egg.easter_egg.widget.PaintChipsWidget"
             android:label="@string/s_egg_name"
             android:exported="true"
             android:enabled="false">
@@ -77,45 +77,45 @@
                 android:resource="@xml/s_paint_chips_widget_info" />
         </receiver>
         <activity
-            android:name=".s_egg.easter_egg.widget.WidgetActivationActivity"
+            android:name=".snow_cone_egg.easter_egg.widget.WidgetActivationActivity"
             android:excludeFromRecents="true"
             android:exported="true"
             android:theme="@android:style/Theme.NoDisplay" />
 
         <!-- R (11) Egg Activities -->
-        <activity android:name=".REgg.PlatLogoActivityR"
+        <activity android:name=".red_velvet_cake_egg.PlatLogoActivityRedVelvetCake"
             android:theme="@style/AppTheme"
             android:configChanges="orientation|keyboardHidden"
             android:icon="@drawable/r_platlogo"
             android:process=":ui"/>
         <!-- Long press the QS tile to get here -->
         <activity
-            android:name=".REgg.EasterEgg.neko.NekoLand"
+            android:name=".red_velvet_cake_egg.EasterEgg.neko.NekoLand"
             android:theme="@style/AppTheme.NoActionBar"
             android:exported="true">
         </activity>
 
         <!-- This is where the magic happens -->
         <service
-            android:name=".REgg.EasterEgg.neko.NekoService"
+            android:name=".red_velvet_cake_egg.EasterEgg.neko.NekoService"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
         <!-- Used to show over lock screen -->
         <activity
-            android:name=".REgg.EasterEgg.neko.NekoLockedActivity"
+            android:name=".red_velvet_cake_egg.EasterEgg.neko.NekoLockedActivity"
             android:excludeFromRecents="true"
             android:showOnLockScreen="true"
             android:theme="@style/AppTheme.Dialog.NoActionBar" />
 
         <!-- Used to enable easter egg -->
         <activity
-            android:name=".REgg.EasterEgg.neko.NekoActivationActivity"
+            android:name=".red_velvet_cake_egg.EasterEgg.neko.NekoActivationActivity"
             android:excludeFromRecents="true"
             android:theme="@style/AppTheme.NoDisplay" />
 
-        <service android:name=".REgg.EasterEgg.neko.NekoControlsService"
+        <service android:name=".red_velvet_cake_egg.EasterEgg.neko.NekoControlsService"
             android:permission="android.permission.BIND_CONTROLS"
             android:label="@string/r_egg_name"
             android:icon="@drawable/r_ic_fullcat_icon"
@@ -127,13 +127,13 @@
         </service>
 
         <!-- Q (10) Egg Activities -->
-        <activity android:name=".QEgg.PlatLogoActivityQ"
+        <activity android:name=".quince_tart_egg.PlatLogoActivityQuinceTart"
             android:theme="@style/AppTheme"
             android:configChanges="orientation|keyboardHidden"
             android:icon="@drawable/q_platlogo"
             android:process=":ui" />
 
-        <activity android:name=".QEgg.EasterEgg.quares.QuaresActivity"
+        <activity android:name=".quince_tart_egg.EasterEgg.quares.QuaresActivity"
             android:icon="@drawable/q_icon"
             android:label="@string/q_egg_name"
             android:theme="@style/AppTheme.QEgg.QuaresTheme" />

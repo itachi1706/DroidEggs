@@ -1,4 +1,4 @@
-package com.itachi1706.droideggs.QEgg.EasterEgg.quares
+package com.itachi1706.droideggs.quince_tart_egg.EasterEgg.quares
 
 import android.app.Activity
 import android.content.Context

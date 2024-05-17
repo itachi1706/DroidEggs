@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.itachi1706.droideggs.REgg;
+package com.itachi1706.droideggs.red_velvet_cake_egg;
 
 import android.animation.ObjectAnimator;
 import android.annotation.TargetApi;
@@ -51,13 +51,13 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.itachi1706.droideggs.R;
-import com.itachi1706.droideggs.REgg.EasterEgg.neko.NekoActivationActivity;
+import com.itachi1706.droideggs.red_velvet_cake_egg.EasterEgg.neko.NekoActivationActivity;
 import com.itachi1706.helperlib.helpers.PrefHelper;
 
 import org.json.JSONObject;
 
 @TargetApi(21)
-public class PlatLogoActivityR extends AppCompatActivity {
+public class PlatLogoActivityRedVelvetCake extends AppCompatActivity {
 
     private static final boolean WRITE_SETTINGS = true;
 

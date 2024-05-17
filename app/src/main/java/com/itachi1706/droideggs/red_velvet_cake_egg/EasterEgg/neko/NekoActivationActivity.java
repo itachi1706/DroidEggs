@@ -12,7 +12,7 @@
  * permissions and limitations under the License.
  */
 
-package com.itachi1706.droideggs.REgg.EasterEgg.neko;
+package com.itachi1706.droideggs.red_velvet_cake_egg.EasterEgg.neko;
 
 import android.content.ComponentName;
 import android.content.SharedPreferences;

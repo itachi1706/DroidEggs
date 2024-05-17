@@ -39,6 +39,7 @@ import com.itachi1706.droideggs.quince_tart_egg.PlatLogoActivityQuinceTart
 import com.itachi1706.droideggs.red_velvet_cake_egg.PlatLogoActivityRedVelvetCake
 import com.itachi1706.droideggs.snow_cone_egg.PlatLogoActivitySnowCone
 import com.itachi1706.droideggs.tiramisu_egg.PlatLogoActivityTiramisu
+import com.itachi1706.droideggs.upside_down_cake_egg.PlatLogoActivityUpsideDownCake
 import com.itachi1706.helperlib.helpers.PrefHelper
 import java.util.LinkedList
 
@@ -52,7 +53,6 @@ class SelectorOnClick(private val act: MainScreen) : AdapterView.OnItemClickList
         val versionCode =
             view.context.resources.getStringArray(R.array.legacy_version_with_egg_code)
         val versionName = view.context.resources.getStringArray(R.array.android_ver)
-        val sp = PrefHelper.getDefaultSharedPreferences(view.context)
         Log.d("Selected Version", position.toString() + "")
 
         if (!(position < versionCode.size && position >= 0)) {
@@ -60,6 +60,12 @@ class SelectorOnClick(private val act: MainScreen) : AdapterView.OnItemClickList
             return
         }
         val version = versionCode[position]
+        val selectedEgg: Intent? = getCorrectEgg(version, view)
+        activateEgg(selectedEgg, view, position, versionName, version)
+    }
+
+    private fun getCorrectEgg(version: String, view: View): Intent? {
+        val sp = PrefHelper.getDefaultSharedPreferences(view.context)
         var selectedEgg: Intent? = null
         when (version) {
             "GB" -> selectedEgg = Intent(view.context, PlatLogoActivityGINGERBREAD::class.java)
@@ -101,8 +107,12 @@ class SelectorOnClick(private val act: MainScreen) : AdapterView.OnItemClickList
             "T" -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) selectedEgg = Intent(
                 view.context, PlatLogoActivityTiramisu::class.java
             ) else act.unableToAccessEasterEgg("Q")
+            "U" -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) selectedEgg = Intent(
+                view.context, PlatLogoActivityUpsideDownCake::class.java
+            ) else act.unableToAccessEasterEgg("S")
         }
-        activateEgg(selectedEgg, view, position, versionName, version)
+
+        return selectedEgg
     }
 
     private fun activateEgg(

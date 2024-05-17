@@ -19,7 +19,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         // add this to set a unique tray authority based on your applicationId
         resValue "string", "tray__authority", "${applicationId}.tray"
-        resConfigs 'en'
+        resourceConfigurations += ['en']
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11

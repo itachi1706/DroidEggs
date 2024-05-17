@@ -66,7 +66,7 @@ class CurrentEgg : AppCompatActivity() {
             R -> PlatLogoActivityRedVelvetCake::class.java // Android 11 (R)
             S -> PlatLogoActivitySnowCone::class.java // Android 12 (S)
             TIRAMISU -> PlatLogoActivityTiramisu::class.java // Android 13 (Tiramisu)
-            else -> null // Future Android Versions (As minSDK is way above GB, it does not matter to do a check before)
+            else -> null // Future Android Versions
         }
 
         if (executeClass == null) setResult(Activity.RESULT_CANCELED, errorIntent)

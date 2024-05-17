@@ -37,6 +37,7 @@ import com.itachi1706.droideggs.quince_tart_egg.PlatLogoActivityQuinceTart
 import com.itachi1706.droideggs.red_velvet_cake_egg.PlatLogoActivityRedVelvetCake
 import com.itachi1706.droideggs.snow_cone_egg.PlatLogoActivitySnowCone
 import com.itachi1706.droideggs.tiramisu_egg.PlatLogoActivityTiramisu
+import com.itachi1706.droideggs.upside_down_cake_egg.PlatLogoActivityUpsideDownCake
 
 /**
  * Created by Kenneth on 20/4/2018.
@@ -66,6 +67,7 @@ class CurrentEgg : AppCompatActivity() {
             R -> PlatLogoActivityRedVelvetCake::class.java // Android 11 (R)
             S -> PlatLogoActivitySnowCone::class.java // Android 12 (S)
             TIRAMISU -> PlatLogoActivityTiramisu::class.java // Android 13 (Tiramisu)
+            UPSIDE_DOWN_CAKE -> PlatLogoActivityUpsideDownCake::class.java // Android 14 (U)
             else -> null // Future Android Versions
         }
 

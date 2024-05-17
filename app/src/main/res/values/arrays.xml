@@ -116,7 +116,7 @@
         <item>Lollipop</item>
         <item>Q</item>
         <item>Q</item>
-        <item>None</item>
+        <item>S</item>
     </string-array>
 
     <integer-array name="android_egg_require_min_sdk">
@@ -137,7 +137,7 @@
         <item>21</item>
         <item>29</item>
         <item>29</item>
-        <item>1</item>
+        <item>31</item>
     </integer-array>
 
     <string-array name="dark_mode_selector">

@@ -1,4 +1,4 @@
-package com.itachi1706.droideggs.s_egg;
+package com.itachi1706.droideggs.snow_cone_egg;
 
 import static android.graphics.PixelFormat.TRANSLUCENT;
 
@@ -32,7 +32,7 @@ import android.widget.ImageView;
 import com.itachi1706.droideggs.PlatLogoCommon;
 import com.itachi1706.droideggs.R;
 import com.itachi1706.droideggs.forwardPortedCode.AnalogClock;
-import com.itachi1706.droideggs.s_egg.easter_egg.widget.WidgetActivationActivity;
+import com.itachi1706.droideggs.snow_cone_egg.easter_egg.widget.WidgetActivationActivity;
 
 import java.time.Clock;
 import java.time.Instant;
@@ -40,7 +40,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
 @TargetApi(29)
-public class PlatLogoActivityS extends Activity {
+public class PlatLogoActivitySnowCone extends Activity {
     private static final String TAG = "PlatLogoActivity";
 
     private static final String S_EGG_UNLOCK_SETTING = "egg_mode_s";

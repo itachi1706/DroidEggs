@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.itachi1706.droideggs.REgg.EasterEgg.neko;
+package com.itachi1706.droideggs.red_velvet_cake_egg.EasterEgg.neko;
 
 import android.annotation.TargetApi;
 import android.app.Notification;
@@ -36,8 +36,8 @@ import com.itachi1706.droideggs.R;
 import java.util.List;
 import java.util.Random;
 
-import static com.itachi1706.droideggs.REgg.EasterEgg.neko.Cat.PURR;
-import static com.itachi1706.droideggs.REgg.EasterEgg.neko.NekoLand.CHAN_ID;
+import static com.itachi1706.droideggs.red_velvet_cake_egg.EasterEgg.neko.Cat.PURR;
+import static com.itachi1706.droideggs.red_velvet_cake_egg.EasterEgg.neko.NekoLand.CHAN_ID;
 
 @TargetApi(Build.VERSION_CODES.R)
 public class NekoService extends JobService {

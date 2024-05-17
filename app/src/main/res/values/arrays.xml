@@ -30,7 +30,7 @@
         <item>10/Q (10.0)</item>
         <item>11/R (11.0)</item>
         <item>12/S (12.0)</item>
-        <item>13/T (13.0)</item>
+        <item>13/Tiramisu (13.0)</item>
         <item>14/U (14.0)</item>
     </string-array>
 
@@ -73,7 +73,7 @@
         <item>10 (Q)</item>
         <item>11 (R)</item>
         <item>12 (S)</item>
-        <item>13 (T)</item>
+        <item>13 (Tiramisu)</item>
         <item>14 (U)</item>
     </string-array>
 
@@ -115,7 +115,7 @@
         <item>None</item>
         <item>Lollipop</item>
         <item>Q</item>
-        <item>None</item>
+        <item>Q</item>
         <item>None</item>
     </string-array>
 
@@ -136,7 +136,7 @@
         <item>1</item>
         <item>21</item>
         <item>29</item>
-        <item>1</item>
+        <item>29</item>
         <item>1</item>
     </integer-array>
 

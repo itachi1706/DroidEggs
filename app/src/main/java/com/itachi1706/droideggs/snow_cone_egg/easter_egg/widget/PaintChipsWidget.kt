@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.itachi1706.droideggs.s_egg.easter_egg.widget
+package com.itachi1706.droideggs.snow_cone_egg.easter_egg.widget
 
 import android.annotation.TargetApi
 import android.app.PendingIntent

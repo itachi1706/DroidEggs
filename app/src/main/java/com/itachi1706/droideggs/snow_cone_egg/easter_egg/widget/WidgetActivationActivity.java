@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.itachi1706.droideggs.s_egg.easter_egg.widget;
+package com.itachi1706.droideggs.snow_cone_egg.easter_egg.widget;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -23,7 +23,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.util.Log;
-import android.widget.Toast;
 
 /**
  * Launched from the PlatLogoActivity. Enables everything else in this easter egg.

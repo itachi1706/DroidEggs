@@ -35,9 +35,10 @@ import com.itachi1706.droideggs.NougatEgg.PlatLogoActivityNougat
 import com.itachi1706.droideggs.OreoEgg.PlatLogoActivityOreo
 import com.itachi1706.droideggs.OreoMR1Egg.PlatLogoActivityOreoMR1
 import com.itachi1706.droideggs.PieEgg.PlatLogoActivityPie
-import com.itachi1706.droideggs.QEgg.PlatLogoActivityQ
-import com.itachi1706.droideggs.REgg.PlatLogoActivityR
-import com.itachi1706.droideggs.s_egg.PlatLogoActivityS
+import com.itachi1706.droideggs.quince_tart_egg.PlatLogoActivityQuinceTart
+import com.itachi1706.droideggs.red_velvet_cake_egg.PlatLogoActivityRedVelvetCake
+import com.itachi1706.droideggs.snow_cone_egg.PlatLogoActivitySnowCone
+import com.itachi1706.droideggs.tiramisu_egg.PlatLogoActivityTiramisu
 import com.itachi1706.helperlib.helpers.PrefHelper
 import java.util.*
 
@@ -80,10 +81,11 @@ class SelectorOnClick(val act: MainScreen) : AdapterView.OnItemClickListener {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N || sp.getBoolean("access_partial_egg", false))
                     selectedEgg = Intent(view.context, PlatLogoActivityPie::class.java) else act.limitedAccessToEgg("NOUGAT")
             } else act.unableToAccessEasterEgg("LOLLIPOP")
-            "Q" -> if (sp.getBoolean("access_partial_egg", false) || Build.VERSION.SDK_INT >= 23) selectedEgg = Intent(view.context, PlatLogoActivityQ::class.java)
+            "Q" -> if (sp.getBoolean("access_partial_egg", false) || Build.VERSION.SDK_INT >= 23) selectedEgg = Intent(view.context, PlatLogoActivityQuinceTart::class.java)
             else act.unableToAccessEasterEgg("MARSHMALLOW")
-            "R" -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) selectedEgg = Intent(view.context, PlatLogoActivityR::class.java) else act.unableToAccessEasterEgg("R")
-            "S" -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) selectedEgg = Intent(view.context, PlatLogoActivityS::class.java) else act.unableToAccessEasterEgg("Q")
+            "R" -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) selectedEgg = Intent(view.context, PlatLogoActivityRedVelvetCake::class.java) else act.unableToAccessEasterEgg("R")
+            "S" -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) selectedEgg = Intent(view.context, PlatLogoActivitySnowCone::class.java) else act.unableToAccessEasterEgg("Q")
+            "T" -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) selectedEgg = Intent(view.context, PlatLogoActivityTiramisu::class.java) else act.unableToAccessEasterEgg("Q")
         }
         if (selectedEgg != null) {
             view.context.startActivity(selectedEgg)

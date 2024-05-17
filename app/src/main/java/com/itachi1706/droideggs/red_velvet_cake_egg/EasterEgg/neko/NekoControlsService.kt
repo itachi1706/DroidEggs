@@ -16,7 +16,7 @@
 
 @file:Suppress("PackageName")
 
-package com.itachi1706.droideggs.REgg.EasterEgg.neko
+package com.itachi1706.droideggs.red_velvet_cake_egg.EasterEgg.neko
 
 import android.app.PendingIntent
 import android.content.Intent

@@ -1,6 +1,6 @@
 # DroidEggs 
 
-[![JIRA Issues](https://img.shields.io/badge/JIRA-Issues-blue)](https://itachi1706.atlassian.net/browse/DEGGAND) [![Android CI](https://github.com/itachi1706/DroidEggs/workflows/Android%20CI/badge.svg)](https://github.com/itachi1706/DroidEggs/actions?query=workflow%3A%22Android+CI%22) [![CodeQL](https://github.com/itachi1706/DroidEggs/workflows/CodeQL/badge.svg)](https://github.com/itachi1706/DroidEggs/actions?query=workflow%3ACodeQL)
+[![JIRA Issues](https://img.shields.io/badge/JIRA-Issues-blue)](https://itachi1706.atlassian.net/browse/DEGGAND) [![Android CI](https://github.com/itachi1706/DroidEggs/workflows/Android%20CI/badge.svg)](https://github.com/itachi1706/DroidEggs/actions?query=workflow%3A%22Android+CI%22) [![CodeQL](https://github.com/itachi1706/DroidEggs/workflows/CodeQL/badge.svg)](https://github.com/itachi1706/DroidEggs/actions?query=workflow%3ACodeQL) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=itachi1706_DroidEggs&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=itachi1706_DroidEggs) [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=itachi1706_DroidEggs&metric=bugs)](https://sonarcloud.io/summary/new_code?id=itachi1706_DroidEggs) [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=itachi1706_DroidEggs&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=itachi1706_DroidEggs) [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=itachi1706_DroidEggs&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=itachi1706_DroidEggs)
 
 An Android Application containing all of the Easter Eggs ever found on Android
 
@@ -36,3 +36,5 @@ This application is licensed under the *Apache License 2.0* as it contains files
 
 
 ~~This application is also available on [my personal F-Droid repository](https://fdroid.itachi1706.com/) for alternative downloads.~~
+
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-black.svg)](https://sonarcloud.io/summary/new_code?id=itachi1706_DroidEggs)

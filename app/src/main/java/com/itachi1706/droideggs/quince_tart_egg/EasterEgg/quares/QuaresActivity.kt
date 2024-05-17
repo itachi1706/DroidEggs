@@ -248,10 +248,10 @@ class ClueView(context: Context) : View(context) {
         setBackgroundColor(if (correct) correctColor else incorrectColor)
         return correct
     }
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         if (!showText) return
-        canvas?.let {
+        canvas.let {
             val x = canvas.width / 2f
             val y = canvas.height / 2f
             var textWidth = canvas.width
@@ -260,7 +260,7 @@ class ClueView(context: Context) : View(context) {
                 textWidth = canvas.height
             }
             val textLayout = StaticLayout.Builder.obtain(
-                    text, 0, text.length, paint, textWidth).build()
+                text, 0, text.length, paint, textWidth).build()
             canvas.translate(x, y - textLayout.height / 2)
             textLayout.draw(canvas)
         }

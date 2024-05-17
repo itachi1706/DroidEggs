@@ -132,9 +132,9 @@ class MainScreen : AppCompatActivity() {
         Snackbar.make(findViewById(android.R.id.content), "Easter Egg Coming Soon", Snackbar.LENGTH_SHORT).setAction("DISMISS"){}.show()
     }
 
-    fun limitedAccessToEgg(SDK_VERSION: String) {
+    fun limitedAccessToEgg(sdkVersion: String) {
         presentSnackbar("Unable to access egg (INVALID VERSION)", "Get Access", "At your current version of Android, you are not able to experience the full easter egg. " +
-                "You require Android $SDK_VERSION to access it fully. \n\nHowever, if you wish you are able to access a limited version of the egg by checking the \"Access Partial Egg\" setting in the app settings",
+                "You require Android $sdkVersion to access it fully. \n\nHowever, if you wish you are able to access a limited version of the egg by checking the \"Access Partial Egg\" setting in the app settings",
                 "AWW :(", false, showAppSettings = true)
     }
 }

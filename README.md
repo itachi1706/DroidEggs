@@ -35,4 +35,4 @@ This application is licensed under the *Apache License 2.0* as it contains files
 |              Android 14.0 U              |       Space Program Launch       |  TODO  |
 
 
-This application is also available on [my personal F-Droid repository](https://fdroid.itachi1706.com/) for alternative downloads.
+~~This application is also available on [my personal F-Droid repository](https://fdroid.itachi1706.com/) for alternative downloads.~~

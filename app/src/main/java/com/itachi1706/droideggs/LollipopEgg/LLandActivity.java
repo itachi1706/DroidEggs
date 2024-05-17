@@ -16,15 +16,13 @@
 
 package com.itachi1706.droideggs.LollipopEgg;
 
-import android.annotation.TargetApi;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.itachi1706.droideggs.R;
 
-@TargetApi(21)
 public class LLandActivity extends AppCompatActivity {
 
     @Override

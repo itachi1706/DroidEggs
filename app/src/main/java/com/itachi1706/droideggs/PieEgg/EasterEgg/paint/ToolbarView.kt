@@ -22,7 +22,6 @@ import android.widget.FrameLayout
 import androidx.annotation.RequiresApi
 import com.itachi1706.droideggs.compat.ScreenMetricsCompat
 
-@RequiresApi(21)
 class ToolbarView(context: Context) : FrameLayout(context) {
     override fun onApplyWindowInsets(insets: WindowInsets?): WindowInsets {
         val lp = layoutParams as LayoutParams?

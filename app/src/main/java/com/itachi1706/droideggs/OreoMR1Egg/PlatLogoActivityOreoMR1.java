@@ -16,7 +16,6 @@
 
 package com.itachi1706.droideggs.OreoMR1Egg;
 
-import android.annotation.TargetApi;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -25,7 +24,6 @@ import android.graphics.Outline;
 import android.graphics.drawable.RippleDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
@@ -36,6 +34,8 @@ import android.view.animation.PathInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.itachi1706.droideggs.OreoEgg.EasterEgg.octo.Ocquarium;
 import com.itachi1706.droideggs.R;
 
@@ -43,7 +43,6 @@ import com.itachi1706.droideggs.R;
  * Created by Kenneth on 2/9/2017.
  * for com.itachi1706.droideggs.OreoEgg in DroidEggs
  */
-@TargetApi(21)
 public class PlatLogoActivityOreoMR1 extends AppCompatActivity {
     public static final boolean FINISH = true;
 

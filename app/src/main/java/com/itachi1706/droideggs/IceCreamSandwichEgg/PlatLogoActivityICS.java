@@ -16,22 +16,21 @@
 
 package com.itachi1706.droideggs.IceCreamSandwichEgg;
 
-import android.annotation.TargetApi;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.itachi1706.droideggs.R;
 
-@TargetApi(16)
 public class PlatLogoActivityICS extends AppCompatActivity {
 
     Toast mToast;

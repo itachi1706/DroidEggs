@@ -38,7 +38,6 @@ fun invlerp(x: Float, a: Float, b: Float): Float {
     } else 1.0f
 }
 
-@RequiresApi(21)
 class Painting(context: Context) : View(context), SpotFilter.Plotter {
     companion object {
         private val FADE_MINS = TimeUnit.MINUTES.toMillis(3) // about how long a drawing should last

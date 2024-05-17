@@ -50,7 +50,6 @@ import java.util.ArrayList;
  * Created by Kenneth on 1/6/2015
  * for DroidEggs in package com.itachi1706.droideggs.LollipopEgg
  */
-@TargetApi(21)
 public class LLand extends FrameLayout {
     public static final String TAG = "LLand";
 

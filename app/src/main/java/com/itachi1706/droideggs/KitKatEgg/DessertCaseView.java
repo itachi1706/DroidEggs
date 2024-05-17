@@ -20,7 +20,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -53,7 +52,6 @@ import java.util.Set;
  * Created by Kenneth on 1/6/2015
  * for DroidEggs in package com.itachi1706.droideggs.KitKatEgg
  */
-@TargetApi(18)
 public class DessertCaseView extends FrameLayout {
     private static final String TAG = DessertCaseView.class.getSimpleName();
 

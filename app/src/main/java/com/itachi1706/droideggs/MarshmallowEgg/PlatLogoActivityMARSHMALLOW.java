@@ -18,7 +18,6 @@ package com.itachi1706.droideggs.MarshmallowEgg;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
-import android.annotation.TargetApi;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -32,8 +31,6 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
@@ -43,13 +40,15 @@ import android.view.ViewOutlineProvider;
 import android.view.animation.PathInterpolator;
 import android.widget.FrameLayout;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.itachi1706.droideggs.R;
 
 /**
  * Created by Kenneth on 7/10/2015.
  * for DroidEggs in package com.itachi1706.droideggs.MarshmallowEgg
  */
-@TargetApi(21)
 public class PlatLogoActivityMARSHMALLOW extends AppCompatActivity {
     FrameLayout mLayout;
     int mTapCount;

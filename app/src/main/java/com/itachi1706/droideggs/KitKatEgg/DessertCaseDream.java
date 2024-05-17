@@ -16,15 +16,12 @@
 
 package com.itachi1706.droideggs.KitKatEgg;
 
-import android.annotation.TargetApi;
-import android.os.Build;
 import android.service.dreams.DreamService;
 
 /**
  * Created by Kenneth on 1/6/2015
  * for DroidEggs in package com.itachi1706.droideggs.KitKatEgg
  */
-@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)  //API 17
 public class DessertCaseDream extends DreamService {
 
     private DessertCaseView mView;

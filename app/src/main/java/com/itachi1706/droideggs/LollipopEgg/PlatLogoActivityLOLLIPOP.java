@@ -17,7 +17,6 @@
 package com.itachi1706.droideggs.LollipopEgg;
 
 import android.animation.ObjectAnimator;
-import android.annotation.TargetApi;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -33,7 +32,6 @@ import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
@@ -45,9 +43,10 @@ import android.view.animation.PathInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.itachi1706.droideggs.R;
 
-@TargetApi(21)
 public class PlatLogoActivityLOLLIPOP extends AppCompatActivity {
     final static int[] FLAVORS = {
             0xFF9C27B0, 0xFFBA68C8, // grape

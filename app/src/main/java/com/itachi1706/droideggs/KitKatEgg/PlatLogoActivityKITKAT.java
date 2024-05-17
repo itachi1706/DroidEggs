@@ -16,7 +16,6 @@
 
 package com.itachi1706.droideggs.KitKatEgg;
 
-import android.annotation.TargetApi;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -25,8 +24,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.text.AllCapsTransformationMethod;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
@@ -37,9 +34,11 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.text.AllCapsTransformationMethod;
+
 import com.itachi1706.droideggs.R;
 
-@TargetApi(19)
 public class PlatLogoActivityKITKAT extends AppCompatActivity {
 
     FrameLayout mContent;

@@ -15,7 +15,6 @@
 package com.itachi1706.droideggs.OreoEgg.EasterEgg.octo;
 
 import android.animation.TimeAnimator;
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
@@ -30,18 +29,18 @@ import android.graphics.RectF;
 import android.graphics.Region;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.dynamicanimation.animation.DynamicAnimation;
 import androidx.dynamicanimation.animation.FloatValueHolder;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 /**
  * Created by Kenneth on 2/9/2017.
  * for com.itachi1706.droideggs.OreoEgg.EasterEgg.octo in DroidEggs
  */
-@TargetApi(21)
 public class OctopusDrawable extends Drawable {
     private static float BASE_SCALE = 100f;
     public static boolean PATH_DEBUG = false;

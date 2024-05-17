@@ -18,7 +18,6 @@ package com.itachi1706.droideggs.MarshmallowEgg;
 
 import android.animation.LayoutTransition;
 import android.animation.TimeAnimator;
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
@@ -58,7 +57,6 @@ import java.util.ArrayList;
  */
 
 // It's like LLand, but "M"ultiplayer.
-@TargetApi(21)
 public class MLand extends FrameLayout {
 
     public static final String TAG = "MLand";

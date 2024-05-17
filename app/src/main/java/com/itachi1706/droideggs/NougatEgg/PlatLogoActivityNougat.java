@@ -17,7 +17,6 @@
 package com.itachi1706.droideggs.NougatEgg;
 
 import android.animation.ObjectAnimator;
-import android.annotation.TargetApi;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -28,7 +27,6 @@ import android.graphics.drawable.RippleDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
@@ -37,6 +35,8 @@ import android.view.animation.PathInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.itachi1706.droideggs.NougatEgg.EasterEgg.neko.NekoActivationActivity;
 import com.itachi1706.droideggs.R;
 
@@ -44,7 +44,6 @@ import com.itachi1706.droideggs.R;
  * Created by Kenneth on 7/10/2015.
  * for DroidEggs in package com.itachi1706.droideggs.MarshmallowEgg
  */
-@TargetApi(21)
 public class PlatLogoActivityNougat extends AppCompatActivity {
     public static final boolean REVEAL_THE_NAME = false;
     public static final boolean FINISH = false;

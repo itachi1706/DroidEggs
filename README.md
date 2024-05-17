@@ -9,7 +9,7 @@ This is the original official repository for the DroidEggs application
 Releases are located here:       
 https://github.com/itachi1706/DroidEggs/releases  
 
-This application is licensed under the *Apache License 2.0* as it contains files from the [Android Open Source Project](source.android.com). The license file can be found [here](https://github.com/itachi1706/DroidEggs/blob/master/LICENSE).
+This application is licensed under the *Apache License 2.0* as it contains files from the [Android Open Source Project](https://source.android.com). The license file can be found [here](https://github.com/itachi1706/DroidEggs/blob/master/LICENSE).
 
 **Easter Egg List**
 

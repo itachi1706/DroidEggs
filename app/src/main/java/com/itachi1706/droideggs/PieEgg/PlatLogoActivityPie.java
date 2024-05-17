@@ -18,7 +18,6 @@ package com.itachi1706.droideggs.PieEgg;
 
 import android.animation.TimeAnimator;
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -48,7 +47,6 @@ import org.json.JSONObject;
  * Created by Kenneth on 7/8/2018.
  * for com.itachi1706.droideggs.PieEgg in DroidEggs
  */
-@TargetApi(21)
 public class PlatLogoActivityPie extends AppCompatActivity {
 
     FrameLayout layout;

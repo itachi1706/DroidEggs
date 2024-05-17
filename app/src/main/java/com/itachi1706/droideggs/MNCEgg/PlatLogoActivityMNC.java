@@ -16,7 +16,6 @@
 
 package com.itachi1706.droideggs.MNCEgg;
 
-import android.annotation.TargetApi;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Canvas;
@@ -28,8 +27,6 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -39,9 +36,11 @@ import android.view.animation.PathInterpolator;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.itachi1706.droideggs.R;
 
-@TargetApi(21)
 public class PlatLogoActivityMNC extends AppCompatActivity {
     FrameLayout mLayout;
     int mTapCount;

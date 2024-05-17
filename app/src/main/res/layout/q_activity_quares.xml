@@ -36,6 +36,5 @@
         android:backgroundTint="@color/q_clue_bg_correct"
         android:textColor="@color/q_clue_text"
         android:layout_marginBottom="48dp"
-        android:elevation="30dp"
-        tools:targetApi="lollipop" />
+        android:elevation="30dp" />
 </FrameLayout>

@@ -17,14 +17,12 @@
 package com.itachi1706.droideggs.NDPEgg;
 
 import android.animation.ObjectAnimator;
-import android.annotation.TargetApi;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -32,13 +30,14 @@ import android.view.animation.PathInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.itachi1706.droideggs.R;
 
 /**
  * Created by Kenneth on 7/10/2015.
  * for DroidEggs in package com.itachi1706.droideggs.MarshmallowEgg
  */
-@TargetApi(21)
 public class PlatLogoActivityNDP extends AppCompatActivity {
     public static final boolean REVEAL_THE_NAME = true;
 

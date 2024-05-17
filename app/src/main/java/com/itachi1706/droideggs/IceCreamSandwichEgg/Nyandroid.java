@@ -35,7 +35,6 @@ import com.itachi1706.droideggs.R;
 
 import java.util.Random;
 
-@TargetApi(16)
 public class Nyandroid extends AppCompatActivity {
 
     final static boolean DEBUG = false;
@@ -82,6 +81,7 @@ public class Nyandroid extends AppCompatActivity {
                 if (DEBUG) setBackgroundColor(0x80FF0000);
             }
 
+            @Override
             public String toString() {
                 return String.format("<cat (%.1f, %.1f) (%d x %d)>",
                         getX(), getY(), getWidth(), getHeight());

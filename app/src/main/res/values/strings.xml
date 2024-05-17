@@ -46,4 +46,7 @@
 
     <string name="r_egg_name" translatable="false">Cat Controls</string>
     <string name="s_egg_name" translatable="false">Paint Chips</string>
+    <string name="close_button">Close Button</string>
+    <string name="share_text">Share Text</string>
+    <string name="cat_icon">Cat Icon</string>
 </resources>

@@ -18,15 +18,12 @@ package com.itachi1706.droideggs.forwardPortedCode;
 
 import android.transition.Transition;
 
-import androidx.annotation.RequiresApi;
-
 /**
  * This adapter class provides empty implementations of the methods from {@link
  * android.transition.Transition.TransitionListener}.
  * Any custom listener that cares only about a subset of the methods of this listener can
  * simply subclass this adapter class instead of implementing the interface directly.
  */
-@RequiresApi(19)
 public abstract class TransitionListenerAdapter implements Transition.TransitionListener {
 
     /**

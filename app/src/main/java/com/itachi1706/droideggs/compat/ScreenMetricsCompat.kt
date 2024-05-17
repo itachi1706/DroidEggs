@@ -11,7 +11,6 @@ import android.view.WindowMetrics
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 
-@RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 object ScreenMetricsCompat {
     private val api: Api =
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) ApiLevel30()

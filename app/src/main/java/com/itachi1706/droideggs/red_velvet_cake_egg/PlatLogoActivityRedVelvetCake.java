@@ -17,7 +17,6 @@
 package com.itachi1706.droideggs.red_velvet_cake_egg;
 
 import android.animation.ObjectAnimator;
-import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -56,7 +55,6 @@ import com.itachi1706.helperlib.helpers.PrefHelper;
 
 import org.json.JSONObject;
 
-@TargetApi(21)
 public class PlatLogoActivityRedVelvetCake extends AppCompatActivity {
 
     private static final boolean WRITE_SETTINGS = true;

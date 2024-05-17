@@ -15,7 +15,6 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
@@ -29,10 +28,9 @@ import android.widget.ImageView;
 
 import androidx.preference.PreferenceManager;
 
+import com.itachi1706.droideggs.PlatLogoCommon;
 import com.itachi1706.droideggs.R;
 import com.itachi1706.droideggs.forwardPortedCode.AnalogClock;
-
-import org.json.JSONObject;
 
 import java.time.Clock;
 import java.time.Instant;
@@ -116,7 +114,7 @@ public class PlatLogoActivityTiramisu extends Activity {
         );
 
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        syncTouchPressure();
+        PlatLogoCommon.syncTouchPressure(TOUCH_STATS, this);
         // For posterity: the moment this user unlocked the easter egg
         pref.edit().putLong("T_EGG_MODE", System.currentTimeMillis()).apply();
 
@@ -127,56 +125,18 @@ public class PlatLogoActivityTiramisu extends Activity {
         //finish(); // no longer finish upon unlock; it's fun to frob the dial
     }
 
-    static final String TOUCH_STATS = "touch.stats";
+    static final String TOUCH_STATS = "t.touch.stats";
     double mPressureMin = 0, mPressureMax = -1;
-
-    private void measureTouchPressure(MotionEvent event) {
-        final float pressure = event.getPressure();
-        switch (event.getActionMasked()) {
-            case MotionEvent.ACTION_DOWN:
-                if (mPressureMax < 0) {
-                    mPressureMin = mPressureMax = pressure;
-                }
-                break;
-            case MotionEvent.ACTION_MOVE:
-                if (pressure < mPressureMin) mPressureMin = pressure;
-                if (pressure > mPressureMax) mPressureMax = pressure;
-                break;
-        }
-    }
-
-    private void syncTouchPressure() {
-        try {
-            final String touchDataJson = Settings.System.getString(
-                    getContentResolver(), TOUCH_STATS);
-            final JSONObject touchData = new JSONObject(
-                    touchDataJson != null ? touchDataJson : "{}");
-            if (touchData.has("min")) {
-                mPressureMin = Math.min(mPressureMin, touchData.getDouble("min"));
-            }
-            if (touchData.has("max")) {
-                mPressureMax = Math.max(mPressureMax, touchData.getDouble("max"));
-            }
-            if (mPressureMax >= 0) {
-                touchData.put("min", mPressureMin);
-                touchData.put("max", mPressureMax);
-                SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                pref.edit().putString("T_TOUCH_STATS", touchData.toString()).apply();
-            }
-        } catch (Exception e) {
-            Log.e(TAG, "Can't write touch settings", e);
-        }
-    }
 
     @Override
     public void onStart() {
         super.onStart();
-        syncTouchPressure();
+        PlatLogoCommon.syncTouchPressure(TOUCH_STATS, this);
     }
 
     @Override
     public void onStop() {
-        syncTouchPressure();
+        PlatLogoCommon.syncTouchPressure(TOUCH_STATS, this);
         super.onStop();
     }
 
@@ -222,7 +182,7 @@ public class PlatLogoActivityTiramisu extends Activity {
                     mOverride = true;
                     // pass through
                 case MotionEvent.ACTION_MOVE:
-                    measureTouchPressure(ev);
+                    PlatLogoCommon.measureTouchPressure(ev);
 
                     float x = ev.getX();
                     float y = ev.getY();

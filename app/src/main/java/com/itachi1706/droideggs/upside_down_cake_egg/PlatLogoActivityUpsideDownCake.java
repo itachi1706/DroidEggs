@@ -42,10 +42,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 
+import com.itachi1706.droideggs.PlatLogoCommon;
 import com.itachi1706.droideggs.R;
 import com.itachi1706.droideggs.upside_down_cake_egg.easter_egg.landroid.MainActivity;
-
-import org.json.JSONObject;
 
 import java.util.Random;
 
@@ -80,7 +79,7 @@ public class PlatLogoActivityUpsideDownCake extends AppCompatActivity {
         public boolean onTouch(View v, MotionEvent event) {
             switch (event.getActionMasked()) {
                 case MotionEvent.ACTION_DOWN:
-                    measureTouchPressure(event);
+                    PlatLogoCommon.measureTouchPressure(event);
                     startWarp();
                     break;
                 case MotionEvent.ACTION_UP:
@@ -294,7 +293,7 @@ public class PlatLogoActivityUpsideDownCake extends AppCompatActivity {
 
         try {
             Log.v(TAG, "Saving egg locked=" + locked);
-            syncTouchPressure();
+            PlatLogoCommon.syncTouchPressure(TOUCH_STATS, this);
             pref.edit().putLong(U_EGG_UNLOCK_SETTING, locked ? 0 : System.currentTimeMillis()).apply();
         } catch (RuntimeException e) {
             Log.e(TAG, "Can't write settings", e);
@@ -314,52 +313,15 @@ public class PlatLogoActivityUpsideDownCake extends AppCompatActivity {
     static final String TOUCH_STATS = "u.touch.stats";
     double mPressureMin = 0, mPressureMax = -1;
 
-    private void measureTouchPressure(MotionEvent event) {
-        final float pressure = event.getPressure();
-        switch (event.getActionMasked()) {
-            case MotionEvent.ACTION_DOWN:
-                if (mPressureMax < 0) {
-                    mPressureMin = mPressureMax = pressure;
-                }
-                break;
-            case MotionEvent.ACTION_MOVE:
-                if (pressure < mPressureMin) mPressureMin = pressure;
-                if (pressure > mPressureMax) mPressureMax = pressure;
-                break;
-        }
-    }
-
-    private void syncTouchPressure() {
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
-        try {
-            String touchDataJson = pref.getString(TOUCH_STATS, null);
-            final JSONObject touchData = new JSONObject(
-                    touchDataJson != null ? touchDataJson : "{}");
-            if (touchData.has("min")) {
-                mPressureMin = Math.min(mPressureMin, touchData.getDouble("min"));
-            }
-            if (touchData.has("max")) {
-                mPressureMax = Math.max(mPressureMax, touchData.getDouble("max"));
-            }
-            if (mPressureMax >= 0) {
-                touchData.put("min", mPressureMin);
-                touchData.put("max", mPressureMax);
-                pref.edit().putString(TOUCH_STATS, touchData.toString()).apply();
-            }
-        } catch (Exception e) {
-            Log.e(TAG, "Can't write touch settings", e);
-        }
-    }
-
     @Override
     public void onStart() {
         super.onStart();
-        syncTouchPressure();
+        PlatLogoCommon.syncTouchPressure(TOUCH_STATS, this);
     }
 
     @Override
     public void onStop() {
-        syncTouchPressure();
+        PlatLogoCommon.syncTouchPressure(TOUCH_STATS, this);
         super.onStop();
     }
 

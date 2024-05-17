@@ -40,16 +40,17 @@ import com.itachi1706.droideggs.red_velvet_cake_egg.PlatLogoActivityRedVelvetCak
 import com.itachi1706.droideggs.snow_cone_egg.PlatLogoActivitySnowCone
 import com.itachi1706.droideggs.tiramisu_egg.PlatLogoActivityTiramisu
 import com.itachi1706.helperlib.helpers.PrefHelper
-import java.util.*
+import java.util.LinkedList
 
 /**
  * Created by Kenneth on 1/6/2015
  * for DroidEggs in package com.itachi1706.droideggs
  */
-class SelectorOnClick(val act: MainScreen) : AdapterView.OnItemClickListener {
+class SelectorOnClick(private val act: MainScreen) : AdapterView.OnItemClickListener {
 
     override fun onItemClick(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-        val versionCode = view.context.resources.getStringArray(R.array.legacy_version_with_egg_code)
+        val versionCode =
+            view.context.resources.getStringArray(R.array.legacy_version_with_egg_code)
         val versionName = view.context.resources.getStringArray(R.array.android_ver)
         val sp = PrefHelper.getDefaultSharedPreferences(view.context)
         Log.d("Selected Version", position.toString() + "")
@@ -66,27 +67,47 @@ class SelectorOnClick(val act: MainScreen) : AdapterView.OnItemClickListener {
             "ICS" -> selectedEgg = Intent(view.context, PlatLogoActivityICS::class.java)
             "JB" -> selectedEgg = Intent(view.context, PlatLogoActivityJELLYBEAN::class.java)
             "KK" -> selectedEgg = Intent(view.context, PlatLogoActivityKITKAT::class.java)
-            "L" -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) selectedEgg = Intent(view.context, PlatLogoActivityLOLLIPOP::class.java) else act.unableToAccessEasterEgg("LOLLIPOP")
-            "MNC" -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) selectedEgg = Intent(view.context, PlatLogoActivityMNC::class.java) else act.unableToAccessEasterEgg("LOLLIPOP")
-            "MM" -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) selectedEgg = Intent(view.context, PlatLogoActivityMARSHMALLOW::class.java) else act.unableToAccessEasterEgg("LOLLIPOP")
-            "NDP" -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) selectedEgg = Intent(view.context, PlatLogoActivityNDP::class.java) else act.unableToAccessEasterEgg("LOLLIPOP")
+            "L" -> selectedEgg = Intent(view.context, PlatLogoActivityLOLLIPOP::class.java)
+            "MNC" -> selectedEgg = Intent(view.context, PlatLogoActivityMNC::class.java)
+            "MM" -> selectedEgg = Intent(view.context, PlatLogoActivityMARSHMALLOW::class.java)
+            "NDP" -> selectedEgg = Intent(view.context, PlatLogoActivityNDP::class.java)
             "N" -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 selectedEgg = Intent(view.context, PlatLogoActivityNougat::class.java)
                 selectedEgg.putExtra("setting", sp.getBoolean("actual_neko_egg", false))
             } else act.unableToAccessEasterEgg("NOUGAT")
-            "O" -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) selectedEgg = Intent(view.context, PlatLogoActivityOreo::class.java) else act.unableToAccessEasterEgg("LOLLIPOP")
-            "O_MR1" -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) selectedEgg = Intent(view.context, PlatLogoActivityOreoMR1::class.java) else act.unableToAccessEasterEgg("LOLLIPOP")
-            "P" -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+
+            "O" -> selectedEgg = Intent(view.context, PlatLogoActivityOreo::class.java)
+            "O_MR1" -> selectedEgg = Intent(view.context, PlatLogoActivityOreoMR1::class.java)
+            "P" ->
                 // Do check and make sure you can access as some part of the egg requires Nougat (24)
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N || sp.getBoolean("access_partial_egg", false))
-                    selectedEgg = Intent(view.context, PlatLogoActivityPie::class.java) else act.limitedAccessToEgg("NOUGAT")
-            } else act.unableToAccessEasterEgg("LOLLIPOP")
-            "Q" -> if (sp.getBoolean("access_partial_egg", false) || Build.VERSION.SDK_INT >= 23) selectedEgg = Intent(view.context, PlatLogoActivityQuinceTart::class.java)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N || sp.getBoolean(
+                        "access_partial_egg", false
+                    )
+                ) selectedEgg = Intent(
+                    view.context, PlatLogoActivityPie::class.java
+                ) else act.limitedAccessToEgg("NOUGAT")
+
+            "Q" -> if (sp.getBoolean(
+                    "access_partial_egg", false
+                ) || Build.VERSION.SDK_INT >= 23
+            ) selectedEgg = Intent(view.context, PlatLogoActivityQuinceTart::class.java)
             else act.unableToAccessEasterEgg("MARSHMALLOW")
-            "R" -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) selectedEgg = Intent(view.context, PlatLogoActivityRedVelvetCake::class.java) else act.unableToAccessEasterEgg("R")
-            "S" -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) selectedEgg = Intent(view.context, PlatLogoActivitySnowCone::class.java) else act.unableToAccessEasterEgg("Q")
-            "T" -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) selectedEgg = Intent(view.context, PlatLogoActivityTiramisu::class.java) else act.unableToAccessEasterEgg("Q")
+
+            "R" -> selectedEgg = Intent(view.context, PlatLogoActivityRedVelvetCake::class.java)
+            "S" -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) selectedEgg = Intent(
+                view.context, PlatLogoActivitySnowCone::class.java
+            ) else act.unableToAccessEasterEgg("Q")
+
+            "T" -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) selectedEgg = Intent(
+                view.context, PlatLogoActivityTiramisu::class.java
+            ) else act.unableToAccessEasterEgg("Q")
         }
+        activateEgg(selectedEgg, view, position, versionName, version)
+    }
+
+    private fun activateEgg(
+        selectedEgg: Intent?, view: View, position: Int, versionName: Array<String>, version: String
+    ) {
         if (selectedEgg != null) {
             view.context.startActivity(selectedEgg)
 
@@ -100,14 +121,20 @@ class SelectorOnClick(val act: MainScreen) : AdapterView.OnItemClickListener {
                 val infos = LinkedList(shortcutManager!!.dynamicShortcuts)
                 val shortcutCount = shortcutManager.maxShortcutCountPerActivity - 2
                 if (infos.size >= shortcutCount) {
-                    Log.i("ShortcutManager", "Dynamic Shortcuts more than $shortcutCount. Removing extras")
-                    do { infos.removeLast() } while (infos.size > shortcutCount)
+                    Log.i(
+                        "ShortcutManager",
+                        "Dynamic Shortcuts more than $shortcutCount. Removing extras"
+                    )
+                    do {
+                        infos.removeLast()
+                    } while (infos.size > shortcutCount)
                 }
                 selectedEgg.action = Intent.ACTION_VIEW
                 val newShortcut = ShortcutInfo.Builder(view.context, "egg-$version")
-                        .setShortLabel(versionName[position] + " Egg").setLongLabel(versionName[position] + " Egg")
-                        .setIcon(Icon.createWithResource(view.context, R.mipmap.ic_launcher_round))
-                        .setIntent(selectedEgg).build()
+                    .setShortLabel(versionName[position] + " Egg")
+                    .setLongLabel(versionName[position] + " Egg")
+                    .setIcon(Icon.createWithResource(view.context, R.mipmap.ic_launcher_round))
+                    .setIntent(selectedEgg).build()
                 infos.add(newShortcut)
                 shortcutManager.dynamicShortcuts = infos
             }

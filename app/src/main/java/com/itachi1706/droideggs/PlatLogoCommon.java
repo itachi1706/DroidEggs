@@ -2,9 +2,10 @@ package com.itachi1706.droideggs;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.MotionEvent;
+
+import androidx.preference.PreferenceManager;
 
 import org.json.JSONObject;
 
@@ -13,7 +14,8 @@ public class PlatLogoCommon {
         throw new IllegalStateException("Utility class");
     }
 
-    static double mPressureMin = 0, mPressureMax = -1;
+    static double mPressureMin = 0;
+    static double mPressureMax = -1;
 
     public static void measureTouchPressure(MotionEvent event) {
         final float pressure = event.getPressure();
@@ -27,14 +29,16 @@ public class PlatLogoCommon {
                 if (pressure < mPressureMin) mPressureMin = pressure;
                 if (pressure > mPressureMax) mPressureMax = pressure;
                 break;
+            default:
+                // No-OP
+                break;
         }
     }
 
     public static void syncTouchPressure(String touchStats, Context context) {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
-        final String KEY = touchStats;
         try {
-            final String touchDataJson = pref.getString(KEY, null);
+            final String touchDataJson = pref.getString(touchStats, null);
             final JSONObject touchData = new JSONObject(
                     touchDataJson != null ? touchDataJson : "{}");
             if (touchData.has("min")) {

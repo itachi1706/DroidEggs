@@ -182,7 +182,7 @@ public class PlatLogoActivityQuinceTart extends AppCompatActivity {
         }
         finish();
     }
-    static final String TOUCH_STATS = "touch.stats";
+    static final String TOUCH_STATS = "q.touch.stats";
 
     @Override
     public void onStart() {

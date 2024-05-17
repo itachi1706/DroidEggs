@@ -106,16 +106,16 @@ class MainScreen : AppCompatActivity() {
     private fun presentSnackbar(title: String, actionText: String, actionMessage: String, closeText: String, hasNegativeBtn: Boolean = false, showAppSettings: Boolean = false) {
         Snackbar.make(findViewById(android.R.id.content), title, Snackbar.LENGTH_LONG).setAction(actionText) { v -> run {
                 val dialog = AlertDialog.Builder(v.context).setMessage(actionMessage).setPositiveButton(closeText, null)
-                if (hasNegativeBtn) dialog.setNegativeButton("AWW :(", null)
+                if (hasNegativeBtn) dialog.setNegativeButton(AWW_TEXT, null)
                 if (showAppSettings) dialog.setNeutralButton("App Settings") { _, _ -> startActivity(Intent(this, MainSettings::class.java)) }
                 dialog.show()
             }
         }.show()
     }
 
-    fun unableToAccessEasterEgg(SDK_VERSION: String?) {
+    fun unableToAccessEasterEgg(sdkVersion: String?) {
         presentSnackbar("Unable to launch (INVALID VERSION)", "WHY?",
-                "We are unable to give you access to this easter egg due to incompatible Android Version. You require at least Android $SDK_VERSION to access this activity", "AWW :(")
+                "We are unable to give you access to this easter egg due to incompatible Android Version. You require at least Android $sdkVersion to access this activity", "AWW :(")
     }
 
     private fun weird(expected: String?, actual: String?) {
@@ -125,7 +125,7 @@ class MainScreen : AppCompatActivity() {
 
     private fun noEgg() {
         presentSnackbar("No Eggs for you", "WAIT WHAT?", "Easter Eggs are only present in Android from Android 2.3 Gingerbread. " +
-                "Your Android Version is do not have an easter egg unfortunately :(", "AWW :(")
+                "Your Android Version is do not have an easter egg unfortunately :(", AWW_TEXT)
     }
 
     private fun eggComingSoon() {
@@ -135,6 +135,10 @@ class MainScreen : AppCompatActivity() {
     fun limitedAccessToEgg(sdkVersion: String) {
         presentSnackbar("Unable to access egg (INVALID VERSION)", "Get Access", "At your current version of Android, you are not able to experience the full easter egg. " +
                 "You require Android $sdkVersion to access it fully. \n\nHowever, if you wish you are able to access a limited version of the egg by checking the \"Access Partial Egg\" setting in the app settings",
-                "AWW :(", false, showAppSettings = true)
+                AWW_TEXT, false, showAppSettings = true)
+    }
+
+    companion object {
+        const val AWW_TEXT = "AWW :("
     }
 }

@@ -31,8 +31,8 @@ This application is licensed under the *Apache License 2.0* as it contains files
 |              Android 10.0 Q              |             Picross              |  DONE  |
 |              Android 11.0 R              |    Android Neko Home Controls    |  DONE  |
 |              Android 12.0 S              |     Timely Material Design 3     |  DONE  |
-|              Android 13.0 T              |         Emoji Wallpaper          |  TODO  |
-|              Android 14.0 U              |       Space Program Launch       |  TODO  |
+|        Android 13.0 Tiramisu (T)         |         Emoji Wallpaper          |  DONE  |
+|    Android 14.0 Upside Down Cake (U)     |       Space Program Launch       |  DONE  |
 
 
 ~~This application is also available on [my personal F-Droid repository](https://fdroid.itachi1706.com/) for alternative downloads.~~

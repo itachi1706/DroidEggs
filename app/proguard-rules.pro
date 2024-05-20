@@ -99,17 +99,3 @@
 # This is generated automatically by the Android Gradle plugin.
 -dontwarn kotlin.Experimental$Level
 -dontwarn kotlin.Experimental
-
--dontwarn javax.naming.InvalidNameException
--dontwarn javax.naming.NamingException
--dontwarn javax.naming.directory.Attribute
--dontwarn javax.naming.directory.Attributes
--dontwarn javax.naming.ldap.LdapName
--dontwarn javax.naming.ldap.Rdn
--dontwarn me.jfenn.gitrest.service.DiskCache
--dontwarn org.ietf.jgss.GSSContext
--dontwarn org.ietf.jgss.GSSCredential
--dontwarn org.ietf.jgss.GSSException
--dontwarn org.ietf.jgss.GSSManager
--dontwarn org.ietf.jgss.GSSName
--dontwarn org.ietf.jgss.Oid

@@ -41,3 +41,4 @@ proguard/
 app/google-services.json
 app/release/output.json
 app/release/
+app/googlePlay/

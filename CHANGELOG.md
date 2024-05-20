@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.3.1] - 2024-05-20
+### :bug: Bug Fixes
+- [`6b5fe2e`](https://github.com/itachi1706/DroidEggs/commit/6b5fe2e805cb1d78f1b123c37a0b078f154ff0d4) - Some proguard issues with new build variant *(commit by [@itachi1706](https://github.com/itachi1706))*
+
+### :wrench: Chores
+- [`be512a2`](https://github.com/itachi1706/DroidEggs/commit/be512a2e2aa67208e40db91ff26664a6e3d525f5) - Added new GPlay variant *(commit by [@itachi1706](https://github.com/itachi1706))*
+
+
 ## [4.3.0] - 2024-05-17
 ### :sparkles: New Features
 - [`2b70054`](https://github.com/itachi1706/DroidEggs/commit/2b70054a5d0b61e75e7506e69ffce4a01369d227) - DEGGAND-86 Added Android 13 Easter Egg *(commit by [@itachi1706](https://github.com/itachi1706))*
@@ -72,3 +80,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [4.1.1]: https://github.com/itachi1706/DroidEggs/compare/4.1.0...4.1.1
 [4.2.0]: https://github.com/itachi1706/DroidEggs/compare/4.1.1...4.2.0
 [4.3.0]: https://github.com/itachi1706/DroidEggs/compare/4.2.1...4.3.0
+[4.3.1]: https://github.com/itachi1706/DroidEggs/compare/4.3.0...4.3.1

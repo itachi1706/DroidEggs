@@ -17,10 +17,12 @@
 package com.itachi1706.droideggs.eggs.upside_down_cake.easter_egg.landroid
 
 import android.content.res.Resources
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.RequiresApi
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.CubicBezierEasing
 import androidx.compose.animation.core.animateFloatAsState
@@ -71,24 +73,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.window.layout.FoldingFeature
 import androidx.window.layout.WindowInfoTracker
-import com.itachi1706.droideggs.eggs.upside_down_cake.easter_egg.landroid.Colors
-import com.itachi1706.droideggs.eggs.upside_down_cake.easter_egg.landroid.GRAVITATION
-import com.itachi1706.droideggs.eggs.upside_down_cake.easter_egg.landroid.Namer
-import com.itachi1706.droideggs.eggs.upside_down_cake.easter_egg.landroid.Spacecraft
-import com.itachi1706.droideggs.eggs.upside_down_cake.easter_egg.landroid.UNIVERSE_RANGE
-import com.itachi1706.droideggs.eggs.upside_down_cake.easter_egg.landroid.Vec2
-import com.itachi1706.droideggs.eggs.upside_down_cake.easter_egg.landroid.VisibleUniverse
-import com.itachi1706.droideggs.eggs.upside_down_cake.easter_egg.landroid.angle
-import com.itachi1706.droideggs.eggs.upside_down_cake.easter_egg.landroid.drawUniverse
-import com.itachi1706.droideggs.eggs.upside_down_cake.easter_egg.landroid.flickerFadeEasing
-import com.itachi1706.droideggs.eggs.upside_down_cake.easter_egg.landroid.flickerFadeIn
-import com.itachi1706.droideggs.eggs.upside_down_cake.easter_egg.landroid.lexp
-import com.itachi1706.droideggs.eggs.upside_down_cake.easter_egg.landroid.mag
-import com.itachi1706.droideggs.eggs.upside_down_cake.easter_egg.landroid.makeWithAngleMag
-import com.itachi1706.droideggs.eggs.upside_down_cake.easter_egg.landroid.str
-import com.itachi1706.droideggs.eggs.upside_down_cake.easter_egg.landroid.times
-import com.itachi1706.droideggs.eggs.upside_down_cake.easter_egg.landroid.toLocalPx
-import com.itachi1706.droideggs.eggs.upside_down_cake.easter_egg.landroid.zoom
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.lang.Float.max
 import java.lang.Float.min
 import java.util.Calendar
@@ -97,9 +84,6 @@ import kotlin.math.absoluteValue
 import kotlin.math.floor
 import kotlin.math.sqrt
 import kotlin.random.Random
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 enum class RandomSeedType {
     Fixed,
@@ -212,15 +196,13 @@ fun Telemetry(universe: VisibleUniverse) {
                             "BODIES: ${explored.size} / ${universe.planets.size}\n" +
                             "\n"
                 } +
-                        explored
-                            .map {
-                                "  BODY: ${it.name}\n" +
-                                        "  TYPE: ${it.description.capitalize()}\n" +
-                                        "  ATMO: ${it.atmosphere.capitalize()}\n" +
-                                        " FAUNA: ${it.fauna.capitalize()}\n" +
-                                        " FLORA: ${it.flora.capitalize()}\n"
-                            }
-                            .joinToString("\n")
+                        explored.joinToString("\n") { planet ->
+                            "  BODY: ${planet.name}\n" +
+                                    "  TYPE: ${planet.description.replaceFirstChar { it.titlecase() }}\n" +
+                                    "  ATMO: ${planet.atmosphere.replaceFirstChar { it.titlecase() }}\n" +
+                                    " FAUNA: ${planet.fauna.replaceFirstChar { it.titlecase() }}\n" +
+                                    " FLORA: ${planet.flora.replaceFirstChar { it.titlecase() }}\n"
+                        }
             )
         }
 
@@ -254,6 +236,7 @@ fun Telemetry(universe: VisibleUniverse) {
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.M)
 class MainActivity : ComponentActivity() {
     private var foldState = mutableStateOf<FoldingFeature?>(null)
 
@@ -322,6 +305,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.M)
 @Preview(name = "phone", device = Devices.PHONE)
 @Preview(name = "fold", device = Devices.FOLDABLE)
 @Preview(name = "tablet", device = Devices.TABLET)
@@ -409,6 +393,7 @@ fun FlightStick(
     )
 }
 
+@RequiresApi(Build.VERSION_CODES.M)
 @Composable
 fun Spaaaace(
     modifier: Modifier,
@@ -493,23 +478,23 @@ fun Spaaaace(
                     "star: '${u.star.name}' designation=UDC-${u.randomSeed % 100_000} " +
                     "class=${u.star.cls.name} r=${u.star.radius.toInt()} m=${u.star.mass}\n" +
                     "planets: ${u.planets.size}\n" +
-                    u.planets.joinToString("\n") {
-                        val range = (u.ship.pos - it.pos).mag()
-                        val vorbit = sqrt(GRAVITATION * it.mass / range)
-                        val vescape = sqrt(2 * GRAVITATION * it.mass / it.radius)
-                        " * ${it.name}:\n" +
-                                if (it.explored) {
-                                    "   TYPE:  ${it.description.capitalize()}\n" +
-                                            "   ATMO:  ${it.atmosphere.capitalize()}\n" +
-                                            "   FAUNA: ${it.fauna.capitalize()}\n" +
-                                            "   FLORA: ${it.flora.capitalize()}\n"
+                    u.planets.joinToString("\n") { planet ->
+                        val range = (u.ship.pos - planet.pos).mag()
+                        val vorbit = sqrt(GRAVITATION * planet.mass / range)
+                        val vescape = sqrt(2 * GRAVITATION * planet.mass / planet.radius)
+                        " * ${planet.name}:\n" +
+                                if (planet.explored) {
+                                    "   TYPE:  ${planet.description.replaceFirstChar { it.titlecase() }}\n" +
+                                            "   ATMO:  ${planet.atmosphere.replaceFirstChar { it.titlecase() }}\n" +
+                                            "   FAUNA: ${planet.fauna.replaceFirstChar { it.titlecase() }}\n" +
+                                            "   FLORA: ${planet.flora.replaceFirstChar { it.titlecase() }}\n"
                                 } else {
                                     "   (Unexplored)\n"
                                 } +
-                                "   orbit=${(it.pos - it.orbitCenter).mag().toInt()}" +
-                                " radius=${it.radius.toInt()}" +
-                                " mass=${"%g".format(it.mass)}" +
-                                " vel=${(it.speed).toInt()}" +
+                                "   orbit=${(planet.pos - planet.orbitCenter).mag().toInt()}" +
+                                " radius=${planet.radius.toInt()}" +
+                                " mass=${"%g".format(planet.mass)}" +
+                                " vel=${(planet.speed).toInt()}" +
                                 " // range=${"%.0f".format(range)}" +
                                 " vorbit=${vorbit.toInt()} vescape=${vescape.toInt()}"
                     })

@@ -31,7 +31,6 @@ import android.graphics.drawable.RippleDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
@@ -44,11 +43,14 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
 import com.itachi1706.droideggs.R;
 
+import java.util.Random;
+
 public class PlatLogoActivityLOLLIPOP extends AppCompatActivity {
-    final static int[] FLAVORS = {
+    static final int[] FLAVORS = {
             0xFF9C27B0, 0xFFBA68C8, // grape
             0xFFFF9800, 0xFFFFB74D, // orange
             0xFFF06292, 0xFFF8BBD0, // bubblegum
@@ -60,19 +62,19 @@ public class PlatLogoActivityLOLLIPOP extends AppCompatActivity {
     int mTapCount;
     int mKeyCount;
     PathInterpolator mInterpolator = new PathInterpolator(0f, 0f, 0.5f, 1f);
+    private static final Random random = new Random();
 
     static int newColorIndex() {
-        return 2*((int) (Math.random()*FLAVORS.length/2));
+        return 2*(random.nextInt() *FLAVORS.length/2);
     }
 
     Drawable makeRipple() {
         final int idx = newColorIndex();
         final ShapeDrawable popbg = new ShapeDrawable(new OvalShape());
         popbg.getPaint().setColor(FLAVORS[idx]);
-        final RippleDrawable ripple = new RippleDrawable(
+        return new RippleDrawable(
                 ColorStateList.valueOf(FLAVORS[idx + 1]),
                 popbg, null);
-        return ripple;
     }
 
     @Override
@@ -120,8 +122,8 @@ public class PlatLogoActivityLOLLIPOP extends AppCompatActivity {
                 mShadow.reset();
                 mShadow.moveTo(0,0);
                 mShadow.lineTo(w, 0);
-                mShadow.lineTo(w, size/2 + 1.5f*w);
-                mShadow.lineTo(0, size/2);
+                mShadow.lineTo(w, (float) size /2 + 1.5f*w);
+                mShadow.lineTo(0, (float) size /2);
                 mShadow.close();
                 c.drawPath(mShadow, mPaint);
             }

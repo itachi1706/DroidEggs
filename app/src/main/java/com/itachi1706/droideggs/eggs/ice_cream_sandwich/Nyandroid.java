@@ -66,12 +66,8 @@ public class Nyandroid extends AppCompatActivity {
             public static final float VMAX = 1000.0f;
             public static final float VMIN = 100.0f;
 
-            public float v, vr;
-
-            public float dist;
-            public float z;
-
-            public ComponentName component;
+            private float v;
+            private float z;
 
             public FlyingCat(Context context, AttributeSet as) {
                 super(context, as);
@@ -94,13 +90,9 @@ public class Nyandroid extends AppCompatActivity {
                 setY(randfrange(0, Board.this.getHeight()-scale*getHeight()));
                 v = lerp(VMIN, VMAX, z);
 
-                dist = 0;
-
-//                android.util.Log.d("Nyandroid", "reset cat: " + this);
             }
 
             public void update(float dt) {
-                dist += v * dt;
                 setX(getX() + v * dt);
             }
         }
@@ -116,7 +108,6 @@ public class Nyandroid extends AppCompatActivity {
         }
 
         private void reset() {
-//            android.util.Log.d("Nyandroid", "board reset");
             removeAllViews();
 
             final ViewGroup.LayoutParams wrap = new ViewGroup.LayoutParams(
@@ -157,7 +148,6 @@ public class Nyandroid extends AppCompatActivity {
             mAnim = new TimeAnimator();
             mAnim.setTimeListener((animation, totalTime, deltaTime) -> {
                 // setRotation(totalTime * 0.01f); // not as cool as you would think
-//                    android.util.Log.d("Nyandroid", "t=" + totalTime);
 
                 for (int i=0; i<getChildCount(); i++) {
                     View v = getChildAt(i);
@@ -180,7 +170,6 @@ public class Nyandroid extends AppCompatActivity {
         @Override
         protected void onSizeChanged (int w, int h, int oldw, int oldh) {
             super.onSizeChanged(w,h,oldw,oldh);
-//            android.util.Log.d("Nyandroid", "resized: " + w + "x" + h);
             post(() -> {
                 reset();
                 mAnim.start();
@@ -200,7 +189,6 @@ public class Nyandroid extends AppCompatActivity {
         }
     }
 
-    private Board mBoard;
 
     @Override
     public void onStart() {
@@ -214,6 +202,7 @@ public class Nyandroid extends AppCompatActivity {
 
     @Override
     public void onResume() {
+        Board mBoard;
         super.onResume();
         mBoard = new Board(this, null);
         setContentView(mBoard);
@@ -229,7 +218,6 @@ public class Nyandroid extends AppCompatActivity {
 
     @Override
     public void onUserInteraction() {
-//        android.util.Log.d("Nyandroid", "finishing on user interaction");
         stopNyan();
         finish();
     }

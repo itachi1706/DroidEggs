@@ -112,7 +112,7 @@ class Quare(val width: Int, val height: Int, val depth: Int) : Parcelable {
                     len = 0
                 }
         if (len > 0) arr.add(len)
-        else if (arr.size == 0) arr.add(0)
+        else if (arr.isEmpty()) arr.add(0)
         return arr.toIntArray()
     }
     fun resetUserMarks() {

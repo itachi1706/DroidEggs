@@ -65,7 +65,7 @@ val P_TOY_ICONS = intArrayOf(
 )
 
 @RequiresApi(30)
-fun Control_toString(control: Control): String {
+fun controlToString(control: Control): String {
     val hc = String.format("0x%08x", control.hashCode())
     return ("Control($hc id=${control.controlId}, type=${control.deviceType}, " +
             "title=${control.title}, template=${control.controlTemplate})")
@@ -209,7 +209,6 @@ public class NekoControlsService : ControlsProviderService(), PrefState.PrefsLis
                 Log.v(TAG, "Toy tossed.")
                 controls[CONTROL_ID_TOY] =
                         makeToyControl(currentToyIcon(), true)
-                // TODO: re-enable toy
                 Thread() {
                     Thread.sleep((1 + Random().nextInt(4)) * 1000L)
                     NekoService.getExistingCat(prefs)?.let {
@@ -296,7 +295,7 @@ public class NekoControlsService : ControlsProviderService(), PrefState.PrefsLis
             }
 
             fun send(c: Control) {
-                Log.v(TAG, "sending update: " + Control_toString(c) + " => " + subscriber)
+                Log.v(TAG, "sending update: " + controlToString(c) + " => " + subscriber)
                 subscriber?.onNext(c)
             }
         }

@@ -19,6 +19,7 @@ package com.itachi1706.droideggs.eggs.pie.easter_egg.paint
 import android.content.Context
 import android.graphics.*
 import android.provider.Settings
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.WindowInsets
@@ -126,6 +127,7 @@ class Painting(context: Context) : View(context), SpotFilter.Plotter {
         super.onDetachedFromWindow()
     }
     fun onTrimMemory() {
+        // NO-OP
     }
     override fun onApplyWindowInsets(insets: WindowInsets?): WindowInsets {
         _insets = insets
@@ -147,11 +149,11 @@ class Painting(context: Context) : View(context), SpotFilter.Plotter {
             if (r >= 0) {
                 val d = hypot(s.x - x, s.y - y)
                 if (d > 1f && (r + newR) > 1f) {
-                    val N = (2 * d / min(4f, r + newR)).toInt()
-                    val stepX = (s.x - x) / N
-                    val stepY = (s.y - y) / N
-                    val stepR = (newR - r) / N
-                    for (i in 0 until N - 1) { // we will draw the last circle below
+                    val n = (2 * d / min(4f, r + newR)).toInt()
+                    val stepX = (s.x - x) / n
+                    val stepY = (s.y - y) / n
+                    val stepR = (newR - r) / n
+                    for (i in 0 until n - 1) { // we will draw the last circle below
                         x += stepX
                         y += stepY
                         r += stepR
@@ -175,6 +177,7 @@ class Painting(context: Context) : View(context), SpotFilter.Plotter {
             if (devicePressureMin < 0) devicePressureMin = 0f
             if (devicePressureMax < devicePressureMin) devicePressureMax = devicePressureMin + 1f
         } catch (e: Exception) {
+            Log.e("Painting", "Failed to load touch data", e)
         }
     }
     private fun adjustPressure(pressure: Float): Float {
@@ -185,12 +188,6 @@ class Painting(context: Context) : View(context), SpotFilter.Plotter {
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         val c = _paintCanvas
         if (event == null || c == null) return super.onTouchEvent(event)
-        /*
-        val pt = Paint(Paint.ANTI_ALIAS_FLAG)
-        pt.style = Paint.Style.STROKE
-        pt.color = 0x800000FF.toInt()
-        _paintCanvas?.drawCircle(event.x, event.y, 20f, pt)
-        */
         when (event.actionMasked) {
             MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
                 _filter.add(event)

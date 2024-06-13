@@ -55,7 +55,6 @@ public class PaintActivity extends Activity {
     private CutoutAvoidingToolbar toolbar = null;
     private LinearLayout brushes = null;
     private LinearLayout colors = null;
-    private Magnifier magnifier = null;
     private boolean sampling = false;
     private View.OnClickListener buttonHandler = view -> {
         if (view.getId() == R.id.btnBrush) {
@@ -107,7 +106,8 @@ public class PaintActivity extends Activity {
     }
     private BrushPropertyDrawable widthButtonDrawable;
     private BrushPropertyDrawable colorButtonDrawable;
-    private float maxBrushWidth, minBrushWidth;
+    private float maxBrushWidth;
+    private float minBrushWidth;
     private int nightMode = Configuration.UI_MODE_NIGHT_UNDEFINED;
     static float lerp(float f, float a, float b) {
         return a + (b-a) * f;
@@ -125,7 +125,11 @@ public class PaintActivity extends Activity {
         toolbar = findViewById(R.id.toolbar);
         brushes = findViewById(R.id.brushes);
         colors = findViewById(R.id.colors);
+        Magnifier magnifier;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) magnifier = new Magnifier(painting);
+        else {
+            magnifier = null;
+        }
         painting.setOnTouchListener(
                 (view, event) -> {
                     switch (event.getActionMasked()) {
@@ -182,9 +186,9 @@ public class PaintActivity extends Activity {
         refreshBrushAndColor();
     }
     private void refreshBrushAndColor() {
-        final LinearLayout.LayoutParams button_lp = new LinearLayout.LayoutParams(
+        final LinearLayout.LayoutParams buttonLp = new LinearLayout.LayoutParams(
                 0, ViewGroup.LayoutParams.WRAP_CONTENT);
-        button_lp.weight = 1f;
+        buttonLp.weight = 1f;
         if (brushes.getChildCount() == 0) {
             for (int i = 0; i < NUM_BRUSHES; i++) {
                 final BrushPropertyDrawable icon = new BrushPropertyDrawable(this);
@@ -205,7 +209,7 @@ public class PaintActivity extends Activity {
                             painting.setBrushWidth(width);
                             refreshBrushAndColor();
                         });
-                brushes.addView(button, button_lp);
+                brushes.addView(button, buttonLp);
             }
         }
         if (colors.getChildCount() == 0) {
@@ -227,7 +231,7 @@ public class PaintActivity extends Activity {
                             painting.setPaintColor(c);
                             refreshBrushAndColor();
                         });
-                colors.addView(button, button_lp);
+                colors.addView(button, buttonLp);
             }
         }
         widthButtonDrawable.setWellScale(painting.getBrushWidth() / maxBrushWidth);
@@ -244,19 +248,21 @@ public class PaintActivity extends Activity {
                 setupViews(painting);
                 final View decorView = getWindow().getDecorView();
                 int decorSUIV = decorView.getSystemUiVisibility();
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     if (newNightMode == Configuration.UI_MODE_NIGHT_YES) {
-                            decorView.setSystemUiVisibility(
-                                    decorSUIV & ~View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+                        decorView.setSystemUiVisibility(
+                                decorSUIV & ~View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
                     } else {
                         decorView.setSystemUiVisibility(
                                 decorSUIV | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
                     }
+                }
             }
             nightMode = newNightMode;
         }
     }
     public PaintActivity() {
+        // NO-OP
     }
     @Override
     public void onTrimMemory(int level) {

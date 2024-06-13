@@ -33,12 +33,12 @@ import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.PathInterpolator;
 import android.widget.FrameLayout;
 
@@ -47,7 +47,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.preference.PreferenceManager;
 
+import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 import com.itachi1706.droideggs.R;
 import com.itachi1706.droideggs.eggs.red_velvet_cake.easter_egg.neko.NekoActivationActivity;
@@ -57,6 +59,8 @@ import org.json.JSONObject;
 
 public class PlatLogoActivityRedVelvetCake extends AppCompatActivity {
 
+    private static final String TAG = "PlatLogoActivity";
+
     private static final boolean WRITE_SETTINGS = true;
 
     private static final String R_EGG_UNLOCK_SETTING = "egg_mode_r";
@@ -64,8 +68,6 @@ public class PlatLogoActivityRedVelvetCake extends AppCompatActivity {
     private static final int UNLOCK_TRIES = 3;
 
     BigDialView mDialView;
-
-    private boolean realNeko = false;
 
     @Override
     protected void onPause() {
@@ -75,7 +77,6 @@ public class PlatLogoActivityRedVelvetCake extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final float dp = getResources().getDisplayMetrics().density;
 
         getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
@@ -90,7 +91,6 @@ public class PlatLogoActivityRedVelvetCake extends AppCompatActivity {
         }
 
         mDialView = new BigDialView(this, null);
-        realNeko = getIntent().getBooleanExtra("setting", false);
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         long unlockSettingCheck = pref.getLong(R_EGG_UNLOCK_SETTING, 0);
         if (unlockSettingCheck == 0) {
@@ -101,8 +101,8 @@ public class PlatLogoActivityRedVelvetCake extends AppCompatActivity {
 
         final FrameLayout layout = new FrameLayout(this);
         layout.setBackgroundColor(0xFFFF0000);
-        layout.addView(mDialView, FrameLayout.LayoutParams.MATCH_PARENT,
-                FrameLayout.LayoutParams.MATCH_PARENT);
+        layout.addView(mDialView, ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT);
         setContentView(layout);
     }
 
@@ -118,24 +118,25 @@ public class PlatLogoActivityRedVelvetCake extends AppCompatActivity {
                 pref.edit().putLong(R_EGG_UNLOCK_SETTING, locked ? 0 : System.currentTimeMillis()).apply();
             }
         } catch (RuntimeException e) {
-            Log.e("PlatLogoActivity", "Can't write settings", e);
+            Log.e(TAG, "Can't write settings", e);
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             try {
                 startActivity(new Intent(this, NekoActivationActivity.class));
             } catch (ActivityNotFoundException ex) {
-                Log.e("PlatLogoActivity", "No more eggs.");
+                Log.e(TAG, "No more eggs.");
             }
         }
         else {
-            Snackbar.make(findViewById(android.R.id.content), "Your version of Android is too low to advance further. Requires Android 11 to advance", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(findViewById(android.R.id.content), "Your version of Android is too low to advance further. Requires Android 11 to advance", BaseTransientBottomBar.LENGTH_LONG).show();
         }
         //finish(); // no longer finish upon unlock; it's fun to frob the dial
     }
 
     static final String TOUCH_STATS = "r_touch.stats";
-    double mPressureMin = 0, mPressureMax = -1;
+    double mPressureMin = 0;
+    double mPressureMax = -1;
 
     private void syncTouchPressure() {
         try {
@@ -156,7 +157,7 @@ public class PlatLogoActivityRedVelvetCake extends AppCompatActivity {
                 }
             }
         } catch (Exception e) {
-            Log.e("PlatLogoActivity", "Can't write touch settings", e);
+            Log.e(TAG, "Can't write touch settings", e);
         }
     }
 
@@ -174,10 +175,8 @@ public class PlatLogoActivityRedVelvetCake extends AppCompatActivity {
 
     class BigDialView extends androidx.appcompat.widget.AppCompatImageView {
         private static final int COLOR_GREEN = 0xff3ddc84;
-        private static final int COLOR_BLUE = 0xff4285f4;
         private static final int COLOR_NAVY = 0xff073042;
         private static final int COLOR_ORANGE = 0xfff86734;
-        private static final int COLOR_CHARTREUSE = 0xffeff7cf;
         private static final int COLOR_LIGHTBLUE = 0xffd7effe;
 
         private static final int STEPS = 11;
@@ -254,7 +253,7 @@ public class PlatLogoActivityRedVelvetCake extends AppCompatActivity {
         }
 
         private class BigDialDrawable extends Drawable {
-            public final int STEPS = 10;
+            public static final int STEPS = 10;
             private int mUnlockTries = 0;
             final Paint mPaint = new Paint();
             final Drawable mEleven;
@@ -425,10 +424,12 @@ public class PlatLogoActivityRedVelvetCake extends AppCompatActivity {
 
             @Override
             public void setAlpha(int i) {
+                // NO-OP
             }
 
             @Override
             public void setColorFilter(@Nullable ColorFilter colorFilter) {
+                // NO-OP
             }
 
             @Override

@@ -36,8 +36,8 @@ class SpotFilter(internal var mBufSize: Int, posDecay: Float, pressureDecay: Flo
         lastTool = tool
         var wi = 1f // weight for ith component (position)
         var w = 0f // total weight
-        var wi_press = 1f // weight for ith component (pressure)
-        var w_press = 0f // total weight (pressure)
+        var wiPress = 1f // weight for ith component (pressure)
+        var wPress = 0f // total weight (pressure)
         var x = 0f
         var y = 0f
         var pressure = 0f
@@ -45,12 +45,12 @@ class SpotFilter(internal var mBufSize: Int, posDecay: Float, pressureDecay: Flo
         for (pi in spots) {
             x += pi.x * wi
             y += pi.y * wi
-            pressure += pi.pressure * wi_press
-            size += pi.size * wi_press
+            pressure += pi.pressure * wiPress
+            size += pi.size * wiPress
             w += wi
             wi *= posDecay // exponential backoff
-            w_press += wi_press
-            wi_press *= pressureDecay
+            wPress += wiPress
+            wiPress *= pressureDecay
             if (PRECISE_STYLUS_INPUT && tool == MotionEvent.TOOL_TYPE_STYLUS) {
                 // just take the newest one, no need to average
                 break
@@ -58,8 +58,8 @@ class SpotFilter(internal var mBufSize: Int, posDecay: Float, pressureDecay: Flo
         }
         out.x = x / w
         out.y = y / w
-        out.pressure = pressure / w_press
-        out.size = size / w_press
+        out.pressure = pressure / wPress
+        out.size = size / wPress
         return out
     }
     protected fun addInternal(c: MotionEvent.PointerCoords, tool: Int) {
@@ -89,7 +89,7 @@ class SpotFilter(internal var mBufSize: Int, posDecay: Float, pressureDecay: Flo
         addInternal(tmpSpot, tool)
     }
     fun finish() {
-        while (spots.size > 0) {
+        while (spots.isNotEmpty()) {
             filterInto(tmpSpot, lastTool)
             spots.removeLast()
             mPlotter.plot(tmpSpot)

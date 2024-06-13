@@ -16,6 +16,8 @@
 
 package com.itachi1706.droideggs.eggs.upside_down_cake.easter_egg.landroid
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
@@ -35,7 +37,7 @@ const val DRAW_ORBITS = true
 const val DRAW_GRAVITATIONAL_FIELDS = true
 const val DRAW_STAR_GRAVITATIONAL_FIELDS = true
 
-val STAR_POINTS = android.os.Build.VERSION.SDK_INT.takeIf { it in 1..99 } ?: 31
+val STAR_POINTS = Build.VERSION.SDK_INT.takeIf { it in 1..99 } ?: 31
 
 /**
  * A zoomedDrawScope is one that is scaled, but remembers its zoom level, so you can correct for it
@@ -65,19 +67,10 @@ class VisibleUniverse(namer: Namer, randomSeed: Long) : Universe(namer, randomSe
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.M)
 fun ZoomedDrawScope.drawUniverse(universe: VisibleUniverse) {
     with(universe) {
         triggerDraw.value // Please recompose when this value changes.
-
-        //        star.drawZoomed(ds, zoom)
-        //        planets.forEach { p ->
-        //            p.drawZoomed(ds, zoom)
-        //            if (p == follow) {
-        //                drawCircle(Color.Red, 20f / zoom, p.pos)
-        //            }
-        //        }
-        //
-        //        ship.drawZoomed(ds, zoom)
 
         constraints.forEach {
             when (it) {

@@ -74,22 +74,18 @@ public class PlatLogoActivityUpsideDownCake extends AppCompatActivity {
 
     private boolean mAnimationsEnabled = true;
 
-    private final View.OnTouchListener mTouchListener = new View.OnTouchListener() {
-        @Override
-        public boolean onTouch(View v, MotionEvent event) {
-            switch (event.getActionMasked()) {
-                case MotionEvent.ACTION_DOWN:
-                    PlatLogoCommon.measureTouchPressure(event);
-                    startWarp();
-                    break;
-                case MotionEvent.ACTION_UP:
-                case MotionEvent.ACTION_CANCEL:
-                    stopWarp();
-                    break;
-            }
-            return true;
+    private final View.OnTouchListener mTouchListener = (v, event) -> {
+        switch (event.getActionMasked()) {
+            case MotionEvent.ACTION_DOWN:
+                PlatLogoCommon.measureTouchPressure(event);
+                startWarp();
+                break;
+            case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_CANCEL:
+                stopWarp();
+                break;
         }
-
+        return true;
     };
 
     private final Runnable mLaunchNextStage = () -> {
@@ -97,20 +93,17 @@ public class PlatLogoActivityUpsideDownCake extends AppCompatActivity {
         launchNextStage(false);
     };
 
-    private final TimeAnimator.TimeListener mTimeListener = new TimeAnimator.TimeListener() {
-        @Override
-        public void onTimeUpdate(TimeAnimator animation, long totalTime, long deltaTime) {
-            mStarfield.update(deltaTime);
-            final float warpFrac = (mStarfield.getWarp() - MIN_WARP) / (MAX_WARP - MIN_WARP);
-            if (mAnimationsEnabled) {
-                mLogo.setTranslationX(mRandom.nextFloat() * warpFrac * 5 * mDp);
-                mLogo.setTranslationY(mRandom.nextFloat() * warpFrac * 5 * mDp);
-            }
-            if (warpFrac > 0f) {
-                mRumble.rumble(warpFrac);
-            }
-            mLayout.postInvalidate();
+    private final TimeAnimator.TimeListener mTimeListener = (animation, totalTime, deltaTime) -> {
+        mStarfield.update(deltaTime);
+        final float warpFrac = (mStarfield.getWarp() - MIN_WARP) / (MAX_WARP - MIN_WARP);
+        if (mAnimationsEnabled) {
+            mLogo.setTranslationX(mRandom.nextFloat() * warpFrac * 5 * mDp);
+            mLogo.setTranslationY(mRandom.nextFloat() * warpFrac * 5 * mDp);
         }
+        if (warpFrac > 0f) {
+            mRumble.rumble(warpFrac);
+        }
+        mLayout.postInvalidate();
     };
 
     private class RumblePack implements Handler.Callback {
@@ -208,7 +201,6 @@ public class PlatLogoActivityUpsideDownCake extends AppCompatActivity {
         mLayout.setBackground(mStarfield);
 
         final DisplayMetrics dm = getResources().getDisplayMetrics();
-        final float dp = dm.density;
         final int minSide = Math.min(dm.widthPixels, dm.heightPixels);
         final int widgetSize = (int) (minSide * 0.75);
         final FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(widgetSize, widgetSize);
@@ -311,7 +303,8 @@ public class PlatLogoActivityUpsideDownCake extends AppCompatActivity {
     }
 
     static final String TOUCH_STATS = "u.touch.stats";
-    double mPressureMin = 0, mPressureMax = -1;
+    double mPressureMin = 0;
+    double mPressureMax = -1;
 
     @Override
     public void onStart() {
@@ -330,7 +323,8 @@ public class PlatLogoActivityUpsideDownCake extends AppCompatActivity {
 
         private static final int NUM_PLANES = 2;
         private final float[] mStars = new float[NUM_STARS * 4];
-        private float mVx, mVy;
+        private float mVx;
+        private float mVy;
         private long mDt = 0;
         private final Paint mStarPaint;
 
@@ -386,7 +380,7 @@ public class PlatLogoActivityUpsideDownCake extends AppCompatActivity {
 
             final boolean inWarp = mWarp > 1f;
 
-            canvas.drawColor(Color.BLACK); // 0xFF16161D);
+            canvas.drawColor(Color.BLACK); // 0xFF16161D
 
             if (mDt > 0 && mDt < 1000) {
                 canvas.translate(
@@ -415,12 +409,12 @@ public class PlatLogoActivityUpsideDownCake extends AppCompatActivity {
 
         @Override
         public void setAlpha(int alpha) {
-
+            // NO-OP
         }
 
         @Override
         public void setColorFilter(@Nullable ColorFilter colorFilter) {
-
+            // NO-OP
         }
 
         @Override

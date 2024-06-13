@@ -62,11 +62,6 @@ open class Body(var name: String = "Unknown") : Entity {
         val vscaled = velocity * dt
         opos = pos
         pos += vscaled
-
-        // integrate angular velocity
-        //        val wscaled = omega * timescale
-        //        oangle = angle
-        //        angle = (angle + wscaled) % PI2f
     }
 
     override fun postUpdate(sim: Simulator, dt: Float) {

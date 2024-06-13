@@ -229,7 +229,7 @@ public class LLand extends FrameLayout {
 
     final float[] hsv = {0, 0, 0};
 
-    private Random random = new Random();
+    private final Random random = new Random();
 
     @SuppressWarnings("ResourceType")
     private void reset() {

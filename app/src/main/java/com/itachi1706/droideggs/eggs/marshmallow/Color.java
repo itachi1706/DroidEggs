@@ -37,8 +37,8 @@ public class Color {
      * @hide Pending API council
      */
     @ColorInt
-    public static int HSBtoColor(@Size(3) float[] hsb) {
-        return HSBtoColor(hsb[0], hsb[1], hsb[2]);
+    public static int hsbToColor(@Size(3) float[] hsb) {
+        return hsbToColor(hsb[0], hsb[1], hsb[2]);
     }
 
     /**
@@ -55,7 +55,7 @@ public class Color {
      * @hide Pending API council
      */
     @ColorInt
-    public static int HSBtoColor(float h, float s, float b) {
+    public static int hsbToColor(float h, float s, float b) {
         h = MathUtils.constrain(h, 0.0f, 1.0f);
         s = MathUtils.constrain(s, 0.0f, 1.0f);
         b = MathUtils.constrain(b, 0.0f, 1.0f);

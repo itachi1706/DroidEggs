@@ -932,7 +932,7 @@ public class MLand extends FrameLayout {
         }
         public void reset() {
             setY((float) mLand.mHeight / 2
-                    + (random.nextInt() * params.playerSize)
+                    + (random.nextInt(params.playerSize))
                     - (float) params.playerSize / 2);
             setScore(0);
             setScoreField(mScoreField); // refresh color

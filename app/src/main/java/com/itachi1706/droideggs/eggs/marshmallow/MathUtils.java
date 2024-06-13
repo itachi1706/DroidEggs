@@ -131,11 +131,11 @@ public final class MathUtils {
         return maxStart + (maxStart - maxStop) * ((value - minStart) / (minStop - minStart));
     }
     public static int random(int howbig) {
-        return sRandom.nextInt() * howbig;
+        return sRandom.nextInt(howbig);
     }
     public static int random(int howsmall, int howbig) {
         if (howsmall >= howbig) return howsmall;
-        return sRandom.nextInt() * (howbig - howsmall) + howsmall;
+        return sRandom.nextInt((howbig - howsmall)) + howsmall;
     }
     public static float random(float howbig) {
         return sRandom.nextFloat() * howbig;

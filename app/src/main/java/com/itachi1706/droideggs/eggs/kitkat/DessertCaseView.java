@@ -147,7 +147,7 @@ public class DessertCaseView extends FrameLayout {
 
             final int K = 1;
             for (int i=0; i<K; i++) {
-                final View child = getChildAt(random.nextInt() * N);
+                final View child = getChildAt(random.nextInt(N));
                 place(child, true);
             }
 
@@ -218,15 +218,15 @@ public class DessertCaseView extends FrameLayout {
     }
 
     int pick(int[] a) {
-        return a[random.nextInt()*a.length];
+        return a[random.nextInt(a.length)];
     }
 
     <T> T pick(T[] a) {
-        return a[random.nextInt()*a.length];
+        return a[random.nextInt(a.length)];
     }
 
     <T> T pick(SparseArray<T> sa) {
-        return sa.valueAt(random.nextInt()*sa.size());
+        return sa.valueAt(random.nextInt(sa.size()));
     }
 
     float[] hsv = new float[] { 0, 1f, .85f };

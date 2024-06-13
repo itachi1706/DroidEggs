@@ -484,8 +484,8 @@ public class LLand extends FrameLayout {
         // 3. Time for more obstacles!
         if (mPlaying && (t - mLastPipeTime) > params.obstaclePeriod) {
             mLastPipeTime = t;
-            final int obstacley = (random.nextInt()
-                    * (mHeight - 2 * params.obstacleMin - params.obstacleGap)) + params.obstacleMin;
+            final int obstacley = (random.nextInt((mHeight - 2 * params.obstacleMin -
+                    params.obstacleGap))) + params.obstacleMin;
 
             final int inset = (params.obstacleWidth - params.obstacleStemWidth) / 2;
             final int yinset = params.obstacleWidth / 2;

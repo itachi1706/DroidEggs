@@ -100,7 +100,7 @@ public class PlatLogoActivityPie extends AppCompatActivity {
          * guaranteed to contrast!
          */
         public void randomizePalette() {
-            final int slots = 2 + random.nextInt() * 2;
+            final int slots = 2 + random.nextInt(2);
             float[] color = new float[] { (float) Math.random() * 360f, 1f, 1f };
             palette = new int[slots];
             darkest = 0;

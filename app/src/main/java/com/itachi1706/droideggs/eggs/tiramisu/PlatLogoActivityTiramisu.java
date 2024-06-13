@@ -312,10 +312,10 @@ public class PlatLogoActivityTiramisu extends Activity {
 
         public void chooseEmojiSet() {
             int mEmojiSet = -1;
-            mEmojiSet = random.nextInt() * EMOJI_SETS.length;
+            mEmojiSet = random.nextInt(EMOJI_SETS.length);
             final String[] emojiSet = EMOJI_SETS[mEmojiSet];
             for (int j = 0; j < mBubbs.length; j++) {
-                mBubbs[j].text = emojiSet[random.nextInt() * emojiSet.length];
+                mBubbs[j].text = emojiSet[random.nextInt(emojiSet.length)];
             }
             invalidateSelf();
         }
@@ -370,7 +370,7 @@ public class PlatLogoActivityTiramisu extends Activity {
                         mBubbs[mNumBubbs].x = x;
                         mBubbs[mNumBubbs].y = y;
                         mBubbs[mNumBubbs].r = r;
-                        mBubbs[mNumBubbs].color = mColors[random.nextInt() * mColors.length];
+                        mBubbs[mNumBubbs].color = mColors[random.nextInt(mColors.length)];
                         mNumBubbs++;
                         break;
                     }

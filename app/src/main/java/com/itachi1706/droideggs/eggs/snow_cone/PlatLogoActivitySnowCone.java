@@ -350,7 +350,7 @@ public class PlatLogoActivitySnowCone extends Activity {
                         mBubbs[mNumBubbs].x = x;
                         mBubbs[mNumBubbs].y = y;
                         mBubbs[mNumBubbs].r = r;
-                        mBubbs[mNumBubbs].color = mColors[random.nextInt() * mColors.length];
+                        mBubbs[mNumBubbs].color = mColors[random.nextInt(mColors.length)];
                         mNumBubbs++;
                         break;
                     }

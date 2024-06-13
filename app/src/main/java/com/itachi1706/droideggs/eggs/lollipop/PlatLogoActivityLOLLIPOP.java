@@ -65,7 +65,7 @@ public class PlatLogoActivityLOLLIPOP extends AppCompatActivity {
     private static final Random random = new Random();
 
     static int newColorIndex() {
-        return 2*(random.nextInt() *FLAVORS.length/2);
+        return 2*(random.nextInt(FLAVORS.length/2));
     }
 
     Drawable makeRipple() {

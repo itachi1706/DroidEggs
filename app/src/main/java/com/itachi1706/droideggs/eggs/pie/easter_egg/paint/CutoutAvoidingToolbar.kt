@@ -78,5 +78,6 @@ class CutoutAvoidingToolbar : LinearLayout {
     }
     @Suppress("UNUSED_PARAMETER")
     private fun init(attrs: AttributeSet?, defStyle: Int) {
+        // No-Op
     }
 }

@@ -312,17 +312,6 @@ open class Universe(val namer: Namer, randomSeed: Long) : Simulator(randomSeed) 
                         ship.pos =
                             planet.pos + Vec2.makeWithAngleMag(a, planet.radius + ship.radius - d)
 
-                        //                        add(Spark(
-                        //                            lifetime = 1f,
-                        //                            style = Spark.Style.DOT,
-                        //                            color = Color.Yellow,
-                        //                            size = 10f
-                        //                        ).apply {
-                        //                            pos = impact
-                        //                            opos = impact
-                        //                            velocity = Vec2.Zero
-                        //                        })
-                        //
                         (1..10).forEach {
                             Spark(
                                 lifetime = rng.nextFloatInRange(0.5f, 2f),

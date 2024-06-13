@@ -82,12 +82,6 @@ public class PlatLogoActivityNougat extends AppCompatActivity {
                 ColorStateList.valueOf(0xFFFFFFFF),
                 getDrawable(R.drawable.nougat_platlogo),
                 null));
-//        im.setOutlineProvider(new ViewOutlineProvider() {
-//            @Override
-//            public void getOutline(View view, Outline outline) {
-//                outline.setOval(0, 0, view.getWidth(), view.getHeight());
-//            }
-//        });
         im.setClickable(true);
         im.setOnClickListener(v -> {
             im.setOnLongClickListener(v1 -> {

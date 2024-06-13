@@ -24,7 +24,6 @@ import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
@@ -34,6 +33,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
 import com.itachi1706.droideggs.eggs.oreo.easter_egg.octo.Ocquarium;
 import com.itachi1706.droideggs.R;
@@ -78,12 +78,6 @@ public class PlatLogoActivityOreo extends AppCompatActivity {
                 ColorStateList.valueOf(0xFFFFFFFF),
                 getDrawable(R.drawable.oreo_platlogo),
                 null));
-//        im.setOutlineProvider(new ViewOutlineProvider() {
-//            @Override
-//            public void getOutline(View view, Outline outline) {
-//                outline.setOval(0, 0, view.getWidth(), view.getHeight());
-//            }
-//        });
         im.setClickable(true);
         im.setOnClickListener(v -> {
             im.setOnLongClickListener(v1 -> {

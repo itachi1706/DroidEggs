@@ -17,18 +17,21 @@
 package com.itachi1706.droideggs.eggs.ice_cream_sandwich;
 
 import android.animation.TimeAnimator;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
-import androidx.appcompat.app.AppCompatActivity;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowInsets;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
 
 import com.itachi1706.droideggs.R;
 
@@ -36,7 +39,7 @@ import java.util.Random;
 
 public class Nyandroid extends AppCompatActivity {
 
-    final static boolean DEBUG = false;
+    static final boolean DEBUG = false;
 
     public static class Board extends FrameLayout
     {
@@ -62,16 +65,12 @@ public class Nyandroid extends AppCompatActivity {
             return array[sRNG.nextInt(array.length)];
         }
 
-        public class FlyingCat extends ImageView {
+        public class FlyingCat extends AppCompatImageView {
             public static final float VMAX = 1000.0f;
             public static final float VMIN = 100.0f;
 
-            public float v, vr;
-
-            public float dist;
-            public float z;
-
-            public ComponentName component;
+            private float v;
+            private float z;
 
             public FlyingCat(Context context, AttributeSet as) {
                 super(context, as);
@@ -94,13 +93,9 @@ public class Nyandroid extends AppCompatActivity {
                 setY(randfrange(0, Board.this.getHeight()-scale*getHeight()));
                 v = lerp(VMIN, VMAX, z);
 
-                dist = 0;
-
-//                android.util.Log.d("Nyandroid", "reset cat: " + this);
             }
 
             public void update(float dt) {
-                dist += v * dt;
                 setX(getX() + v * dt);
             }
         }
@@ -116,7 +111,6 @@ public class Nyandroid extends AppCompatActivity {
         }
 
         private void reset() {
-//            android.util.Log.d("Nyandroid", "board reset");
             removeAllViews();
 
             final ViewGroup.LayoutParams wrap = new ViewGroup.LayoutParams(
@@ -157,7 +151,6 @@ public class Nyandroid extends AppCompatActivity {
             mAnim = new TimeAnimator();
             mAnim.setTimeListener((animation, totalTime, deltaTime) -> {
                 // setRotation(totalTime * 0.01f); // not as cool as you would think
-//                    android.util.Log.d("Nyandroid", "t=" + totalTime);
 
                 for (int i=0; i<getChildCount(); i++) {
                     View v = getChildAt(i);
@@ -180,7 +173,6 @@ public class Nyandroid extends AppCompatActivity {
         @Override
         protected void onSizeChanged (int w, int h, int oldw, int oldh) {
             super.onSizeChanged(w,h,oldw,oldh);
-//            android.util.Log.d("Nyandroid", "resized: " + w + "x" + h);
             post(() -> {
                 reset();
                 mAnim.start();
@@ -200,36 +192,49 @@ public class Nyandroid extends AppCompatActivity {
         }
     }
 
-    private Board mBoard;
 
     @Override
     public void onStart() {
         super.onStart();
 
-        getWindow().addFlags(
-                WindowManager.LayoutParams.FLAG_ALLOW_LOCK_WHILE_SCREEN_ON
-                        | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
-        );
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
+            setShowWhenLocked(true);
+            setTurnScreenOn(true);
+        } else {
+            getWindow().addFlags(
+                    WindowManager.LayoutParams.FLAG_ALLOW_LOCK_WHILE_SCREEN_ON
+                            | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
+            );
+        }
     }
 
     @Override
     public void onResume() {
+        Board mBoard;
         super.onResume();
         mBoard = new Board(this, null);
         setContentView(mBoard);
 
-        mBoard.setOnSystemUiVisibilityChangeListener(vis -> {
-            if (0 == (vis & View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)) {
-                Nyandroid.this.finish();
-            }
-        });
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+            mBoard.setOnApplyWindowInsetsListener((v, insets) -> {
+                if (!insets.isVisible(WindowInsets.Type.navigationBars())) {
+                    Nyandroid.this.finish();
+                }
+                return insets;
+            });
+        } else {
+            mBoard.setOnSystemUiVisibilityChangeListener(vis -> {
+                if (0 == (vis & View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)) {
+                    Nyandroid.this.finish();
+                }
+            });
+        }
 
         startNyan();
     }
 
     @Override
     public void onUserInteraction() {
-//        android.util.Log.d("Nyandroid", "finishing on user interaction");
         stopNyan();
         finish();
     }

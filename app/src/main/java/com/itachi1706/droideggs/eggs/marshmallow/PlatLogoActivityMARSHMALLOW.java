@@ -30,7 +30,6 @@ import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
@@ -42,6 +41,7 @@ import android.widget.FrameLayout;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
 import com.itachi1706.droideggs.R;
 
@@ -80,15 +80,19 @@ public class PlatLogoActivityMARSHMALLOW extends AppCompatActivity {
         });
         final float hue = (float) Math.random();
         final Paint bgPaint = new Paint();
-        bgPaint.setColor(Color.HSBtoColor(hue, 0.4f, 1f));
+        bgPaint.setColor(Color.hsbToColor(hue, 0.4f, 1f));
         final Paint fgPaint = new Paint();
-        fgPaint.setColor(Color.HSBtoColor(hue, 0.5f, 1f));
-        final Drawable M = getDrawable(R.drawable.marshmallow_platlogo_m);
+        fgPaint.setColor(Color.hsbToColor(hue, 0.5f, 1f));
+        final Drawable m = getDrawable(R.drawable.marshmallow_platlogo_m);
         final Drawable platlogo = new Drawable() {
             @Override
-            public void setAlpha(int alpha) { }
+            public void setAlpha(int alpha) {
+                // Unused Function
+            }
             @Override
-            public void setColorFilter(@Nullable ColorFilter colorFilter) { }
+            public void setColorFilter(@Nullable ColorFilter colorFilter) {
+                // Unused Function
+            }
             @Override
             public int getOpacity() {
                 return PixelFormat.TRANSLUCENT;
@@ -98,8 +102,8 @@ public class PlatLogoActivityMARSHMALLOW extends AppCompatActivity {
                 final float r = c.getWidth() / 2f;
                 c.drawCircle(r, r, r, bgPaint);
                 c.drawArc(0, 0, 2 * r, 2 * r, 135, 180, false, fgPaint);
-                M.setBounds(0, 0, c.getWidth(), c.getHeight());
-                M.draw(c);
+                m.setBounds(0, 0, c.getWidth(), c.getHeight());
+                m.draw(c);
             }
         };
         im.setBackground(new RippleDrawable(

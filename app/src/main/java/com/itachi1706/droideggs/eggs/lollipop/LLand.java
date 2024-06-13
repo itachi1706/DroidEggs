@@ -44,6 +44,7 @@ import android.widget.TextView;
 import com.itachi1706.droideggs.R;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by Kenneth on 1/6/2015
@@ -55,7 +56,7 @@ public class LLand extends FrameLayout {
     public static final boolean DEBUG = Log.isLoggable(TAG, Log.DEBUG);
     public static final boolean DEBUG_DRAW = false; // DEBUG
 
-    public static final void L(String s, Object... objects) {
+    public static final void l(String s, Object... objects) {
         if (DEBUG) {
             Log.d(TAG, String.format(s, objects));
         }
@@ -64,10 +65,10 @@ public class LLand extends FrameLayout {
     public static final boolean AUTOSTART = true;
     public static final boolean HAVE_STARS = true;
 
-    public static final float DEBUG_SPEED_MULTIPLIER = 1f; // 0.1f;
+    public static final float DEBUG_SPEED_MULTIPLIER = 1f;
     public static final boolean DEBUG_IDDQD = false;
 
-    final static int[] POPS = {
+    static final int[] POPS = {
             // resid                // spinny!
             R.drawable.lollipop_pop_belt, 0,
             R.drawable.lollipop_pop_droid, 0,
@@ -79,49 +80,57 @@ public class LLand extends FrameLayout {
     };
 
     private static class Params {
-        public float TRANSLATION_PER_SEC;
-        public int OBSTACLE_SPACING, OBSTACLE_PERIOD;
-        public int BOOST_DV;
-        public int PLAYER_HIT_SIZE;
-        public int PLAYER_SIZE;
-        public int OBSTACLE_WIDTH, OBSTACLE_STEM_WIDTH;
-        public int OBSTACLE_GAP;
-        public int OBSTACLE_MIN;
-        public int BUILDING_WIDTH_MIN, BUILDING_WIDTH_MAX;
-        public int BUILDING_HEIGHT_MIN;
-        public int CLOUD_SIZE_MIN, CLOUD_SIZE_MAX;
-        public int STAR_SIZE_MIN, STAR_SIZE_MAX;
-        public int G;
-        public int MAX_V;
-        public float SCENERY_Z, OBSTACLE_Z, PLAYER_Z, PLAYER_Z_BOOST, HUD_Z;
+        private final float translationPerSec;
+        private final int obstaclePeriod;
+        private final int boostDv;
+        private final int playerHitSize;
+        private final int playerSize;
+        private final int obstacleWidth;
+        private final int obstacleStemWidth;
+        private final int obstacleGap;
+        private final int obstacleMin;
+        private final int buildingWidthMin;
+        private final int buildingWidthMax;
+        private final int buildingHeightMin;
+        private final int cloudSizeMin;
+        private final int cloudSizeMax;
+        private final int starSizeMin;
+        private final int starSizeMax;
+        private final int g;
+        private final int maxV;
+        private final float sceneryZ;
+        private final float obstacleZ;
+        private final float playerZ;
+        private final float playerZBoost;
+        private final float hudZ;
 
         public Params(Resources res) {
-            TRANSLATION_PER_SEC = res.getDimension(R.dimen.translation_per_sec);
-            OBSTACLE_SPACING = res.getDimensionPixelSize(R.dimen.obstacle_spacing);
-            OBSTACLE_PERIOD = (int) (OBSTACLE_SPACING / TRANSLATION_PER_SEC);
-            BOOST_DV = res.getDimensionPixelSize(R.dimen.boost_dv);
-            PLAYER_HIT_SIZE = res.getDimensionPixelSize(R.dimen.player_hit_size);
-            PLAYER_SIZE = res.getDimensionPixelSize(R.dimen.player_size);
-            OBSTACLE_WIDTH = res.getDimensionPixelSize(R.dimen.obstacle_width);
-            OBSTACLE_STEM_WIDTH = res.getDimensionPixelSize(R.dimen.obstacle_stem_width);
-            OBSTACLE_GAP = res.getDimensionPixelSize(R.dimen.obstacle_gap);
-            OBSTACLE_MIN = res.getDimensionPixelSize(R.dimen.obstacle_height_min);
-            BUILDING_HEIGHT_MIN = res.getDimensionPixelSize(R.dimen.building_height_min);
-            BUILDING_WIDTH_MIN = res.getDimensionPixelSize(R.dimen.building_width_min);
-            BUILDING_WIDTH_MAX = res.getDimensionPixelSize(R.dimen.building_width_max);
-            CLOUD_SIZE_MIN = res.getDimensionPixelSize(R.dimen.cloud_size_min);
-            CLOUD_SIZE_MAX = res.getDimensionPixelSize(R.dimen.cloud_size_max);
-            STAR_SIZE_MIN = res.getDimensionPixelSize(R.dimen.star_size_min);
-            STAR_SIZE_MAX = res.getDimensionPixelSize(R.dimen.star_size_max);
+            translationPerSec = res.getDimension(R.dimen.translation_per_sec);
+            int obstacleSpacing = res.getDimensionPixelSize(R.dimen.obstacle_spacing);
+            obstaclePeriod = (int) (obstacleSpacing / translationPerSec);
+            boostDv = res.getDimensionPixelSize(R.dimen.boost_dv);
+            playerHitSize = res.getDimensionPixelSize(R.dimen.player_hit_size);
+            playerSize = res.getDimensionPixelSize(R.dimen.player_size);
+            obstacleWidth = res.getDimensionPixelSize(R.dimen.obstacle_width);
+            obstacleStemWidth = res.getDimensionPixelSize(R.dimen.obstacle_stem_width);
+            obstacleGap = res.getDimensionPixelSize(R.dimen.obstacle_gap);
+            obstacleMin = res.getDimensionPixelSize(R.dimen.obstacle_height_min);
+            buildingHeightMin = res.getDimensionPixelSize(R.dimen.building_height_min);
+            buildingWidthMin = res.getDimensionPixelSize(R.dimen.building_width_min);
+            buildingWidthMax = res.getDimensionPixelSize(R.dimen.building_width_max);
+            cloudSizeMin = res.getDimensionPixelSize(R.dimen.cloud_size_min);
+            cloudSizeMax = res.getDimensionPixelSize(R.dimen.cloud_size_max);
+            starSizeMin = res.getDimensionPixelSize(R.dimen.star_size_min);
+            starSizeMax = res.getDimensionPixelSize(R.dimen.star_size_max);
 
-            G = res.getDimensionPixelSize(R.dimen.G);
-            MAX_V = res.getDimensionPixelSize(R.dimen.max_v);
+            g = res.getDimensionPixelSize(R.dimen.G);
+            maxV = res.getDimensionPixelSize(R.dimen.max_v);
 
-            SCENERY_Z = res.getDimensionPixelSize(R.dimen.scenery_z);
-            OBSTACLE_Z = res.getDimensionPixelSize(R.dimen.obstacle_z);
-            PLAYER_Z = res.getDimensionPixelSize(R.dimen.player_z);
-            PLAYER_Z_BOOST = res.getDimensionPixelSize(R.dimen.player_z_boost);
-            HUD_Z = res.getDimensionPixelSize(R.dimen.hud_z);
+            sceneryZ = res.getDimensionPixelSize(R.dimen.scenery_z);
+            obstacleZ = res.getDimensionPixelSize(R.dimen.obstacle_z);
+            playerZ = res.getDimensionPixelSize(R.dimen.player_z);
+            playerZBoost = res.getDimensionPixelSize(R.dimen.player_z_boost);
+            hudZ = res.getDimensionPixelSize(R.dimen.hud_z);
         }
     }
 
@@ -133,17 +142,23 @@ public class LLand extends FrameLayout {
     private Player mDroid;
     private ArrayList<Obstacle> mObstaclesInPlay = new ArrayList<>();
 
-    private float t, dt;
+    private float t;
+    private float dt;
 
     private int mScore;
     private float mLastPipeTime; // in sec
-    private int mWidth, mHeight;
-    private boolean mAnimating, mPlaying;
+    private int mWidth;
+    private int mHeight;
+    private boolean mAnimating;
+    private boolean mPlaying;
     private boolean mFrozen; // after death, a short backoff
-    private boolean mFlipped;
+
 
     private int mTimeOfDay;
-    private static final int DAY = 0, NIGHT = 1, TWILIGHT = 2, SUNSET = 3;
+    private static final int DAY = 0;
+    private static final int NIGHT = 1;
+    private static final int TWILIGHT = 2;
+    private static final int SUNSET = 3;
     private static final int[][] SKIES = {
             {0xFFc0c0FF, 0xFFa0a0FF}, // DAY
             {0xFF000010, 0xFF000000}, // NIGHT
@@ -151,7 +166,7 @@ public class LLand extends FrameLayout {
             {0xFFa08020, 0xFF204080}, // SUNSET
     };
 
-    private static Params PARAMS;
+    private static Params params;
 
     public LLand(Context context) {
         this(context, null);
@@ -164,7 +179,7 @@ public class LLand extends FrameLayout {
     public LLand(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         setFocusable(true);
-        PARAMS = new Params(getResources());
+        params = new Params(getResources());
         mTimeOfDay = irand(0, SKIES.length);
     }
 
@@ -192,7 +207,7 @@ public class LLand extends FrameLayout {
     public void setScoreField(TextView tv) {
         mScoreField = tv;
         if (tv != null) {
-            tv.setTranslationZ(PARAMS.HUD_Z);
+            tv.setTranslationZ(params.hudZ);
             if (!(mAnimating && mPlaying)) {
                 tv.setTranslationY(-500);
             }
@@ -212,11 +227,14 @@ public class LLand extends FrameLayout {
         }
     }
 
-    final float hsv[] = {0, 0, 0};
+    final float[] hsv = {0, 0, 0};
+
+    private final Random random = new Random();
 
     @SuppressWarnings("ResourceType")
     private void reset() {
-        L("reset");
+        boolean mFlipped;
+        l("reset");
         final Drawable sky = new GradientDrawable(
                 GradientDrawable.Orientation.BOTTOM_TOP,
                 SKIES[mTimeOfDay]
@@ -244,20 +262,20 @@ public class LLand extends FrameLayout {
 
         boolean showingSun = (mTimeOfDay == DAY || mTimeOfDay == SUNSET) && frand() > 0.25;
         if (showingSun) {
-            final Star sun = new Star(getContext());
-            sun.setBackgroundResource(R.drawable.lollipop_sun);
+            final Star sunStar = new Star(getContext());
+            sunStar.setBackgroundResource(R.drawable.lollipop_sun);
             final int w = getResources().getDimensionPixelSize(R.dimen.sun_size);
-            sun.setTranslationX(frand(w, mWidth - w));
+            sunStar.setTranslationX(frand(w, mWidth - w));
             if (mTimeOfDay == DAY) {
-                sun.setTranslationY(frand(w, (mHeight * 0.66f)));
-                sun.getBackground().setTint(0);
+                sunStar.setTranslationY(frand(w, (mHeight * 0.66f)));
+                sunStar.getBackground().setTint(0);
             } else {
-                sun.setTranslationY(frand(mHeight * 0.66f, mHeight - w));
-                sun.getBackground().setTintMode(PorterDuff.Mode.SRC_ATOP);
-                sun.getBackground().setTint(0xC0FF8000);
+                sunStar.setTranslationY(frand(mHeight * 0.66f, (float) mHeight - w));
+                sunStar.getBackground().setTintMode(PorterDuff.Mode.SRC_ATOP);
+                sunStar.getBackground().setTint(0xC0FF8000);
 
             }
-            addView(sun, new FrameLayout.LayoutParams(w, w));
+            addView(sunStar, new FrameLayout.LayoutParams(w, w));
         }
         if (!showingSun) {
             final boolean dark = mTimeOfDay == NIGHT || mTimeOfDay == TWILIGHT;
@@ -269,8 +287,8 @@ public class LLand extends FrameLayout {
                 moon.setScaleX(frand() > 0.5 ? -1 : 1);
                 moon.setRotation(moon.getScaleX() * frand(5, 30));
                 final int w = getResources().getDimensionPixelSize(R.dimen.sun_size);
-                moon.setTranslationX(frand(w, mWidth - w));
-                moon.setTranslationY(frand(w, mHeight - w));
+                moon.setTranslationX(frand(w, (float) mWidth - w));
+                moon.setTranslationY(frand(w, (float) mHeight - w));
                 addView(moon, new FrameLayout.LayoutParams(w, w));
             }
         }
@@ -289,13 +307,13 @@ public class LLand extends FrameLayout {
                 s = new Building(getContext());
 
                 s.z = (float) i / N;
-                s.setTranslationZ(PARAMS.SCENERY_Z * (1 + s.z));
+                s.setTranslationZ(params.sceneryZ * (1 + s.z));
                 s.v = 0.85f * s.z; // buildings move proportional to their distance
                 hsv[0] = 175;
                 hsv[1] = 0.25f;
                 hsv[2] = 1 * s.z;
                 s.setBackgroundColor(Color.HSVToColor(hsv));
-                s.h = irand(PARAMS.BUILDING_HEIGHT_MIN, mh);
+                s.h = irand(params.buildingHeightMin, mh);
             }
             final FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(s.w, s.h);
             if (s instanceof Building) {
@@ -311,13 +329,13 @@ public class LLand extends FrameLayout {
             }
 
             addView(s, lp);
-            s.setTranslationX(frand(-lp.width, mWidth + lp.width));
+            s.setTranslationX(frand(-lp.width, (float) mWidth + lp.width));
         }
 
         mDroid = new Player(getContext());
-        mDroid.setX(mWidth / 2);
-        mDroid.setY(mHeight / 2);
-        addView(mDroid, new FrameLayout.LayoutParams(PARAMS.PLAYER_SIZE, PARAMS.PLAYER_SIZE));
+        mDroid.setX((float) mWidth / 2);
+        mDroid.setY((float) mHeight / 2);
+        addView(mDroid, new FrameLayout.LayoutParams(params.playerSize, params.playerSize));
 
         mAnim = new TimeAnimator();
         mAnim.setTimeListener((timeAnimator, t, dt) -> step(t, dt));
@@ -333,16 +351,16 @@ public class LLand extends FrameLayout {
     }
 
     private void start(boolean startPlaying) {
-        L("start(startPlaying=%s)", startPlaying ? "true" : "false");
+        l("start(startPlaying=%s)", startPlaying ? "true" : "false");
         if (startPlaying) {
             mPlaying = true;
 
             t = 0;
             // there's a sucker born every OBSTACLE_PERIOD
-            mLastPipeTime = getGameTime() - PARAMS.OBSTACLE_PERIOD;
+            mLastPipeTime = getGameTime() - params.obstaclePeriod;
 
             if (mSplash != null && mSplash.getAlpha() > 0f) {
-                mSplash.setTranslationZ(PARAMS.HUD_Z);
+                mSplash.setTranslationZ(params.hudZ);
                 mSplash.animate().alpha(0).translationZ(0).setDuration(400);
 
                 mScoreField.animate().translationY(0)
@@ -353,8 +371,8 @@ public class LLand extends FrameLayout {
             mScoreField.setTextColor(0xFFAAAAAA);
             mScoreField.setBackgroundResource(R.drawable.lollipop_scorecard);
             mDroid.setVisibility(View.VISIBLE);
-            mDroid.setX(mWidth / 2);
-            mDroid.setY(mHeight / 2);
+            mDroid.setX((float) mWidth / 2);
+            mDroid.setY((float) mHeight / 2);
         } else {
             mDroid.setVisibility(View.GONE);
         }
@@ -386,7 +404,7 @@ public class LLand extends FrameLayout {
     }
 
     public static final float clamp(float f) {
-        return f < 0f ? 0f : f > 1f ? 1f : f;
+        return f < 0f ? 0f : Math.min(f, 1f);
     }
 
     public static final float frand() {
@@ -398,12 +416,12 @@ public class LLand extends FrameLayout {
     }
 
     public static final int irand(int a, int b) {
-        return (int) lerp(frand(), (float) a, (float) b);
+        return (int) lerp(frand(), a, b);
     }
 
-    private void step(long t_ms, long dt_ms) {
-        t = t_ms / 1000f; // seconds
-        dt = dt_ms / 1000f;
+    private void step(long tMs, long dtMs) {
+        t = tMs / 1000f; // seconds
+        dt = dtMs / 1000f;
 
         if (DEBUG) {
             t *= DEBUG_SPEED_MULTIPLIER;
@@ -416,7 +434,7 @@ public class LLand extends FrameLayout {
         for (; i < N; i++) {
             final View v = getChildAt(i);
             if (v instanceof GameView) {
-                ((GameView) v).step(t_ms, dt_ms, t, dt);
+                ((GameView) v).step(tMs, dtMs, t, dt);
             }
         }
 
@@ -425,7 +443,7 @@ public class LLand extends FrameLayout {
             if (DEBUG_IDDQD) {
                 poke();
             } else {
-                L("player hit the floor");
+                l("player hit the floor");
                 stop();
             }
         }
@@ -435,7 +453,7 @@ public class LLand extends FrameLayout {
         for (int j = mObstaclesInPlay.size(); j-- > 0; ) {
             final Obstacle ob = mObstaclesInPlay.get(j);
             if (mPlaying && ob.intersects(mDroid) && !DEBUG_IDDQD) {
-                L("player hit an obstacle");
+                l("player hit an obstacle");
                 stop();
             } else if (ob.cleared(mDroid)) {
                 if (ob instanceof Stem) passedBarrier = true;
@@ -464,37 +482,37 @@ public class LLand extends FrameLayout {
         }
 
         // 3. Time for more obstacles!
-        if (mPlaying && (t - mLastPipeTime) > PARAMS.OBSTACLE_PERIOD) {
+        if (mPlaying && (t - mLastPipeTime) > params.obstaclePeriod) {
             mLastPipeTime = t;
-            final int obstacley = (int) (Math.random()
-                    * (mHeight - 2 * PARAMS.OBSTACLE_MIN - PARAMS.OBSTACLE_GAP)) + PARAMS.OBSTACLE_MIN;
+            final int obstacley = (random.nextInt((mHeight - 2 * params.obstacleMin -
+                    params.obstacleGap))) + params.obstacleMin;
 
-            final int inset = (PARAMS.OBSTACLE_WIDTH - PARAMS.OBSTACLE_STEM_WIDTH) / 2;
-            final int yinset = PARAMS.OBSTACLE_WIDTH / 2;
+            final int inset = (params.obstacleWidth - params.obstacleStemWidth) / 2;
+            final int yinset = params.obstacleWidth / 2;
 
             final int d1 = irand(0, 250);
-            final Obstacle s1 = new Stem(getContext(), obstacley - yinset, false);
+            final Obstacle s1 = new Stem(getContext(), (float) obstacley - yinset, false);
             addView(s1, new FrameLayout.LayoutParams(
-                    PARAMS.OBSTACLE_STEM_WIDTH,
+                    params.obstacleStemWidth,
                     (int) s1.h,
                     Gravity.TOP | Gravity.LEFT));
-            s1.setTranslationX(mWidth + inset);
+            s1.setTranslationX((float) mWidth + inset);
             s1.setTranslationY(-s1.h - yinset);
-            s1.setTranslationZ(PARAMS.OBSTACLE_Z * 0.75f);
+            s1.setTranslationZ(params.obstacleZ * 0.75f);
             s1.animate()
                     .translationY(0)
                     .setStartDelay(d1)
                     .setDuration(250);
             mObstaclesInPlay.add(s1);
 
-            final Obstacle p1 = new Pop(getContext(), PARAMS.OBSTACLE_WIDTH);
+            final Obstacle p1 = new Pop(getContext(), params.obstacleWidth);
             addView(p1, new FrameLayout.LayoutParams(
-                    PARAMS.OBSTACLE_WIDTH,
-                    PARAMS.OBSTACLE_WIDTH,
+                    params.obstacleWidth,
+                    params.obstacleWidth,
                     Gravity.TOP | Gravity.LEFT));
             p1.setTranslationX(mWidth);
-            p1.setTranslationY(-PARAMS.OBSTACLE_WIDTH);
-            p1.setTranslationZ(PARAMS.OBSTACLE_Z);
+            p1.setTranslationY(-params.obstacleWidth);
+            p1.setTranslationZ(params.obstacleZ);
             p1.setScaleX(0.25f);
             p1.setScaleY(0.25f);
             p1.animate()
@@ -507,29 +525,29 @@ public class LLand extends FrameLayout {
 
             final int d2 = irand(0, 250);
             final Obstacle s2 = new Stem(getContext(),
-                    mHeight - obstacley - PARAMS.OBSTACLE_GAP - yinset,
+                    (float) mHeight - obstacley - params.obstacleGap - yinset,
                     true);
             addView(s2, new FrameLayout.LayoutParams(
-                    PARAMS.OBSTACLE_STEM_WIDTH,
+                    params.obstacleStemWidth,
                     (int) s2.h,
                     Gravity.TOP | Gravity.LEFT));
-            s2.setTranslationX(mWidth + inset);
-            s2.setTranslationY(mHeight + yinset);
-            s2.setTranslationZ(PARAMS.OBSTACLE_Z * 0.75f);
+            s2.setTranslationX((float) mWidth + inset);
+            s2.setTranslationY((float) mHeight + yinset);
+            s2.setTranslationZ(params.obstacleZ * 0.75f);
             s2.animate()
                     .translationY(mHeight - s2.h)
                     .setStartDelay(d2)
                     .setDuration(400);
             mObstaclesInPlay.add(s2);
 
-            final Obstacle p2 = new Pop(getContext(), PARAMS.OBSTACLE_WIDTH);
+            final Obstacle p2 = new Pop(getContext(), params.obstacleWidth);
             addView(p2, new FrameLayout.LayoutParams(
-                    PARAMS.OBSTACLE_WIDTH,
-                    PARAMS.OBSTACLE_WIDTH,
+                    params.obstacleWidth,
+                    params.obstacleWidth,
                     Gravity.TOP | Gravity.LEFT));
             p2.setTranslationX(mWidth);
             p2.setTranslationY(mHeight);
-            p2.setTranslationZ(PARAMS.OBSTACLE_Z);
+            p2.setTranslationZ(params.obstacleZ);
             p2.setScaleX(0.25f);
             p2.setScaleY(0.25f);
             p2.animate()
@@ -546,35 +564,30 @@ public class LLand extends FrameLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        if (DEBUG) L("touch: %s", ev);
-        switch (ev.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                poke();
-                return true;
-            case MotionEvent.ACTION_UP:
-                unpoke();
-                return true;
-        }
-        return false;
+        if (DEBUG) l("touch: %s", ev);
+        return processPokeEvents(ev);
     }
 
     @Override
     public boolean onTrackballEvent(MotionEvent ev) {
-        if (DEBUG) L("trackball: %s", ev);
-        switch (ev.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                poke();
-                return true;
-            case MotionEvent.ACTION_UP:
-                unpoke();
-                return true;
+        if (DEBUG) l("trackball: %s", ev);
+        return processPokeEvents(ev);
+    }
+
+    private boolean processPokeEvents(MotionEvent ev) {
+        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+            poke();
+        } else if (ev.getAction() == MotionEvent.ACTION_UP) {
+            unpoke();
+        } else {
+            return false;
         }
-        return false;
+        return true;
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent ev) {
-        if (DEBUG) L("keyDown: %d", keyCode);
+        if (DEBUG) l("keyDown: %d", keyCode);
         switch (keyCode) {
             case KeyEvent.KEYCODE_DPAD_CENTER:
             case KeyEvent.KEYCODE_DPAD_UP:
@@ -589,7 +602,7 @@ public class LLand extends FrameLayout {
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent ev) {
-        if (DEBUG) L("keyDown: %d", keyCode);
+        if (DEBUG) l("keyDown: %d", keyCode);
         switch (keyCode) {
             case KeyEvent.KEYCODE_DPAD_CENTER:
             case KeyEvent.KEYCODE_DPAD_UP:
@@ -604,12 +617,12 @@ public class LLand extends FrameLayout {
 
     @Override
     public boolean onGenericMotionEvent(MotionEvent ev) {
-        if (DEBUG) L("generic: %s", ev);
+        if (DEBUG) l("generic: %s", ev);
         return false;
     }
 
     private void poke() {
-        L("poke");
+        l("poke");
         if (mFrozen) return;
         if (!mAnimating) {
             reset();
@@ -625,7 +638,7 @@ public class LLand extends FrameLayout {
     }
 
     private void unpoke() {
-        L("unboost");
+        l("unboost");
         if (mFrozen) return;
         if (!mAnimating) return;
         mDroid.unboost();
@@ -658,8 +671,7 @@ public class LLand extends FrameLayout {
         pt.setColor(0x8000FF00);
         for (int i = 0; i < M; i++) {
             final View v = getChildAt(i);
-            if (v == mDroid) continue;
-            if (!(v instanceof GameView)) continue;
+            if (v == mDroid || !(v instanceof GameView)) continue;
             if (v instanceof Pop) {
                 final Pop p = (Pop) v;
                 c.drawCircle(p.cx, p.cy, p.r, pt);
@@ -683,11 +695,11 @@ public class LLand extends FrameLayout {
     static final Rect sTmpRect = new Rect();
 
     private interface GameView {
-        public void step(long t_ms, long dt_ms, float t, float dt);
+        public void step(long tMs, long dtMs, float t, float dt);
     }
 
     private class Player extends ImageView implements GameView {
-        public float dv;
+        protected float dv;
 
         private boolean mBoosting;
 
@@ -722,8 +734,8 @@ public class LLand extends FrameLayout {
         }
 
         public void prepareCheckIntersections() {
-            final int inset = (PARAMS.PLAYER_SIZE - PARAMS.PLAYER_HIT_SIZE) / 2;
-            final int scale = PARAMS.PLAYER_HIT_SIZE;
+            final int inset = (params.playerSize - params.playerHitSize) / 2;
+            final int scale = params.playerHitSize;
             final int N = sHull.length / 2;
             for (int i = 0; i < N; i++) {
                 corners[i * 2] = scale * sHull[i * 2] + inset;
@@ -742,34 +754,34 @@ public class LLand extends FrameLayout {
             return false;
         }
 
-        public void step(long t_ms, long dt_ms, float t, float dt) {
+        public void step(long tMs, long dtMs, float t, float dt) {
             if (getVisibility() != View.VISIBLE) return; // not playing yet
 
             if (mBoosting) {
-                dv = -PARAMS.BOOST_DV;
+                dv = -params.boostDv;
             } else {
-                dv += PARAMS.G;
+                dv += params.g;
             }
-            if (dv < -PARAMS.MAX_V) dv = -PARAMS.MAX_V;
-            else if (dv > PARAMS.MAX_V) dv = PARAMS.MAX_V;
+            if (dv < -params.maxV) dv = -params.maxV;
+            else if (dv > params.maxV) dv = params.maxV;
 
             final float y = getTranslationY() + dv * dt;
             setTranslationY(y < 0 ? 0 : y);
             setRotation(
-                    90 + lerp(clamp(rlerp(dv, PARAMS.MAX_V, -1 * PARAMS.MAX_V)), 90, -90));
+                    90 + lerp(clamp(rlerp(dv, params.maxV, -1 * (float) params.maxV)), 90, -90));
 
             prepareCheckIntersections();
         }
 
         public void boost() {
             mBoosting = true;
-            dv = -PARAMS.BOOST_DV;
+            dv = -params.boostDv;
 
             animate().cancel();
             animate()
                     .scaleX(1.25f)
                     .scaleY(1.25f)
-                    .translationZ(PARAMS.PLAYER_Z_BOOST)
+                    .translationZ(params.playerZBoost)
                     .setDuration(100);
             setScaleX(1.25f);
             setScaleY(1.25f);
@@ -782,13 +794,13 @@ public class LLand extends FrameLayout {
             animate()
                     .scaleX(1f)
                     .scaleY(1f)
-                    .translationZ(PARAMS.PLAYER_Z)
+                    .translationZ(params.playerZ)
                     .setDuration(200);
         }
     }
 
     private class Obstacle extends View implements GameView {
-        public float h;
+        protected float h;
 
         public final Rect hitRect = new Rect();
 
@@ -818,15 +830,17 @@ public class LLand extends FrameLayout {
         }
 
         @Override
-        public void step(long t_ms, long dt_ms, float t, float dt) {
-            setTranslationX(getTranslationX() - PARAMS.TRANSLATION_PER_SEC * dt);
+        public void step(long tMs, long dtMs, float t, float dt) {
+            setTranslationX(getTranslationX() - params.translationPerSec * dt);
             getHitRect(hitRect);
         }
     }
 
     private class Pop extends Obstacle {
         int mRotate;
-        int cx, cy, r;
+        int cx;
+        int cy;
+        int r;
 
         public Pop(Context context, float h) {
             super(context, h);
@@ -843,19 +857,20 @@ public class LLand extends FrameLayout {
             });
         }
 
+        @Override
         public boolean intersects(Player p) {
             final int N = p.corners.length / 2;
             for (int i = 0; i < N; i++) {
                 final int x = (int) p.corners[i * 2];
                 final int y = (int) p.corners[i * 2 + 1];
-                if (Math.hypot(x - cx, y - cy) <= r) return true;
+                if (Math.hypot((double) x - cx, (double) y - cy) <= r) return true;
             }
             return false;
         }
 
         @Override
-        public void step(long t_ms, long dt_ms, float t, float dt) {
-            super.step(t_ms, dt_ms, t, dt);
+        public void step(long tMs, long dtMs, float t, float dt) {
+            super.step(tMs, dtMs, t, dt);
             if (mRotate != 0) {
                 setRotation(getRotation() + dt * 45 * mRotate);
             }
@@ -904,25 +919,26 @@ public class LLand extends FrameLayout {
             mShadow.reset();
             mShadow.moveTo(0, 0);
             mShadow.lineTo(w, 0);
-            mShadow.lineTo(w, PARAMS.OBSTACLE_WIDTH / 2 + w * 1.5f);
-            mShadow.lineTo(0, PARAMS.OBSTACLE_WIDTH / 2);
+            mShadow.lineTo(w, (float) params.obstacleWidth / 2 + w * 1.5f);
+            mShadow.lineTo(0, (float) params.obstacleWidth / 2);
             mShadow.close();
             c.drawPath(mShadow, mPaint);
         }
     }
 
-    private class Scenery extends FrameLayout implements GameView {
-        public float z;
-        public float v;
-        public int h, w;
+    private static class Scenery extends FrameLayout implements GameView {
+        protected float z;
+        protected float v;
+        protected int h;
+        protected int w;
 
         public Scenery(Context context) {
             super(context);
         }
 
         @Override
-        public void step(long t_ms, long dt_ms, float t, float dt) {
-            setTranslationX(getTranslationX() - PARAMS.TRANSLATION_PER_SEC * dt * v);
+        public void step(long tMs, long dtMs, float t, float dt) {
+            setTranslationX(getTranslationX() - params.translationPerSec * dt * v);
         }
     }
 
@@ -930,10 +946,10 @@ public class LLand extends FrameLayout {
         public Building(Context context) {
             super(context);
 
-            w = irand(PARAMS.BUILDING_WIDTH_MIN, PARAMS.BUILDING_WIDTH_MAX);
+            w = irand(params.buildingWidthMin, params.buildingWidthMax);
             h = 0; // will be setup later, along with z
 
-            setTranslationZ(PARAMS.SCENERY_Z);
+            setTranslationZ(params.sceneryZ);
         }
     }
 
@@ -942,7 +958,7 @@ public class LLand extends FrameLayout {
             super(context);
             setBackgroundResource(frand() < 0.01f ? R.drawable.lollipop_cloud_off : R.drawable.lollipop_cloud);
             getBackground().setAlpha(0x40);
-            w = h = irand(PARAMS.CLOUD_SIZE_MIN, PARAMS.CLOUD_SIZE_MAX);
+            w = h = irand(params.cloudSizeMin, params.cloudSizeMax);
             z = 0;
             v = frand(0.15f, 0.5f);
         }
@@ -952,7 +968,7 @@ public class LLand extends FrameLayout {
         public Star(Context context) {
             super(context);
             setBackgroundResource(R.drawable.lollipop_star);
-            w = h = irand(PARAMS.STAR_SIZE_MIN, PARAMS.STAR_SIZE_MAX);
+            w = h = irand(params.starSizeMin, params.starSizeMax);
             v = z = 0;
         }
     }

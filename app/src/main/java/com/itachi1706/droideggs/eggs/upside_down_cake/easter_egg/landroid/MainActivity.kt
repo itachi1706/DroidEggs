@@ -121,9 +121,9 @@ const val DYNAMIC_ZOOM = false // @@@ FIXME
 
 fun dailySeed(): Long {
     val today = GregorianCalendar()
-    return today.get(Calendar.YEAR) * 10_000L +
-            today.get(Calendar.MONTH) * 100L +
-            today.get(Calendar.DAY_OF_MONTH)
+    return today[Calendar.YEAR] * 10_000L +
+            today[Calendar.MONTH] * 100L +
+            today[Calendar.DAY_OF_MONTH]
 }
 
 fun randomSeed(): Long {
@@ -221,8 +221,6 @@ fun Telemetry(universe: VisibleUniverse) {
                                         " FLORA: ${it.flora.capitalize()}\n"
                             }
                             .joinToString("\n")
-
-                // TODO: different colors, highlight latest discovery
             )
         }
 
@@ -427,7 +425,7 @@ fun Spaaaace(
     var cameraOffset by remember { mutableStateOf(Offset.Zero) }
 
     val transformableState =
-        rememberTransformableState { zoomChange, offsetChange, rotationChange ->
+        rememberTransformableState { zoomChange, offsetChange, _ ->
             if (TOUCH_CAMERA_PAN) cameraOffset += offsetChange / cameraZoom
             if (TOUCH_CAMERA_ZOOM)
                 cameraZoom = clamp(cameraZoom * zoomChange, MIN_CAMERA_ZOOM, MAX_CAMERA_ZOOM)
@@ -453,7 +451,6 @@ fun Spaaaace(
 
         val closest = u.closestPlanet()
         val distToNearestSurf = max(0f, (u.ship.pos - closest.pos).mag() - closest.radius * 1.2f)
-        //        val normalizedDist = clamp(distToNearestSurf, 50f, 50_000f) / 50_000f
         if (DYNAMIC_ZOOM) {
             //            cameraZoom = lerp(0.1f, 5f, smooth(1f-normalizedDist))
             cameraZoom = clamp(500f / distToNearestSurf, MIN_CAMERA_ZOOM, MAX_CAMERA_ZOOM)

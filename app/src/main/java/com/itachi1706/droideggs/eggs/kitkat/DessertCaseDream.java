@@ -25,10 +25,10 @@ import android.service.dreams.DreamService;
 public class DessertCaseDream extends DreamService {
 
     private DessertCaseView mView;
-    private DessertCaseView.RescalingContainer mContainer;
 
     @Override
     public void onAttachedToWindow() {
+        DessertCaseView.RescalingContainer mContainer;
         super.onAttachedToWindow();
         setInteractive(false);
 

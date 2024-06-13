@@ -16,6 +16,9 @@
 
 package com.itachi1706.droideggs.eggs.red_velvet_cake.easter_egg.neko;
 
+import static com.itachi1706.droideggs.eggs.red_velvet_cake.easter_egg.neko.Cat.PURR;
+import static com.itachi1706.droideggs.eggs.red_velvet_cake.easter_egg.neko.NekoLand.CHAN_ID;
+
 import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -35,9 +38,6 @@ import com.itachi1706.droideggs.R;
 
 import java.util.List;
 import java.util.Random;
-
-import static com.itachi1706.droideggs.eggs.red_velvet_cake.easter_egg.neko.Cat.PURR;
-import static com.itachi1706.droideggs.eggs.red_velvet_cake.easter_egg.neko.NekoLand.CHAN_ID;
 
 @TargetApi(Build.VERSION_CODES.R)
 public class NekoService extends JobService {
@@ -73,14 +73,12 @@ public class NekoService extends JobService {
 
     @Override
     public boolean onStartJob(JobParameters params) {
-        Log.v(TAG, "Starting job: " + String.valueOf(params));
+        Log.v(TAG, "Starting job: " + params);
 
         if (NekoLand.DEBUG_NOTIFICATIONS) {
             NotificationManager noman = getSystemService(NotificationManager.class);
             final Bundle extras = new Bundle();
             extras.putString("android.substName", getString(R.string.r_notification_name));
-            final int size = getResources()
-                    .getDimensionPixelSize(android.R.dimen.notification_large_icon_width);
             final Cat cat = Cat.create(this);
             final Notification.Builder builder
                     = cat.buildNotification(this)
@@ -96,12 +94,13 @@ public class NekoService extends JobService {
         return false;
     }
 
+    private static final Random rng = new Random();
+
     private static void triggerFoodResponse(Context context) {
         final PrefState prefs = new PrefState(context);
         int food = prefs.getFoodState();
         if (food != 0) {
             prefs.setFoodState(0); // nom
-            final Random rng = new Random();
             if (rng.nextFloat() <= CAT_CAPTURE_PROB) {
                 Cat cat;
                 List<Cat> cats = prefs.getCats();
@@ -113,7 +112,7 @@ public class NekoService extends JobService {
                 Log.v(TAG, "Food type: " + food);
                 Log.v(TAG, "New cat probability: " + new_cat_prob);
 
-                if (cats.size() == 0 || rng.nextFloat() <= new_cat_prob) {
+                if (cats.isEmpty() || rng.nextFloat() <= new_cat_prob) {
                     cat = newRandomCat(context, prefs);
                     Log.v(TAG, "A new cat is here: " + cat.getName());
                 } else {
@@ -141,8 +140,8 @@ public class NekoService extends JobService {
 
     static Cat getExistingCat(PrefState prefs) {
         final List<Cat> cats = prefs.getCats();
-        if (cats.size() == 0) return null;
-        return cats.get(new Random().nextInt(cats.size()));
+        if (cats.isEmpty()) return null;
+        return cats.get(rng.nextInt(cats.size()));
     }
 
     @Override
@@ -171,7 +170,7 @@ public class NekoService extends JobService {
                 .setPeriodic(interval, INTERVAL_FLEX)
                 .build();
 
-        Log.v(TAG, "A cat will visit in " + interval + "ms: " + String.valueOf(jobInfo));
+        Log.v(TAG, "A cat will visit in " + interval + "ms: " + jobInfo);
         jss.schedule(jobInfo);
 
         if (NekoLand.DEBUG_NOTIFICATIONS) {

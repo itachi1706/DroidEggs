@@ -38,6 +38,7 @@ import java.time.Clock;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.Random;
 
 @TargetApi(29)
 public class PlatLogoActivitySnowCone extends Activity {
@@ -236,8 +237,10 @@ public class PlatLogoActivitySnowCone extends Activity {
     }
 
     static class Bubble {
-        public float x, y, r;
-        public int color;
+        protected float x;
+        protected float y;
+        protected float r;
+        protected int color;
     }
 
     class BubblesDrawable extends Drawable {
@@ -261,9 +264,9 @@ public class PlatLogoActivitySnowCone extends Activity {
 
         private final Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
-        public float avoid = 0f;
-        public float padding = 0f;
-        public float minR = 0f;
+        protected float avoid = 0f;
+        protected float padding = 0f;
+        protected float minR = 0f;
 
         BubblesDrawable() {
             int[] mColorIdsCompat = {
@@ -288,12 +291,10 @@ public class PlatLogoActivitySnowCone extends Activity {
         public void draw(Canvas canvas) {
             final float f = getLevel() / 10000f;
             mPaint.setStyle(Paint.Style.FILL);
-            int drawn = 0;
             for (int j = 0; j < mNumBubbs; j++) {
                 if (mBubbs[j].color == 0 || mBubbs[j].r == 0) continue;
                 mPaint.setColor(mBubbs[j].color);
                 canvas.drawCircle(mBubbs[j].x, mBubbs[j].y, mBubbs[j].r * f, mPaint);
-                drawn++;
             }
         }
 
@@ -308,6 +309,8 @@ public class PlatLogoActivitySnowCone extends Activity {
             super.onBoundsChange(bounds);
             randomize();
         }
+
+        private final Random random = new Random();
 
         private void randomize() {
             final float w = getBounds().width();
@@ -347,7 +350,7 @@ public class PlatLogoActivitySnowCone extends Activity {
                         mBubbs[mNumBubbs].x = x;
                         mBubbs[mNumBubbs].y = y;
                         mBubbs[mNumBubbs].r = r;
-                        mBubbs[mNumBubbs].color = mColors[(int) (Math.random() * mColors.length)];
+                        mBubbs[mNumBubbs].color = mColors[random.nextInt(mColors.length)];
                         mNumBubbs++;
                         break;
                     }

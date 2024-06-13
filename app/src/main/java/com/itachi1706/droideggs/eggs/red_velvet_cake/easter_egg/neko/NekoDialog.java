@@ -57,7 +57,6 @@ public class NekoDialog extends Dialog {
         if (currentState == 0 && food.getType() != 0) {
             NekoService.registerJob(getContext(), food.getInterval(getContext()));
         }
-//        MetricsLogger.histogram(getContext(), "egg_neko_offered_food", food.getType());
         prefs.setFoodState(food.getType());
         dismiss();
     }
@@ -89,12 +88,7 @@ public class NekoDialog extends Dialog {
                     .setImageIcon(food.getIcon(mContext));
             ((TextView) holder.itemView.findViewById(R.id.text))
                     .setText(food.getName(mContext));
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onFoodSelected(mFoods.get(holder.getAdapterPosition()));
-                }
-            });
+            holder.itemView.setOnClickListener(v -> onFoodSelected(mFoods.get(holder.getAdapterPosition())));
         }
 
         @Override

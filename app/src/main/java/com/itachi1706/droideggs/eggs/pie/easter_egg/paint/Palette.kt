@@ -33,8 +33,8 @@ class Palette {
      * create a random evenly-spaced color palette
      * guaranteed to contrast!
      */
-    fun randomize(S: Float, V: Float) {
-        val hsv = floatArrayOf((Math.random() * 360f).toFloat(), S, V)
+    fun randomize(s: Float, v: Float) {
+        val hsv = floatArrayOf((Math.random() * 360f).toFloat(), s, v)
         val count = colors.size
         colors[0] = Color.HSVToColor(hsv)
         lightest = 0
@@ -60,9 +60,9 @@ class Palette {
         colors = IntArray(count)
         randomize(1f, 1f)
     }
-    constructor(count: Int, S: Float, V: Float) {
+    constructor(count: Int, s: Float, v: Float) {
         colors = IntArray(count)
-        randomize(S, V)
+        randomize(s, v)
     }
     constructor(_colors: IntArray) {
         colors = _colors

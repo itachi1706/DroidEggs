@@ -36,6 +36,7 @@ import java.time.Clock;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.Random;
 
 @TargetApi(Build.VERSION_CODES.Q)
 public class PlatLogoActivityTiramisu extends Activity {
@@ -44,11 +45,6 @@ public class PlatLogoActivityTiramisu extends Activity {
     private SettableAnalogClock mClock;
     private ImageView mLogo;
     private BubblesDrawable mBg;
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +75,7 @@ public class PlatLogoActivityTiramisu extends Activity {
 
         mBg = new BubblesDrawable();
         mBg.setLevel(0);
-        mBg.avoid = widgetSize / 2;
+        mBg.avoid = (float) widgetSize / 2;
         mBg.padding = 0.5f * dp;
         mBg.minR = 1 * dp;
         layout.setBackground(mBg);
@@ -88,7 +84,7 @@ public class PlatLogoActivityTiramisu extends Activity {
         setContentView(layout);
     }
 
-    private void launchNextStage(boolean locked) {
+    private void launchNextStage() {
         mClock.animate()
                 .alpha(0f).scaleX(0.5f).scaleY(0.5f)
                 .withEndAction(() -> mClock.setVisibility(View.GONE))
@@ -126,7 +122,8 @@ public class PlatLogoActivityTiramisu extends Activity {
     }
 
     static final String TOUCH_STATS = "t.touch.stats";
-    double mPressureMin = 0, mPressureMax = -1;
+    double mPressureMin = 0;
+    double mPressureMax = -1;
 
     @Override
     public void onStart() {
@@ -218,7 +215,7 @@ public class PlatLogoActivityTiramisu extends Activity {
                     if (mOverrideMinute == 0 && (mOverrideHour % 12) == 1) {
                         Log.v(TAG, "13:00");
                         performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
-                        launchNextStage(false);
+                        launchNextStage();
                     }
                     return true;
             }
@@ -253,9 +250,11 @@ public class PlatLogoActivityTiramisu extends Activity {
     };
 
     static class Bubble {
-        public float x, y, r;
-        public int color;
-        public String text = null;
+        protected float x;
+        protected float y;
+        protected float r;
+        protected int color;
+        protected String text = null;
     }
 
     class BubblesDrawable extends Drawable implements View.OnLongClickListener {
@@ -272,17 +271,14 @@ public class PlatLogoActivityTiramisu extends Activity {
         };
 
         private int[] mColors = new int[mColorIds.length];
-
-        private int mEmojiSet = -1;
-
         private final Bubble[] mBubbs = new Bubble[MAX_BUBBS];
         private int mNumBubbs;
 
         private final Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
-        public float avoid = 0f;
-        public float padding = 0f;
-        public float minR = 0f;
+        protected float avoid = 0f;
+        protected float padding = 0f;
+        protected float minR = 0f;
 
         BubblesDrawable() {
             for (int i = 0; i < mColorIds.length; i++) {
@@ -299,7 +295,6 @@ public class PlatLogoActivityTiramisu extends Activity {
             final float f = getLevel() / 10000f;
             mPaint.setStyle(Paint.Style.FILL);
             mPaint.setTextAlign(Paint.Align.CENTER);
-            int drawn = 0;
             for (int j = 0; j < mNumBubbs; j++) {
                 if (mBubbs[j].color == 0 || mBubbs[j].r == 0) continue;
                 if (mBubbs[j].text != null) {
@@ -310,15 +305,17 @@ public class PlatLogoActivityTiramisu extends Activity {
                     mPaint.setColor(mBubbs[j].color);
                     canvas.drawCircle(mBubbs[j].x, mBubbs[j].y, mBubbs[j].r * f, mPaint);
                 }
-                drawn++;
             }
         }
 
+        private final Random random = new Random();
+
         public void chooseEmojiSet() {
-            mEmojiSet = (int) (Math.random() * EMOJI_SETS.length);
+            int mEmojiSet = -1;
+            mEmojiSet = random.nextInt(EMOJI_SETS.length);
             final String[] emojiSet = EMOJI_SETS[mEmojiSet];
             for (int j = 0; j < mBubbs.length; j++) {
-                mBubbs[j].text = emojiSet[(int) (Math.random() * emojiSet.length)];
+                mBubbs[j].text = emojiSet[random.nextInt(emojiSet.length)];
             }
             invalidateSelf();
         }
@@ -373,7 +370,7 @@ public class PlatLogoActivityTiramisu extends Activity {
                         mBubbs[mNumBubbs].x = x;
                         mBubbs[mNumBubbs].y = y;
                         mBubbs[mNumBubbs].r = r;
-                        mBubbs[mNumBubbs].color = mColors[(int) (Math.random() * mColors.length)];
+                        mBubbs[mNumBubbs].color = mColors[random.nextInt(mColors.length)];
                         mNumBubbs++;
                         break;
                     }
@@ -384,10 +381,14 @@ public class PlatLogoActivityTiramisu extends Activity {
         }
 
         @Override
-        public void setAlpha(int alpha) { }
+        public void setAlpha(int alpha) {
+            // NO-OP
+        }
 
         @Override
-        public void setColorFilter(ColorFilter colorFilter) { }
+        public void setColorFilter(ColorFilter colorFilter) {
+            // NO-OP
+        }
 
         @Override
         public int getOpacity() {

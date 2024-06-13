@@ -51,14 +51,14 @@ import java.util.List;
  */
 @TargetApi(Build.VERSION_CODES.M)
 public class NekoLand extends Activity implements PrefState.PrefsListener {
-    public static String CHAN_ID = "EGG";
+    public static final String CHAN_ID = "EGG";
 
-    public static boolean DEBUG = false;
-    public static boolean DEBUG_NOTIFICATIONS = false;
+    public static final boolean DEBUG = false;
+    public static final boolean DEBUG_NOTIFICATIONS = false;
 
     private static final int EXPORT_BITMAP_SIZE = 600;
 
-    private static boolean CAT_GEN = false;
+    private static final boolean CAT_GEN = false;
     private PrefState mPrefs;
     private CatAdapter mAdapter;
 
@@ -123,7 +123,6 @@ public class NekoLand extends Activity implements PrefState.PrefsListener {
         } else {
             showNameDialog(cat);
         }
-//      noman.notify(1, cat.buildNotification(NekoLand.this).build());
     }
 
     private void onCatRemove(Cat cat) {
@@ -134,14 +133,13 @@ public class NekoLand extends Activity implements PrefState.PrefsListener {
     private void showNameDialog(final Cat cat) {
         final Context context = new ContextThemeWrapper(this,
                 android.R.style.Theme_Material_Light_Dialog_NoActionBar);
-        // TODO: Move to XML, add correct margins.
         View view = LayoutInflater.from(context).inflate(R.layout.nougat_edit_text, null);
         final EditText text = view.findViewById(android.R.id.edit);
         text.setText(cat.getName());
         text.setSelection(cat.getName().length());
         final int size = context.getResources()
                 .getDimensionPixelSize(android.R.dimen.app_icon_size);
-        Drawable catIcon = cat.createIcon(this, size, size).loadDrawable(this);
+        Drawable catIcon = cat.createIcon(size, size).loadDrawable(this);
         new AlertDialog.Builder(context)
                 .setTitle(" ")
                 .setIcon(catIcon)
@@ -192,7 +190,7 @@ public class NekoLand extends Activity implements PrefState.PrefsListener {
         public void onBindViewHolder(final CatHolder holder, int position) {
             Context context = holder.itemView.getContext();
             final int size = context.getResources().getDimensionPixelSize(R.dimen.neko_display_size);
-            holder.imageView.setImageIcon(mCats[position].createIcon(context, size, size));
+            holder.imageView.setImageIcon(mCats[position].createIcon(size, size));
             holder.textView.setText(mCats[position].getName());
             holder.itemView.setOnClickListener(v -> onCatClick(mCats[holder.getAdapterPosition()]));
             holder.itemView.setOnLongClickListener(v -> {

@@ -30,31 +30,38 @@ import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
+import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 import com.itachi1706.droideggs.eggs.pie.easter_egg.paint.PaintActivity;
 
 import org.json.JSONObject;
+
+import java.util.Random;
 
 /**
  * Created by Kenneth on 7/8/2018.
  * for com.itachi1706.droideggs.PieEgg in DroidEggs
  */
 public class PlatLogoActivityPie extends AppCompatActivity {
+    private static final String TAG = "PlatLogoActivity";
 
     FrameLayout layout;
     TimeAnimator anim;
     PBackground bg;
 
     private class PBackground extends Drawable {
-        private float maxRadius, radius, x, y, dp;
+        private float radius;
+        private float x;
+        private float y;
+        private float dp;
         private int[] palette;
         private int darkest;
         private float offset;
@@ -87,12 +94,13 @@ public class PlatLogoActivityPie extends AppCompatActivity {
         public float lum(int rgb) {
             return ((Color.red(rgb) * 299f) + (Color.green(rgb) * 587f) + (Color.blue(rgb) * 114f)) / 1000f;
         }
+        private final Random random = new Random();
         /**
          * create a random evenly-spaced color palette
          * guaranteed to contrast!
          */
         public void randomizePalette() {
-            final int slots = 2 + (int)(Math.random() * 2);
+            final int slots = 2 + random.nextInt(2);
             float[] color = new float[] { (float) Math.random() * 360f, 1f, 1f };
             palette = new int[slots];
             darkest = 0;
@@ -105,7 +113,7 @@ public class PlatLogoActivityPie extends AppCompatActivity {
             for (int c : palette) {
                 str.append(String.format("#%08x ", c));
             }
-            Log.v("PlatLogoActivity", "color palette: " + str);
+            Log.v(TAG, "color palette: " + str);
         }
         @Override
         public void draw(Canvas canvas) {
@@ -131,8 +139,6 @@ public class PlatLogoActivityPie extends AppCompatActivity {
             while (w > radius*2 + inner_w*2) {
                 paint.setColor(0xFF000000 | palette[i % palette.length]);
                 // for a slower but more complete version:
-                // paint.setStrokeWidth(w);
-                // canvas.drawPath(p, paint);
                 canvas.drawOval(-w/2, -w/2, w/2, w/2, paint);
                 w -= inner_w * (1.1f + Math.sin((i/20f + offset) * 3.14159f));
                 i++;
@@ -155,9 +161,11 @@ public class PlatLogoActivityPie extends AppCompatActivity {
         }
         @Override
         public void setAlpha(int alpha) {
+            // NO-OP
         }
         @Override
         public void setColorFilter(ColorFilter colorFilter) {
+            // NO-OP
         }
         @Override
         public int getOpacity() {
@@ -176,7 +184,8 @@ public class PlatLogoActivityPie extends AppCompatActivity {
         layout.setOnTouchListener(new View.OnTouchListener() {
             final MotionEvent.PointerCoords pc0 = new MotionEvent.PointerCoords();
             final MotionEvent.PointerCoords pc1 = new MotionEvent.PointerCoords();
-            double pressure_min, pressure_max;
+            double pressureMin;
+            double pressureMax;
             int maxPointers;
             int tapCount;
             @Override
@@ -184,11 +193,11 @@ public class PlatLogoActivityPie extends AppCompatActivity {
                 final float pressure = event.getPressure();
                 switch (event.getActionMasked()) {
                     case MotionEvent.ACTION_DOWN:
-                        pressure_min = pressure_max = pressure;
+                        pressureMin = pressureMax = pressure;
                         // fall through
                     case MotionEvent.ACTION_MOVE:
-                        if (pressure < pressure_min) pressure_min = pressure;
-                        if (pressure > pressure_max) pressure_max = pressure;
+                        if (pressure < pressureMin) pressureMin = pressure;
+                        if (pressure > pressureMax) pressureMax = pressure;
                         final int pc = event.getPointerCount();
                         if (pc > maxPointers) maxPointers = pc;
                         if (pc > 1) {
@@ -204,16 +213,16 @@ public class PlatLogoActivityPie extends AppCompatActivity {
                             final JSONObject touchData = new JSONObject(
                                     touchDataJson != null ? touchDataJson : "{}");
                             if (touchData.has("min")) {
-                                pressure_min = Math.min(pressure_min, touchData.getDouble("min"));
+                                pressureMin = Math.min(pressureMin, touchData.getDouble("min"));
                             }
                             if (touchData.has("max")) {
-                                pressure_max = Math.max(pressure_max, touchData.getDouble("max"));
+                                pressureMax = Math.max(pressureMax, touchData.getDouble("max"));
                             }
-                            touchData.put("min", pressure_min);
-                            touchData.put("max", pressure_max);
+                            touchData.put("min", pressureMin);
+                            touchData.put("max", pressureMax);
                             pref.edit().putString("PIE_TOUCH_STATS", touchDataJson).apply();
                         } catch (Exception e) {
-                            Log.e("PlatLogoActivity", "Can't write touch settings", e);
+                            Log.e(TAG, "Can't write touch settings", e);
                         }
                         if (maxPointers == 1) {
                             tapCount ++;
@@ -245,11 +254,11 @@ public class PlatLogoActivityPie extends AppCompatActivity {
 
                 startActivity(pie);
             } else {
-                Snackbar.make(findViewById(android.R.id.content), "Your version of Android is too low to advance further. Requires Android 7.0 Nougat to advance", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(findViewById(android.R.id.content), "Your version of Android is too low to advance further. Requires Android 7.0 Nougat to advance", BaseTransientBottomBar.LENGTH_LONG).show();
                 return;
             }
         } catch (ActivityNotFoundException ex) {
-            Log.e("PlatLogoActivity", "No more eggs.");
+            Log.e(TAG, "No more eggs.");
         }
         finish();
     }
@@ -260,7 +269,7 @@ public class PlatLogoActivityPie extends AppCompatActivity {
         anim = new TimeAnimator();
         anim.setTimeListener(
                 (animation, totalTime, deltaTime) -> {
-                    bg.setOffset((float) totalTime / 60000f);
+                    bg.setOffset(totalTime / 60000f);
                     bg.invalidateSelf();
                 });
         anim.start();

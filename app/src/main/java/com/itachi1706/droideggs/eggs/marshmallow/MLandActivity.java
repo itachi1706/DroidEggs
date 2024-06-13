@@ -17,8 +17,9 @@
 package com.itachi1706.droideggs.eggs.marshmallow;
 
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.itachi1706.droideggs.R;
 
@@ -50,7 +51,7 @@ public class MLandActivity extends AppCompatActivity {
             minus.setVisibility(View.INVISIBLE);
             plus.setVisibility(View.VISIBLE);
             plus.requestFocus();
-        } else if (N == mLand.MAX_PLAYERS) {
+        } else if (N == MLand.MAX_PLAYERS) {
             minus.setVisibility(View.VISIBLE);
             plus.setVisibility(View.INVISIBLE);
             minus.requestFocus();

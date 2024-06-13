@@ -34,7 +34,6 @@ import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
@@ -43,18 +42,21 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
+import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 import com.itachi1706.droideggs.PlatLogoCommon;
-import com.itachi1706.droideggs.eggs.quince_tart.easter_egg.quares.QuaresActivity;
 import com.itachi1706.droideggs.R;
+import com.itachi1706.droideggs.eggs.quince_tart.easter_egg.quares.QuaresActivity;
 
 /**
  * Created by Kenneth on 14/12/2019.
  * for com.itachi1706.droideggs.QEgg in DroidEggs
  */
 public class PlatLogoActivityQuinceTart extends AppCompatActivity {
-    ImageView mZeroView, mOneView;
+    ImageView mZeroView;
+    ImageView mOneView;
     BackslashDrawable mBackslash;
     int mClicks;
     static final Paint sPaint = new Paint();
@@ -92,7 +94,8 @@ public class PlatLogoActivityQuinceTart extends AppCompatActivity {
         root.setBackground(mBackslash);
         root.getBackground().setAlpha(0x20);
         View.OnTouchListener tl = new View.OnTouchListener() {
-            float mOffsetX, mOffsetY;
+            float mOffsetX;
+            float mOffsetY;
             long mClickTime;
             ObjectAnimator mRotAnim;
             @Override
@@ -148,7 +151,6 @@ public class PlatLogoActivityQuinceTart extends AppCompatActivity {
             mOneView.animate().y(mZeroView.getY() + width * .3f);
             mOneView.setRotation(mOneView.getRotation() % 360);
             mOneView.animate().rotation(315);
-            //mOneView.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
             mOneView.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP); // CONFIRM is hidden API
             mBackslash.startAnimating();
             mClicks++;
@@ -172,7 +174,7 @@ public class PlatLogoActivityQuinceTart extends AppCompatActivity {
                 startActivity(q);
             }
             else {
-                Snackbar.make(findViewById(android.R.id.content), "Your version of Android is too low to advance further. Requires Android 6.0 Marshmallow to advance", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(findViewById(android.R.id.content), "Your version of Android is too low to advance further. Requires Android 6.0 Marshmallow to advance", BaseTransientBottomBar.LENGTH_LONG).show();
                 return;
             }
         } catch (ActivityNotFoundException ex) {
@@ -203,9 +205,13 @@ public class PlatLogoActivityQuinceTart extends AppCompatActivity {
             canvas.restore();
         }
         @Override
-        public void setAlpha(int alpha) { }
+        public void setAlpha(int alpha) {
+            // NO-OP
+        }
         @Override
-        public void setColorFilter(ColorFilter colorFilter) { }
+        public void setColorFilter(ColorFilter colorFilter) {
+            // NO-OP
+        }
         @Override
         public void setTintList(ColorStateList tint) {
             mTintColor = tint.getDefaultColor();
@@ -230,9 +236,13 @@ public class PlatLogoActivityQuinceTart extends AppCompatActivity {
             canvas.restore();
         }
         @Override
-        public void setAlpha(int alpha) { }
+        public void setAlpha(int alpha) {
+            // NO-OP
+        }
         @Override
-        public void setColorFilter(ColorFilter colorFilter) { }
+        public void setColorFilter(ColorFilter colorFilter) {
+            // NO-OP
+        }
         @Override
         public void setTintList(ColorStateList tint) {
             mTintColor = tint.getDefaultColor();
@@ -273,7 +283,6 @@ public class PlatLogoActivityQuinceTart extends AppCompatActivity {
             slashPaint.setStyle(Paint.Style.FILL);
             slashPaint.setColor(0xFF000000);
             tileCanvas.drawPath(path, slashPaint);
-            //mPaint.setColor(0xFF0000FF);
             mShader = new BitmapShader(mTile, Shader.TileMode.REPEAT, Shader.TileMode.REPEAT);
             mPaint.setShader(mShader);
         }

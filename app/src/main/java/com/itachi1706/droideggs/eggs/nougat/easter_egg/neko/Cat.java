@@ -45,7 +45,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 @TargetApi(Build.VERSION_CODES.M)
 public class Cat extends Drawable {
-    public static final long[] PURR = {0, 40, 20, 40, 20, 40, 20, 40, 20, 40, 20, 40};
+    protected static final long[] PURR = {0, 40, 20, 40, 20, 40, 20, 40, 20, 40, 20, 40};
 
     private Random mNotSoRandom;
     private Bitmap mBitmap;
@@ -92,7 +92,7 @@ public class Cat extends Drawable {
         return -1;
     }
 
-    public static final int[] P_BODY_COLORS = {
+    protected static final int[] P_BODY_COLORS = {
             180, 0xFF212121, // black
             180, 0xFFFFFFFF, // white
             140, 0xFF616161, // gray
@@ -107,7 +107,7 @@ public class Cat extends Drawable {
             1, 0,          // ?!?!?!
     };
 
-    public static final int[] P_COLLAR_COLORS = {
+    protected static final int[] P_COLLAR_COLORS = {
             250, 0xFFFFFFFF,
             250, 0xFF000000,
             250, 0xFFF44336,
@@ -118,23 +118,23 @@ public class Cat extends Drawable {
             50, 0xFF4CAF50,
     };
 
-    public static final int[] P_BELLY_COLORS = {
+    protected static final int[] P_BELLY_COLORS = {
             750, 0,
             250, 0xFFFFFFFF,
     };
 
-    public static final int[] P_DARK_SPOT_COLORS = {
+    protected static final int[] P_DARK_SPOT_COLORS = {
             700, 0,
             250, 0xFF212121,
             50, 0xFF6D4C41,
     };
 
-    public static final int[] P_LIGHT_SPOT_COLORS = {
+    protected static final int[] P_LIGHT_SPOT_COLORS = {
             700, 0,
             300, 0xFFFFFFFF,
     };
 
-    private CatParts D;
+    private CatParts d;
 
     public static void tint(int color, Drawable ... ds) {
         for (Drawable d : ds) {
@@ -152,7 +152,7 @@ public class Cat extends Drawable {
     }
 
     public Cat(Context context, long seed) {
-        D = new CatParts(context);
+        d = new CatParts(context);
         mSeed = seed;
 
         setName(context.getString(R.string.nougat_default_cat_name,
@@ -165,49 +165,45 @@ public class Cat extends Drawable {
         if (mBodyColor == 0) mBodyColor = Color.HSVToColor(new float[] {
                 nsr.nextFloat()*360f, frandrange(nsr,0.5f,1f), frandrange(nsr,0.5f, 1f)});
 
-        tint(mBodyColor, D.body, D.head, D.leg1, D.leg2, D.leg3, D.leg4, D.tail,
-                D.leftEar, D.rightEar, D.foot1, D.foot2, D.foot3, D.foot4, D.tailCap);
-        tint(0x20000000, D.leg2Shadow, D.tailShadow);
+        tint(mBodyColor, d.body, d.head, d.leg1, d.leg2, d.leg3, d.leg4, d.tail,
+                d.leftEar, d.rightEar, d.foot1, d.foot2, d.foot3, d.foot4, d.tailCap);
+        tint(0x20000000, d.leg2Shadow, d.tailShadow);
         if (isDark(mBodyColor)) {
-            tint(0xFFFFFFFF, D.leftEye, D.rightEye, D.mouth, D.nose);
+            tint(0xFFFFFFFF, d.leftEye, d.rightEye, d.mouth, d.nose);
         }
-        tint(isDark(mBodyColor) ? 0xFFEF9A9A : 0x20D50000, D.leftEarInside, D.rightEarInside);
+        tint(isDark(mBodyColor) ? 0xFFEF9A9A : 0x20D50000, d.leftEarInside, d.rightEarInside);
 
-        tint(chooseP(nsr, P_BELLY_COLORS), D.belly);
-        tint(chooseP(nsr, P_BELLY_COLORS), D.back);
+        tint(chooseP(nsr, P_BELLY_COLORS), d.belly);
+        tint(chooseP(nsr, P_BELLY_COLORS), d.back);
         final int faceColor = chooseP(nsr, P_BELLY_COLORS);
-        tint(faceColor, D.faceSpot);
+        tint(faceColor, d.faceSpot);
         if (!isDark(faceColor)) {
-            tint(0xFF000000, D.mouth, D.nose);
+            tint(0xFF000000, d.mouth, d.nose);
         }
 
         mFootType = 0;
         if (nsr.nextFloat() < 0.25f) {
             mFootType = 4;
-            tint(0xFFFFFFFF, D.foot1, D.foot2, D.foot3, D.foot4);
+            tint(0xFFFFFFFF, d.foot1, d.foot2, d.foot3, d.foot4);
         } else {
             if (nsr.nextFloat() < 0.25f) {
                 mFootType = 2;
-                tint(0xFFFFFFFF, D.foot1, D.foot3);
-            } else if (nsr.nextFloat() < 0.25f) {
-                mFootType = 3; // maybe -2 would be better? meh.
-                tint(0xFFFFFFFF, D.foot2, D.foot4);
+                tint(0xFFFFFFFF, d.foot1, d.foot3);
             } else if (nsr.nextFloat() < 0.1f) {
                 mFootType = 1;
-                tint(0xFFFFFFFF, (Drawable) choose(nsr, D.foot1, D.foot2, D.foot3, D.foot4));
+                tint(0xFFFFFFFF, (Drawable) choose(nsr, d.foot1, d.foot2, d.foot3, d.foot4));
             }
         }
 
-        tint(nsr.nextFloat() < 0.333f ? 0xFFFFFFFF : mBodyColor, D.tailCap);
+        tint(nsr.nextFloat() < 0.333f ? 0xFFFFFFFF : mBodyColor, d.tailCap);
 
         final int capColor = chooseP(nsr, isDark(mBodyColor) ? P_LIGHT_SPOT_COLORS : P_DARK_SPOT_COLORS);
-        tint(capColor, D.cap);
-        //tint(chooseP(nsr, isDark(bodyColor) ? P_LIGHT_SPOT_COLORS : P_DARK_SPOT_COLORS), D.nose);
+        tint(capColor, d.cap);
 
         final int collarColor = chooseP(nsr, P_COLLAR_COLORS);
-        tint(collarColor, D.collar);
+        tint(collarColor, d.collar);
         mBowTie = nsr.nextFloat() < 0.1f;
-        tint(mBowTie ? collarColor : 0, D.bowtie);
+        tint(mBowTie ? collarColor : 0, d.bowtie);
     }
 
     public static Cat create(Context context) {
@@ -253,11 +249,11 @@ public class Cat extends Drawable {
     }
 
     private void slowDraw(Canvas canvas, int x, int y, int w, int h) {
-        for (int i = 0; i < D.drawingOrder.length; i++) {
-            final Drawable d = D.drawingOrder[i];
-            if (d != null) {
-                d.setBounds(x, y, x+w, y+h);
-                d.draw(canvas);
+        for (int i = 0; i < d.drawingOrder.length; i++) {
+            final Drawable drawable = this.d.drawingOrder[i];
+            if (drawable != null) {
+                drawable.setBounds(x, y, x+w, y+h);
+                drawable.draw(canvas);
             }
         }
 
@@ -276,10 +272,10 @@ public class Cat extends Drawable {
         final Resources res = context.getResources();
         final int w = 2*res.getDimensionPixelSize(android.R.dimen.notification_large_icon_width);
         final int h = 2*res.getDimensionPixelSize(android.R.dimen.notification_large_icon_height);
-        return createBitmapIcon(context, w, h);
+        return createBitmapIcon(w, h);
     }
 
-    public Bitmap createBitmapIcon(Context context, int w, int h) {
+    public Bitmap createBitmapIcon(int w, int h) {
         Bitmap result = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
         final Canvas canvas = new Canvas(result);
         final Paint pt = new Paint();
@@ -289,7 +285,7 @@ public class Cat extends Drawable {
                 ? (hsv[2] - 0.25f)
                 : (hsv[2] + 0.25f);
         pt.setColor(Color.HSVToColor(hsv));
-        float r = w/2;
+        float r = (float) w /2;
         canvas.drawCircle(r, r, r, pt);
         int m = w/10;
 
@@ -297,7 +293,7 @@ public class Cat extends Drawable {
         return result;
     }
 
-    public Icon createIcon(Context context, int w, int h) {
+    public Icon createIcon(int w, int h) {
         Bitmap result = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
         final Canvas canvas = new Canvas(result);
         final Paint pt = new Paint();
@@ -307,7 +303,7 @@ public class Cat extends Drawable {
                 ? (hsv[2] - 0.25f)
                 : (hsv[2] + 0.25f);
         pt.setColor(Color.HSVToColor(hsv));
-        float r = w/2;
+        float r = (float) w /2;
         canvas.drawCircle(r, r, r, pt);
         int m = w/10;
 
@@ -318,12 +314,12 @@ public class Cat extends Drawable {
 
     @Override
     public void setAlpha(int i) {
-
+        // Unused Function
     }
 
     @Override
     public void setColorFilter(ColorFilter colorFilter) {
-
+        // Unused Function
     }
 
     @Override
@@ -368,35 +364,35 @@ public class Cat extends Drawable {
     }
 
     public static class CatParts {
-        public Drawable leftEar;
-        public Drawable rightEar;
-        public Drawable rightEarInside;
-        public Drawable leftEarInside;
-        public Drawable head;
-        public Drawable faceSpot;
-        public Drawable cap;
-        public Drawable mouth;
-        public Drawable body;
-        public Drawable foot1;
-        public Drawable leg1;
-        public Drawable foot2;
-        public Drawable leg2;
-        public Drawable foot3;
-        public Drawable leg3;
-        public Drawable foot4;
-        public Drawable leg4;
-        public Drawable tail;
-        public Drawable leg2Shadow;
-        public Drawable tailShadow;
-        public Drawable tailCap;
-        public Drawable belly;
-        public Drawable back;
-        public Drawable rightEye;
-        public Drawable leftEye;
-        public Drawable nose;
-        public Drawable bowtie;
-        public Drawable collar;
-        public Drawable[] drawingOrder;
+        private final Drawable leftEar;
+        private final Drawable rightEar;
+        private final Drawable rightEarInside;
+        private final Drawable leftEarInside;
+        private final Drawable head;
+        private final Drawable faceSpot;
+        private final Drawable cap;
+        private final Drawable mouth;
+        private final Drawable body;
+        private final Drawable foot1;
+        private final Drawable leg1;
+        private final Drawable foot2;
+        private final Drawable leg2;
+        private final Drawable foot3;
+        private final Drawable leg3;
+        private final Drawable foot4;
+        private final Drawable leg4;
+        private final Drawable tail;
+        private final Drawable leg2Shadow;
+        private final Drawable tailShadow;
+        private final Drawable tailCap;
+        private final Drawable belly;
+        private final Drawable back;
+        private final Drawable rightEye;
+        private final Drawable leftEye;
+        private final Drawable nose;
+        private final Drawable bowtie;
+        private final Drawable collar;
+        private final Drawable[] drawingOrder;
 
         public CatParts(Context context) {
             body = context.getDrawable(R.drawable.nougat_body);

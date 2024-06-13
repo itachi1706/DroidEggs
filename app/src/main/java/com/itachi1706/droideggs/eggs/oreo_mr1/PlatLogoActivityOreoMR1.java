@@ -23,7 +23,6 @@ import android.content.res.ColorStateList;
 import android.graphics.Outline;
 import android.graphics.drawable.RippleDrawable;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
@@ -35,6 +34,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
 import com.itachi1706.droideggs.eggs.oreo.easter_egg.octo.Ocquarium;
 import com.itachi1706.droideggs.R;

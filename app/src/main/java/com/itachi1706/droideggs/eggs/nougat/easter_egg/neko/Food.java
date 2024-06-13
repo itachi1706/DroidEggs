@@ -19,7 +19,8 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Icon;
 import android.os.Build;
-import android.preference.PreferenceManager;
+
+import androidx.preference.PreferenceManager;
 
 import com.itachi1706.droideggs.R;
 

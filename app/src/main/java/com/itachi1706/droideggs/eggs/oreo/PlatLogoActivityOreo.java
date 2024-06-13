@@ -35,7 +35,7 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.itachi1706.droideggs.eggs.oreo.EasterEgg.octo.Ocquarium;
+import com.itachi1706.droideggs.eggs.oreo.easter_egg.octo.Ocquarium;
 import com.itachi1706.droideggs.R;
 
 /**

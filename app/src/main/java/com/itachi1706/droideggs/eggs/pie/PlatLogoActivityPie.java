@@ -39,7 +39,7 @@ import android.widget.FrameLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.itachi1706.droideggs.eggs.pie.EasterEgg.paint.PaintActivity;
+import com.itachi1706.droideggs.eggs.pie.easter_egg.paint.PaintActivity;
 
 import org.json.JSONObject;
 

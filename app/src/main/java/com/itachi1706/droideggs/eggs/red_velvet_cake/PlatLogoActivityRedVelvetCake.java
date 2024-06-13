@@ -50,7 +50,7 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.itachi1706.droideggs.R;
-import com.itachi1706.droideggs.eggs.red_velvet_cake.EasterEgg.neko.NekoActivationActivity;
+import com.itachi1706.droideggs.eggs.red_velvet_cake.easter_egg.neko.NekoActivationActivity;
 import com.itachi1706.helperlib.helpers.PrefHelper;
 
 import org.json.JSONObject;

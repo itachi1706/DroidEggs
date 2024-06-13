@@ -37,7 +37,7 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.itachi1706.droideggs.eggs.nougat.EasterEgg.neko.NekoActivationActivity;
+import com.itachi1706.droideggs.eggs.nougat.easter_egg.neko.NekoActivationActivity;
 import com.itachi1706.droideggs.R;
 
 /**

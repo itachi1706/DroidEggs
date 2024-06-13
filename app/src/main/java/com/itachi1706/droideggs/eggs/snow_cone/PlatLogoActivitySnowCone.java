@@ -32,7 +32,7 @@ import android.widget.ImageView;
 import com.itachi1706.droideggs.PlatLogoCommon;
 import com.itachi1706.droideggs.R;
 import com.itachi1706.droideggs.eggs.snow_cone.easter_egg.widget.WidgetActivationActivity;
-import com.itachi1706.droideggs.forwardPortedCode.AnalogClock;
+import com.itachi1706.droideggs.forward_ported_code.AnalogClock;
 
 import java.time.Clock;
 import java.time.Instant;

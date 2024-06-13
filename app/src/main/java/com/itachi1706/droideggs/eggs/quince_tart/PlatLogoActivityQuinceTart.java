@@ -46,7 +46,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.itachi1706.droideggs.PlatLogoCommon;
-import com.itachi1706.droideggs.eggs.quince_tart.EasterEgg.quares.QuaresActivity;
+import com.itachi1706.droideggs.eggs.quince_tart.easter_egg.quares.QuaresActivity;
 import com.itachi1706.droideggs.R;
 
 /**

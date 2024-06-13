@@ -117,32 +117,32 @@
             android:process=":ui"/>
         <!-- Long press the QS tile to get here -->
         <activity
-            android:name=".eggs.red_velvet_cake.EasterEgg.neko.NekoLand"
+            android:name=".eggs.red_velvet_cake.easter_egg.neko.NekoLand"
             android:theme="@style/AppTheme.NoActionBar"
             android:exported="true">
         </activity>
 
         <!-- This is where the magic happens -->
         <service
-            android:name=".eggs.red_velvet_cake.EasterEgg.neko.NekoService"
+            android:name=".eggs.red_velvet_cake.easter_egg.neko.NekoService"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
         <!-- Used to show over lock screen -->
         <activity
-            android:name=".eggs.red_velvet_cake.EasterEgg.neko.NekoLockedActivity"
+            android:name=".eggs.red_velvet_cake.easter_egg.neko.NekoLockedActivity"
             android:excludeFromRecents="true"
             android:showOnLockScreen="true"
             android:theme="@style/AppTheme.Dialog.NoActionBar" />
 
         <!-- Used to enable easter egg -->
         <activity
-            android:name=".eggs.red_velvet_cake.EasterEgg.neko.NekoActivationActivity"
+            android:name=".eggs.red_velvet_cake.easter_egg.neko.NekoActivationActivity"
             android:excludeFromRecents="true"
             android:theme="@style/AppTheme.NoDisplay" />
 
-        <service android:name=".eggs.red_velvet_cake.EasterEgg.neko.NekoControlsService"
+        <service android:name=".eggs.red_velvet_cake.easter_egg.neko.NekoControlsService"
             android:permission="android.permission.BIND_CONTROLS"
             android:label="@string/r_egg_name"
             android:icon="@drawable/r_ic_fullcat_icon"
@@ -160,7 +160,7 @@
             android:icon="@drawable/q_platlogo"
             android:process=":ui" />
 
-        <activity android:name=".eggs.quince_tart.EasterEgg.quares.QuaresActivity"
+        <activity android:name=".eggs.quince_tart.easter_egg.quares.QuaresActivity"
             android:icon="@drawable/q_icon"
             android:label="@string/q_egg_name"
             android:theme="@style/AppTheme.QEgg.QuaresTheme" />
@@ -171,7 +171,7 @@
             android:process=":ui"
             android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"/>
         <activity
-            android:name=".eggs.pie.EasterEgg.paint.PaintActivity"
+            android:name=".eggs.pie.easter_egg.paint.PaintActivity"
             android:configChanges="orientation|keyboardHidden|screenSize|uiMode"
             android:label="@string/p_egg_name"
             android:theme="@style/AppTheme.PieEgg" />
@@ -190,7 +190,7 @@
             android:process=":ui"
             android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen" />
         <activity
-            android:name=".eggs.oreo.EasterEgg.octo.Ocquarium"
+            android:name=".eggs.oreo.easter_egg.octo.Ocquarium"
             android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen" />
 
         <!-- Nougat Egg Activities -->
@@ -202,7 +202,7 @@
 
         <!-- Long press the QS tile to get here -->
         <activity
-            android:name=".eggs.nougat.EasterEgg.neko.NekoLand"
+            android:name=".eggs.nougat.easter_egg.neko.NekoLand"
             android:theme="@style/AppTheme.NoActionBar"
             android:exported="true">
             <intent-filter>
@@ -212,27 +212,27 @@
 
         <!-- This is where the magic happens -->
         <service
-            android:name=".eggs.nougat.EasterEgg.neko.NekoService"
+            android:name=".eggs.nougat.easter_egg.neko.NekoService"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
         <!-- Used to show over lock screen -->
         <activity
-            android:name=".eggs.nougat.EasterEgg.neko.NekoLockedActivity"
+            android:name=".eggs.nougat.easter_egg.neko.NekoLockedActivity"
             android:excludeFromRecents="true"
             android:showOnLockScreen="true"
             android:theme="@style/AppTheme.Dialog.NoActionBar" />
 
         <!-- Used to enable easter egg -->
         <activity
-            android:name=".eggs.nougat.EasterEgg.neko.NekoActivationActivity"
+            android:name=".eggs.nougat.easter_egg.neko.NekoActivationActivity"
             android:excludeFromRecents="true"
             android:theme="@style/AppTheme.NoDisplay" />
 
         <!-- The quick settings tile, disabled by default -->
         <service
-            android:name=".eggs.nougat.EasterEgg.neko.NekoTile"
+            android:name=".eggs.nougat.easter_egg.neko.NekoTile"
             android:enabled="false"
             android:icon="@drawable/nougat_stat_icon"
             android:label="@string/nougat_default_tile_name"

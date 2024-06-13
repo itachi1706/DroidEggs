@@ -30,7 +30,7 @@ import androidx.preference.PreferenceManager;
 
 import com.itachi1706.droideggs.PlatLogoCommon;
 import com.itachi1706.droideggs.R;
-import com.itachi1706.droideggs.forwardPortedCode.AnalogClock;
+import com.itachi1706.droideggs.forward_ported_code.AnalogClock;
 
 import java.time.Clock;
 import java.time.Instant;

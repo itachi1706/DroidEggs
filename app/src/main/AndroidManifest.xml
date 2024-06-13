@@ -47,13 +47,13 @@
         <activity android:name=".CurrentEgg" />
 
         <!-- U (14) Egg Activities -->
-        <activity android:name=".upside_down_cake_egg.PlatLogoActivityUpsideDownCake"
+        <activity android:name=".eggs.upside_down_cake.PlatLogoActivityUpsideDownCake"
             android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
             android:icon="@drawable/u_platlogo"
             android:process=":ui" />
         <activity
-            android:name=".upside_down_cake_egg.easter_egg.landroid.MainActivity"
+            android:name=".eggs.upside_down_cake.easter_egg.landroid.MainActivity"
             android:exported="true"
             android:label="@string/u_egg_name"
             android:icon="@drawable/u_android14_patch_adaptive"
@@ -68,21 +68,21 @@
 
 
         <!-- T/Tiramisu (13) Egg Activities -->
-        <activity android:name=".tiramisu_egg.PlatLogoActivityTiramisu"
+        <activity android:name=".eggs.tiramisu.PlatLogoActivityTiramisu"
             android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
             android:icon="@drawable/tiramisu_platlogo"
             android:process=":ui" />
 
         <!-- S (12) Egg Activities -->
-        <activity android:name=".snow_cone_egg.PlatLogoActivitySnowCone"
+        <activity android:name=".eggs.snow_cone.PlatLogoActivitySnowCone"
             android:theme="@style/AppTheme.Wallpaper.NoActionBar"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
             android:icon="@drawable/s_platlogo"
             android:process=":ui" />
         <!-- List of all system theme colors on the device. -->
         <activity
-            android:name=".snow_cone_egg.easter_egg.widget.PaintChipsActivity"
+            android:name=".eggs.snow_cone.easter_egg.widget.PaintChipsActivity"
             android:theme="@android:style/Theme.Material.Wallpaper.NoTitleBar"
             android:configChanges="orientation|keyboardHidden|screenSize|uiMode"
             android:label="@string/s_egg_name"
@@ -91,7 +91,7 @@
         <!-- Homescreen widget also showing paint chips (may be affected by the exact position in
              the workspace) -->
         <receiver
-            android:name=".snow_cone_egg.easter_egg.widget.PaintChipsWidget"
+            android:name=".eggs.snow_cone.easter_egg.widget.PaintChipsWidget"
             android:label="@string/s_egg_name"
             android:exported="true"
             android:enabled="false">
@@ -104,45 +104,45 @@
                 android:resource="@xml/s_paint_chips_widget_info" />
         </receiver>
         <activity
-            android:name=".snow_cone_egg.easter_egg.widget.WidgetActivationActivity"
+            android:name=".eggs.snow_cone.easter_egg.widget.WidgetActivationActivity"
             android:excludeFromRecents="true"
             android:exported="true"
             android:theme="@android:style/Theme.NoDisplay" />
 
         <!-- R (11) Egg Activities -->
-        <activity android:name=".red_velvet_cake_egg.PlatLogoActivityRedVelvetCake"
+        <activity android:name=".eggs.red_velvet_cake.PlatLogoActivityRedVelvetCake"
             android:theme="@style/AppTheme"
             android:configChanges="orientation|keyboardHidden"
             android:icon="@drawable/r_platlogo"
             android:process=":ui"/>
         <!-- Long press the QS tile to get here -->
         <activity
-            android:name=".red_velvet_cake_egg.EasterEgg.neko.NekoLand"
+            android:name=".eggs.red_velvet_cake.EasterEgg.neko.NekoLand"
             android:theme="@style/AppTheme.NoActionBar"
             android:exported="true">
         </activity>
 
         <!-- This is where the magic happens -->
         <service
-            android:name=".red_velvet_cake_egg.EasterEgg.neko.NekoService"
+            android:name=".eggs.red_velvet_cake.EasterEgg.neko.NekoService"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
         <!-- Used to show over lock screen -->
         <activity
-            android:name=".red_velvet_cake_egg.EasterEgg.neko.NekoLockedActivity"
+            android:name=".eggs.red_velvet_cake.EasterEgg.neko.NekoLockedActivity"
             android:excludeFromRecents="true"
             android:showOnLockScreen="true"
             android:theme="@style/AppTheme.Dialog.NoActionBar" />
 
         <!-- Used to enable easter egg -->
         <activity
-            android:name=".red_velvet_cake_egg.EasterEgg.neko.NekoActivationActivity"
+            android:name=".eggs.red_velvet_cake.EasterEgg.neko.NekoActivationActivity"
             android:excludeFromRecents="true"
             android:theme="@style/AppTheme.NoDisplay" />
 
-        <service android:name=".red_velvet_cake_egg.EasterEgg.neko.NekoControlsService"
+        <service android:name=".eggs.red_velvet_cake.EasterEgg.neko.NekoControlsService"
             android:permission="android.permission.BIND_CONTROLS"
             android:label="@string/r_egg_name"
             android:icon="@drawable/r_ic_fullcat_icon"
@@ -154,55 +154,55 @@
         </service>
 
         <!-- Q (10) Egg Activities -->
-        <activity android:name=".quince_tart_egg.PlatLogoActivityQuinceTart"
+        <activity android:name=".eggs.quince_tart.PlatLogoActivityQuinceTart"
             android:theme="@style/AppTheme"
             android:configChanges="orientation|keyboardHidden"
             android:icon="@drawable/q_platlogo"
             android:process=":ui" />
 
-        <activity android:name=".quince_tart_egg.EasterEgg.quares.QuaresActivity"
+        <activity android:name=".eggs.quince_tart.EasterEgg.quares.QuaresActivity"
             android:icon="@drawable/q_icon"
             android:label="@string/q_egg_name"
             android:theme="@style/AppTheme.QEgg.QuaresTheme" />
 
         <!-- Pie Egg Activities -->
-        <activity android:name=".PieEgg.PlatLogoActivityPie"
+        <activity android:name=".eggs.pie.PlatLogoActivityPie"
             android:configChanges="orientation|keyboardHidden"
             android:process=":ui"
             android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"/>
         <activity
-            android:name=".PieEgg.EasterEgg.paint.PaintActivity"
+            android:name=".eggs.pie.EasterEgg.paint.PaintActivity"
             android:configChanges="orientation|keyboardHidden|screenSize|uiMode"
             android:label="@string/p_egg_name"
             android:theme="@style/AppTheme.PieEgg" />
 
         <!-- Oreo MR1 Egg Activities -->
         <activity
-            android:name=".OreoMR1Egg.PlatLogoActivityOreoMR1"
+            android:name=".eggs.oreo_mr1.PlatLogoActivityOreoMR1"
             android:configChanges="orientation|keyboardHidden"
             android:process=":ui"
             android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen" />
 
         <!-- Oreo Egg Activities -->
         <activity
-            android:name=".OreoEgg.PlatLogoActivityOreo"
+            android:name=".eggs.oreo.PlatLogoActivityOreo"
             android:configChanges="orientation|keyboardHidden"
             android:process=":ui"
             android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen" />
         <activity
-            android:name=".OreoEgg.EasterEgg.octo.Ocquarium"
+            android:name=".eggs.oreo.EasterEgg.octo.Ocquarium"
             android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen" />
 
         <!-- Nougat Egg Activities -->
         <activity
-            android:name=".NougatEgg.PlatLogoActivityNougat"
+            android:name=".eggs.nougat.PlatLogoActivityNougat"
             android:configChanges="orientation|keyboardHidden"
             android:process=":ui"
             android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen" />
 
         <!-- Long press the QS tile to get here -->
         <activity
-            android:name=".NougatEgg.EasterEgg.neko.NekoLand"
+            android:name=".eggs.nougat.EasterEgg.neko.NekoLand"
             android:theme="@style/AppTheme.NoActionBar"
             android:exported="true">
             <intent-filter>
@@ -212,27 +212,27 @@
 
         <!-- This is where the magic happens -->
         <service
-            android:name=".NougatEgg.EasterEgg.neko.NekoService"
+            android:name=".eggs.nougat.EasterEgg.neko.NekoService"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
         <!-- Used to show over lock screen -->
         <activity
-            android:name=".NougatEgg.EasterEgg.neko.NekoLockedActivity"
+            android:name=".eggs.nougat.EasterEgg.neko.NekoLockedActivity"
             android:excludeFromRecents="true"
             android:showOnLockScreen="true"
             android:theme="@style/AppTheme.Dialog.NoActionBar" />
 
         <!-- Used to enable easter egg -->
         <activity
-            android:name=".NougatEgg.EasterEgg.neko.NekoActivationActivity"
+            android:name=".eggs.nougat.EasterEgg.neko.NekoActivationActivity"
             android:excludeFromRecents="true"
             android:theme="@style/AppTheme.NoDisplay" />
 
         <!-- The quick settings tile, disabled by default -->
         <service
-            android:name=".NougatEgg.EasterEgg.neko.NekoTile"
+            android:name=".eggs.nougat.EasterEgg.neko.NekoTile"
             android:enabled="false"
             android:icon="@drawable/nougat_stat_icon"
             android:label="@string/nougat_default_tile_name"
@@ -245,19 +245,19 @@
 
         <!-- NDP Egg Activities -->
         <activity
-            android:name=".NDPEgg.PlatLogoActivityNDP"
+            android:name=".eggs.ndp.PlatLogoActivityNDP"
             android:configChanges="orientation|keyboardHidden"
             android:process=":ui"
             android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"/>
 
         <!-- Marshmallow Egg Activities -->
         <activity
-            android:name=".MarshmallowEgg.PlatLogoActivityMARSHMALLOW"
+            android:name=".eggs.marshmallow.PlatLogoActivityMARSHMALLOW"
             android:configChanges="orientation|keyboardHidden"
             android:process=":ui"
             android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"/>
         <activity
-            android:name=".MarshmallowEgg.MLandActivity"
+            android:name=".eggs.marshmallow.MLandActivity"
             android:excludeFromRecents="true"
             android:exported="true"
             android:hardwareAccelerated="true"
@@ -270,7 +270,7 @@
 
         <!-- MNC Egg Activity -->
         <activity
-            android:name=".MNCEgg.PlatLogoActivityMNC"
+            android:name=".eggs.mnc.PlatLogoActivityMNC"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_activity_plat_logo_activity_mnc"
             android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
@@ -278,7 +278,7 @@
 
         <!-- Lollipop Easter Egg Activities -->
         <activity
-            android:name=".LollipopEgg.LLandActivity"
+            android:name=".eggs.lollipop.LLandActivity"
             android:excludeFromRecents="true"
             android:hardwareAccelerated="true"
             android:label="@string/title_activity_lland"
@@ -288,7 +288,7 @@
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="InnerclassSeparator"/>
         <activity
-            android:name=".LollipopEgg.PlatLogoActivityLOLLIPOP"
+            android:name=".eggs.lollipop.PlatLogoActivityLOLLIPOP"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_activity_plat_logo_activity_lollipop"
             android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
@@ -296,12 +296,12 @@
 
         <!-- KitKat Egg Activity -->
         <activity
-            android:name=".KitKatEgg.PlatLogoActivityKITKAT"
+            android:name=".eggs.kitkat.PlatLogoActivityKITKAT"
             android:label="@string/title_activity_plat_logo_activity_kitkat"
             android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
             tools:ignore="InnerclassSeparator"/>
         <activity
-            android:name=".KitKatEgg.DessertCase"
+            android:name=".eggs.kitkat.DessertCase"
             android:exported="true"
             android:hardwareAccelerated="true"
             android:label="@string/title_activity_dessert_case"
@@ -312,7 +312,7 @@
             tools:ignore="InnerclassSeparator"/>
         <!-- a gallery of delicious treats -->
         <service
-            android:name=".KitKatEgg.DessertCaseDream"
+            android:name=".eggs.kitkat.DessertCaseDream"
             android:enabled="false"
             android:excludeFromRecents="true"
             android:exported="true"
@@ -328,12 +328,12 @@
 
         <!-- Jelly Bean Egg Activities -->
         <activity
-            android:name=".JellyBeanEgg.PlatLogoActivityJELLYBEAN"
+            android:name=".eggs.jelly_bean.PlatLogoActivityJELLYBEAN"
             android:label="@string/title_activity_plat_logo_activity_jellybean"
             android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
             tools:ignore="InnerclassSeparator"/>
         <activity
-            android:name=".JellyBeanEgg.BeanBag"
+            android:name=".eggs.jelly_bean.BeanBag"
             android:excludeFromRecents="true"
             android:exported="true"
             android:hardwareAccelerated="true"
@@ -346,12 +346,12 @@
 
         <!-- Ice Cream Sandwich Egg Activities -->
         <activity
-            android:name=".IceCreamSandwichEgg.PlatLogoActivityICS"
+            android:name=".eggs.ice_cream_sandwich.PlatLogoActivityICS"
             android:label="@string/title_activity_plat_logo_activity_ics"
             android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
             tools:ignore="InnerclassSeparator"/>
         <activity
-            android:name=".IceCreamSandwichEgg.Nyandroid"
+            android:name=".eggs.ice_cream_sandwich.Nyandroid"
             android:excludeFromRecents="true"
             android:hardwareAccelerated="true"
             android:icon="@drawable/ics_nyandroid04"
@@ -363,14 +363,14 @@
 
         <!-- Honeycomb Egg Activity -->
         <activity
-            android:name=".HoneycombEgg.PlatLogoActivityHONEYCOMB"
+            android:name=".eggs.honeycomb.PlatLogoActivityHONEYCOMB"
             android:label="@string/title_activity_plat_logo_activity_honeycomb"
             android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
             tools:ignore="InnerclassSeparator"/>
 
         <!-- Gingerbread Egg Activity -->
         <activity
-            android:name=".GingerbreadEgg.PlatLogoActivityGINGERBREAD"
+            android:name=".eggs.gingerbread.PlatLogoActivityGINGERBREAD"
             android:label="@string/title_activity_plat_logo_activity_gingerbread"
             android:theme="@style/AppTheme.NoActionBar.FullScreen"
             tools:ignore="InnerclassSeparator"/>

@@ -11,7 +11,7 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
-<com.itachi1706.droideggs.PieEgg.EasterEgg.paint.CutoutAvoidingToolbar
+<com.itachi1706.droideggs.eggs.pie.EasterEgg.paint.CutoutAvoidingToolbar
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -94,4 +94,4 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         />
-</com.itachi1706.droideggs.PieEgg.EasterEgg.paint.CutoutAvoidingToolbar>
+</com.itachi1706.droideggs.eggs.pie.EasterEgg.paint.CutoutAvoidingToolbar>

@@ -55,14 +55,12 @@ public class PlatLogoActivityICS extends AppCompatActivity {
                 mContent.setPressed(true);
                 mHandler.removeCallbacks(mSuperLongPress);
                 mCount = 0;
-                mHandler.postDelayed(mSuperLongPress, 2* ViewConfiguration.getLongPressTimeout());
-            } else if (action == MotionEvent.ACTION_UP) {
-                if (mContent.isPressed()) {
+                mHandler.postDelayed(mSuperLongPress, 2L * ViewConfiguration.getLongPressTimeout());
+            } else if (action == MotionEvent.ACTION_UP && mContent.isPressed()) {
                     mContent.setPressed(false);
                     mHandler.removeCallbacks(mSuperLongPress);
                     mToast.show();
                 }
-            }
             return true;
         });
 
@@ -74,7 +72,7 @@ public class PlatLogoActivityICS extends AppCompatActivity {
     Runnable mSuperLongPress = new Runnable() {
         public void run() {
             mCount++;
-            mZzz.vibrate(50 * mCount);
+            mZzz.vibrate(50L * mCount);
             final float scale = 1f + 0.25f * mCount * mCount;
             mContent.setScaleX(scale);
             mContent.setScaleY(scale);

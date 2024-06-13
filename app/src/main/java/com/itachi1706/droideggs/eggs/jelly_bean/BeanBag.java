@@ -17,7 +17,6 @@
 package com.itachi1706.droideggs.eggs.jelly_bean;
 
 import android.animation.TimeAnimator;
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -25,7 +24,6 @@ import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -34,14 +32,15 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.itachi1706.droideggs.R;
 
 import java.util.Random;
 
-@TargetApi(16)
 public class BeanBag extends AppCompatActivity {
 
-    final static boolean DEBUG = false;
+    static final boolean DEBUG = false;
 
     public static class Board extends FrameLayout
     {
@@ -68,7 +67,7 @@ public class BeanBag extends AppCompatActivity {
         }
 
         static float clamp(float x, float a, float b) {
-            return ((x<a)?a:((x>b)?b:x));
+            return ((x<a)?a:(Math.min(x, b)));
         }
 
         static float dot(float x1, float y1, float x2, float y2) {
@@ -85,15 +84,15 @@ public class BeanBag extends AppCompatActivity {
             return array[sRNG.nextInt(array.length)];
         }
 
-        static int NUM_BEANS = 40;
-        static float MIN_SCALE = 0.2f;
-        static float MAX_SCALE = 1f;
+        static int numBeans = 40;
+        static float minScale = 0.2f;
+        static float maxScale = 1f;
 
-        static float LUCKY = 0.001f;
+        static float lucky = 0.001f;
 
-        static int MAX_RADIUS = (int)(576 * MAX_SCALE);
+        static int maxRadius = (int)(576 * maxScale);
 
-        static int BEANS[] = {
+        static int[] beans = {
                 R.drawable.jb_redbean0,
                 R.drawable.jb_redbean0,
                 R.drawable.jb_redbean0,
@@ -105,7 +104,7 @@ public class BeanBag extends AppCompatActivity {
                 R.drawable.jb_redbeandroid,
         };
 
-        static int COLORS[] = {
+        static int[] colors = {
                 0xFF00CC00,
                 0xFFCC0000,
                 0xFF0000CC,
@@ -125,34 +124,40 @@ public class BeanBag extends AppCompatActivity {
             public static final float VMAX = 1000.0f;
             public static final float VMIN = 100.0f;
 
-            public float x, y, a;
+            private float x;
+            private float y;
+            private float a;
 
-            public float va;
-            public float vx, vy;
+            private float va;
+            private float vx;
+            private float vy;
 
-            public float r;
+            private float r;
 
-            public float z;
+            private float z;
 
-            public int h,w;
+            private int h;
+            private int w;
 
-            public boolean grabbed;
-            public float grabx, graby;
-            public long grabtime;
-            private float grabx_offset, graby_offset;
+            private boolean grabbed;
+            private float grabx;
+            private float graby;
+            private float grabxOffset;
+            private float grabyOffset;
 
             public Bean(Context context, AttributeSet as) {
                 super(context, as);
             }
 
+            @Override
             public String toString() {
                 return String.format("<bean (%.1f, %.1f) (%d x %d)>",
                         getX(), getY(), getWidth(), getHeight());
             }
 
             private void pickBean() {
-                int beanId = pickInt(BEANS);
-                if (randfrange(0,1) <= LUCKY) {
+                int beanId = pickInt(beans);
+                if (randfrange(0,1) <= lucky) {
                     beanId = R.drawable.jb_jandycane;
                 }
                 BitmapDrawable bean = (BitmapDrawable) getContext().getResources().getDrawable(beanId);
@@ -166,21 +171,21 @@ public class BeanBag extends AppCompatActivity {
                 this.setImageDrawable(bean);
 
                 Paint pt = new Paint();
-                final int color = pickInt(COLORS);
-                ColorMatrix CM = new ColorMatrix();
-                float[] M = CM.getArray();
+                final int color = pickInt(colors);
+                ColorMatrix cm = new ColorMatrix();
+                float[] m = cm.getArray();
                 // we assume the color information is in the red channel
-                /* R */ M[0]  = (float)((color & 0x00FF0000) >> 16) / 0xFF;
-                /* G */ M[5]  = (float)((color & 0x0000FF00) >> 8)  / 0xFF;
-                /* B */ M[10] = (float)((color & 0x000000FF))       / 0xFF;
-                pt.setColorFilter(new ColorMatrixColorFilter(M));
+                /* R */ m[0]  = (float)((color & 0x00FF0000) >> 16) / 0xFF;
+                /* G */ m[5]  = (float)((color & 0x0000FF00) >> 8)  / 0xFF;
+                /* B */ m[10] = (float)(color & 0x000000FF)       / 0xFF;
+                pt.setColorFilter(new ColorMatrixColorFilter(m));
                 setLayerType(View.LAYER_TYPE_HARDWARE, (beanId == R.drawable.jb_jandycane) ? null : pt);
             }
 
             public void reset() {
                 pickBean();
 
-                final float scale = lerp(MIN_SCALE,MAX_SCALE,z);
+                final float scale = lerp(minScale, maxScale,z);
                 setScaleX(scale); setScaleY(scale);
 
                 r = 0.3f*Math.max(h,w)*scale;
@@ -192,7 +197,6 @@ public class BeanBag extends AppCompatActivity {
                 vy = randfrange(-40,40) * z;
                 final float boardh = boardHeight;
                 final float boardw = boardWidth;
-                //android.util.Log.d("BeanBag", "reset: w="+w+" h="+h);
                 if (flip()) {
                     x=(vx < 0 ? boardw+2*r : -r*4f);
                     y=(randfrange(0, boardh-3*r)*0.5f + ((vy < 0)?boardh*0.5f:0));
@@ -204,10 +208,9 @@ public class BeanBag extends AppCompatActivity {
 
             public void update(float dt) {
                 if (grabbed) {
-//                    final float interval = (SystemClock.uptimeMillis() - grabtime) / 1000f;
                     vx = (vx * 0.75f) + ((grabx - x) / dt) * 0.25f;
                     x = grabx;
-                    vy = (vy * 0.75f) + ((graby - y) / dt) * 0.25f;;
+                    vy = (vy * 0.75f) + ((graby - y) / dt) * 0.25f;
                     y = graby;
                 } else {
                     x = (x + vx * dt);
@@ -227,20 +230,19 @@ public class BeanBag extends AppCompatActivity {
                 switch (e.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         grabbed = true;
-                        grabx_offset = e.getRawX() - x;
-                        graby_offset = e.getRawY() - y;
+                        grabxOffset = e.getRawX() - x;
+                        grabyOffset = e.getRawY() - y;
                         va = 0;
                         // fall
                     case MotionEvent.ACTION_MOVE:
-                        grabx = e.getRawX() - grabx_offset;
-                        graby = e.getRawY() - graby_offset;
-                        grabtime = e.getEventTime();
+                        grabx = e.getRawX() - grabxOffset;
+                        graby = e.getRawY() - grabyOffset;
                         break;
                     case MotionEvent.ACTION_CANCEL:
                     case MotionEvent.ACTION_UP:
                         grabbed = false;
-                        float a = randsign() * clamp(mag(vx, vy) * 0.33f, 0, 1080f);
-                        va = randfrange(a*0.5f, a);
+                        float act = randsign() * clamp(mag(vx, vy) * 0.33f, 0, 1080f);
+                        va = randfrange(act*0.5f, act);
                         break;
                 }
                 return true;
@@ -260,17 +262,16 @@ public class BeanBag extends AppCompatActivity {
         }
 
         private void reset() {
-//            android.util.Log.d("Nyandroid", "board reset");
             removeAllViews();
 
             final ViewGroup.LayoutParams wrap = new ViewGroup.LayoutParams(
                     ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT);
 
-            for(int i=0; i<NUM_BEANS; i++) {
+            for(int i = 0; i< numBeans; i++) {
                 Bean nv = new Bean(getContext(), null);
                 addView(nv, wrap);
-                nv.z = ((float)i/NUM_BEANS);
+                nv.z = ((float)i/ numBeans);
                 nv.z *= nv.z;
                 nv.reset();
                 nv.x = (randfrange(0, boardWidth));
@@ -301,17 +302,16 @@ public class BeanBag extends AppCompatActivity {
                             View v2 = getChildAt(j);
                             if (!(v2 instanceof Bean)) continue;
                             Bean nv2 = (Bean) v2;
-                            final float overlap = nv.overlap(nv2);
                         }
 
                         nv.setRotation(nv.a);
                         nv.setX(nv.x-nv.getPivotX());
                         nv.setY(nv.y-nv.getPivotY());
 
-                        if (   nv.x < - MAX_RADIUS
-                                || nv.x > boardWidth + MAX_RADIUS
-                                || nv.y < -MAX_RADIUS
-                                || nv.y > boardHeight + MAX_RADIUS)
+                        if (   nv.x < -maxRadius
+                                || nv.x > boardWidth + maxRadius
+                                || nv.y < -maxRadius
+                                || nv.y > boardHeight + maxRadius)
                         {
                             nv.reset();
                         }
@@ -327,7 +327,6 @@ public class BeanBag extends AppCompatActivity {
             super.onSizeChanged(w,h,oldw,oldh);
             boardWidth = w;
             boardHeight = h;
-//            android.util.Log.d("Nyandroid", "resized: " + w + "x" + h);
         }
 
         public void startAnimation() {
@@ -360,7 +359,6 @@ public class BeanBag extends AppCompatActivity {
         @Override
         public void onDraw(Canvas c) {
             if (DEBUG) {
-                //android.util.Log.d("BeanBag", "onDraw");
                 Paint pt = new Paint();
                 pt.setAntiAlias(true);
                 pt.setStyle(Paint.Style.STROKE);

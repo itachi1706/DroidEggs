@@ -17,18 +17,21 @@
 package com.itachi1706.droideggs.eggs.ice_cream_sandwich;
 
 import android.animation.TimeAnimator;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
-import androidx.appcompat.app.AppCompatActivity;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowInsets;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
 
 import com.itachi1706.droideggs.R;
 
@@ -36,7 +39,7 @@ import java.util.Random;
 
 public class Nyandroid extends AppCompatActivity {
 
-    final static boolean DEBUG = false;
+    static final boolean DEBUG = false;
 
     public static class Board extends FrameLayout
     {
@@ -62,7 +65,7 @@ public class Nyandroid extends AppCompatActivity {
             return array[sRNG.nextInt(array.length)];
         }
 
-        public class FlyingCat extends ImageView {
+        public class FlyingCat extends AppCompatImageView {
             public static final float VMAX = 1000.0f;
             public static final float VMIN = 100.0f;
 
@@ -194,10 +197,15 @@ public class Nyandroid extends AppCompatActivity {
     public void onStart() {
         super.onStart();
 
-        getWindow().addFlags(
-                WindowManager.LayoutParams.FLAG_ALLOW_LOCK_WHILE_SCREEN_ON
-                        | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
-        );
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
+            setShowWhenLocked(true);
+            setTurnScreenOn(true);
+        } else {
+            getWindow().addFlags(
+                    WindowManager.LayoutParams.FLAG_ALLOW_LOCK_WHILE_SCREEN_ON
+                            | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
+            );
+        }
     }
 
     @Override
@@ -207,11 +215,20 @@ public class Nyandroid extends AppCompatActivity {
         mBoard = new Board(this, null);
         setContentView(mBoard);
 
-        mBoard.setOnSystemUiVisibilityChangeListener(vis -> {
-            if (0 == (vis & View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)) {
-                Nyandroid.this.finish();
-            }
-        });
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+            mBoard.setOnApplyWindowInsetsListener((v, insets) -> {
+                if (!insets.isVisible(WindowInsets.Type.navigationBars())) {
+                    Nyandroid.this.finish();
+                }
+                return insets;
+            });
+        } else {
+            mBoard.setOnSystemUiVisibilityChangeListener(vis -> {
+                if (0 == (vis & View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)) {
+                    Nyandroid.this.finish();
+                }
+            });
+        }
 
         startNyan();
     }

@@ -28,10 +28,8 @@ android {
     kotlinOptions {
         jvmTarget = '11'
     }
-    packagingOptions {
-        resources {
-            excludes += ['META-INF/DEPENDENCIES', 'META-INF/NOTICE', 'META-INF/LICENSE']
-        }
+    packaging {
+        resources.excludes += ['META-INF/DEPENDENCIES', 'META-INF/NOTICE', 'META-INF/LICENSE*']
     }
     buildTypes {
         release {

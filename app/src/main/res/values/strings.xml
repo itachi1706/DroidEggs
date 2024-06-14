@@ -50,7 +50,7 @@
     <string name="share_text">Share Text</string>
     <string name="cat_icon">Cat Icon</string>
     <string name="view_latest_egg_resource">Click to view easter egg for your current version of Android</string>
-    <string name="required_android_version_sdk_sdkint_template">Required: Android %VERSION% (SDK %SDKINT%)</string>
+    <string name="required_android_version_sdk_sdkint_template" formatted="false">Required: Android %VERSION% (SDK %SDKINT%)</string>
     <string name="android_range_template">Android %RANGE%</string>
     <string name="android_version_template">%ANDROID VERSION%</string>
     <string name="add_player">Add Player</string>

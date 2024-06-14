@@ -65,6 +65,7 @@ public class NekoLand extends Activity implements PrefState.PrefsListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.r_neko_activity);
+        Log.d("NekoLand", "onCreate");
         final ActionBar actionBar = getActionBar();
         if (actionBar != null) {
             actionBar.setLogo(Cat.create(this));

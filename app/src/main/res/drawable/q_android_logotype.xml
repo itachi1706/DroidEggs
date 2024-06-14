@@ -11,10 +11,12 @@ Copyright (C) 2015 The Android Open Source Project
     limitations under the License.
 -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:width="290dp"
     android:height="64dp"
     android:viewportWidth="290.0"
-    android:viewportHeight="64.0">
+    android:viewportHeight="64.0"
+    tools:ignore="VectorRaster">
     <path
         android:fillColor="#FF000000"
         android:pathData="M21.81,28.91c-7.44,0,-12.45,5.85,-12.45,13.37c0,7.52,5.01,13.37,12.45,13.37s12.45,-5.85,12.45,-13.37   C34.26,34.76,29.24,28.91,21.81,28.91 M20.13,20.55c6.02,0,11.03,3.09,13.37,6.43v-5.6l9.19,0l0,41.78l-6.24,0   c-1.63,0,-2.95,-1.32,-2.95,-2.95v-2.65C31.17,60.91,26.15,64,20.14,64C8.69,64,0,54.23,0,42.28C0,30.33,8.69,20.55,20.13,20.55"/>

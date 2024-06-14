@@ -16,12 +16,10 @@
     android:layout_height="wrap_content"
     android:minHeight="?android:attr/listPreferredItemHeightSmall"
     android:paddingStart="?android:attr/listPreferredItemPaddingStart"
-    android:paddingLeft="16dp"
     android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
-    android:paddingRight="16dp"
     android:paddingTop="8dp"
     android:paddingBottom="8dp"
-    android:background="?attr/selectableItemBackgroundBorderless"
+    android:background="?android:attr/selectableItemBackgroundBorderless"
     android:gravity="center_horizontal"
     android:clipToPadding="false">
 
@@ -31,6 +29,7 @@
 
         <ImageView
             android:id="@android:id/icon"
+            android:contentDescription="@string/icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
@@ -63,7 +62,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:padding="4dp"
-                app:srcCompat="@drawable/ic_close"
+                app:srcCompat="@drawable/nougat_ic_close"
                 android:scaleType="fitCenter"
                 android:background="#40000000"/>
 

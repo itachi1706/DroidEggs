@@ -20,7 +20,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Click to view easter egg for your current version of Android"
+        android:text="@string/view_latest_egg_resource"
         android:id="@+id/btnCurrent"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
@@ -30,7 +30,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/lvEasterEggSelection"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_above="@+id/btnCurrent" />
 </RelativeLayout>

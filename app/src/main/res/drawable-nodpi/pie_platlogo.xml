@@ -12,11 +12,13 @@ Copyright (C) 2018 The Android Open Source Project
 -->
 <vector
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:name="vector"
     android:width="640dp"
     android:height="640dp"
     android:viewportWidth="64"
-    android:viewportHeight="64">
+    android:viewportHeight="64"
+    tools:ignore="VectorRaster">
     <path
         android:name="bg"
         android:pathData="M 27 43 L 32 43 C 38.075 43 43 38.075 43 32 C 43 25.925 38.075 21 32 21 C 25.925 21 21 25.925 21 32 L 21 64"

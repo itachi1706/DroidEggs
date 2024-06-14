@@ -13,11 +13,9 @@
 -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
     <com.itachi1706.droideggs.eggs.marshmallow.MLand
         android:id="@+id/world"
         android:layout_width="match_parent"
@@ -27,6 +25,7 @@
         android:id="@+id/welcome"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:focusable="true"
         android:visibility="gone"
         android:background="#a0000000"
         android:clickable="true"
@@ -45,6 +44,7 @@
                 android:id="@+id/play_button_image"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
+                android:contentDescription="@string/start_game"
                 android:scaleType="fitCenter"
                 android:layout_gravity="center"
                 android:src="@drawable/marshmallow_play"
@@ -73,6 +73,7 @@
             android:id="@+id/player_minus_button"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:contentDescription="@string/remove_player"
             android:padding="10dp"
             android:scaleType="centerInside"
             android:onClick="playerMinus"
@@ -91,6 +92,7 @@
             android:id="@+id/player_plus_button"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:contentDescription="@string/add_player"
             android:padding="10dp"
             android:scaleType="centerInside"
             android:onClick="playerPlus"

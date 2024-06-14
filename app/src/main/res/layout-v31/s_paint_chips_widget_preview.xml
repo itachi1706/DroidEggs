@@ -18,7 +18,7 @@
         android:backgroundTint="@android:color/system_neutral1_500"
         android:fontFamily="?android:attr/textAppearanceLarge"
         android:gravity="center"
-        android:text="N1-500"
+        android:text="@string/sample_n_color"
         android:textColor="?android:attr/textColorPrimary" />
 
     <TextView
@@ -32,7 +32,7 @@
         android:backgroundTint="@android:color/system_neutral2_500"
         android:fontFamily="?android:attr/textAppearanceLarge"
         android:gravity="center"
-        android:text="N2-500"
+        android:text="@string/sample_n2_color"
         android:textColor="?android:attr/textColorPrimary" />
 
     <TextView
@@ -46,7 +46,7 @@
         android:backgroundTint="@android:color/system_accent1_500"
         android:fontFamily="?android:attr/textAppearanceLarge"
         android:gravity="center"
-        android:text="A1-500"
+        android:text="@string/sample_color"
         android:textColor="?android:attr/textColorPrimary" />
 
     <TextView
@@ -60,7 +60,7 @@
         android:backgroundTint="@android:color/system_accent2_500"
         android:fontFamily="?android:attr/textAppearanceLarge"
         android:gravity="center"
-        android:text="A2-500"
+        android:text="@string/sample_a2_color"
         android:textColor="?android:attr/textColorPrimary" />
 
     <TextView
@@ -74,6 +74,6 @@
         android:backgroundTint="@android:color/system_accent3_500"
         android:fontFamily="?android:attr/textAppearanceLarge"
         android:gravity="center"
-        android:text="A3-500"
+        android:text="@string/sample_a3_color"
         android:textColor="?android:attr/textColorPrimary" />
 </GridLayout>

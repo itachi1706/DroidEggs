@@ -22,7 +22,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/AppTheme"
-        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        android:usesCleartextTraffic="false"
+        android:supportsRtl="true"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning,UnusedAttribute">
         <meta-data
             android:name="firebase_crashlytics_collection_enabled"
             android:value="false" />
@@ -87,7 +89,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize|uiMode"
             android:label="@string/s_egg_name"
             android:enabled="false"
-            android:exported="true" />
+            android:exported="false" />
         <!-- Homescreen widget also showing paint chips (may be affected by the exact position in
              the workspace) -->
         <receiver
@@ -106,7 +108,7 @@
         <activity
             android:name=".eggs.snow_cone.easter_egg.widget.WidgetActivationActivity"
             android:excludeFromRecents="true"
-            android:exported="true"
+            android:exported="false"
             android:theme="@android:style/Theme.NoDisplay" />
 
         <!-- R (11) Egg Activities -->
@@ -119,7 +121,7 @@
         <activity
             android:name=".eggs.red_velvet_cake.easter_egg.neko.NekoLand"
             android:theme="@style/AppTheme.NoActionBar"
-            android:exported="true">
+            android:exported="false">
         </activity>
 
         <!-- This is where the magic happens -->
@@ -204,7 +206,7 @@
         <activity
             android:name=".eggs.nougat.easter_egg.neko.NekoLand"
             android:theme="@style/AppTheme.NoActionBar"
-            android:exported="true">
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE_PREFERENCES" />
             </intent-filter>
@@ -259,14 +261,15 @@
         <activity
             android:name=".eggs.marshmallow.MLandActivity"
             android:excludeFromRecents="true"
-            android:exported="true"
+            android:exported="false"
             android:hardwareAccelerated="true"
             android:icon="@drawable/marshmallow_icon"
             android:label="@string/title_activity_plat_logo_activity_marshmallow_mland"
             android:launchMode="singleInstance"
             android:process=":sweetsweetdesserts"
             android:screenOrientation="locked"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- MNC Egg Activity -->
         <activity
@@ -286,7 +289,7 @@
             android:process=":flappydroid"
             android:screenOrientation="locked"
             android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="InnerclassSeparator"/>
+            tools:ignore="DiscouragedApi,InnerclassSeparator"/>
         <activity
             android:name=".eggs.lollipop.PlatLogoActivityLOLLIPOP"
             android:configChanges="orientation|keyboardHidden"
@@ -302,20 +305,20 @@
             tools:ignore="InnerclassSeparator"/>
         <activity
             android:name=".eggs.kitkat.DessertCase"
-            android:exported="true"
+            android:exported="false"
             android:hardwareAccelerated="true"
             android:label="@string/title_activity_dessert_case"
             android:launchMode="singleInstance"
             android:process=":sweetsweetdesserts"
             android:screenOrientation="locked"
             android:theme="@style/AppTheme.NoActionBar.FullScreen"
-            tools:ignore="InnerclassSeparator"/>
+            tools:ignore="DiscouragedApi,InnerclassSeparator"/>
         <!-- a gallery of delicious treats -->
         <service
             android:name=".eggs.kitkat.DessertCaseDream"
             android:enabled="false"
             android:excludeFromRecents="true"
-            android:exported="true"
+            android:exported="false"
             android:label="@string/dessert_case"
             android:process=":sweetsweetdesserts"
             tools:ignore="ExportedService,InnerclassSeparator">
@@ -335,7 +338,7 @@
         <activity
             android:name=".eggs.jelly_bean.BeanBag"
             android:excludeFromRecents="true"
-            android:exported="true"
+            android:exported="false"
             android:hardwareAccelerated="true"
             android:icon="@drawable/jb_redbeandroid"
             android:label="@string/title_activity_bean_bag"

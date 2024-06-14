@@ -14,7 +14,7 @@
 
     <PreferenceCategory
         android:key="pref_cat_general"
-        android:title="App Setings" >
+        android:title="App Settings" >
 
         <SwitchPreferenceCompat
             android:key="check_version"

@@ -130,7 +130,7 @@ public class PlatLogoActivitySnowCone extends Activity {
         try {
             startActivity(new Intent(this, WidgetActivationActivity.class));
         } catch (ActivityNotFoundException ex) {
-            ex.printStackTrace();
+            Log.e(TAG, "Couldn't find activity. Error: " + ex.getMessage(), ex);
             Log.e(TAG, "No more eggs.");
         }
         //finish(); // no longer finish upon unlock; it's fun to frob the dial

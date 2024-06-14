@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="%ANDROID VERSION%"
+        android:text="@string/android_version_template"
         android:id="@+id/tvTitle"
         android:textColor="@color/white" />
 
@@ -28,20 +28,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Android %RANGE%"
+        android:text="@string/android_range_template"
         android:id="@+id/tvRange"
         android:layout_below="@+id/tvTitle"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Required: Android %VERSION% (SDK %SDKINT%)"
+        android:text="@string/required_android_version_sdk_sdkint_template"
         android:id="@+id/tvRequired"
         android:layout_below="@+id/tvRange"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
 </RelativeLayout>

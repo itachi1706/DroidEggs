@@ -49,4 +49,25 @@
     <string name="close_button">Close Button</string>
     <string name="share_text">Share Text</string>
     <string name="cat_icon">Cat Icon</string>
+    <string name="view_latest_egg_resource">Click to view easter egg for your current version of Android</string>
+    <string name="required_android_version_sdk_sdkint_template">Required: Android %VERSION% (SDK %SDKINT%)</string>
+    <string name="android_range_template">Android %RANGE%</string>
+    <string name="android_version_template">%ANDROID VERSION%</string>
+    <string name="add_player">Add Player</string>
+    <string name="remove_player">Remove Player</string>
+    <string name="start_game">Start Game</string>
+    <string name="icon">This is a Icon</string>
+    <string name="brush_button">This is a Brush action</string>
+    <string name="color_button">This is a Color action</string>
+    <string name="sample_button">This is a Sample action</string>
+    <string name="zen_button">This is a Zen action</string>
+    <string name="clear_button">This is a Clear action</string>
+    <string name="android_logo">Android Logo</string>
+    <string name="zero_text">0 text</string>
+    <string name="one_text">1 text</string>
+    <string name="sample_color">A1-500</string>
+    <string name="sample_n_color">N1-500</string>
+    <string name="sample_n2_color">N2-500</string>
+    <string name="sample_a2_color">A2-500</string>
+    <string name="sample_a3_color">A3-500</string>
 </resources>

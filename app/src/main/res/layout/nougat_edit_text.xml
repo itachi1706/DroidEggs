@@ -18,6 +18,8 @@
     android:paddingEnd="20dp">
     <EditText
         android:id="@android:id/edit"
+        android:labelFor="@android:id/edit"
+        android:inputType="text"
         android:maxLines="1"
         android:textColor="@color/white"
         android:layout_width="match_parent"

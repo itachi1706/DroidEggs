@@ -11,7 +11,7 @@ Copyright (C) 2016 The Android Open Source Project
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
-<resources xmlns:android="http://schemas.android.com/apk/res/android">
+<resources>
     <string name="nougat_app_name" translatable="false">Android Easter Egg</string>
     <string name="nougat_notification_name" translatable="false">Android Neko</string>
     <string name="notification_channel_name" translatable="false">New cats</string>

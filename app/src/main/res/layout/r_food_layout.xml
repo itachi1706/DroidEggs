@@ -25,6 +25,7 @@
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:id="@+id/icon"
+        android:contentDescription="@string/icon"
         app:tint="?attr/colorControlNormal" />
     <TextView android:layout_width="64dp" android:layout_height="wrap_content"
         android:gravity="top|center_horizontal"

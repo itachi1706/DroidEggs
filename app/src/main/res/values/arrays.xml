@@ -11,7 +11,7 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Old Method -->
     <string-array name="legacy_version_with_egg">
         <item>Gingerbread (2.3)</item>
@@ -46,7 +46,7 @@
         <item>NDP</item>
         <item>N</item>
         <item>O</item>
-        <item>O_MR1</item>
+        <item tools:ignore="Typos">O_MR1</item>
         <item>P</item>
         <item>Q</item>
         <item>R</item>
@@ -86,7 +86,7 @@
         <item>5.0 – 5.1.1</item>
         <item>MNC</item>
         <item>6.0 – 6.0.1</item>
-        <item>NDP1 - NDP5</item>
+        <item tools:ignore="Typos">NDP1 - NDP5</item>
         <item>7.0 – 7.1.2</item>
         <item>8.0</item>
         <item>8.1</item>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string-array name="puzzles">
         <item>q</item>
         <item>q</item>
@@ -71,8 +71,8 @@
         <item>android:drawable/ic_settings_bluetooth</item>
         <item>android:drawable/ic_signal_cellular_0_4_bar</item>
         <item>android:drawable/ic_signal_cellular_0_5_bar</item>
-        <item>android:drawable/ic_signal_cellular_1_4_bar</item>
-        <item>android:drawable/ic_signal_cellular_1_5_bar</item>
+        <item tools:ignore="Typos">android:drawable/ic_signal_cellular_1_4_bar</item>
+        <item tools:ignore="Typos">android:drawable/ic_signal_cellular_1_5_bar</item>
         <item>android:drawable/ic_signal_cellular_2_4_bar</item>
         <item>android:drawable/ic_signal_cellular_2_5_bar</item>
         <item>android:drawable/ic_signal_cellular_3_4_bar</item>
@@ -82,7 +82,7 @@
         <item>android:drawable/ic_signal_cellular_5_5_bar</item>
         <item>android:drawable/ic_signal_location</item>
         <item>android:drawable/ic_wifi_signal_0</item>
-        <item>android:drawable/ic_wifi_signal_1</item>
+        <item tools:ignore="Typos">android:drawable/ic_wifi_signal_1</item>
         <item>android:drawable/ic_wifi_signal_2</item>
         <item>android:drawable/ic_wifi_signal_3</item>
         <item>android:drawable/ic_wifi_signal_4</item>

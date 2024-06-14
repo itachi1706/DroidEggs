@@ -82,7 +82,7 @@ dependencies {
     // Import the BoM for the Firebase platform
     implementation platform('com.google.firebase:firebase-bom:33.0.0')
     // Import the Compose BOM
-    implementation platform('androidx.compose:compose-bom:2024.05.00')
+    implementation platform('androidx.compose:compose-bom:2024.06.00')
 
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.activity:activity-compose:1.9.0'

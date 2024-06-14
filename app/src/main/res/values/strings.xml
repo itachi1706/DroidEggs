@@ -65,9 +65,9 @@
     <string name="android_logo">Android Logo</string>
     <string name="zero_text">0 text</string>
     <string name="one_text">1 text</string>
-    <string name="sample_color">A1-500</string>
-    <string name="sample_n_color">N1-500</string>
-    <string name="sample_n2_color">N2-500</string>
-    <string name="sample_a2_color">A2-500</string>
-    <string name="sample_a3_color">A3-500</string>
+    <string name="sample_color">A1–500</string>
+    <string name="sample_n_color">N1–500</string>
+    <string name="sample_n2_color">N2–500</string>
+    <string name="sample_a2_color">A2–500</string>
+    <string name="sample_a3_color">A3–500</string>
 </resources>

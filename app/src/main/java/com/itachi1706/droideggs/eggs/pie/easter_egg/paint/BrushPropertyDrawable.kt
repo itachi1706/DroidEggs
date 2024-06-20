@@ -17,7 +17,11 @@
 package com.itachi1706.droideggs.eggs.pie.easter_egg.paint
 
 import android.content.Context
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.ColorFilter
+import android.graphics.Paint
+import android.graphics.Path
 import android.graphics.PixelFormat.TRANSLUCENT
 import android.graphics.drawable.Drawable
 
@@ -69,6 +73,7 @@ class BrushPropertyDrawable : Drawable {
     override fun setAlpha(p0: Int) {
         //
     }
+    @Deprecated("This method is no longer used in graphics optimizations")
     override fun getOpacity(): Int {
         return TRANSLUCENT
     }

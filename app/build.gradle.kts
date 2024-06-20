@@ -1,8 +1,8 @@
 plugins {
-    id("com.android.application")
-    id("kotlin-android")
-    id("com.google.firebase.crashlytics")
-    id("com.google.firebase.firebase-perf")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.firebase.crashlytics)
+    alias(libs.plugins.firebase.perf)
 }
 
 val isGHActions: Boolean = System.getenv("GITHUB_ACTIONS")?.toBoolean() ?: false
@@ -61,9 +61,7 @@ android {
     }
     installation {
         timeOutInMs = 10 * 60 * 1000 // Set the timeout to 10 minutes
-        installOptions.add("-d")
-        installOptions.add("-t")
-//        installOptions = listOf("-d", "-t")
+        installOptions.addAll(listOf("-d", "-t"))
     }
     lint {
         abortOnError = !isGHActions
@@ -73,41 +71,40 @@ android {
     }
 }
 
-val supportLibraryVersion: String = "28.0.0+"
-
 dependencies {
-    testImplementation("org.junit.jupiter:junit-jupiter:5.10.2")
-    androidTestImplementation("androidx.test:core:1.5.0")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test:runner:1.5.2")
-    androidTestImplementation("androidx.test:rules:1.5.0")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.test.core)
+    androidTestImplementation(libs.androidx.test.runner)
+    androidTestImplementation(libs.androidx.test.rules)
+    androidTestImplementation(libs.androidx.espresso.core)
 
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    // Import the BoM for the Firebase platform
-    implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
+    // Import the BoM for the Firebase platformc
+    implementation(platform(libs.firebase.bom))
     // Import the Compose BOM
-    implementation(platform("androidx.compose:compose-bom:2024.06.00"))
+    implementation(platform(libs.androidx.compose.bom))
 
-    implementation("androidx.multidex:multidex:2.0.1")
-    implementation("androidx.activity:activity-compose:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.7.0")
-    implementation("androidx.compose.animation:animation-core-android")
-    implementation("androidx.compose.material:material")
-    implementation("androidx.compose.ui:ui-graphics-android")
-    implementation("androidx.compose.foundation:foundation-android:1.6.8")
-    implementation("androidx.compose.ui:ui-tooling-preview-android:1.6.8")
-    implementation("androidx.window:window:1.3.0")
-    implementation("com.google.android.material:material:1.12.0")
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
-    implementation("androidx.dynamicanimation:dynamicanimation-ktx:1.0.0-alpha03")
-    implementation("androidx.preference:preference-ktx:1.2.1")
-    implementation("com.google.firebase:firebase-perf-ktx")
-    implementation("com.google.firebase:firebase-crashlytics-ktx")
-    implementation("com.google.firebase:firebase-analytics-ktx")
-    implementation("com.itachi1706.appupdater:appupdater:3.0.2")
-    implementation("com.itachi1706.helpers:helperlib:1.4.3")
-    implementation("me.jfenn:Attribouter:0.1.9")
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.multidex)
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.animation.core.android)
+    implementation(libs.androidx.material)
+    implementation(libs.androidx.ui.graphics.android)
+    implementation(libs.androidx.foundation.android)
+    implementation(libs.androidx.ui.tooling.preview.android)
+    implementation(libs.androidx.window)
+    implementation(libs.material)
+    implementation(libs.androidx.legacy.support.v4)
+    implementation(libs.androidx.dynamicanimation.ktx)
+    implementation(libs.androidx.preference.ktx)
+    implementation(libs.firebase.perf.ktx)
+    implementation(libs.firebase.crashlytics.ktx)
+    implementation(libs.firebase.analytics.ktx)
+    implementation(libs.appupdater)
+    implementation(libs.helperlib)
+    implementation(libs.attribouter)
 }
 
-apply(plugin = "com.google.gms.google-services")
+apply(plugin = libs.plugins.google.services.get().pluginId)

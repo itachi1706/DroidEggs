@@ -1,10 +1,10 @@
 plugins {
-    id("com.android.application") version "8.4.2" apply false
-    id("com.google.gms.google-services") version "4.4.2" apply false
-    id("com.google.firebase.crashlytics") version "3.0.1" apply false
-    id("com.google.firebase.firebase-perf") version "1.4.2" apply false
-    id("org.jetbrains.kotlin.android") version "1.9.24" apply false
-    id("org.sonarqube") version "5.0.0.4638"
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.google.services) apply false
+    alias(libs.plugins.firebase.crashlytics) apply false
+    alias(libs.plugins.firebase.perf) apply false
+    alias(libs.plugins.jetbrains.kotlin.android) apply false
+    alias(libs.plugins.sonarqube)
 }
 
 sonarqube {

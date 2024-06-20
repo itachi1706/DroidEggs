@@ -16,7 +16,9 @@
 
 package com.itachi1706.droideggs.eggs.upside_down_cake.easter_egg.landroid
 
+import android.os.Build
 import android.util.ArraySet
+import androidx.annotation.RequiresApi
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.util.lerp
 import kotlin.math.absoluteValue
@@ -45,7 +47,7 @@ const val LAUNCH_MECO = 2f // how long to suspend gravity when launching
 
 const val SCALED_THRUST = true
 
-interface Removable {
+fun interface Removable {
     fun canBeRemoved(): Boolean
 }
 
@@ -120,6 +122,7 @@ class Star(val cls: StarClass, radius: Float) :
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.M)
 open class Universe(val namer: Namer, randomSeed: Long) : Simulator(randomSeed) {
     var latestDiscovery: Planet? = null
     lateinit var star: Star
@@ -290,16 +293,11 @@ open class Universe(val namer: Namer, randomSeed: Long) : Simulator(randomSeed) 
                 if (d < 0) {
                     // landing, or impact?
 
-                    // 1. relative speed
-                    val vDiff = (ship.velocity - planet.velocity).mag()
                     // 2. landing angle
                     val aDiff = (ship.angle - a).absoluteValue
 
                     // landing criteria
-                    if (aDiff < PIf / 4
-                    //                        &&
-                    //                        vDiff < 100f
-                    ) {
+                    if (aDiff < PIf / 4) {
                         val landing = Landing(ship, planet, a)
                         ship.landing = landing
                         ship.velocity = planet.velocity
@@ -361,7 +359,7 @@ class Landing(val ship: Spacecraft, val planet: Planet, val angle: Float) : Cons
     private val landingVector = Vec2.makeWithAngleMag(angle, ship.radius + planet.radius)
     override fun solve(sim: Simulator, dt: Float) {
         val desiredPos = planet.pos + landingVector
-        ship.pos = (ship.pos * 0.5f) + (desiredPos * 0.5f) // @@@ FIXME
+        ship.pos = (ship.pos * 0.5f) + (desiredPos * 0.5f)
         ship.angle = angle
     }
 }
@@ -413,6 +411,7 @@ class Track {
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.M)
 class Spacecraft : Body() {
     var thrust = Vec2.Zero
     var launchClock = 0f
@@ -441,7 +440,7 @@ class Spacecraft : Body() {
                 // angle = thrust.angle()
             } else
                 landing?.let { landing ->
-                    if (launchClock == 0f) launchClock = sim.now + 1f /* @@@ TODO extract */
+                    if (launchClock == 0f) launchClock = sim.now + 1f
 
                     if (sim.now > launchClock) {
                         // first-stage to orbit has 1000x power

@@ -16,7 +16,9 @@
 
 package com.itachi1706.droideggs.eggs.upside_down_cake.easter_egg.landroid
 
+import android.os.Build
 import android.util.ArraySet
+import androidx.annotation.RequiresApi
 import kotlin.random.Random
 
 // artificially speed up or slow down the simulation
@@ -59,9 +61,8 @@ open class Body(var name: String = "Unknown") : Entity {
         if (dt <= 0) return
 
         // integrate velocity
-        val vscaled = velocity * dt
         opos = pos
-        pos += vscaled
+        pos += (velocity * dt)
     }
 
     override fun postUpdate(sim: Simulator, dt: Float) {
@@ -70,11 +71,12 @@ open class Body(var name: String = "Unknown") : Entity {
     }
 }
 
-interface Constraint {
+fun interface Constraint {
     // Solve constraints. Pick up objects and put them where they are "supposed" to be.
     fun solve(sim: Simulator, dt: Float)
 }
 
+@RequiresApi(Build.VERSION_CODES.M)
 open class Container(val radius: Float) : Constraint {
     private val list = ArraySet<Body>()
     private val softness = 0.0f
@@ -102,6 +104,7 @@ open class Container(val radius: Float) : Constraint {
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.M)
 open class Simulator(val randomSeed: Long) {
     private var wallClockNanos: Long = 0L
     var now: Float = 0f

@@ -265,7 +265,7 @@ public class LLand extends FrameLayout {
             final Star sunStar = new Star(getContext());
             sunStar.setBackgroundResource(R.drawable.lollipop_sun);
             final int w = getResources().getDimensionPixelSize(R.dimen.sun_size);
-            sunStar.setTranslationX(frand(w, mWidth - w));
+            sunStar.setTranslationX(frand(w, (float) mWidth - w));
             if (mTimeOfDay == DAY) {
                 sunStar.setTranslationY(frand(w, (mHeight * 0.66f)));
                 sunStar.getBackground().setTint(0);

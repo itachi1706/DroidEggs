@@ -222,6 +222,7 @@ public class MLand extends FrameLayout {
             lt.setDuration(250);
             mScoreFields.setLayoutTransition(lt);
         }
+        if (mScoreFields == null) return;
         for (Player p : mPlayers) {
             mScoreFields.addView(p.mScoreField,
                     new MarginLayoutParams(

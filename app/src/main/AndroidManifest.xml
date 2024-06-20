@@ -50,7 +50,7 @@
 
         <!-- U (14) Egg Activities -->
         <activity android:name=".eggs.upside_down_cake.PlatLogoActivityUpsideDownCake"
-            android:theme="@style/AppTheme.Wallpaper.NoActionBar.FullScreen"
+            android:theme="@style/Theme.Wallpaper.NoTitleBar.PlatLogo.FullScreen"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
             android:icon="@drawable/u_platlogo"
             android:process=":ui" />

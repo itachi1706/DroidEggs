@@ -8,7 +8,7 @@ pluginManagement {
             }
         }
         mavenCentral()
-        maven { url 'https://jitpack.io' }
+        maven { url = uri("https://jitpack.io") }
         jcenter()
         gradlePluginPortal()
     }
@@ -23,4 +23,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "DroidEggs"
-include ':app'
+include(":app")

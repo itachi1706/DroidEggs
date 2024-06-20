@@ -9,8 +9,6 @@ val isGHActions: Boolean = System.getenv("GITHUB_ACTIONS")?.toBoolean() ?: false
 
 android {
     compileSdk = 34
-//    buildToolsVersion = "34.0.0"
-//    buildToolsVersion.set("34.0.0")
     buildToolsVersion = "34.0.0"
 
     defaultConfig {

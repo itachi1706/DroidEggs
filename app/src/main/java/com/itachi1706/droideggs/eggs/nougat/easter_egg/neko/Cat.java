@@ -31,6 +31,7 @@ import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.os.Bundle;
 
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.app.NotificationCompat;
 
 import com.itachi1706.droideggs.FirebaseLogger;
@@ -49,11 +50,11 @@ public class Cat extends Drawable {
 
     private Random mNotSoRandom;
     private Bitmap mBitmap;
-    private long mSeed;
+    private final long mSeed;
     private String mName;
     private int mBodyColor;
     private int mFootType;
-    private boolean mBowTie;
+    private final boolean mBowTie;
 
     private synchronized Random notSoRandom(long seed) {
         if (mNotSoRandom == null) {
@@ -63,15 +64,15 @@ public class Cat extends Drawable {
         return mNotSoRandom;
     }
 
-    public static final float frandrange(Random r, float a, float b) {
+    public static float frandrange(Random r, float a, float b) {
         return (b-a)*r.nextFloat() + a;
     }
 
-    public static final Object choose(Random r, Object...l) {
+    public static Object choose(Random r, Object... l) {
         return l[r.nextInt(l.length)];
     }
 
-    public static final int chooseP(Random r, int[] a) {
+    public static int chooseP(Random r, int[] a) {
         int pct = r.nextInt(1000);
         final int stop = a.length-2;
         int i=0;
@@ -83,7 +84,7 @@ public class Cat extends Drawable {
         return a[i+1];
     }
 
-    public static final int getColorIndex(int q, int[] a) {
+    public static int getColorIndex(int q, int[] a) {
         for(int i = 1; i < a.length; i+=2) {
             if (a[i] == q) {
                 return i/2;
@@ -134,7 +135,7 @@ public class Cat extends Drawable {
             300, 0xFFFFFFFF,
     };
 
-    private CatParts d;
+    private final CatParts d;
 
     public static void tint(int color, Drawable ... ds) {
         for (Drawable d : ds) {
@@ -395,34 +396,35 @@ public class Cat extends Drawable {
         private final Drawable[] drawingOrder;
 
         public CatParts(Context context) {
-            body = context.getDrawable(R.drawable.nougat_body);
-            head = context.getDrawable(R.drawable.nougat_head);
-            leg1 = context.getDrawable(R.drawable.nougat_leg1);
-            leg2 = context.getDrawable(R.drawable.nougat_leg2);
-            leg3 = context.getDrawable(R.drawable.nougat_leg3);
-            leg4 = context.getDrawable(R.drawable.nougat_leg4);
-            tail = context.getDrawable(R.drawable.nougat_tail);
-            leftEar = context.getDrawable(R.drawable.nougat_left_ear);
-            rightEar = context.getDrawable(R.drawable.nougat_right_ear);
-            rightEarInside = context.getDrawable(R.drawable.nougat_right_ear_inside);
-            leftEarInside = context.getDrawable(R.drawable.nougat_left_ear_inside);
-            faceSpot = context.getDrawable(R.drawable.nougat_face_spot);
-            cap = context.getDrawable(R.drawable.nougat_cap);
-            mouth = context.getDrawable(R.drawable.nougat_mouth);
-            foot4 = context.getDrawable(R.drawable.nougat_foot4);
-            foot3 = context.getDrawable(R.drawable.nougat_foot3);
-            foot1 = context.getDrawable(R.drawable.nougat_foot1);
-            foot2 = context.getDrawable(R.drawable.nougat_foot2);
-            leg2Shadow = context.getDrawable(R.drawable.nougat_leg2_shadow);
-            tailShadow = context.getDrawable(R.drawable.nougat_tail_shadow);
-            tailCap = context.getDrawable(R.drawable.nougat_tail_cap);
-            belly = context.getDrawable(R.drawable.nougat_belly);
-            back = context.getDrawable(R.drawable.nougat_back);
-            rightEye = context.getDrawable(R.drawable.nougat_right_eye);
-            leftEye = context.getDrawable(R.drawable.nougat_left_eye);
-            nose = context.getDrawable(R.drawable.nougat_nose);
-            collar = context.getDrawable(R.drawable.nougat_collar);
-            bowtie = context.getDrawable(R.drawable.nougat_bowtie);
+
+            body = AppCompatResources.getDrawable(context, R.drawable.nougat_body);
+            head = AppCompatResources.getDrawable(context, R.drawable.nougat_head);
+            leg1 = AppCompatResources.getDrawable(context, R.drawable.nougat_leg1);
+            leg2 = AppCompatResources.getDrawable(context, R.drawable.nougat_leg2);
+            leg3 = AppCompatResources.getDrawable(context, R.drawable.nougat_leg3);
+            leg4 = AppCompatResources.getDrawable(context, R.drawable.nougat_leg4);
+            tail = AppCompatResources.getDrawable(context, R.drawable.nougat_tail);
+            leftEar = AppCompatResources.getDrawable(context, R.drawable.nougat_left_ear);
+            rightEar = AppCompatResources.getDrawable(context, R.drawable.nougat_right_ear);
+            rightEarInside = AppCompatResources.getDrawable(context, R.drawable.nougat_right_ear_inside);
+            leftEarInside = AppCompatResources.getDrawable(context, R.drawable.nougat_left_ear_inside);
+            faceSpot = AppCompatResources.getDrawable(context, R.drawable.nougat_face_spot);
+            cap = AppCompatResources.getDrawable(context, R.drawable.nougat_cap);
+            mouth = AppCompatResources.getDrawable(context, R.drawable.nougat_mouth);
+            foot4 = AppCompatResources.getDrawable(context, R.drawable.nougat_foot4);
+            foot3 = AppCompatResources.getDrawable(context, R.drawable.nougat_foot3);
+            foot1 = AppCompatResources.getDrawable(context, R.drawable.nougat_foot1);
+            foot2 = AppCompatResources.getDrawable(context, R.drawable.nougat_foot2);
+            leg2Shadow = AppCompatResources.getDrawable(context, R.drawable.nougat_leg2_shadow);
+            tailShadow = AppCompatResources.getDrawable(context, R.drawable.nougat_tail_shadow);
+            tailCap = AppCompatResources.getDrawable(context, R.drawable.nougat_tail_cap);
+            belly = AppCompatResources.getDrawable(context, R.drawable.nougat_belly);
+            back = AppCompatResources.getDrawable(context, R.drawable.nougat_back);
+            rightEye = AppCompatResources.getDrawable(context, R.drawable.nougat_right_eye);
+            leftEye = AppCompatResources.getDrawable(context, R.drawable.nougat_left_eye);
+            nose = AppCompatResources.getDrawable(context, R.drawable.nougat_nose);
+            collar = AppCompatResources.getDrawable(context, R.drawable.nougat_collar);
+            bowtie = AppCompatResources.getDrawable(context, R.drawable.nougat_bowtie);
             drawingOrder = getDrawingOrder();
         }
         private Drawable[] getDrawingOrder() {

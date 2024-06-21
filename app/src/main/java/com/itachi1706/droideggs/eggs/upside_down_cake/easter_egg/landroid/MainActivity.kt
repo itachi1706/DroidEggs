@@ -178,7 +178,7 @@ fun Telemetry(universe: VisibleUniverse) {
     }
 
     Column(modifier = Modifier.fillMaxSize().padding(6.dp)) {
-        universe.triggerDraw.value // recompose on every frame
+        universe.triggerDraw.longValue // recompose on every frame
         val explored = universe.planets.filter { it.explored }
 
         AnimatedVisibility(modifier = Modifier, visible = topVisible, enter = flickerFadeIn) {

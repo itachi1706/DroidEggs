@@ -1,6 +1,6 @@
 [versions]
 activityCompose = "1.9.0"
-agp = "8.4.2"
+agp = "8.5.0"
 appupdater = "3.0.2"
 attribouter = "0.1.9"
 dynamicanimationKtx = "1.0.0-alpha03"

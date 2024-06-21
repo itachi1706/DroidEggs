@@ -101,7 +101,7 @@ const val MIN_CAMERA_ZOOM = 250f / UNIVERSE_RANGE // 0.0025f
 const val MAX_CAMERA_ZOOM = 5f
 const val TOUCH_CAMERA_PAN = false
 const val TOUCH_CAMERA_ZOOM = true
-const val DYNAMIC_ZOOM = false // @@@ FIXME
+const val DYNAMIC_ZOOM = false
 
 fun dailySeed(): Long {
     val today = GregorianCalendar()
@@ -164,6 +164,7 @@ fun ColumnScope.ConsoleText(
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.M)
 @Composable
 fun Telemetry(universe: VisibleUniverse) {
     var topVisible by remember { mutableStateOf(false) }
@@ -177,7 +178,7 @@ fun Telemetry(universe: VisibleUniverse) {
     }
 
     Column(modifier = Modifier.fillMaxSize().padding(6.dp)) {
-        universe.triggerDraw.value // recompose on every frame
+        universe.triggerDraw.longValue // recompose on every frame
         val explored = universe.planets.filter { it.explored }
 
         AnimatedVisibility(modifier = Modifier, visible = topVisible, enter = flickerFadeIn) {

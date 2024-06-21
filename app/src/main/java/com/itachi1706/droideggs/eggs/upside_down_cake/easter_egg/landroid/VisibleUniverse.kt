@@ -18,7 +18,7 @@ package com.itachi1706.droideggs.eggs.upside_down_cake.easter_egg.landroid
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.PathEffect
@@ -55,13 +55,14 @@ fun DrawScope.zoom(zoom: Float, block: ZoomedDrawScope.() -> Unit) {
     ds.scale(zoom) { block(ds) }
 }
 
+@RequiresApi(Build.VERSION_CODES.M)
 class VisibleUniverse(namer: Namer, randomSeed: Long) : Universe(namer, randomSeed) {
     // Magic variable. Every time we update it, Compose will notice and redraw the universe.
-    val triggerDraw = mutableStateOf(0L)
+    val triggerDraw = mutableLongStateOf(0L)
 
     fun simulateAndDrawFrame(nanos: Long) {
         // By writing this value, Compose will look for functions that read it (like drawZoomed).
-        triggerDraw.value = nanos
+        triggerDraw.longValue = nanos
 
         step(nanos)
     }
@@ -70,7 +71,7 @@ class VisibleUniverse(namer: Namer, randomSeed: Long) : Universe(namer, randomSe
 @RequiresApi(Build.VERSION_CODES.M)
 fun ZoomedDrawScope.drawUniverse(universe: VisibleUniverse) {
     with(universe) {
-        triggerDraw.value // Please recompose when this value changes.
+        triggerDraw.longValue // Please recompose when this value changes.
 
         constraints.forEach {
             when (it) {
@@ -102,15 +103,6 @@ fun ZoomedDrawScope.drawContainer(container: Container) {
             pathEffect = PathEffect.dashPathEffect(floatArrayOf(8f / zoom, 8f / zoom), 0f)
         )
     )
-    //    val path = Path().apply {
-    //        fillType = PathFillType.EvenOdd
-    //        addOval(Rect(center = Vec2.Zero, radius = container.radius))
-    //        addOval(Rect(center = Vec2.Zero, radius = container.radius + 10_000))
-    //    }
-    //    drawPath(
-    //        path = path,
-    //
-    //    )
 }
 
 fun ZoomedDrawScope.drawGravitationalField(planet: Planet) {
@@ -219,15 +211,11 @@ Z
     }
 val thrustPath = createPolygon(-3f, 3).also { it.translate(Vec2(-4f, 0f)) }
 
+@RequiresApi(Build.VERSION_CODES.M)
 fun ZoomedDrawScope.drawSpacecraft(ship: Spacecraft) {
     with(ship) {
         rotateRad(angle, pivot = pos) {
             translate(pos.x, pos.y) {
-                //                drawPath(
-                //                    path = createStar(200f, 100f, 3),
-                //                    color = Color.White,
-                //                    style = Stroke(width = 2f / zoom)
-                //                )
                 drawPath(path = spaceshipPath, color = Colors.Eigengrau) // fauxpaque
                 drawPath(
                     path = spaceshipPath,
@@ -245,27 +233,8 @@ fun ZoomedDrawScope.drawSpacecraft(ship: Spacecraft) {
                         )
                     )
                 }
-                //                drawRect(
-                //                    topLeft = Offset(-1f, -1f),
-                //                    size = Size(2f, 2f),
-                //                    color = Color.Cyan,
-                //                    style = Stroke(width = 2f / zoom)
-                //                )
-                //                drawLine(
-                //                    start = Vec2.Zero,
-                //                    end = Vec2(20f, 0f),
-                //                    color = Color.Cyan,
-                //                    strokeWidth = 2f / zoom
-                //                )
             }
         }
-        //        // DEBUG: draw velocity vector
-        //        drawLine(
-        //            start = pos,
-        //            end = pos + velocity,
-        //            color = Color.Red,
-        //            strokeWidth = 3f / zoom
-        //        )
         drawTrack(track)
     }
 }
@@ -287,10 +256,7 @@ fun ZoomedDrawScope.drawSpark(spark: Spark) {
             Spark.Style.DOT -> drawCircle(color, size, pos)
             Spark.Style.DOT_ABSOLUTE -> drawCircle(color, size, pos / zoom)
             Spark.Style.RING -> drawCircle(color, size, pos, style = Stroke(width = 1f / zoom))
-            //                drawPoints(listOf(pos), PointMode.Points, color, strokeWidth = 2f/zoom)
-            //            drawCircle(color, 2f/zoom, pos)
         }
-        //        drawCircle(Color.Gray, center = pos, radius = 1.5f / zoom)
     }
 }
 
@@ -303,16 +269,6 @@ fun ZoomedDrawScope.drawTrack(track: Track) {
                 color = Color.Green,
                 strokeWidth = 1f / zoom
             )
-            //            if (positions.size < 2) return
-            //            drawPath(Path()
-            //                .apply {
-            //                    val p = positions[positions.size - 1]
-            //                    moveTo(p.x, p.y)
-            //                    positions.reversed().subList(1, positions.size).forEach { p ->
-            //                        lineTo(p.x, p.y)
-            //                    }
-            //                },
-            //                color = Color.Green, style = Stroke(1f/zoom))
         } else {
             if (positions.size < 2) return
             var prev: Vec2 = positions[positions.size - 1]

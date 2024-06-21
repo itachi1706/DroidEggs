@@ -21,7 +21,6 @@ android {
         versionName = "4.3.1"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        resValue("string", "tray__authority", "${applicationId}.tray")
         resourceConfigurations.add("en")
     }
     compileOptions {

@@ -35,6 +35,8 @@ import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.os.Bundle;
 
+import androidx.appcompat.content.res.AppCompatResources;
+
 import com.itachi1706.droideggs.FirebaseLogger;
 import com.itachi1706.droideggs.R;
 
@@ -56,11 +58,11 @@ public class Cat extends Drawable {
 
     private Random mNotSoRandom;
     private Bitmap mBitmap;
-    private long mSeed;
+    private final long mSeed;
     private String mName;
     private int mBodyColor;
     private int mFootType;
-    private boolean mBowTie;
+    private final boolean mBowTie;
     private String mFirstMessage;
 
     private synchronized Random notSoRandom(long seed) {
@@ -71,19 +73,19 @@ public class Cat extends Drawable {
         return mNotSoRandom;
     }
 
-    public static final float frandrange(Random r, float a, float b) {
+    public static float frandrange(Random r, float a, float b) {
         return (b - a) * r.nextFloat() + a;
     }
 
-    public static final Object choose(Random r, Object... l) {
+    public static Object choose(Random r, Object... l) {
         return l[r.nextInt(l.length)];
     }
 
-    public static final int chooseP(Random r, int[] a) {
+    public static int chooseP(Random r, int[] a) {
         return chooseP(r, a, 1000);
     }
 
-    public static final int chooseP(Random r, int[] a, int sum) {
+    public static int chooseP(Random r, int[] a, int sum) {
         int pct = r.nextInt(sum);
         final int stop = a.length - 2;
         int i = 0;
@@ -146,7 +148,7 @@ public class Cat extends Drawable {
             300, 0xFFFFFFFF,
     };
 
-    private CatParts d;
+    private final CatParts d;
 
     public static void tint(int color, Drawable... ds) {
         for (Drawable d : ds) {
@@ -221,13 +223,6 @@ public class Cat extends Drawable {
                 nsr.nextFloat() < 0.1f ? R.array.r_rare_cat_messages : R.array.r_cat_messages);
         mFirstMessage = (String) choose(nsr, (Object[]) messages);
         if (nsr.nextFloat() < 0.5f) mFirstMessage = mFirstMessage + mFirstMessage + mFirstMessage;
-    }
-
-    public static Cat fromShortcutId(Context context, String shortcutId) {
-        if (shortcutId.startsWith(SHORTCUT_ID_PREFIX)) {
-            return new Cat(context, Long.parseLong(shortcutId.replace(SHORTCUT_ID_PREFIX, "")));
-        }
-        return null;
     }
 
     public static Cat create(Context context) {
@@ -461,34 +456,34 @@ public class Cat extends Drawable {
         private final Drawable[] drawingOrder;
 
         public CatParts(Context context) {
-            body = context.getDrawable(R.drawable.r_body);
-            head = context.getDrawable(R.drawable.r_head);
-            leg1 = context.getDrawable(R.drawable.r_leg1);
-            leg2 = context.getDrawable(R.drawable.r_leg2);
-            leg3 = context.getDrawable(R.drawable.r_leg3);
-            leg4 = context.getDrawable(R.drawable.r_leg4);
-            tail = context.getDrawable(R.drawable.r_tail);
-            leftEar = context.getDrawable(R.drawable.r_left_ear);
-            rightEar = context.getDrawable(R.drawable.r_right_ear);
-            rightEarInside = context.getDrawable(R.drawable.r_right_ear_inside);
-            leftEarInside = context.getDrawable(R.drawable.r_left_ear_inside);
-            faceSpot = context.getDrawable(R.drawable.r_face_spot);
-            cap = context.getDrawable(R.drawable.r_cap);
-            mouth = context.getDrawable(R.drawable.r_mouth);
-            foot4 = context.getDrawable(R.drawable.r_foot4);
-            foot3 = context.getDrawable(R.drawable.r_foot3);
-            foot1 = context.getDrawable(R.drawable.r_foot1);
-            foot2 = context.getDrawable(R.drawable.r_foot2);
-            leg2Shadow = context.getDrawable(R.drawable.r_leg2_shadow);
-            tailShadow = context.getDrawable(R.drawable.r_tail_shadow);
-            tailCap = context.getDrawable(R.drawable.r_tail_cap);
-            belly = context.getDrawable(R.drawable.r_belly);
-            back = context.getDrawable(R.drawable.r_back);
-            rightEye = context.getDrawable(R.drawable.r_right_eye);
-            leftEye = context.getDrawable(R.drawable.r_left_eye);
-            nose = context.getDrawable(R.drawable.r_nose);
-            collar = context.getDrawable(R.drawable.r_collar);
-            bowtie = context.getDrawable(R.drawable.r_bowtie);
+            body = AppCompatResources.getDrawable(context, R.drawable.r_body);
+            head = AppCompatResources.getDrawable(context, R.drawable.r_head);
+            leg1 = AppCompatResources.getDrawable(context, R.drawable.r_leg1);
+            leg2 = AppCompatResources.getDrawable(context, R.drawable.r_leg2);
+            leg3 = AppCompatResources.getDrawable(context, R.drawable.r_leg3);
+            leg4 = AppCompatResources.getDrawable(context, R.drawable.r_leg4);
+            tail = AppCompatResources.getDrawable(context, R.drawable.r_tail);
+            leftEar = AppCompatResources.getDrawable(context, R.drawable.r_left_ear);
+            rightEar = AppCompatResources.getDrawable(context, R.drawable.r_right_ear);
+            rightEarInside = AppCompatResources.getDrawable(context, R.drawable.r_right_ear_inside);
+            leftEarInside = AppCompatResources.getDrawable(context, R.drawable.r_left_ear_inside);
+            faceSpot = AppCompatResources.getDrawable(context, R.drawable.r_face_spot);
+            cap = AppCompatResources.getDrawable(context, R.drawable.r_cap);
+            mouth = AppCompatResources.getDrawable(context, R.drawable.r_mouth);
+            foot4 = AppCompatResources.getDrawable(context, R.drawable.r_foot4);
+            foot3 = AppCompatResources.getDrawable(context, R.drawable.r_foot3);
+            foot1 = AppCompatResources.getDrawable(context, R.drawable.r_foot1);
+            foot2 = AppCompatResources.getDrawable(context, R.drawable.r_foot2);
+            leg2Shadow = AppCompatResources.getDrawable(context, R.drawable.r_leg2_shadow);
+            tailShadow = AppCompatResources.getDrawable(context, R.drawable.r_tail_shadow);
+            tailCap = AppCompatResources.getDrawable(context, R.drawable.r_tail_cap);
+            belly = AppCompatResources.getDrawable(context, R.drawable.r_belly);
+            back = AppCompatResources.getDrawable(context, R.drawable.r_back);
+            rightEye = AppCompatResources.getDrawable(context, R.drawable.r_right_eye);
+            leftEye = AppCompatResources.getDrawable(context, R.drawable.r_left_eye);
+            nose = AppCompatResources.getDrawable(context, R.drawable.r_nose);
+            collar = AppCompatResources.getDrawable(context, R.drawable.r_collar);
+            bowtie = AppCompatResources.getDrawable(context, R.drawable.r_bowtie);
             drawingOrder = getDrawingOrder();
         }
 

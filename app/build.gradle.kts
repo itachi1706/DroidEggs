@@ -104,7 +104,10 @@ dependencies {
     implementation(libs.material)
     implementation(libs.appupdater)
     implementation(libs.helperlib)
-    implementation(libs.attribouter)
+    implementation(libs.attribouter) {
+        exclude(group = "com.google.android", module = "flexbox")
+    }
+    implementation(libs.flexbox)
 }
 
 apply(plugin = libs.plugins.google.services.get().pluginId)

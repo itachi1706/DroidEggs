@@ -11,6 +11,7 @@ espressoCore = "3.5.1"
 firebaseBom = "33.1.1"
 firebaseCrashlytics = "3.0.2"
 firebasePerf = "1.4.2"
+flexbox = "3.0.0"
 foundationAndroid = "1.6.8"
 googleServices = "4.4.2"
 helperlib = "1.4.3"
@@ -52,6 +53,7 @@ firebase-analytics-ktx = { module = "com.google.firebase:firebase-analytics-ktx"
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
 firebase-crashlytics-ktx = { module = "com.google.firebase:firebase-crashlytics-ktx" }
 firebase-perf-ktx = { module = "com.google.firebase:firebase-perf-ktx" }
+flexbox = { module = "com.google.android.flexbox:flexbox", version.ref = "flexbox" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 appupdater = { module = "com.itachi1706.appupdater:appupdater", version.ref = "appupdater" }
 helperlib = { module = "com.itachi1706.helpers:helperlib", version.ref = "helperlib" }

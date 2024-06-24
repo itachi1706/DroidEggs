@@ -17,8 +17,8 @@ android {
         applicationId = "com.itachi1706.droideggs"
         minSdk = 21
         targetSdk = 34
-        versionCode = 649
-        versionName = "4.3.1"
+        versionCode = 721
+        versionName = "4.3.2"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         resourceConfigurations.add("en")

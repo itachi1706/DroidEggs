@@ -4,6 +4,59 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.3.2] - 2024-06-24
+### :sparkles: New Features
+- [`364e543`](https://github.com/itachi1706/DroidEggs/commit/364e543a14fa930392a3b86865ba03c10e7de6ef) - Migrated Build Gradle files to Kotlin Build Scripts *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`c2ed613`](https://github.com/itachi1706/DroidEggs/commit/c2ed613dcddc0cbfdc7941dc6ed032009d3d1a7d) - Migrated to Version Catalog *(commit by [@itachi1706](https://github.com/itachi1706))*
+
+### :bug: Bug Fixes
+- [`5d04129`](https://github.com/itachi1706/DroidEggs/commit/5d04129266a5e485d808d1a8e8ae98509ec56c6a) - Resolved immediate exit for newer Android OS versions for Nyandroid *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`1f5bfe1`](https://github.com/itachi1706/DroidEggs/commit/1f5bfe14de4c73490b6b33fce7698466912447c3) - Resolve Sonarqube security hotspots *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`530adfb`](https://github.com/itachi1706/DroidEggs/commit/530adfbff44e8f695bb087fa8be4550e01eb78b1) - Remove wallpaper when viewing Android 14's Plat Logo *(commit by [@itachi1706](https://github.com/itachi1706))*
+
+### :recycle: Refactors
+- [`711f080`](https://github.com/itachi1706/DroidEggs/commit/711f0801161f4c24879f4e41ae66156d83da1d2d) - Fixed all package names *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`3047c98`](https://github.com/itachi1706/DroidEggs/commit/3047c986023053ca190f6e662800baa7da28626b) - Updated dependencies for testing *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`57293f2`](https://github.com/itachi1706/DroidEggs/commit/57293f2fbc09f5142c9cb5ec52c5cc730fe756b8) - Renamed more package names *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`505f77f`](https://github.com/itachi1706/DroidEggs/commit/505f77f3e6ed325cfa25d0b25849c88624721fa9) - Some sonar fixes *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`676430e`](https://github.com/itachi1706/DroidEggs/commit/676430e4418f1e771358a24b91e0e41f0fda61c6) - More sonar changes *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`7f7e1d3`](https://github.com/itachi1706/DroidEggs/commit/7f7e1d35c45e661aa947e40997d27ccd005f8f39) - Sonar changes *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`20a5d6f`](https://github.com/itachi1706/DroidEggs/commit/20a5d6f09cbd2675e73d51a7fa00cda9e156bdf4) - Sonar handling till NDP *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`689e6df`](https://github.com/itachi1706/DroidEggs/commit/689e6df180b3a778ed7660faaf04b9386a2869d5) - Sonar refactor till Oreo *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`ca1578b`](https://github.com/itachi1706/DroidEggs/commit/ca1578b088abf536e4a7032b05eb7925215b4a2d) - Sonar fixes till R *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`2075732`](https://github.com/itachi1706/DroidEggs/commit/207573250e3f0dd2ebac5032a0abd0d497aeff91) - Sonar fixes for the rest of the codebase *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`0030de8`](https://github.com/itachi1706/DroidEggs/commit/0030de80627f456ff430f55b8940657b0d79e902) - Some Kotlin deprecation fixes *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`6575482`](https://github.com/itachi1706/DroidEggs/commit/6575482e3f4f97918d86a7c4698f650dafff5dad) - Fixed linting issues in xml *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`60186ad`](https://github.com/itachi1706/DroidEggs/commit/60186adaeb2d0a71c658fcd09478768cbcaf70a6) - Remove comments *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`88441e1`](https://github.com/itachi1706/DroidEggs/commit/88441e149ef5aca79535addb36ff563289028fe2) - Formatting *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`d079079`](https://github.com/itachi1706/DroidEggs/commit/d07907941ac9d8509818d77705dee26d260bea42) - Sonar bug fixing *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`8f78052`](https://github.com/itachi1706/DroidEggs/commit/8f780524fa5d935e077f8aedf596b39a0fbbd2ff) - More sonar fixes *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`2bd9aa7`](https://github.com/itachi1706/DroidEggs/commit/2bd9aa79727cc35d20a4054d402fe80e98fee5c9) - Sonarqube *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`8eb9870`](https://github.com/itachi1706/DroidEggs/commit/8eb9870a0d0bf2c364743b2b25cb41182bbc5792) - Use longvalue *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`f0545f8`](https://github.com/itachi1706/DroidEggs/commit/f0545f8e6bc85bfd7f6cbb6a45b88b2ee67c72c2) - Remove tray_authority *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`40830e8`](https://github.com/itachi1706/DroidEggs/commit/40830e8f68bcdacfa05c60598392854487b3292a) - Removed unused color resources *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`2a7b6da`](https://github.com/itachi1706/DroidEggs/commit/2a7b6dad47d27f11804958e9f414e229a4bf097b) - Lint issues *(commit by [@itachi1706](https://github.com/itachi1706))*
+
+### :wrench: Chores
+- [`08f1cd7`](https://github.com/itachi1706/DroidEggs/commit/08f1cd7039103b58dd9a2b5cd26fba355625cfe5) - **deps**: bump reactivecircus/android-emulator-runner *(commit by [@dependabot[bot]](https://github.com/apps/dependabot))*
+- [`f3ed0c5`](https://github.com/itachi1706/DroidEggs/commit/f3ed0c5c7a2d28f1b73d3dc244c108ed8f53b1cf) - **deps**: Upgraded AGP to 8.4.2 *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`be42969`](https://github.com/itachi1706/DroidEggs/commit/be429692ddbb1b7253b95c13532c0d9d905b3186) - **deps**: Updated packaging options deprecations in gradle *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`aee8bc5`](https://github.com/itachi1706/DroidEggs/commit/aee8bc5b0759322f7d52e3d02949401dca51d0e4) - Updated tests implementation to stop crashes *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`a34462a`](https://github.com/itachi1706/DroidEggs/commit/a34462acc425bd9bca6b59e15b9f22dd83fb3170) - Fixed Random.nextInt() issues *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`3beeb37`](https://github.com/itachi1706/DroidEggs/commit/3beeb37f14381f4bdc82052f8cb2f0ca9bbd0abb) - More sonarqube fixes *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`c2f6689`](https://github.com/itachi1706/DroidEggs/commit/c2f6689eb7921624821b9d9c2972d3ba74e7a1d2) - **deps**: Upgraded dependencies *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`381c4eb`](https://github.com/itachi1706/DroidEggs/commit/381c4eb64be6a6f6335b14d4e953de98c0551a6b) - Update new sonar changes *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`2c99635`](https://github.com/itachi1706/DroidEggs/commit/2c99635851b9720f6fd5197ab0841c3b4e753cd6) - Optimized imports *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`0d2b87e`](https://github.com/itachi1706/DroidEggs/commit/0d2b87ee4fbce9d11136724d00f19373298679aa) - Refactored to plugins block *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`6e7ffed`](https://github.com/itachi1706/DroidEggs/commit/6e7ffedc91ffba33fe9105af36db5f606464aecb) - Migrated Settings Gradle file to KTS *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`7dfd98e`](https://github.com/itachi1706/DroidEggs/commit/7dfd98e167faffcad9ebc829d6adc41694066af8) - More updates to dependency management *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`46eaf4f`](https://github.com/itachi1706/DroidEggs/commit/46eaf4fec35f406f65a67f421aa266fe0c347cfb) - Migrated application build gradle to KTS *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`8f17ada`](https://github.com/itachi1706/DroidEggs/commit/8f17adaaa349453f9a797be8ec1c7210d34a1f9b) - **deps**: Upgraded Kotlin and Compose to 2.0.0 *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`1500aab`](https://github.com/itachi1706/DroidEggs/commit/1500aab3ae6c825d451ab026a1380408881b426e) - Ignore kotlin folders *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`28298e8`](https://github.com/itachi1706/DroidEggs/commit/28298e8d3b07dafac9464693a36051b3bb156cbb) - **deps**: Upgrade to AGP 8.5 *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`7a1e8a4`](https://github.com/itachi1706/DroidEggs/commit/7a1e8a447e67929983277f4b6be535265c17c656) - **deps**: Removed reliance on jCenter *(commit by [@itachi1706](https://github.com/itachi1706))*
+
+
 ## [4.3.1] - 2024-05-20
 ### :bug: Bug Fixes
 - [`6b5fe2e`](https://github.com/itachi1706/DroidEggs/commit/6b5fe2e805cb1d78f1b123c37a0b078f154ff0d4) - Some proguard issues with new build variant *(commit by [@itachi1706](https://github.com/itachi1706))*
@@ -81,3 +134,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [4.2.0]: https://github.com/itachi1706/DroidEggs/compare/4.1.1...4.2.0
 [4.3.0]: https://github.com/itachi1706/DroidEggs/compare/4.2.1...4.3.0
 [4.3.1]: https://github.com/itachi1706/DroidEggs/compare/4.3.0...4.3.1
+[4.3.2]: https://github.com/itachi1706/DroidEggs/compare/4.3.1...4.3.2

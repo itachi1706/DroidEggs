@@ -27,7 +27,7 @@ testCore = "1.6.1"
 testRules = "1.6.1"
 testRunner = "1.6.2"
 uiToolingPreviewAndroid = "1.6.8"
-window = "1.3.0"
+window = "1.4.0"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }

@@ -278,7 +278,7 @@ public class Nyandroid extends AppCompatActivity {
     private void startNyan(){
         SharedPreferences sp = this.getSharedPreferences("com.itachi1706.droideggs_preferences", MODE_MULTI_PROCESS);
         shouldNyan = sp.getBoolean("nyannyan", true);
-        Log.d("Nyandroid", "Should Nyan: " + shouldNyan);
+        Log.d(TAG, "Should Nyan: " + shouldNyan);
         if (shouldNyan) {
             mp = MediaPlayer.create(this, R.raw.nyancat);
             mp.setLooping(true);

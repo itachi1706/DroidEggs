@@ -9,8 +9,8 @@ plugins {
 val isGHActions: Boolean = System.getenv("GITHUB_ACTIONS")?.toBoolean() ?: false
 
 android {
-    compileSdk = 34
-    buildToolsVersion = "34.0.0"
+    compileSdk = 35
+    buildToolsVersion = "35.0.0"
 
     defaultConfig {
         namespace = "com.itachi1706.droideggs"
@@ -21,7 +21,11 @@ android {
         versionName = "4.3.2"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        resourceConfigurations.add("en")
+    }
+    androidResources {
+        localeFilters += listOf(
+            "en", // English
+        )
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11

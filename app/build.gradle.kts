@@ -9,14 +9,14 @@ plugins {
 val isGHActions: Boolean = System.getenv("GITHUB_ACTIONS")?.toBoolean() ?: false
 
 android {
-    compileSdk = 35
+    compileSdk = 36
     buildToolsVersion = "35.0.0"
 
     defaultConfig {
         namespace = "com.itachi1706.droideggs"
         applicationId = "com.itachi1706.droideggs"
         minSdk = 21
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 721
         versionName = "4.3.2"
         vectorDrawables.useSupportLibrary = true

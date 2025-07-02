@@ -23,6 +23,7 @@ import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowInsets;
@@ -32,6 +33,8 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.itachi1706.droideggs.R;
 
@@ -40,6 +43,7 @@ import java.util.Random;
 public class Nyandroid extends AppCompatActivity {
 
     static final boolean DEBUG = false;
+    private static final String TAG = "Nyandroid";
 
     public static class Board extends FrameLayout
     {
@@ -106,8 +110,17 @@ public class Nyandroid extends AppCompatActivity {
             super(context, as);
 
             setLayerType(View.LAYER_TYPE_HARDWARE, null);
-            setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+            hideSystemUI();
             setBackgroundColor(0xFF003366);
+        }
+
+        private void hideSystemUI() {
+            Log.d(TAG, "Hiding system UI");
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+                setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+            }
+            Log.d(TAG, "System UI hidden");
+
         }
 
         private void reset() {
@@ -196,6 +209,7 @@ public class Nyandroid extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
+        Log.d(TAG, "Nyandroid onStart called");
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
             setShowWhenLocked(true);
@@ -208,16 +222,29 @@ public class Nyandroid extends AppCompatActivity {
         }
     }
 
+    private int firstTime = 2;
+
     @Override
     public void onResume() {
         Board mBoard;
         super.onResume();
+        Log.d(TAG, "Nyandroid onResume called");
         mBoard = new Board(this, null);
         setContentView(mBoard);
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
             mBoard.setOnApplyWindowInsetsListener((v, insets) -> {
+                Log.d(TAG, "onApplyWindowInsets called");
+                if (firstTime > 0) {
+                    firstTime--;
+                    // If the navigation bar is visible, hide it
+                    WindowCompat.getInsetsController(getWindow(), getWindow().getDecorView())
+                            .hide(WindowInsetsCompat.Type.navigationBars());
+                    return insets;
+                }
+
                 if (!insets.isVisible(WindowInsets.Type.navigationBars())) {
+                    Log.d(TAG, "Navigation bar shown, finishing Nyandroid");
                     Nyandroid.this.finish();
                 }
                 return insets;
@@ -251,6 +278,7 @@ public class Nyandroid extends AppCompatActivity {
     private void startNyan(){
         SharedPreferences sp = this.getSharedPreferences("com.itachi1706.droideggs_preferences", MODE_MULTI_PROCESS);
         shouldNyan = sp.getBoolean("nyannyan", true);
+        Log.d(TAG, "Should Nyan: " + shouldNyan);
         if (shouldNyan) {
             mp = MediaPlayer.create(this, R.raw.nyancat);
             mp.setLooping(true);

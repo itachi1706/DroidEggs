@@ -60,13 +60,8 @@
             android:label="@string/u_egg_name"
             android:icon="@drawable/u_android14_patch_adaptive"
             android:configChanges="orientation|screenLayout|screenSize|density"
-            android:theme="@android:style/Theme.DeviceDefault.NoActionBar.Fullscreen">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="com.android.internal.category.PLATLOGO" />
-            </intent-filter>
-        </activity>
+            android:theme="@android:style/Theme.DeviceDefault.NoActionBar.Fullscreen"
+            tools:targetApi="23" />
 
 
         <!-- T/Tiramisu (13) Egg Activities -->
@@ -89,7 +84,8 @@
             android:configChanges="orientation|keyboardHidden|screenSize|uiMode"
             android:label="@string/s_egg_name"
             android:enabled="false"
-            android:exported="false" />
+            android:exported="false"
+            tools:targetApi="29" />
         <!-- Homescreen widget also showing paint chips (may be affected by the exact position in
              the workspace) -->
         <receiver
@@ -142,14 +138,16 @@
         <activity
             android:name=".eggs.red_velvet_cake.easter_egg.neko.NekoActivationActivity"
             android:excludeFromRecents="true"
-            android:theme="@style/AppTheme.NoDisplay" />
+            android:theme="@style/AppTheme.NoDisplay"
+            tools:targetApi="30" />
 
         <service android:name=".eggs.red_velvet_cake.easter_egg.neko.NekoControlsService"
             android:permission="android.permission.BIND_CONTROLS"
             android:label="@string/r_egg_name"
             android:icon="@drawable/r_ic_fullcat_icon"
             android:enabled="false"
-            android:exported="true">
+            android:exported="true"
+            tools:targetApi="30">
             <intent-filter>
                 <action android:name="android.service.controls.ControlsProviderService" />
             </intent-filter>
@@ -165,7 +163,8 @@
         <activity android:name=".eggs.quince_tart.easter_egg.quares.QuaresActivity"
             android:icon="@drawable/q_icon"
             android:label="@string/q_egg_name"
-            android:theme="@style/AppTheme.QEgg.QuaresTheme" />
+            android:theme="@style/AppTheme.QEgg.QuaresTheme"
+            tools:targetApi="23" />
 
         <!-- Pie Egg Activities -->
         <activity android:name=".eggs.pie.PlatLogoActivityPie"
@@ -176,7 +175,8 @@
             android:name=".eggs.pie.easter_egg.paint.PaintActivity"
             android:configChanges="orientation|keyboardHidden|screenSize|uiMode"
             android:label="@string/p_egg_name"
-            android:theme="@style/AppTheme.PieEgg" />
+            android:theme="@style/AppTheme.PieEgg"
+            tools:targetApi="24" />
 
         <!-- Oreo MR1 Egg Activities -->
         <activity

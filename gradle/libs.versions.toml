@@ -26,7 +26,7 @@ sonarqube = "6.2.0.5505"
 testCore = "1.6.1"
 testRules = "1.6.1"
 testRunner = "1.6.2"
-uiToolingPreviewAndroid = "1.6.8"
+uiToolingPreviewAndroid = "1.8.3"
 window = "1.4.0"
 
 [libraries]

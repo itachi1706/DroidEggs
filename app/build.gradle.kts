@@ -16,7 +16,7 @@ android {
         namespace = "com.itachi1706.droideggs"
         applicationId = "com.itachi1706.droideggs"
         minSdk = 21
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 721
         versionName = "4.3.2"
         vectorDrawables.useSupportLibrary = true

@@ -7,7 +7,6 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Typeface
 import android.graphics.drawable.Icon
-import android.os.Build
 import android.os.Bundle
 import android.text.StaticLayout
 import android.text.TextPaint
@@ -19,8 +18,9 @@ import android.widget.Button
 import android.widget.CompoundButton
 import android.widget.GridLayout
 import androidx.annotation.RequiresApi
+import androidx.core.view.WindowCompat
 import com.itachi1706.droideggs.R
-import java.util.*
+import java.util.Random
 
 const val TAG = "Quares"
 
@@ -34,13 +34,7 @@ class QuaresActivity : Activity() {
     private lateinit var grid: GridLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.setDecorFitsSystemWindows(false)
-        } else {
-            @Suppress("DEPRECATION")
-            window.decorView.systemUiVisibility =
-                View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-        }
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         actionBar?.hide()
         setContentView(R.layout.q_activity_quares)
         grid = findViewById(R.id.grid)

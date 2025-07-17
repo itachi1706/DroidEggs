@@ -15,10 +15,10 @@
 package com.itachi1706.droideggs
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.preference.Preference
 import com.itachi1706.appupdater.EasterEggResMusicPrefFragment
 import com.itachi1706.appupdater.SettingsInitializer
@@ -31,6 +31,13 @@ class MainSettings : AppCompatActivity() {
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
 
+        val rootView = findViewById<View>(android.R.id.content)
+        ViewCompat.setOnApplyWindowInsetsListener(rootView) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            WindowInsetsCompat.CONSUMED
+        }
+
         supportFragmentManager.beginTransaction().replace(android.R.id.content, GeneralPreferenceFragment()).commit()
     }
 
@@ -39,18 +46,6 @@ class MainSettings : AppCompatActivity() {
      * activity is showing a two-pane settings UI.
      */
     class GeneralPreferenceFragment : EasterEggResMusicPrefFragment() {
-
-        override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
-        ): View {
-            val view = super.onCreateView(inflater, container, savedInstanceState)
-
-            view.fitsSystemWindows = true
-
-            return view;
-        }
 
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             addPreferencesFromResource(R.xml.pref_general)

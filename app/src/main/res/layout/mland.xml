@@ -14,7 +14,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:fitsSystemWindows="true"
+    android:id="@+id/mland_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <com.itachi1706.droideggs.eggs.marshmallow.MLand

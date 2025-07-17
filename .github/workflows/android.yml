@@ -72,9 +72,9 @@ jobs:
     - name: run tests
       uses: reactivecircus/android-emulator-runner@v2.34.0
       with:
-        api-level: 28
+        api-level: 36
         target: google_apis
-        profile: 'pixel_6_pro'
+        profile: 'pixel_7_pro'
         arch: x86_64
         script: ./gradlew connectedAndroidTest
   release:

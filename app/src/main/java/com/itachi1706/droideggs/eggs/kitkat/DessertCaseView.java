@@ -105,7 +105,7 @@ public class DessertCaseView extends FrameLayout {
     private static final int NUM_PASTRIES = PASTRIES.length + RARE_PASTRIES.length
             + XRARE_PASTRIES.length + XXRARE_PASTRIES.length;
 
-    private SparseArray<Drawable> mDrawables = new SparseArray<>(NUM_PASTRIES);
+    private final SparseArray<Drawable> mDrawables = new SparseArray<>(NUM_PASTRIES);
 
     private static final float[] MASK = {
             0f,  0f,  0f,  0f, 255f,
@@ -129,7 +129,7 @@ public class DessertCaseView extends FrameLayout {
 
     private boolean mStarted;
 
-    private int mCellSize;
+    private final int mCellSize;
     private int mWidth;
     private int mHeight;
     private int mRows;

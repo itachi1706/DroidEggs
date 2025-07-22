@@ -60,8 +60,8 @@ public class OctopusDrawable extends Drawable {
     final Matrix mInv = new Matrix();
     private TimeAnimator mDriftAnimation;
     private boolean mBlinking;
-    private float[] ptmp = new float[2];
-    private float[] scaledBounds = new float[2];
+    private final float[] ptmp = new float[2];
+    private final float[] scaledBounds = new float[2];
 
     public static float randfrange(float a, float b) {
         return (float) (Math.random()*(b-a) + a);
@@ -300,8 +300,8 @@ public class OctopusDrawable extends Drawable {
             implements DynamicAnimation.OnAnimationUpdateListener {
         final FloatValueHolder[] coords = new FloatValueHolder[2];
         final SpringAnimation[] anims = new SpringAnimation[coords.length];
-        private float dx;
-        private float dy;
+        private final float dx;
+        private final float dy;
         private boolean locked = false;
         Link next;
 

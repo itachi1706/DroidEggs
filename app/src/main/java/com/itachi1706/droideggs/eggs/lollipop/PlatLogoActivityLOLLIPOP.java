@@ -93,8 +93,8 @@ public class PlatLogoActivityLOLLIPOP extends AppCompatActivity {
                 (Math.min(Math.min(dm.widthPixels, dm.heightPixels), 600*dp) - 100*dp);
 
         final View stick = new View(this) {
-            Paint mPaint = new Paint();
-            Path mShadow = new Path();
+            final Paint mPaint = new Paint();
+            final Path mShadow = new Path();
 
             @Override
             public void onAttachedToWindow() {

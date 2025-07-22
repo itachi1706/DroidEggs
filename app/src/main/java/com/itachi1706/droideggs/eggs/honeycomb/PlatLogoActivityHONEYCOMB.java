@@ -57,7 +57,7 @@ public class PlatLogoActivityHONEYCOMB extends AppCompatActivity {
 
         Boolean forcePort = getSharedPreferences("preferenceggs", Context.MODE_PRIVATE).getBoolean("hc_force_port", false);
 
-        if (Boolean.TRUE.equals(forcePort)) {
+        if (forcePort) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
 

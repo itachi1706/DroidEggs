@@ -17,8 +17,6 @@
 package com.itachi1706.droideggs.eggs.red_velvet_cake.easter_egg.neko;
 
 import android.annotation.TargetApi;
-import android.app.ActionBar;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -38,21 +36,20 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.itachi1706.droideggs.FirebaseLogger;
 import com.itachi1706.droideggs.R;
+import com.itachi1706.helperlib.helpers.EdgeToEdgeHelper;
 
 import java.util.Collections;
 import java.util.List;
 
 @TargetApi(Build.VERSION_CODES.R)
-public class NekoLand extends Activity implements PrefState.PrefsListener {
+public class NekoLand extends AppCompatActivity implements PrefState.PrefsListener {
     public static final String CHAN_ID = "EGG";
 
     public static final boolean DEBUG = false;
@@ -68,17 +65,9 @@ public class NekoLand extends Activity implements PrefState.PrefsListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
-        setContentView(R.layout.r_neko_activity);
-        View rootView = findViewById(R.id.r_neko_root);
-        ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-
-            return WindowInsetsCompat.CONSUMED;
-        });
+        EdgeToEdgeHelper.setEdgeToEdgeWithContentView(R.id.r_neko_root, this, R.layout.r_neko_activity);
         Log.d("NekoLand", "onCreate");
-        final ActionBar actionBar = getActionBar();
+        final ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setLogo(Cat.create(this));
             actionBar.setDisplayUseLogoEnabled(false);
@@ -145,7 +134,7 @@ public class NekoLand extends Activity implements PrefState.PrefsListener {
         final Context context = new ContextThemeWrapper(this,
                 android.R.style.Theme_Material_Light_Dialog_NoActionBar);
         View view = LayoutInflater.from(context).inflate(R.layout.r_edit_text, null);
-        final EditText text = (EditText) view.findViewById(android.R.id.edit);
+        final EditText text = view.findViewById(android.R.id.edit);
         text.setText(cat.getName());
         text.setSelection(cat.getName().length());
         final int size = context.getResources()
@@ -259,8 +248,8 @@ public class NekoLand extends Activity implements PrefState.PrefsListener {
 
         public CatHolder(View itemView) {
             super(itemView);
-            imageView = (ImageView) itemView.findViewById(android.R.id.icon);
-            textView = (TextView) itemView.findViewById(android.R.id.title);
+            imageView = itemView.findViewById(android.R.id.icon);
+            textView = itemView.findViewById(android.R.id.title);
             contextGroup = itemView.findViewById(R.id.contextGroup);
             delete = itemView.findViewById(android.R.id.closeButton);
             share = itemView.findViewById(android.R.id.shareText);

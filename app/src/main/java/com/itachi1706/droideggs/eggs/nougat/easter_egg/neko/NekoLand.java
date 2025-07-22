@@ -15,8 +15,6 @@
 package com.itachi1706.droideggs.eggs.nougat.easter_egg.neko;
 
 import android.annotation.TargetApi;
-import android.app.ActionBar;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -35,16 +33,15 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.itachi1706.droideggs.FirebaseLogger;
 import com.itachi1706.droideggs.R;
+import com.itachi1706.helperlib.helpers.EdgeToEdgeHelper;
 
 import java.util.Collections;
 import java.util.List;
@@ -54,7 +51,7 @@ import java.util.List;
  * for com.itachi1706.droideggs.NougatEgg.EasterEgg.neko in DroidEggs
  */
 @TargetApi(Build.VERSION_CODES.M)
-public class NekoLand extends Activity implements PrefState.PrefsListener {
+public class NekoLand extends AppCompatActivity implements PrefState.PrefsListener {
     public static final String CHAN_ID = "EGG";
 
     public static final boolean DEBUG = false;
@@ -70,17 +67,9 @@ public class NekoLand extends Activity implements PrefState.PrefsListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
-        setContentView(R.layout.nougat_neko_activity);
-        View rootView = findViewById(R.id.nougat_neko_root);
-        ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+        EdgeToEdgeHelper.setEdgeToEdgeWithContentView(R.id.nougat_neko_root, this, R.layout.nougat_neko_activity);
 
-            return WindowInsetsCompat.CONSUMED;
-        });
-
-        final ActionBar actionBar = getActionBar();
+        final ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setLogo(Cat.create(this));
             actionBar.setDisplayUseLogoEnabled(false);

@@ -20,12 +20,9 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.itachi1706.droideggs.R;
+import com.itachi1706.helperlib.helpers.EdgeToEdgeHelper;
 
 /**
  * Created by Kenneth on 7/10/2015.
@@ -37,15 +34,7 @@ public class MLandActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
-        setContentView(R.layout.mland);
-        View rootView = findViewById(R.id.mland_root);
-        ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-
-            return WindowInsetsCompat.CONSUMED;
-        });
+        EdgeToEdgeHelper.setEdgeToEdgeWithContentView(R.id.mland_root, this, R.layout.mland);
 
         mLand = findViewById(R.id.world);
         mLand.setScoreFieldHolder(findViewById(R.id.scores));

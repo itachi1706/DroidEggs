@@ -106,7 +106,7 @@ public class NekoService extends JobService {
                 List<Cat> cats = prefs.getCats();
                 final int[] probs = context.getResources().getIntArray(R.array.r_food_new_cat_prob);
                 final float waterLevel100 = prefs.getWaterState() / 2; // water is 0..200
-                final float new_cat_prob = (float) ((food < probs.length)
+                final float new_cat_prob = ((food < probs.length)
                         ? probs[food]
                         : waterLevel100) / 100f;
                 Log.v(TAG, "Food type: " + food);

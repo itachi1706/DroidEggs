@@ -15,7 +15,6 @@
 package com.itachi1706.droideggs
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.Build.VERSION_CODES.GINGERBREAD
@@ -95,10 +94,10 @@ class CurrentEgg : AppCompatActivity() {
             else -> null // Future Android Versions
         }
 
-        if (executeClass == null) setResult(Activity.RESULT_CANCELED, errorIntent)
+        if (executeClass == null) setResult(RESULT_CANCELED, errorIntent)
         else {
             startActivity(Intent(this, executeClass))
-            setResult(Activity.RESULT_OK)
+            setResult(RESULT_OK)
             FirebaseLogger.logFirebase(this, "SDK: ${Build.VERSION.SDK_INT}", "current_egg_selected") // Firebase Analytics Event Logging
             Log.i("Firebase", "Logged Current Egg Selected for SDK " + Build.VERSION.SDK_INT)
         }

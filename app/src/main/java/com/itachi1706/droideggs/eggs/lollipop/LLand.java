@@ -140,7 +140,7 @@ public class LLand extends FrameLayout {
     private View mSplash;
 
     private Player mDroid;
-    private ArrayList<Obstacle> mObstaclesInPlay = new ArrayList<>();
+    private final ArrayList<Obstacle> mObstaclesInPlay = new ArrayList<>();
 
     private float t;
     private float dt;
@@ -695,7 +695,7 @@ public class LLand extends FrameLayout {
     static final Rect sTmpRect = new Rect();
 
     private interface GameView {
-        public void step(long tMs, long dtMs, float t, float dt);
+        void step(long tMs, long dtMs, float t, float dt);
     }
 
     private class Player extends ImageView implements GameView {

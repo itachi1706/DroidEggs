@@ -18,7 +18,6 @@ import android.widget.Button
 import android.widget.CompoundButton
 import android.widget.GridLayout
 import androidx.annotation.RequiresApi
-import androidx.core.view.WindowCompat
 import com.itachi1706.droideggs.R
 import com.itachi1706.helperlib.helpers.EdgeToEdgeHelper
 import java.util.Random

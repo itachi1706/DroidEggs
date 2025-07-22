@@ -4,6 +4,37 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.4.0] - 2025-07-22
+### :sparkles: New Features
+- [`ecd65ea`](https://github.com/itachi1706/DroidEggs/commit/ecd65eafd0c52b246378a39bfa0e7301912e2337) - DEGGAND-102 Target SDK 35 *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`4e1fd91`](https://github.com/itachi1706/DroidEggs/commit/4e1fd918d8018dd5806f2688d2efacc2d5499ee9) - Implemented Edge-to-Edge for Main screen and settings *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`4dbf2a3`](https://github.com/itachi1706/DroidEggs/commit/4dbf2a31884e4278ab00d8aa0c00f3720406d1e5) - Target SDK 36 *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`1a5e57d`](https://github.com/itachi1706/DroidEggs/commit/1a5e57d0a8f8fa91b309e999588999d72496041b) - **deps**: Moved from KTX extension to non-KTX extension for Firebase *(commit by [@itachi1706](https://github.com/itachi1706))*
+
+### :bug: Bug Fixes
+- [`a6b9fd7`](https://github.com/itachi1706/DroidEggs/commit/a6b9fd7a0de600ccc8fe6aa32bcaa3f08e92309d) - Resolved issue with ICS egg *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`83d1994`](https://github.com/itachi1706/DroidEggs/commit/83d19946fd7728e914df5e2b992e960d7ccef5f0) - MLand system window fixes *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`cb327de`](https://github.com/itachi1706/DroidEggs/commit/cb327ded43f2126df4aebdabecbeb4a4342bd9ff) - Fixed Neko activity for both N and R eggs *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`1a689bd`](https://github.com/itachi1706/DroidEggs/commit/1a689bd9f7a8f021c6b0c11d756bee0a1d9c5096) - Made fixes to edge-to-edge mode *(commit by [@itachi1706](https://github.com/itachi1706))*
+
+### :recycle: Refactors
+- [`7938787`](https://github.com/itachi1706/DroidEggs/commit/79387875892b74244a7d68d2c160f17724ad88e6) - Switched to use the EdgeToEdge helper instead *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`8b9ccd9`](https://github.com/itachi1706/DroidEggs/commit/8b9ccd93ecd9350112337c320ad52449a60254b6) - Cleanup code *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`c996f84`](https://github.com/itachi1706/DroidEggs/commit/c996f84b1bee172af1663e22572e0d91075421cb) - Optimized imports *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`44145de`](https://github.com/itachi1706/DroidEggs/commit/44145de255edf29fca5d49e360625dd57a3c3515) - Use bundles instead *(commit by [@itachi1706](https://github.com/itachi1706))*
+
+### :wrench: Chores
+- [`6dd0e46`](https://github.com/itachi1706/DroidEggs/commit/6dd0e4612b74c715e266c50002940884bf4486a6) - **deps**: bump reactivecircus/android-emulator-runner *(commit by [@dependabot[bot]](https://github.com/apps/dependabot))*
+- [`b6793a4`](https://github.com/itachi1706/DroidEggs/commit/b6793a4b2805fd262ef296c510a27f4a65099bdb) - **deps**: bump reactivecircus/android-emulator-runner *(commit by [@dependabot[bot]](https://github.com/apps/dependabot))*
+- [`5ae69a4`](https://github.com/itachi1706/DroidEggs/commit/5ae69a43c5d67adf4fda900df2c4825b916d1ad7) - **deps**: bump stefanzweifel/git-auto-commit-action from 5 to 6 *(commit by [@dependabot[bot]](https://github.com/apps/dependabot))*
+- [`fd738e0`](https://github.com/itachi1706/DroidEggs/commit/fd738e0849cc47eaaf0ceb1c08039994d71150e5) - **deps**: bump reactivecircus/android-emulator-runner *(commit by [@dependabot[bot]](https://github.com/apps/dependabot))*
+- [`d1dbc51`](https://github.com/itachi1706/DroidEggs/commit/d1dbc51a932e27685c17b80f8869ed22cabeab71) - **deps**: Upgrade to AGP 8.10.1 from 8.5.1 *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`9c67d04`](https://github.com/itachi1706/DroidEggs/commit/9c67d048e1f9644092a335cc4b305ce9a177ac43) - **deps**: Upgrade to AGP 8.11 *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`8945a17`](https://github.com/itachi1706/DroidEggs/commit/8945a17aeff212f296e7a42823cf4970d71d094f) - Removed intent filter for U Egg *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`c0c6700`](https://github.com/itachi1706/DroidEggs/commit/c0c6700c2980f92ceb1806bf68d42c60a19ac833) - Fixed tagging *(commit by [@itachi1706](https://github.com/itachi1706))*
+- [`1ee6cdb`](https://github.com/itachi1706/DroidEggs/commit/1ee6cdb0c958fd5a25871f3821c9d8cd761e6cb4) - Moved to use support actionbar instead *(commit by [@itachi1706](https://github.com/itachi1706))*
+
+
 ## [4.3.2] - 2024-06-24
 ### :sparkles: New Features
 - [`364e543`](https://github.com/itachi1706/DroidEggs/commit/364e543a14fa930392a3b86865ba03c10e7de6ef) - Migrated Build Gradle files to Kotlin Build Scripts *(commit by [@itachi1706](https://github.com/itachi1706))*
@@ -135,3 +166,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [4.3.0]: https://github.com/itachi1706/DroidEggs/compare/4.2.1...4.3.0
 [4.3.1]: https://github.com/itachi1706/DroidEggs/compare/4.3.0...4.3.1
 [4.3.2]: https://github.com/itachi1706/DroidEggs/compare/4.3.1...4.3.2
+[4.4.0]: https://github.com/itachi1706/DroidEggs/compare/4.3.2...4.4.0

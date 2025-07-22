@@ -49,10 +49,10 @@ androidx-test-runner = { group = "androidx.test", name = "runner", version.ref =
 androidx-ui-graphics-android = { module = "androidx.compose.ui:ui-graphics-android" }
 androidx-ui-tooling-preview-android = { module = "androidx.compose.ui:ui-tooling-preview-android", version.ref = "uiToolingPreviewAndroid" }
 androidx-window = { module = "androidx.window:window", version.ref = "window" }
-firebase-analytics-ktx = { module = "com.google.firebase:firebase-analytics-ktx" }
+firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
-firebase-crashlytics-ktx = { module = "com.google.firebase:firebase-crashlytics-ktx" }
-firebase-perf-ktx = { module = "com.google.firebase:firebase-perf-ktx" }
+firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
+firebase-perf = { module = "com.google.firebase:firebase-perf" }
 flexbox = { module = "com.google.android.flexbox:flexbox", version.ref = "flexbox" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 appupdater = { module = "com.itachi1706.appupdater:appupdater", version.ref = "appupdater" }

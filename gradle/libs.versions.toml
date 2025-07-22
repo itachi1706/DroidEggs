@@ -69,4 +69,5 @@ compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 sonarqube = { id = "org.sonarqube", version.ref = "sonarqube" }
 
-
+[bundles]
+firebase = ["firebase-analytics", "firebase-crashlytics", "firebase-perf"]

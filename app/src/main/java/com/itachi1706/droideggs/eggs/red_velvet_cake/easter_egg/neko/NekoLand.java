@@ -17,7 +17,6 @@
 package com.itachi1706.droideggs.eggs.red_velvet_cake.easter_egg.neko;
 
 import android.annotation.TargetApi;
-import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -37,6 +36,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -67,7 +67,7 @@ public class NekoLand extends AppCompatActivity implements PrefState.PrefsListen
         super.onCreate(savedInstanceState);
         EdgeToEdgeHelper.setEdgeToEdgeWithContentView(R.id.r_neko_root, this, R.layout.r_neko_activity);
         Log.d("NekoLand", "onCreate");
-        final ActionBar actionBar = getActionBar();
+        final ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setLogo(Cat.create(this));
             actionBar.setDisplayUseLogoEnabled(false);

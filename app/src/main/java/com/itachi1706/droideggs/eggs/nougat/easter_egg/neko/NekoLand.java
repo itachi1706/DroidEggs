@@ -15,7 +15,6 @@
 package com.itachi1706.droideggs.eggs.nougat.easter_egg.neko;
 
 import android.annotation.TargetApi;
-import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -34,6 +33,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -69,7 +69,7 @@ public class NekoLand extends AppCompatActivity implements PrefState.PrefsListen
         super.onCreate(savedInstanceState);
         EdgeToEdgeHelper.setEdgeToEdgeWithContentView(R.id.nougat_neko_root, this, R.layout.nougat_neko_activity);
 
-        final ActionBar actionBar = getActionBar();
+        final ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setLogo(Cat.create(this));
             actionBar.setDisplayUseLogoEnabled(false);

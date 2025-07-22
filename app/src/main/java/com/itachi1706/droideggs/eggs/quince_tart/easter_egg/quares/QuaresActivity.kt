@@ -20,6 +20,7 @@ import android.widget.GridLayout
 import androidx.annotation.RequiresApi
 import androidx.core.view.WindowCompat
 import com.itachi1706.droideggs.R
+import com.itachi1706.helperlib.helpers.EdgeToEdgeHelper
 import java.util.Random
 
 const val TAG = "Quares"
@@ -34,7 +35,7 @@ class QuaresActivity : Activity() {
     private lateinit var grid: GridLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        WindowCompat.setDecorFitsSystemWindows(window, false)
+        EdgeToEdgeHelper.disableWindowSystemWindows(window)
         actionBar?.hide()
         setContentView(R.layout.q_activity_quares)
         grid = findViewById(R.id.grid)

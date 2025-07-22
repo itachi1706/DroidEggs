@@ -132,14 +132,14 @@ public class MLand extends FrameLayout {
         }
     }
     private TimeAnimator mAnim;
-    private Vibrator mVibrator;
-    private AudioManager mAudioManager;
+    private final Vibrator mVibrator;
+    private final AudioManager mAudioManager;
     private final AudioAttributes mAudioAttrs = new AudioAttributes.Builder()
             .setUsage(AudioAttributes.USAGE_GAME).build();
     private View mSplash;
     private ViewGroup mScoreFields;
-    private ArrayList<Player> mPlayers = new ArrayList<>();
-    private ArrayList<Obstacle> mObstaclesInPlay = new ArrayList<>();
+    private final ArrayList<Player> mPlayers = new ArrayList<>();
+    private final ArrayList<Obstacle> mObstaclesInPlay = new ArrayList<>();
     private float t;
     private float dt;
     private float mLastPipeTime; // in sec

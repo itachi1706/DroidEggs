@@ -134,7 +134,7 @@ public class NekoLand extends AppCompatActivity implements PrefState.PrefsListen
         final Context context = new ContextThemeWrapper(this,
                 android.R.style.Theme_Material_Light_Dialog_NoActionBar);
         View view = LayoutInflater.from(context).inflate(R.layout.r_edit_text, null);
-        final EditText text = (EditText) view.findViewById(android.R.id.edit);
+        final EditText text = view.findViewById(android.R.id.edit);
         text.setText(cat.getName());
         text.setSelection(cat.getName().length());
         final int size = context.getResources()
@@ -248,8 +248,8 @@ public class NekoLand extends AppCompatActivity implements PrefState.PrefsListen
 
         public CatHolder(View itemView) {
             super(itemView);
-            imageView = (ImageView) itemView.findViewById(android.R.id.icon);
-            textView = (TextView) itemView.findViewById(android.R.id.title);
+            imageView = itemView.findViewById(android.R.id.icon);
+            textView = itemView.findViewById(android.R.id.title);
             contextGroup = itemView.findViewById(R.id.contextGroup);
             delete = itemView.findViewById(android.R.id.closeButton);
             share = itemView.findViewById(android.R.id.shareText);

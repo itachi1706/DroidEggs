@@ -45,7 +45,7 @@ class MainScreen : AppCompatActivity() {
         val view = binding.root
         EdgeToEdgeHelper.setEdgeToEdgeWithContentView(view, this)
 
-        Firebase.crashlytics.setCrashlyticsCollectionEnabled(!BuildConfig.DEBUG)
+        Firebase.crashlytics.isCrashlyticsCollectionEnabled = !BuildConfig.DEBUG
 
         binding.btnCurrent.setOnClickListener { v -> checkForCurrentEggResult.launch(Intent(v.context, CurrentEgg::class.java)) }
 

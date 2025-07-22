@@ -45,12 +45,12 @@ public class PrefState implements SharedPreferences.OnSharedPreferenceChangeList
     // Can also be used for renaming.
     public void addCat(Cat cat) {
         mPrefs.edit()
-                .putString(CAT_KEY_PREFIX + String.valueOf(cat.getSeed()), cat.getName())
+                .putString(CAT_KEY_PREFIX + cat.getSeed(), cat.getName())
                 .apply();
     }
 
     public void removeCat(Cat cat) {
-        mPrefs.edit().remove(CAT_KEY_PREFIX + String.valueOf(cat.getSeed())).apply();
+        mPrefs.edit().remove(CAT_KEY_PREFIX + cat.getSeed()).apply();
     }
 
     public List<Cat> getCats() {

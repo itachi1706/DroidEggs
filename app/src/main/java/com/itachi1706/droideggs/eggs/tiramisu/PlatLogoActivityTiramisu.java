@@ -270,7 +270,7 @@ public class PlatLogoActivityTiramisu extends Activity {
                 R.color.system_accent2_600,
         };
 
-        private int[] mColors = new int[mColorIds.length];
+        private final int[] mColors = new int[mColorIds.length];
         private final Bubble[] mBubbs = new Bubble[MAX_BUBBS];
         private int mNumBubbs;
 

@@ -64,13 +64,13 @@ class CutoutAvoidingToolbar : LinearLayout {
                 }
             }
             // apply to layout
-            (findViewWithTag("cutoutLeft") as View?)?.let {
+            (findViewWithTag<View>("cutoutLeft"))?.let {
                 it.layoutParams = LayoutParams(cutoutLeft, MATCH_PARENT)
             }
-            (findViewWithTag("cutoutCenter") as View?)?.let {
+            (findViewWithTag<View>("cutoutCenter"))?.let {
                 it.layoutParams = LayoutParams(cutoutCenter, MATCH_PARENT)
             }
-            (findViewWithTag("cutoutRight") as View?)?.let {
+            (findViewWithTag<View>("cutoutRight"))?.let {
                 it.layoutParams = LayoutParams(cutoutRight, MATCH_PARENT)
             }
             requestLayout()

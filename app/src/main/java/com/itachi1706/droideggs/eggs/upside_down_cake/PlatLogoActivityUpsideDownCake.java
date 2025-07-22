@@ -113,7 +113,7 @@ public class PlatLogoActivityUpsideDownCake extends AppCompatActivity {
         private final VibratorManager mVibeMan;
         private final HandlerThread mVibeThread;
         private final Handler mVibeHandler;
-        private boolean mSpinPrimitiveSupported;
+        private final boolean mSpinPrimitiveSupported;
 
         private long mLastVibe = 0;
 
@@ -393,7 +393,7 @@ public class PlatLogoActivityUpsideDownCake extends AppCompatActivity {
                     final int plane = (int) ((((float) i) / NUM_STARS) * NUM_PLANES) + 1;
                     mStars[4 * i + 2] = (mStars[4 * i + 2] + dx * plane + w) % w;
                     mStars[4 * i + 3] = (mStars[4 * i + 3] + dy * plane + h) % h;
-                    mStars[4 * i + 0] = inWarp ? mStars[4 * i + 2] - dx * mWarp * 2 * plane : -100;
+                    mStars[4 * i] = inWarp ? mStars[4 * i + 2] - dx * mWarp * 2 * plane : -100;
                     mStars[4 * i + 1] = inWarp ? mStars[4 * i + 3] - dy * mWarp * 2 * plane : -100;
                 }
             }

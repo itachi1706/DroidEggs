@@ -72,7 +72,7 @@ fun controlToString(control: Control): String {
 }
 
 @RequiresApi(30)
-public class NekoControlsService : ControlsProviderService(), PrefState.PrefsListener {
+class NekoControlsService : ControlsProviderService(), PrefState.PrefsListener {
     private val TAG = "NekoControls"
 
     private val controls = HashMap<String, Control>()
@@ -209,7 +209,7 @@ public class NekoControlsService : ControlsProviderService(), PrefState.PrefsLis
                 Log.v(TAG, "Toy tossed.")
                 controls[CONTROL_ID_TOY] =
                         makeToyControl(currentToyIcon(), true)
-                Thread() {
+                Thread {
                     Thread.sleep((1 + Random().nextInt(4)) * 1000L)
                     NekoService.getExistingCat(prefs)?.let {
                         NekoService.notifyCat(this, it)
@@ -234,7 +234,7 @@ public class NekoControlsService : ControlsProviderService(), PrefState.PrefsLis
     }
 
     private fun pushControlChanges() {
-        Thread() {
+        Thread {
             publishers.forEach { it.refresh() }
         }.start()
     }

@@ -56,7 +56,7 @@ public class PaintActivity extends Activity {
     private LinearLayout brushes = null;
     private LinearLayout colors = null;
     private boolean sampling = false;
-    private View.OnClickListener buttonHandler = view -> {
+    private final View.OnClickListener buttonHandler = view -> {
         if (view.getId() == R.id.btnBrush) {
             view.setSelected(true);
             hideToolbar(colors);

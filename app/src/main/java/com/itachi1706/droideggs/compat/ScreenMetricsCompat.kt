@@ -20,7 +20,7 @@ object ScreenMetricsCompat {
      * Returns screen size in pixels.
      */
     fun getScreenSize(context: Context): Size = api.getScreenSize(context)
-    fun getInsetsMetric(insets: WindowInsets): InsetsCompat = api.getInsetsMetric(insets);
+    fun getInsetsMetric(insets: WindowInsets): InsetsCompat = api.getInsetsMetric(insets)
 
     @Suppress("DEPRECATION")
     private open class Api {

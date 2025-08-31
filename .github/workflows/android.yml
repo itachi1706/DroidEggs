@@ -17,7 +17,7 @@ jobs:
       with:
         ref: ${{ github.event.pull_request.head.sha }}
     - name: set up JDK 17
-      uses: actions/setup-java@v4
+      uses: actions/setup-java@v5
       with:
         distribution: 'temurin'
         java-version: 17
@@ -64,7 +64,7 @@ jobs:
     - name: List Available Android Devices
       run: $ANDROID_HOME/cmdline-tools/latest/bin/avdmanager list
     - name: set up JDK 17
-      uses: actions/setup-java@v4
+      uses: actions/setup-java@v5
       with:
         distribution: 'temurin'
         java-version: 17
@@ -86,7 +86,7 @@ jobs:
       with:
         token: ${{ secrets.GH_PAT }}
     - name: set up JDK 17
-      uses: actions/setup-java@v4
+      uses: actions/setup-java@v5
       with:
         distribution: 'temurin'
         java-version: 17
